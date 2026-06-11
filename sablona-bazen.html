@@ -1,0 +1,284 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/widget-bazen.css">
+<div class="page-tint" aria-hidden="true"></div>
+<div class="wrap">
+  <h2>{{INTRO_NADPIS}}</h2>
+  <p><strong>{{ZNACKA_MODEL}}</strong> – {{INTRO_POPIS_KRATKY}}</p>
+  <p>{{INTRO_POPIS_DLOUHY}}</p>
+
+  <div class="video-row">
+    <div class="video">
+      <div class="frame hover-zoom">
+        <div class="glass-img elev"></div>
+        <iframe width="300" height="150" src="{{VIDEO_1_URL}}" title="Video 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="video">
+      <div class="frame hover-zoom">
+        <div class="glass-img elev"></div>
+        <iframe width="300" height="150" src="{{VIDEO_2_URL}}" title="Video 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <section class="feat-card card-glass">
+    <div class="g">
+      <div>
+        <h3 class="feat-title">Hlavní vlastnosti produktu</h3>
+        {{HLAVNI_VLASTNOSTI_HTML}}
+      </div>
+      <figure class="glass-float">
+        <div class="frame glass-img hover-zoom">
+          <img class="zoomable" src="{{HLAVNI_VLASTNOSTI_IMAGE_URL}}" alt="Hlavní vlastnosti – ilustrační">
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="rsw card-glass" id="rsw">
+    <div class="rsw-shell">
+      <div class="rsw-left">
+        <div class="rsw-header">
+          <img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/logos/roboti_sekacky_logo_final_(kopie).png" alt="Logo Robotisekacky">
+          <h2>Poradíme s výběrem bazénového vysavače</h2>
+        </div>
+        <div class="rsw-slider">
+          <div class="rsw-track" id="rswTrack">
+            <div class="rsw-item"><img src="/user/documents/upload/Instalace - widget/bazénové vysavače/Aiper-Scuba-S1 Teplice.jpg" alt="Aiper Scuba S1 – Teplice"><div class="rsw-cap">Aiper Scuba S1 – Teplice</div></div>
+            <div class="rsw-item"><img src="/user/documents/upload/Instalace - widget/bazénové vysavače/aiper-surfer-s2-karviná.jpg" alt="Aiper Surfer S2 – Karviná"><div class="rsw-cap">Aiper Surfer S2 – Karviná</div></div>
+            <div class="rsw-item"><img src="/user/documents/upload/Instalace - widget/bazénové vysavače/Spino E1 - Jihlava.jpg" alt="Mammotion Spino E1 – Jihlava"><div class="rsw-cap">Mammotion Spino E1 – Jihlava</div></div>
+            <div class="rsw-item"><img src="/user/documents/upload/Instalace - widget/bazénové vysavače/Spino E1 Praha ve střední velikosti.jpg" alt="Mammotion Spino E1 – Praha"><div class="rsw-cap">Mammotion Spino E1 – Praha</div></div>
+          </div>
+          <div class="rsw-nav">
+            <div class="rsw-arrow" id="rswPrev">❮</div>
+            <div class="rsw-arrow" id="rswNext">❯</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rsw-right">
+        <div class="rsw-box" data-modal="rsw-modal-choose"><h3>Jak vybrat bazénový vysavač</h3><p>Na co se zaměřit: čištění stěn a vodní linky, navigace, typ filtrace a výkon motoru.</p></div>
+        <div class="rsw-box rsw-box--with-badge" data-modal="rsw-modal-rating">
+          <div class="rsw-badge-img"><img src="/user/documents/upload/Obrázky/Robotí Sekačky fotky/logo-verified-by-customers-gold--cs-2.svg" alt="Ověřeno zákazníky"></div>
+          <div class="rsw-content">
+            <h3>Ověřeno zákazníky</h3>
+            <p>Reálné zkušenosti zákazníků – žádné umělé recenze.</p>
+            <div class="rsw-stars">★★★★★</div>
+            <p>Průměr <span class="rsw-big">5,0</span> z <strong>250</strong> hodnocení na Heurece.</p>
+          </div>
+        </div>
+        <div class="rsw-box" data-modal="rsw-modal-filter"><h3>Důležitost filtrace</h3><p>Řasa, písek nebo listí? Správný filtr rozhoduje o výsledku. Od 10 µm na řasy po 200 µm na listí.</p></div>
+        <div class="rsw-box" data-modal="rsw-modal-surface"><h3>Pozor na hladké povrchy</h3><p>Nerez, sklo a keramika = kluzký povrch. Robot potřebuje silnější motor a větší baterii.</p></div>
+        <div class="rsw-box" data-modal="rsw-modal-winter"><h3>Zimní péče o baterii</h3><p>Jak správně uložit robota přes zimu, aby baterie vydržela i příští sezónu.</p></div>
+        <a class="rsw-cta" href="/bazenove-vysavace/" target="_blank" rel="noopener noreferrer">Všechny bazénové vysavače</a>
+      </div>
+    </div>
+
+    <div class="rsw-overlay" id="rswOverlay"></div>
+
+    <div class="rsw-modal" id="rsw-modal-choose">
+      <button class="rsw-close" type="button">×</button>
+      <h3>Jak vybrat bazénový vysavač</h3>
+      <div class="rsw-rbox"><div class="rsw-rname">Co chcete čistit?</div><p style="margin:0">Základní modely vyčistí <strong>jen dno</strong>. Pokročilejší zvládnou i <strong>stěny a vodní linku</strong> – většinou platí, že robot, který čistí stěny, vyčistí i hladinovou linku.</p></div>
+      <div class="rsw-rbox"><div class="rsw-rname">Velikost a tvar bazénu</div><p style="margin:0">Moderní bateriové roboty s chytrou navigací si poradí s <strong>většinou tvarů a velikostí</strong>. Střední třída je dimenzovaná na cca <strong>150 m²</strong>. Důležitější než rozměry je dnes <strong>typ navigace a filtrace</strong>.</p></div>
+      <div class="rsw-rbox"><div class="rsw-rname">Navigace</div><p style="margin:0">Modely s <strong>chytrou navigací</strong> (gyroskop, senzory, kamera) čistí efektivněji a vynechají méně míst. U jednoduchých modelů robot jezdí náhodně – u složitějších tvarů to může znamenat, že některá místa mine.</p></div>
+      <p style="margin:12px 0 0"><strong>Potřebujete poradit?</strong> <strong><span style="white-space:nowrap">📞&nbsp;<a href="tel:+420792325839">+420&nbsp;792&nbsp;325&nbsp;839</a></span></strong> • <strong><span style="white-space:nowrap">✉️&nbsp;<a href="mailto:info@robotisekacky.cz">info@robotisekacky.cz</a></span></strong></p>
+    </div>
+
+    <div class="rsw-modal" id="rsw-modal-rating">
+      <button class="rsw-close" type="button">×</button>
+      <h3>Hodnocení zákazníků (<span id="heurekaCountModal">250</span>)</h3>
+      <div class="rsw-rbox"><div class="rsw-rname">Iva Miřacká</div><div class="rsw-rstars">★★★★★</div><p>Skvělý obchod, rychlá komunikace a pomoc s nastavením.</p></div>
+      <div class="rsw-rbox"><div class="rsw-rname">Alena</div><div class="rsw-rstars">★★★★★</div><p>Vše na 100 %, doporučuji – konečně mám čistý bazén bez práce.</p></div>
+      <div class="rsw-rbox"><div class="rsw-rname">Roman Fizek</div><div class="rsw-rstars">★★★★★</div><p>Trpělivý přístup a pomoc s výběrem, díky.</p></div>
+      <a class="rsw-more" href="/hodnoceni-obchodu/" target="_blank" rel="noopener noreferrer">Další recenze</a>
+    </div>
+
+    <div class="rsw-modal" id="rsw-modal-filter">
+      <button class="rsw-close" type="button">×</button>
+      <h3>Průvodce filtrací bazénového vysavače</h3>
+      <div class="rsw-rbox"><div class="rsw-rname">🟢 Jemný filtr (10–20 µm) – na řasy</div><p style="margin:0">Filtr <strong>20 µm</strong> zachytí většinu řas. Pro jemné řasy volte <strong>10 µm</strong>. Pozor: takto jemné filtry většinou vydrží <strong>1–2 sezóny</strong> a pak je vhodné je vyměnit.</p></div>
+      <div class="rsw-rbox"><div class="rsw-rname">🟡 Střední filtr (50 µm) – univerzální</div><p style="margin:0">Vhodný do bazénů, kde se řasa <strong>netvoří</strong> a převládají hrubší nečistoty jako větší zrnka písku.</p></div>
+      <div class="rsw-rbox"><div class="rsw-rname">🔴 Hrubý filtr (200 µm) – listí a hmyz</div><p style="margin:0">Zachytí <strong>listí, hmyz a velké nečistoty</strong>. Jemnější písek jím ale může procházet.</p></div>
+      <div class="rsw-rbox"><div class="rsw-rname">⚠️ Údržba filtru</div><p style="margin:0">Filtr <strong>po každém spuštění</strong> robota propláchněte vodou z hadice. Kontrolujte, zda není potrhaný – kamínky a ostré předměty ho mohou poškodit.</p></div>
+    </div>
+
+    <div class="rsw-modal" id="rsw-modal-surface">
+      <button class="rsw-close" type="button">×</button>
+      <h3>Hladké povrchy – na co si dát pozor</h3>
+      <p style="margin:0 0 12px">Bazény s povrchy z <strong>nerezu, skla nebo keramiky</strong> jsou výrazně kluzkější než fóliové či betonové.</p>
+      <div class="rsw-rbox"><div class="rsw-rname">Proč je to důležité?</div><p style="margin:0">Na hladkém povrchu robot potřebuje <strong>silnější motor a větší baterii</strong>, aby udržel přísavný tlak na stěně a nesklouzl dolů. Všichni roboti používají pásy, ale samotné pásy na kluzkém povrchu nestačí – rozhoduje výkon.</p></div>
+      <div class="rsw-rbox"><div class="rsw-rname">Doporučení</div><p style="margin:0">Máte-li nerezový nebo skleněný bazén, <strong>nešetřete na modelu</strong>. Základní roboti většinou stěny v takovém bazénu nevyjedou. Ozvěte se nám a poradíme konkrétní model.</p></div>
+      <p style="margin:12px 0 0"><strong><span style="white-space:nowrap">📞&nbsp;<a href="tel:+420792325839">+420&nbsp;792&nbsp;325&nbsp;839</a></span></strong> • <strong><span style="white-space:nowrap">✉️&nbsp;<a href="mailto:info@robotisekacky.cz">info@robotisekacky.cz</a></span></strong></p>
+    </div>
+
+    <div class="rsw-modal" id="rsw-modal-winter">
+      <button class="rsw-close" type="button">×</button>
+      <h3>Zimní péče o baterii</h3>
+      <p style="margin:0 0 12px">Správné uskladnění přes zimu <strong>výrazně prodlouží životnost baterie</strong>.</p>
+      <ul style="list-style:disc;margin:0 0 0 20px">
+        <li><strong>Nabijte na 50–70 %</strong> – nikdy neukládejte plně nabitou ani vybitou.</li>
+        <li><strong>Uložte v suchu</strong> při teplotě +5 až +25 °C.</li>
+        <li><strong>Dobijte každé 2–3 měsíce</strong> zpět na 50–70 %, i když robota nepoužíváte.</li>
+        <li>Před první jarní sezónou robota <strong>plně nabijte</strong> a zkontrolujte filtry.</li>
+      </ul>
+      <p style="margin:12px 0 0;font-size:.9rem;color:#555">Tip: vytáhněte robota z vody ihned po ukončení čisticího cyklu. Dlouhý pobyt ve vodě s chemií zkracuje životnost těsnění i povrchů.</p>
+    </div>
+  </section>
+
+  <div class="carousel card-glass" data-carousel>
+    <div class="c-track">{{KARUSEL_HORNI_HTML}}</div>
+    <div class="c-nav" aria-hidden="true">
+      <button class="c-btn" type="button" aria-label="Předchozí" data-dir="-1">❮</button>
+      <button class="c-btn" type="button" aria-label="Další" data-dir="1">❯</button>
+      <div class="c-dots glass-light"></div>
+    </div>
+  </div>
+
+  <section class="spec-card card-glass">
+    <h3 class="spec-title">Technické parametry</h3>
+    <div class="glass-table">
+      <table class="spec-table">
+        <thead><tr><th>Parametr</th><th>Hodnota</th></tr></thead>
+        <tbody>{{PARAMETRY_HTML}}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="hero" aria-label="{{HERO_NADPIS}}" style="--hero-bg:url('{{HERO_IMAGE_URL}}')">
+    <div class="inner">
+      <h2>{{HERO_NADPIS}}</h2>
+      <p>{{HERO_TEXT}}</p>
+    </div>
+  </section>
+
+  <section class="tips-card card-glass">
+    <div class="g">
+      <div class="txt">
+        <h3 class="tips-title">Tipy a triky</h3>
+        {{TIPY_HTML}}
+        <div class="tips-cta">
+          <a class="cta cta--light" href="tel:+420792325839" aria-label="Zavolat +420 792 325 839"><span class="ico">📞</span> +420&nbsp;792&nbsp;325&nbsp;839</a>
+          <a class="cta cta--dark" href="mailto:info@robotisekacky.cz" aria-label="Napsat e-mail na info@robotisekacky.cz"><span class="ico">✉️</span> info@robotisekacky.cz</a>
+        </div>
+      </div>
+      <div class="tips-media">
+        <img src="/user/documents/upload/Obrázky/Robotí Sekačky fotky/profil michael bohacek ve střední velikosti.jpg" alt="Michael Boháček – váš člověk pro robotiku">
+        <div class="tips-badge">
+          <img class="logo" src="/user/documents/upload/Obrázky/Robotí Sekačky fotky/Roboti sekacky_logo_FINAL (kopie 2).png" alt="">
+          <div class="id"><strong>Michael Boháček</strong><span>Expert přes domácí robotiku</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="faq card-glass" id="faq" aria-expanded="false">
+    <div class="faq-header">
+      <h3>Nejčastější dotazy (FAQ)</h3>
+      <div class="faq-teaser" aria-live="polite" aria-atomic="true">
+        <div class="layer" id="rotA">{{FAQ_PRVNI_OTAZKA}}</div>
+        <div class="layer" id="rotB" style="opacity:0;transform:translateY(8px)"></div>
+      </div>
+      <button class="faq-toggle" type="button" aria-label="Rozbalit FAQ"><span class="chev">❯</span></button>
+    </div>
+    <div class="faq-body">{{FAQ_HTML}}</div>
+  </div>
+
+  <div class="carousel card-glass" data-carousel>
+    <div class="c-track">{{KARUSEL_DOLNI_HTML}}</div>
+    <div class="c-nav" aria-hidden="true">
+      <button class="c-btn" type="button" aria-label="Předchozí" data-dir="-1">❮</button>
+      <button class="c-btn" type="button" aria-label="Další" data-dir="1">❯</button>
+      <div class="c-dots glass-light"></div>
+    </div>
+  </div>
+
+  <section class="warn">
+    <h3>Na co si dát pozor</h3>
+    {{WARN_HTML}}
+  </section>
+
+  <section class="pack-card card-glass">
+    <div class="g">
+      <div class="txt">
+        <h3 class="pack-title">Obsah balení</h3>
+        {{OBSAH_BALENI_HTML}}
+      </div>
+      <figure class="glass-float">
+        <div class="frame glass-img hover-zoom">
+          <img class="zoomable" src="{{OBSAH_BALENI_IMAGE_URL}}" alt="Obsah balení – ilustrační foto" loading="lazy" onerror="this.closest('figure').style.display='none'">
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="trust-tiles card-glass" id="trust">
+    <div class="trust-grid">
+      <div class="trust-tile trust-tile--link">
+        <a class="trust-link" href="/hodnoceni-obchodu/" target="_blank" rel="noopener noreferrer" aria-label="Hodnocení obchodu Robotí Sekačky na Heurece"></a>
+        <div class="trust-tile-inner">
+          <div class="trust-ico" aria-hidden="true"><img src="/user/documents/upload/Obrázky/Robotí Sekačky fotky/logo-verified-by-customers-gold--cs-2.svg" alt="Heureka – Ověřeno zákazníky"></div>
+          <div class="trust-title"><span class="trust-kicker">Důvěra</span> <span class="trust-heading">Ověřeno zákazníky</span></div>
+          <p class="trust-copy"><strong>5,0</strong> z <strong><span id="heurekaCount">250</span></strong> hodnocení.</p>
+          <p class="trust-stars">★★★★★</p>
+          <p class="trust-note">Všechna hodnocení uvidíte po kliknutí.</p>
+        </div>
+      </div>
+
+      <div class="trust-tile trust-tile--badge-corner">
+        <span class="trust-badge">ZDARMA</span>
+        <div class="trust-tile-inner">
+          <div class="trust-ico" aria-hidden="true"><span class="trust-emoji">🎁</span></div>
+          <div class="trust-title"><span class="trust-kicker">Bonus k nákupu</span> <span class="trust-heading">Dárek k&nbsp;vysavači zdarma</span></div>
+          <p class="trust-copy">Bazén čistí robot – vy si užijte léto. K nákupu přidáme drobnost, která se u bazénu hodí.</p>
+          <p class="trust-note">Když chybí skladem, <strong>zdarma</strong> ho <strong>dopošleme</strong>.</p>
+        </div>
+      </div>
+
+      <div class="trust-tile trust-tile--link trust-tile--badge-corner">
+        <span class="trust-badge">TIP</span>
+        <a class="trust-link" href="/zahradni-reproduktory/" target="_blank" rel="noopener noreferrer" aria-label="Zahradní reproduktory a ozvučení zahrady"></a>
+        <div class="trust-tile-inner">
+          <div class="trust-ico" aria-hidden="true"><span class="trust-emoji">🔊</span></div>
+          <div class="trust-title"><span class="trust-kicker">Relax u bazénu</span> <span class="trust-heading">Ozvučení pergol a teras</span></div>
+          <p class="trust-copy">Když je vyčištěno, je čas vypnout. Hudba na terase i v pergole – přesně tak, jak to máte rádi.</p>
+          <p class="trust-note">Pro každou část nastavíme <strong>jinou hudbu</strong> i <strong>hlasitost</strong>. <strong>Více ZDE.</strong></p>
+        </div>
+      </div>
+
+      <div class="trust-tile">
+        <div class="trust-tile-inner">
+          <div class="trust-ico" aria-hidden="true"><span class="trust-emoji">↩️</span></div>
+          <div class="trust-title"><span class="trust-kicker">Nákup bez rizika</span> <span class="trust-heading">Vrácení do <strong>14&nbsp;dnů</strong></span></div>
+          <p class="trust-copy">Postup reklamace a kontakt na výrobce <a href="/reklamace-a-vraceni-zbozi/" target="_blank" rel="noopener noreferrer">najdete zde</a>.</p>
+          <p class="trust-note">Když to nesedne, vrácení je jednoduché a bez dohadů.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-cta-wrap">
+      <a href="#" id="trust-cta-top" class="trust-cta" aria-label="Posunout stránku nahoru k nákupu">
+        <svg class="chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5l8 7-8 7"></path></svg>
+        Nahoru k&nbsp;nákupu
+        <svg class="cart" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="19" r="1.8"></circle><circle cx="17" cy="19" r="1.8"></circle><path d="M3 5h2l2.2 10H18l2-7H7.3"></path></svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="bottom image" style="--bottom-bg:url('{{BOTTOM_IMAGE_URL}}')">
+    <div class="inner">
+      <h2>{{BOTTOM_NADPIS}}</h2>
+      <p>{{BOTTOM_TEXT}}</p>
+    </div>
+  </section>
+</div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Zvětšený obrázek">
+  <button class="lb-close" type="button" aria-label="Zavřít">✕</button>
+  <button class="lb-prev" type="button" aria-label="Předchozí">❮</button>
+  <img alt="">
+  <button class="lb-next" type="button" aria-label="Další">❯</button>
+</div>
+
+<div class="fab" id="fab"><a class="call" href="tel:+420792325839" aria-label="Zavolat">📞</a></div>
+
+<script src="https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/widget-bazen.js" defer></script>
