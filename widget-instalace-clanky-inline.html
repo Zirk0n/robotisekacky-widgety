@@ -258,10 +258,10 @@
     window.fetch('/hodnoceni-obchodu/', { credentials: 'same-origin', cache: 'force-cache' })
       .then(function (response) { return response.text(); })
       .then(function (html) {
-        var plain = html.replace(/<[^>]+>/g, ' ');
-        var matches = plain.match(/(\d{2,4})\s+hodnocen/gi) || [];
-        var counts = matches.map(function (value) { return parseInt(value, 10); }).filter(function (value) { return value >= 50 && value <= 9999; });
-        if (counts.length) setReviewCount(Math.max.apply(null, counts));
+        var page = new DOMParser().parseFromString(html, 'text/html');
+        var ratingLabel = page.querySelector('.stars-label');
+        var match = ratingLabel && ratingLabel.textContent.match(/(\d{2,4})\s+hodnocen/i);
+        if (match) setReviewCount(parseInt(match[1], 10));
       })
       .catch(function () {});
 
