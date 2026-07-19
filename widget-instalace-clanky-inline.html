@@ -1,0 +1,280 @@
+<style>
+.rsw-article {
+  --rsw-brand: #86bb41;
+  --rsw-dark: #1b3f20;
+  --rsw-ink: #283528;
+  --rsw-glass: rgba(255, 255, 255, .84);
+  --rsw-line: rgba(255, 255, 255, .78);
+  --rsw-shadow: 0 18px 38px rgba(27, 63, 32, .16);
+  position: relative;
+  isolation: isolate;
+  margin: 34px 0;
+  color: var(--rsw-ink);
+  box-sizing: border-box;
+}
+
+.rsw-article,
+.rsw-article * { box-sizing: border-box; }
+
+.rsw-article .rsw-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--rsw-line);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 0 0, rgba(134, 187, 65, .16), transparent 48%),
+    radial-gradient(circle at 100% 100%, rgba(134, 187, 65, .12), transparent 52%),
+    linear-gradient(135deg, rgba(255, 255, 255, .96), rgba(247, 252, 242, .84));
+  box-shadow: var(--rsw-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.rsw-article .rsw-left,
+.rsw-article .rsw-right { position: relative; z-index: 1; min-width: 0; }
+.rsw-article .rsw-left { overflow: hidden; }
+
+.rsw-article .rsw-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 86px;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(134, 187, 65, .18);
+  background: rgba(255, 255, 255, .72);
+}
+
+.rsw-article .rsw-header img {
+  width: auto;
+  height: 50px;
+  margin: 0;
+  object-fit: contain;
+}
+
+.rsw-article .rsw-header h2 {
+  margin: 0;
+  color: var(--rsw-dark);
+  font-size: 1.38rem;
+  line-height: 1.22;
+}
+
+.rsw-article .rsw-slider { position: relative; overflow: hidden; min-height: 470px; }
+.rsw-article .rsw-track { display: flex; width: 100%; height: 100%; transition: transform .58s ease; touch-action: pan-y; }
+.rsw-article .rsw-item { position: relative; display: flex; flex: 0 0 100%; align-items: center; justify-content: center; min-width: 100%; padding: 22px 38px 28px; }
+.rsw-article .rsw-item img { display: block; width: 100%; height: 420px; margin: 0; border-radius: 18px; object-fit: cover; box-shadow: 0 16px 32px rgba(27, 63, 32, .18); }
+
+.rsw-article .rsw-cap {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  max-width: calc(100% - 70px);
+  padding: 7px 12px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, .65);
+  border-radius: 999px;
+  background: rgba(27, 63, 32, .88);
+  color: #fff;
+  font-size: .88rem;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, .25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.rsw-article .rsw-nav { position: absolute; top: 50%; right: 0; left: 0; display: flex; justify-content: space-between; padding: 0 12px; transform: translateY(-50%); pointer-events: none; }
+.rsw-article .rsw-arrow { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid rgba(255, 255, 255, .72); border-radius: 50%; background: rgba(27, 63, 32, .86); color: #fff; cursor: pointer; pointer-events: auto; box-shadow: 0 12px 24px rgba(0, 0, 0, .2); transition: transform .2s ease, background .2s ease; }
+.rsw-article .rsw-arrow:hover { transform: scale(1.06); background: rgba(27, 63, 32, .96); }
+
+.rsw-article .rsw-right { display: flex; flex-direction: column; gap: 12px; padding: 18px; }
+.rsw-article .rsw-box { padding: 13px 15px; border: 1px solid rgba(134, 187, 65, .16); border-radius: 15px; background: rgba(255, 255, 255, .91); box-shadow: 0 12px 26px rgba(27, 63, 32, .1); cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
+.rsw-article .rsw-box:hover { transform: translateY(-2px); box-shadow: 0 17px 32px rgba(27, 63, 32, .15); }
+.rsw-article .rsw-box h3 { margin: 0 0 5px; color: var(--rsw-dark); font-size: 1.08rem; }
+.rsw-article .rsw-box p { margin: 0; color: var(--rsw-ink); font-size: .94rem; line-height: 1.45; }
+.rsw-article .rsw-box a { color: var(--rsw-dark); text-decoration: underline; }
+.rsw-article .rsw-box--with-badge { display: flex; align-items: center; gap: 13px; }
+.rsw-article .rsw-badge-img { flex: 0 0 76px; width: 76px; height: 76px; }
+.rsw-article .rsw-badge-img img { width: 100%; height: 100%; margin: 0; object-fit: contain; }
+.rsw-article .rsw-stars { margin: 4px 0 2px; color: #f5a000; font-size: 1.18rem; letter-spacing: .06em; }
+.rsw-article .rsw-big { color: var(--rsw-dark); font-weight: 800; }
+
+.rsw-article .rsw-cta,
+.rsw-article .rsw-more,
+.rsw-article .rsw-obhlidka { display: inline-block; border: 1px solid rgba(255, 255, 255, .75); border-radius: 999px; background: rgba(27, 63, 32, .93); color: #fff; font-weight: 800; text-align: center; text-decoration: none; box-shadow: 0 13px 26px rgba(27, 63, 32, .2); }
+.rsw-article .rsw-cta { display: block; width: 100%; margin-top: auto; padding: 12px 16px; }
+.rsw-article .rsw-more,
+.rsw-article .rsw-obhlidka { padding: 9px 14px; }
+.rsw-article .rsw-cta:hover,
+.rsw-article .rsw-more:hover,
+.rsw-article .rsw-obhlidka:hover { background: var(--rsw-dark); color: #fff; }
+
+.rsw-article .rsw-overlay { position: absolute; inset: 0; z-index: 15; display: none; border-radius: 22px; background: rgba(12, 24, 13, .52); }
+.rsw-article .rsw-modal { position: absolute; top: 50%; left: 50%; z-index: 20; display: none; width: min(92%, 650px); max-height: 82%; overflow: auto; padding: 20px; transform: translate(-50%, -50%); border: 1px solid rgba(255, 255, 255, .8); border-radius: 18px; background: rgba(255, 255, 255, .94); box-shadow: 0 24px 56px rgba(0, 0, 0, .32); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.rsw-article .rsw-modal h3 { margin-top: 0; color: var(--rsw-dark); }
+.rsw-article .rsw-close { position: absolute; top: 8px; right: 12px; border: 0; background: transparent; color: var(--rsw-dark); font-size: 1.35rem; cursor: pointer; }
+.rsw-article .rsw-step { display: inline-grid; width: 26px; height: 26px; margin-right: 7px; place-items: center; border-radius: 50%; background: var(--rsw-brand); color: #fff; font-weight: 800; }
+.rsw-article .rsw-rbox { margin: 0 0 10px; padding: 10px 12px; border: 1px solid rgba(134, 187, 65, .16); border-radius: 12px; background: #fff; }
+.rsw-article .rsw-rname { color: var(--rsw-dark); font-weight: 800; }
+.rsw-article .rsw-rstars { color: #f5a000; }
+
+@media (max-width: 860px) {
+  .rsw-article .rsw-shell { grid-template-columns: 1fr; }
+  .rsw-article .rsw-slider { min-height: 410px; }
+  .rsw-article .rsw-item img { height: 360px; }
+}
+
+@media (max-width: 560px) {
+  .rsw-article { margin: 24px 0; }
+  .rsw-article .rsw-shell { border-radius: 16px; }
+  .rsw-article .rsw-header { min-height: 70px; padding: 11px 13px; }
+  .rsw-article .rsw-header img { height: 38px; }
+  .rsw-article .rsw-header h2 { font-size: 1.05rem; }
+  .rsw-article .rsw-slider { min-height: 330px; }
+  .rsw-article .rsw-item { padding: 14px 30px 20px; }
+  .rsw-article .rsw-item img { height: 300px; border-radius: 14px; }
+  .rsw-article .rsw-cap { bottom: 30px; max-width: calc(100% - 60px); font-size: .8rem; }
+  .rsw-article .rsw-arrow { width: 36px; height: 36px; }
+  .rsw-article .rsw-right { gap: 9px; padding: 11px; }
+  .rsw-article .rsw-box { padding: 10px 11px; border-radius: 12px; }
+  .rsw-article .rsw-box h3 { font-size: .98rem; }
+  .rsw-article .rsw-box p { font-size: .86rem; }
+  .rsw-article .rsw-badge-img { flex-basis: 55px; width: 55px; height: 55px; }
+  .rsw-article .rsw-modal { width: 94%; padding: 16px 13px; border-radius: 14px; }
+}
+
+</style>
+<section class="rsw-article" aria-label="Profesionální instalace robotických sekaček">
+  <div class="rsw-shell">
+    <div class="rsw-left">
+      <div class="rsw-header">
+        <img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/logos/roboti_sekacky_logo_final_(kopie).png" alt="Robotí Sekačky">
+        <h2>Profesionální instalace robotických sekaček</h2>
+      </div>
+      <div class="rsw-slider">
+        <div class="rsw-track" data-rsw-track>
+          <div class="rsw-item" data-rsw-slide><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/Instalace%20-%20widget/IMG_8330.jpg" alt="Instalace robotické sekačky AMA v Táboře" loading="lazy"><div class="rsw-cap">AMA – Tábor</div></div>
+          <div class="rsw-item" data-rsw-slide><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/Instalace%20-%20widget/IMG_5724.jpg" alt="Instalace robotické sekačky LUBA 2 v Kladně" loading="lazy"><div class="rsw-cap">LUBA 2 – Kladno</div></div>
+          <div class="rsw-item" data-rsw-slide><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/Instalace%20-%20widget/IMG_4644.jpg" alt="Instalace robotické sekačky Gardena v Kolovratech" loading="lazy"><div class="rsw-cap">Gardena – Kolovraty</div></div>
+          <div class="rsw-item" data-rsw-slide><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/Instalace%20-%20widget/IMG_1285.jpg" alt="Instalace robotické sekačky Husqvarna v Liberci" loading="lazy"><div class="rsw-cap">Husqvarna – Liberec</div></div>
+          <div class="rsw-item" data-rsw-slide><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/Instalace%20-%20widget/IMG_5849.jpg" alt="Instalace robotické sekačky Worx v Českých Budějovicích" loading="lazy"><div class="rsw-cap">Worx – České Budějovice</div></div>
+          <div class="rsw-item" data-rsw-slide><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/Instalace%20-%20widget/IMG_7219.jpg" alt="Instalace robotické sekačky Stihl v Proseči-Obořišti" loading="lazy"><div class="rsw-cap">Stihl – Proseč-Obořiště</div></div>
+        </div>
+        <div class="rsw-nav" aria-label="Fotografie instalací">
+          <button class="rsw-arrow" type="button" data-rsw-prev aria-label="Předchozí fotografie">❮</button>
+          <button class="rsw-arrow" type="button" data-rsw-next aria-label="Další fotografie">❯</button>
+        </div>
+      </div>
+    </div>
+    <div class="rsw-right">
+      <div class="rsw-box" data-rsw-open="quick" role="button" tabindex="0"><h3>Rychlý termín instalace</h3><p>Instalaci obvykle zvládneme do 1–2 týdnů od objednávky. Poradíme si i s náročnějšími zahradami.</p></div>
+      <div class="rsw-box rsw-box--with-badge" data-rsw-open="rating" role="button" tabindex="0">
+        <div class="rsw-badge-img"><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/Obr%C3%A1zky/Robot%C3%AD%20Seka%C4%8Dky%20fotky/logo-verified-by-customers-gold--cs-2.svg" alt="Heureka Ověřeno zákazníky" loading="lazy"></div>
+        <div><h3>Stovky spokojených zákazníků</h3><div class="rsw-stars" aria-label="Hodnocení pět z pěti">★★★★★</div><p>Průměr <span class="rsw-big">5,0</span> z <strong data-rsw-review-count>421</strong> hodnocení na Heurece.</p></div>
+      </div>
+      <div class="rsw-box" data-rsw-open="advice" role="button" tabindex="0"><h3>Doporučení na míru</h3><p>Podle fotografií a parametrů zahrady doporučíme vhodný model. <a href="tel:+420792325839"><strong>792&nbsp;325&nbsp;839</strong></a> · <a href="mailto:info@robotisekacky.cz"><strong>info@robotisekacky.cz</strong></a></p></div>
+      <div class="rsw-box" data-rsw-open="gardena" role="button" tabindex="0"><h3>Oficiální instalátor Gardena</h3><p>Jsme certifikovaní instalátoři Gardena a instalujeme i další značky z naší nabídky.</p></div>
+      <div class="rsw-box" data-rsw-open="advantages" role="button" tabindex="0"><h3>Vše od nastavení po zaškolení</h3><p>Vytvoříme mapu a zóny, nastavíme aplikaci a vysvětlíme údržbu i zimování.</p></div>
+      <a class="rsw-cta" href="/instalace-roboticke-sekacky/">Více o instalaci robotické sekačky</a>
+    </div>
+  </div>
+  <div class="rsw-overlay" data-rsw-overlay></div>
+  <div class="rsw-modal" data-rsw-modal="quick"><button class="rsw-close" type="button" data-rsw-close aria-label="Zavřít">×</button><h3>Jak instalace probíhá</h3><ol><li>Domluvíme termín a ověříme podmínky zahrady.</li><li>Vybereme vhodné umístění nabíjecí stanice a případné RTK antény.</li><li>Vytvoříme mapu, hranice, zóny a zakázané oblasti.</li><li>Nastavíme aplikaci, harmonogram a sečení okrajů.</li><li>Robota vyzkoušíme a majitele zaškolíme.</li></ol></div>
+  <div class="rsw-modal" data-rsw-modal="rating"><button class="rsw-close" type="button" data-rsw-close aria-label="Zavřít">×</button><h3>Hodnocení zákazníků (<span data-rsw-review-count>421</span>)</h3><div class="rsw-rbox"><div class="rsw-rname">Iva Miřacká</div><div class="rsw-rstars">★★★★★</div><p>Skvělý obchod i instalace. Vřele doporučuji.</p></div><div class="rsw-rbox"><div class="rsw-rname">Alena</div><div class="rsw-rstars">★★★★★</div><p>Vše na 100 %, výborná komunikace.</p></div><div class="rsw-rbox"><div class="rsw-rname">Roman Fizek</div><div class="rsw-rstars">★★★★★</div><p>Trpělivý přístup, doporučuji.</p></div><a class="rsw-more" href="/hodnoceni-obchodu/">Zobrazit další recenze</a></div>
+  <div class="rsw-modal" data-rsw-modal="advice"><button class="rsw-close" type="button" data-rsw-close aria-label="Zavřít">×</button><h3>Co nám poslat pro doporučení</h3><ul><li>přibližnou výměru trávníku a adresu,</li><li>fotografie svahů, průjezdů a míst pod stromy,</li><li>informaci o oddělených plochách a překážkách,</li><li>požadavek na bezdrátové nebo drátové řešení.</li></ul><a class="rsw-obhlidka" href="/obhlidka-zahrady/">Více o obhlídce zahrady</a></div>
+  <div class="rsw-modal" data-rsw-modal="gardena"><button class="rsw-close" type="button" data-rsw-close aria-label="Zavřít">×</button><h3>Instalace více značek</h3><p>Vedle Gardeny instalujeme také bezdrátové robotické sekačky Mammotion, Ecovacs, Segway, Roborock, Dreame a další modely z naší aktuální nabídky.</p></div>
+  <div class="rsw-modal" data-rsw-modal="advantages"><button class="rsw-close" type="button" data-rsw-close aria-label="Zavřít">×</button><h3>Co je součástí naší práce</h3><ul><li>nastavení mapy, zón a zakázaných oblastí,</li><li>aktualizace firmwaru a připojení aplikace,</li><li>praktická zkouška na zahradě,</li><li>zaškolení a doporučení k údržbě.</li></ul></div>
+</section>
+
+<script>
+(function () {
+  function init(root) {
+    if (!root || root.__rswArticleInit) return;
+    root.__rswArticleInit = true;
+
+    var track = root.querySelector('[data-rsw-track]');
+    var slides = Array.prototype.slice.call(root.querySelectorAll('[data-rsw-slide]'));
+    var prev = root.querySelector('[data-rsw-prev]');
+    var next = root.querySelector('[data-rsw-next]');
+    var index = 0;
+    var timer = null;
+
+    function go(target) {
+      if (!track || !slides.length) return;
+      index = (target + slides.length) % slides.length;
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    }
+
+    function stop() {
+      if (timer) window.clearInterval(timer);
+      timer = null;
+    }
+
+    function start() {
+      stop();
+      if (slides.length > 1) timer = window.setInterval(function () { go(index + 1); }, 3800);
+    }
+
+    if (prev) prev.addEventListener('click', function () { go(index - 1); start(); });
+    if (next) next.addEventListener('click', function () { go(index + 1); start(); });
+
+    var touchX = 0;
+    if (track) {
+      track.addEventListener('touchstart', function (event) {
+        if (!event.touches || !event.touches[0]) return;
+        touchX = event.touches[0].clientX;
+        stop();
+      }, { passive: true });
+      track.addEventListener('touchend', function (event) {
+        var end = event.changedTouches && event.changedTouches[0];
+        if (end && Math.abs(end.clientX - touchX) > 45) go(index + (end.clientX < touchX ? 1 : -1));
+        start();
+      }, { passive: true });
+    }
+
+    var overlay = root.querySelector('[data-rsw-overlay]');
+    function closeAll() {
+      if (overlay) overlay.style.display = 'none';
+      root.querySelectorAll('[data-rsw-modal]').forEach(function (modal) { modal.style.display = 'none'; });
+    }
+    function openModal(id) {
+      var modal = root.querySelector('[data-rsw-modal="' + id + '"]');
+      if (!modal || !overlay) return;
+      overlay.style.display = 'block';
+      modal.style.display = 'block';
+    }
+    root.querySelectorAll('[data-rsw-open]').forEach(function (button) {
+      button.addEventListener('click', function () { openModal(button.getAttribute('data-rsw-open')); });
+    });
+    root.querySelectorAll('[data-rsw-close]').forEach(function (button) { button.addEventListener('click', closeAll); });
+    if (overlay) overlay.addEventListener('click', closeAll);
+
+    function setReviewCount(count) {
+      if (!count || count < 50 || count > 9999) return;
+      root.querySelectorAll('[data-rsw-review-count]').forEach(function (node) { node.textContent = count; });
+    }
+    setReviewCount(421);
+    window.fetch('/hodnoceni-obchodu/', { credentials: 'same-origin', cache: 'force-cache' })
+      .then(function (response) { return response.text(); })
+      .then(function (html) {
+        var plain = html.replace(/<[^>]+>/g, ' ');
+        var matches = plain.match(/(\d{2,4})\s+hodnocen/gi) || [];
+        var counts = matches.map(function (value) { return parseInt(value, 10); }).filter(function (value) { return value >= 50 && value <= 9999; });
+        if (counts.length) setReviewCount(Math.max.apply(null, counts));
+      })
+      .catch(function () {});
+
+    go(0);
+    start();
+  }
+
+  function initAll() {
+    document.querySelectorAll('.rsw-article').forEach(init);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAll);
+  else initAll();
+})();
+
+</script>
