@@ -91,6 +91,29 @@
     document.querySelectorAll('.rsw-article').forEach(init);
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAll);
-  else initAll();
+  function hydrateHosts() {
+    var hosts = Array.prototype.slice.call(document.querySelectorAll('[data-rsw-article-host]'));
+    if (!hosts.length) {
+      initAll();
+      return;
+    }
+    window.fetch('https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/widget-instalace-clanky.html', { cache: 'force-cache' })
+      .then(function (response) { return response.text(); })
+      .then(function (html) {
+        hosts.forEach(function (host) {
+          if (host.getAttribute('data-rsw-loaded') === 'true') return;
+          host.innerHTML = html;
+          host.setAttribute('data-rsw-loaded', 'true');
+        });
+        initAll();
+      })
+      .catch(function () {
+        hosts.forEach(function (host) {
+          host.innerHTML = '<p><a href="/instalace-roboticke-sekacky/"><strong>Více o profesionální instalaci robotických sekaček</strong></a></p>';
+        });
+      });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hydrateHosts);
+  else hydrateHosts();
 })();
