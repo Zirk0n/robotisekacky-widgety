@@ -33,14 +33,14 @@ p{margin:.6rem 0}
 @supports not ((backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px))){.glass-light,.glass-img,.card-glass{background:#fff}.glass-dark{background:rgba(27,63,32,.92);color:#fff}}
 @media(max-width:640px){.card-glass{box-shadow:0 4px 12px rgba(0,0,0,.10);border-radius:10px}}
 .elev{box-shadow:0 26px 44px rgba(0,0,0,.18), 0 8px 18px rgba(0,0,0,.12)}
-.hero{position:relative;border-radius:14px;overflow:hidden;min-height:420px;box-shadow:var(--shadow)}
-.hero::before{content:"";position:absolute;inset:0;background:var(--hero-bg) center/cover no-repeat;filter:contrast(1.02);z-index:0}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.88) 0, rgba(0,0,0,.52) 50%, rgba(0,0,0,0) 82%);z-index:1}
-.hero .inner{position:absolute;left:0;right:0;bottom:0;padding:22px;z-index:2}
+.hero{position:relative;display:grid;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);background:var(--brand-dark)}
+.hero>img.hero-img{grid-area:1/1;align-self:start;display:block;width:100%;height:auto;filter:contrast(1.02)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.80) 14%,rgba(0,0,0,.45) 32%,rgba(0,0,0,0) 60%);pointer-events:none;z-index:1}
+.hero .inner{grid-area:1/1;align-self:end;position:relative;padding:22px;z-index:2}
 .hero .inner h2{color:var(--brand);margin:0 0 8px;font-weight:900;letter-spacing:.2px;text-shadow:0 2px 14px rgba(0,0,0,.85),0 0 26px rgba(0,0,0,.45)}
 .hero .inner p{color:#fff;margin:0;text-shadow:0 2px 12px rgba(0,0,0,.85),0 0 18px rgba(0,0,0,.45)}
-@media(max-width:780px){.hero{min-height:360px}.hero .inner{padding:16px}}
-@media(max-width:480px){.hero{min-height:280px;border-radius:10px}.hero .inner{padding:12px}.hero .inner h2{font-size:1.1rem}.hero .inner p{font-size:.9rem}}
+@media(max-width:780px){.hero .inner{padding:16px}}
+@media(max-width:480px){.hero{border-radius:10px}.hero .inner{padding:12px}.hero .inner h2{font-size:1.1rem}.hero .inner p{font-size:.9rem}}
 .video-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .video{position:relative}
 .video .frame{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
