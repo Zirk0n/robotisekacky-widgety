@@ -391,4 +391,5 @@ p{margin:.6rem 0}
 .rs-pills a:hover{background:#eef6e6;border-color:#b9d69f}
 .rs-pills a.hl{background:#1b3f20;border-color:#1b3f20;color:#fff!important}
 .rs-anchor{scroll-margin-top:90px}
+.qt-photo .qt-img{background:none}.qt-photo .qt-img img{object-fit:cover;padding:0;mix-blend-mode:normal}.rs-photo .frame{background:none!important}.rs-photo .frame img{object-fit:cover!important;padding:0!important;aspect-ratio:4/3;width:100%;height:auto}.bottom.st.st-photo .st-media img{object-fit:cover;mix-blend-mode:normal;border-radius:16px;aspect-ratio:4/3;max-height:none}
 .qt-g3{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}.qt-g3 .qt-big{grid-column:span 1}@media(max-width:760px){.qt-g3{grid-template-columns:repeat(2,minmax(0,1fr))}.qt-g3 .qt-big{grid-column:span 2}}

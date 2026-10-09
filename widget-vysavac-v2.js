@@ -14,6 +14,8 @@ safe(function(){const topCta=document.getElementById('trust-cta-top');if(!topCta
 /* prodejní vrstva (poradce, hodnocení, instalace, náhrady) – 9. 10. 2026 */
 (function(){if(window.__rsProdej||document.querySelector('script[src*="widget-prodej.js"]'))return;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/widget-prodej.js';s.defer=true;document.head.appendChild(s);})();
 /* ===== šablona v2 – chování navíc (pilot 2104, 9. 10. 2026) ===== */
+/* duplicitní karusely za sebou (chyba šablony do 9. 10. 2026, uložená v popisu několika produktů) – druhý odstranit */
+safe(function(){var cs=[].slice.call(document.querySelectorAll('#description .carousel[data-carousel]'));for(var i=1;i<cs.length;i++){var a=cs[i-1],b2=cs[i];if(a.parentNode&&a.nextElementSibling===b2&&a.querySelector('.c-track').textContent.trim()===b2.querySelector('.c-track').textContent.trim())b2.remove()}});
 function rsGoTo(el){var tab=document.querySelector('a[href="#description"]');var d=document.getElementById('description');if(tab&&d&&!d.classList.contains('active'))tab.click();el.scrollIntoView({behavior:'smooth',block:'start'})}
 /* hero: fotka v plném rozlišení místo /big/ (to je oříznuté na 4:3 s bílými pruhy) */
 safe(function(){document.querySelectorAll('#description .hero-img').forEach(function(i){var s=i.getAttribute('src')||'';if(s.indexOf('/user/shop/big/')>=0)i.setAttribute('src',s.replace('/user/shop/big/','/user/shop/orig/'))})});
@@ -52,5 +54,19 @@ T.forEach(function(t,i){var el=document.querySelector(t[1]);if(!el||el.style.dis
 intro.insertAdjacentElement('afterend',nav)});
 /* odkazy #zprovozneni uvnitř popisu (např. „Hodí se k vám?“) plynule */
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('#description a[href="#zprovozneni"]');if(!a)return;var t=document.getElementById('zprovozneni');if(!t)return;e.preventDefault();rsGoTo(t)});
+/* typ fotky: produktovka na bílém (contain) × lifestyle (cover, plné rozlišení /orig/) – rozhoduje se z pixelů, ne z ALT */
+(function(){
+function isPhoto(src,cb){var im=new Image();im.crossOrigin='anonymous';im.onload=function(){try{var W=48,H=36,c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d');x.drawImage(im,0,0,W,H);var d=x.getImageData(0,0,W,H).data;function wh(i,j){var k=(j*W+i)*4;return d[k]>232&&d[k+1]>232&&d[k+2]>232}
+var x0=W,x1=-1,y0=H,y1=-1;for(var j=0;j<H;j++)for(var i=0;i<W;i++)if(!wh(i,j)){if(i<x0)x0=i;if(i>x1)x1=i;if(j<y0)y0=j;if(j>y1)y1=j}
+if(x1<0)return cb(false);var n=0,nw=0;for(var i2=x0;i2<=x1;i2++){[y0,y1].forEach(function(j2){n++;if(!wh(i2,j2))nw++})}for(var j3=y0;j3<=y1;j3++){[x0,x1].forEach(function(i3){n++;if(!wh(i3,j3))nw++})}
+cb(nw/n>0.6)}catch(e){cb(null)}};im.onerror=function(){cb(null)};im.src=src}
+function orig(i){var s=i.getAttribute('src')||'';if(s.indexOf('/user/shop/big/')>=0)i.setAttribute('src',s.replace('/user/shop/big/','/user/shop/orig/'))}
+function each(sel,fn){document.querySelectorAll(sel).forEach(function(i){var s=i.currentSrc||i.src;if(!s)return;isPhoto(s,function(p){if(p)fn(i)})})}
+function run(){
+each('#description .carousel .c-media img',function(i){i.classList.add('lf');orig(i)});
+each('#description .qt-tile:not(.qt-big) .qt-img img',function(i){i.closest('.qt-tile').classList.add('qt-photo');orig(i)});
+each('#description .feat-card figure img, #description .pack-card figure img',function(i){i.closest('figure').classList.add('rs-photo');orig(i)});
+each('#description .bottom.st .st-media img',function(i){i.closest('.bottom').classList.add('st-photo');orig(i)});}
+setTimeout(function(){try{run()}catch(e){console.warn('[widget v2 foto]',e)}},300);})();
 
 }
