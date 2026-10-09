@@ -56,10 +56,10 @@ intro.insertAdjacentElement('afterend',nav)});
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('#description a[href="#zprovozneni"]');if(!a)return;var t=document.getElementById('zprovozneni');if(!t)return;e.preventDefault();rsGoTo(t)});
 /* typ fotky: produktovka na bílém (contain) × lifestyle (cover, plné rozlišení /orig/) – rozhoduje se z pixelů, ne z ALT */
 (function(){
-function isPhoto(src,cb){var im=new Image();im.crossOrigin='anonymous';im.onload=function(){try{var W=48,H=36,c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d');x.drawImage(im,0,0,W,H);var d=x.getImageData(0,0,W,H).data;function wh(i,j){var k=(j*W+i)*4;return d[k+3]<40||(d[k]>232&&d[k+1]>232&&d[k+2]>232)}
+function isPhoto(src,cb){if(/\.png(\?|$)/i.test(src))return cb(false);var im=new Image();im.crossOrigin='anonymous';im.onload=function(){try{var W=48,H=36,c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d');x.drawImage(im,0,0,W,H);var d=x.getImageData(0,0,W,H).data;function wh(i,j){var k=(j*W+i)*4;return d[k+3]<40||(d[k]>232&&d[k+1]>232&&d[k+2]>232)}
 var x0=W,x1=-1,y0=H,y1=-1;for(var j=0;j<H;j++)for(var i=0;i<W;i++)if(!wh(i,j)){if(i<x0)x0=i;if(i>x1)x1=i;if(j<y0)y0=j;if(j>y1)y1=j}
 if(x1<0)return cb(false);var n=0,nw=0;for(var i2=x0;i2<=x1;i2++){[y0,y1].forEach(function(j2){n++;if(!wh(i2,j2))nw++})}for(var j3=y0;j3<=y1;j3++){[x0,x1].forEach(function(i3){n++;if(!wh(i3,j3))nw++})}
-cb(nw/n>0.6)}catch(e){cb(null)}};im.onerror=function(){cb(null)};im.src=src}
+var fill=0,tot=0;for(var j4=y0;j4<=y1;j4++)for(var i4=x0;i4<=x1;i4++){tot++;if(!wh(i4,j4))fill++}var full=(x0<=1&&x1>=W-2)||(y0<=1&&y1>=H-2);cb(nw/n>0.6||(full&&fill/tot>0.82))}catch(e){cb(null)}};im.onerror=function(){cb(null)};im.src=src}
 function orig(i){var s=i.getAttribute('src')||'';if(s.indexOf('/user/shop/big/')>=0)i.setAttribute('src',s.replace('/user/shop/big/','/user/shop/orig/'))}
 function each(sel,fn){document.querySelectorAll(sel).forEach(function(i){var s=i.currentSrc||i.src;if(!s)return;isPhoto(s,function(p){if(p)fn(i)})})}
 function run(){
