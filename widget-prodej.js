@@ -46,7 +46,8 @@ var tries=0;(function upd(){var n=cnt();if(n){document.querySelectorAll('.rs-cnt
 ready(safe(function(){document.querySelectorAll('.p-detail-inner-header *, .p-detail *').forEach(function(e){if(e.childElementCount===0&&/^\s*Neohodnoceno\s*$/.test(e.textContent)){var w=e.closest('.stars-wrapper')||e.parentElement;if(w&&!w.closest('.rs-rating'))w.style.display='none'}})}));
 
 /* 4) náhrady u nedostupného modelu – skladem, podobná cena, přednostně stejná značka (kategorie z drobečkové navigace) */
-function soldOut(){return has('#product-detail-form .sold-out')||/Momentálně nedostupné/.test((document.querySelector('.p-detail')||{}).innerText||'')}
+/* jen dostupnost hlavního produktu (ne související produkty na stránce): schema.org, pak štítek u ceny */
+function soldOut(){if(has('#product-detail-form .sold-out'))return true;var a=document.querySelector('.p-detail [itemprop="availability"]')||document.querySelector('[itemprop="availability"]');var v=a?(a.getAttribute('content')||a.getAttribute('href')||''):'';if(v)return /OutOfStock|SoldOut|Discontinued/i.test(v);var l=document.querySelector('.p-data-wrapper .availability-label');return !!l&&/Momentálně nedostupné/.test(l.textContent)}
 function num(t){var n=parseInt(String(t||'').replace(/[^\d]/g,''),10);return isNaN(n)?0:n}
 function parseList(h){var d=new DOMParser().parseFromString(h,'text/html');return [].slice.call(d.querySelectorAll('.product')).map(function(c){var a=c.querySelector('a.name')||c.querySelector('a[href]');var im=c.querySelector('img');return {n:((c.querySelector('.name')||{}).textContent||'').trim(),u:a&&a.getAttribute('href'),pr:((c.querySelector('.price-final')||{}).textContent||'').replace(/\s+/g,' ').trim(),av:((c.querySelector('.availability')||{}).textContent||'').replace(/\s+/g,' ').trim(),img:im&&(im.getAttribute('data-src')||im.getAttribute('src'))}}).filter(function(x){return x.n&&x.u})}
 ready(safe(function(){if(!soldOut()||has('.rs-alt'))return;
