@@ -47,7 +47,7 @@ ready(safe(function(){document.querySelectorAll('.tips-card ol').forEach(functio
 
 /* 2c) dlaždice „Dárek k robotu zdarma“ v popisu: s dárkem v kartě ukáže jeho název, bez dárku se změní na podporu (nic neslibovat, co neplatí) */
 ready(safe(function(){var tiles=[].slice.call(document.querySelectorAll('#description .trust-tile')).filter(function(t){return /Dárek k/.test(t.textContent)});if(!tiles.length)return;
-var g=[].slice.call(document.querySelectorAll('.p-gifts-wrapper .p-gift-name')).map(function(e){return e.textContent.trim().replace(/^\+\s*/,'')}).filter(Boolean);
+var g=[].slice.call(document.querySelectorAll('.p-gifts-wrapper .p-gift-name')).map(function(e){return e.textContent.trim().replace(/^\+\s*/,'').replace(/^[A-Z]{2,}[A-Z0-9]{4,}\s+/,'')}).filter(Boolean);
 tiles.forEach(function(t){if(g.length){var c=t.querySelector('.trust-copy');if(c)c.textContent='K tomuto robotu dostanete zdarma: '+g.join(', ')+'.'}else{var b=t.querySelector('.trust-badge');if(b)b.textContent='PODPORA';var e=t.querySelector('.trust-emoji');if(e)e.textContent='💬';var k=t.querySelector('.trust-kicker');if(k)k.textContent='I po nákupu';var h=t.querySelector('.trust-heading');if(h)h.textContent='Poradíme s nastavením';var c2=t.querySelector('.trust-copy');if(c2)c2.textContent='Zavolejte nebo napište – pomůžeme s aplikací, mapou i údržbou.';var n=t.querySelector('.trust-note');if(n)n.innerHTML='<a href="tel:+420792325839">+420 792 325 839</a>'}})}),400);
 
 /* 3) skrýt prázdné hvězdičky „Neohodnoceno“ */
