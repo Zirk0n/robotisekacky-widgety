@@ -1,0 +1,51 @@
+/* robotisekacky.cz – prodejní vrstva (widget-prodej v1, 9. 10. 2026): poradce, hodnocení, USP, instalace, náhrady, oprava karuselu v Safari */
+.carousel .c-slide{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+.carousel .c-slide>*{min-width:0}
+.carousel .c-media{min-height:0!important;width:100%;max-width:100%;box-sizing:border-box}
+@media(max-width:900px){.carousel .c-slide{grid-template-columns:minmax(0,1fr)}}
+.carousel .c-dots{background:rgba(255,255,255,.92)!important;border:1px solid #e3eed8;box-shadow:0 6px 16px rgba(27,63,32,.12)!important}
+.carousel .c-dots .dot{background:#dbe9cf!important}
+.rs-advisor{display:flex;align-items:center;gap:14px;margin:16px 0 4px;padding:12px 16px 12px 12px;border-radius:18px;background:linear-gradient(135deg,#f6faf2,#eaf4e0);border:1px solid #dcebcd;box-shadow:0 6px 18px rgba(27,63,32,.08);max-width:520px}
+.rs-advisor .ph{width:84px;height:84px;border-radius:50%;flex:none;border:3px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.18);background:#e8efe3 url(https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/michael-bohacek-vysavac.jpg) no-repeat;background-size:190%;background-position:52% 7%}
+.rs-advisor .t{font-weight:800;color:#1b3f20;font-size:1rem;line-height:1.25}
+.rs-advisor .s{font-size:.88rem;color:#4b5d47;margin:2px 0 6px;line-height:1.35}
+.rs-advisor .l{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.92rem}
+.rs-advisor .l a{color:#1b3f20!important;font-weight:700;text-decoration:none!important;border-bottom:1px solid #b9d69f}
+.rs-advisor .l a:hover{border-bottom-color:#1b3f20}
+@media(max-width:600px){.rs-advisor{max-width:none}.rs-advisor .ph{width:68px;height:68px}}
+.rs-rating{display:flex;flex-direction:column;gap:6px;margin:6px 0 16px;padding:10px 14px;border:1px solid #dcebcd;border-radius:14px;background:#fbfdf9;max-width:560px;text-decoration:none!important}
+.rs-rating .top{display:flex;align-items:center;gap:8px;font-size:14px;color:#1b3f20}
+.rs-rating .top b{font-size:15px}
+.rs-stars{color:#f5b301;letter-spacing:1px}
+.rs-rating q{font-style:italic;color:#3d4a3d;font-size:14px;line-height:1.45;quotes:"„" "“"}
+.rs-rating .who{font-weight:700;font-style:normal;color:#1b3f20;font-size:13px;white-space:nowrap}
+.rs-rating .rq{display:block;min-height:2.9em;transition:opacity .35s ease}
+.rs-rating .rq.fade{opacity:0}
+.rs-usp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin:12px 0 4px;max-width:520px}
+.rs-usp div{display:flex;align-items:center;gap:8px;font-size:13.5px;color:#2c3a2a;line-height:1.3}
+.rs-usp i{flex:none;width:28px;height:28px;border-radius:50%;background:#e8f3dc;display:grid;place-items:center;font-style:normal;font-size:14px}
+@media(max-width:760px){.rs-usp{grid-template-columns:1fr 1fr}}
+.rs-alt{margin:22px 0 6px;padding:20px 22px;border-radius:20px;border:1px solid #f1d9a8;background:linear-gradient(135deg,#fffaf0,#fff5e2)}
+.rs-alt h3{margin:0 0 4px;color:#7a4d00;font-size:1.3rem}
+.rs-alt .sub{margin:0 0 14px;color:#6b5a3a;font-size:15px}
+.rs-alt .sub a{color:#1b3f20!important;font-weight:700}
+.rs-alt .g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.rs-alt a.c{display:flex;flex-direction:column;gap:6px;padding:14px;border-radius:16px;background:#fff;border:1px solid #efe3cc;text-decoration:none!important;color:#1f2d1c!important;box-shadow:0 6px 16px rgba(122,77,0,.06);transition:transform .2s,box-shadow .2s}
+.rs-alt a.c:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(122,77,0,.12)}
+.rs-alt img{width:100%;height:150px;object-fit:contain}
+.rs-alt .n{font-weight:800;font-size:15px;line-height:1.25}
+.rs-alt .p{font-weight:800;color:#1b3f20;font-size:17px}
+.rs-alt .a{font-size:13px;color:#3f7f1f;font-weight:700}
+.rs-alt .go{font-size:13px;font-weight:700;color:#7a4d00}
+.rs-soldnote{margin:12px 0 4px;padding:10px 14px;border-radius:12px;background:#fff7e6;border:1px solid #f1d9a8;font-size:14px;color:#7a4d00;max-width:560px}
+.rs-soldnote a{font-weight:800;color:#1b3f20!important}
+@media(max-width:760px){.rs-alt .g{grid-template-columns:1fr}.rs-alt a.c{flex-direction:row;align-items:center}.rs-alt img{width:90px;height:90px;flex:none}}
+.rs-usp a{color:inherit!important;text-decoration:none!important;border-bottom:1px dashed #9fc57e}
+.rs-install{display:flex;align-items:center;gap:14px;margin:16px 0 4px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#1f4a26,#2f6a33);color:#fff!important;text-decoration:none!important;max-width:560px;box-shadow:0 10px 24px rgba(27,63,32,.25);transition:transform .2s,box-shadow .2s}
+.rs-install:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(27,63,32,.32)}
+.rs-install .ic{flex:none;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:22px}
+.rs-install .tx{display:flex;flex-direction:column;gap:3px;line-height:1.3}
+.rs-install .tx b{font-size:16px;color:#fff}
+.rs-install .tx span{font-size:13px;color:rgba(255,255,255,.85)}
+.rs-install .ar{margin-left:auto;flex:none;width:32px;height:32px;border-radius:50%;background:#86BB41;color:#1b3f20;display:grid;place-items:center;font-weight:900}
+.rs-soldnote{margin-top:10px}
