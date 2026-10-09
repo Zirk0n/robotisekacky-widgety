@@ -42,6 +42,9 @@ if(adv&&!has('.rs-usp')){var u=document.createElement('div');u.className='rs-usp
 var tries=0;(function upd(){var n=cnt();if(n){document.querySelectorAll('.rs-cnt').forEach(function(x){x.textContent=n})}if(tries++<24)setTimeout(upd,500)})();
 },50));
 
+/* 2b) oprava v1 šablony: TIPY_HTML (<ul>) byl obalený v <ol> → rozbitý seznam */
+ready(safe(function(){document.querySelectorAll('.tips-card ol').forEach(function(ol){if(ol.children.length===1&&ol.firstElementChild.tagName==='UL')ol.replaceWith(ol.firstElementChild)})}));
+
 /* 3) skrýt prázdné hvězdičky „Neohodnoceno“ */
 ready(safe(function(){document.querySelectorAll('.p-detail-inner-header *, .p-detail *').forEach(function(e){if(e.childElementCount===0&&/^\s*Neohodnoceno\s*$/.test(e.textContent)){var w=e.closest('.stars-wrapper')||e.parentElement;if(w&&!w.closest('.rs-rating'))w.style.display='none'}})}));
 
