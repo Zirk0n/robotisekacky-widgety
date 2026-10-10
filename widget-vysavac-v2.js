@@ -35,8 +35,8 @@ safe(function(){var w=document.querySelector('.qt-wrap');if(!w||w.querySelector(
 var spec={};document.querySelectorAll('.spec-card tbody tr').forEach(function(r){var t=r.querySelectorAll('td');if(t.length>1)spec[t[0].textContent.trim().toLowerCase()]=t[1].textContent.trim()});
 function stat(txt){var m=String(txt).match(/(\d[\d\s.,]*\s?(?:Pa|mAh|min|m²|dB|mm|cm|ml|l|W|°))(?![a-zá-ž])/);return m?m[1].replace(/\s+/g,' ').trim():''}
 function first(t,n){t=String(t||'').replace(/\s+/g,' ').trim();var m2=t.match(/^.*?[.!?](?=\s|$)/);var s=m2?m2[0]:t;var w2=s.split(' ');return w2.length>n?w2.slice(0,n).join(' ')+'…':s}
-[].forEach.call(cars,function(c,ci){[].forEach.call(c.querySelectorAll('.c-slide'),function(s,si){var im=s.querySelector('img');var h=s.querySelector('h3');var p=s.querySelector('p');if(!im||!h)return;items.push({img:im.getAttribute('src'),t:h.textContent.trim(),p:first(p&&p.textContent,9),st:stat((h.textContent||'')+' '+(p?p.textContent:'')),c:ci,s:si})})});
-if(items.length<3){w.style.display='none';return}
+[].forEach.call(cars,function(c,ci){[].forEach.call(c.querySelectorAll('.c-slide'),function(s,si){var im=s.querySelector('img');var h=s.querySelector('h3');var p=s.querySelector('p');if(!im||!h)return;var pop=/popisek/i.test(im.getAttribute('src')||'');items.push({img:im.getAttribute('src'),t:h.textContent.trim(),p:first(p&&p.textContent,9),st:pop?'':stat((h.textContent||'')+' '+(p?p.textContent:'')),c:ci,s:si,pop:pop})})});
+/* fotky s vypáleným popiskem (soubor …-popisek.jpg) až na konec – text by se v dlaždici opakoval */items.sort(function(a,b){return (a.pop?1:0)-(b.pop?1:0)});if(items.length<3){w.style.display='none';return}
 var hero=document.querySelector('#description .hero');var big=null;if(hero){var hi=hero.querySelector('.hero-img'),hh=hero.querySelector('h2'),hp=hero.querySelector('p');if(hi&&hh)big={img:hi.getAttribute('src'),t:hh.textContent.trim(),p:first(hp&&hp.textContent,16),st:'',hero:1}}
 if(!big)big=items.shift();
 var n=items.length>=4?4:2;var list=[big].concat(items.slice(0,n));
