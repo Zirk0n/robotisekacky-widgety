@@ -85,10 +85,14 @@ var note=document.querySelector('.rs-soldnote');(note||adv).insertAdjacentElemen
    Upsell doplňku necháváme u tlačítka – je součástí formuláře košíku (zaškrtnuté příslušenství se odesílá s produktem). */
 (function(){var mq=window.matchMedia&&matchMedia('(min-width: 992px)');
 function place(){var gal=document.querySelector('.p-image-wrapper');var form=document.getElementById('product-detail-form');if(!gal||!form)return;
-var left=document.querySelector('.rs-left');var items=['.rs-install','.rs-advisor','.rs-usp'].map(function(s){return document.querySelector(s)}).filter(Boolean);if(!items.length)return;
+var left=document.querySelector('.rs-left');var items=['.rs-install','.rs-advisor','.rs-usp','.link-icons','.cofidis-wrap'].map(function(s){return document.querySelector(s)}).filter(Boolean);if(!items.length)return;
 if(mq&&mq.matches){if(!left){left=document.createElement('div');left.className='rs-left';gal.appendChild(left)}items.forEach(function(e){left.appendChild(e)})}
 else if(left){var after=document.querySelector('.rs-soldnote')||form;var ref=form;items.slice().reverse().forEach(function(e){ref.insertAdjacentElement('afterend',e)})}}
 [900,2200,4000].forEach(function(t){setTimeout(safe(place),t)});if(mq&&mq.addEventListener)mq.addEventListener('change',safe(place));})();
 /* 7) upsell doplňku: název příslušenství bez dodavatelského kódu na začátku (jen zobrazení) */
-ready(safe(function(){document.querySelectorAll('.up-product-name a').forEach(function(a){var t=a.lastChild;if(t&&t.nodeType===3)t.textContent=t.textContent.replace(/^\s*[A-Z]{2,}[A-Z0-9]{4,}\s+/,' ')})}),1500);
+ready(safe(function(){document.querySelectorAll('.up-product-name a, .p-gift-name a, .p-gift-name').forEach(function(a){[].forEach.call(a.childNodes,function(t){if(t.nodeType===3)t.textContent=t.textContent.replace(/^(\s*\+?\s*)[A-Z]{2,}[A-Z0-9]{4,}\s+/,'$1')})})}),1500);
+
+/* 8) dárek („Zdarma od nás dostanete“) je prodejní argument → hned pod tlačítko košíku, nad upsell (na všech šířkách) */
+(function(){function mv(){var g=document.querySelector('.p-gifts-wrapper');var up=document.querySelector('#product-detail-form .up-product-wrapper');var cart=document.querySelector('#product-detail-form .p-to-cart-block');if(!g||g.__rsMoved)return;var ref=up||null;if(ref){ref.insertAdjacentElement('beforebegin',g)}else if(cart){cart.insertAdjacentElement('afterend',g)}else return;g.__rsMoved=1;g.classList.add('rs-gift')}
+[700,2000].forEach(function(t){setTimeout(safe(mv),t)})})();
 })();
