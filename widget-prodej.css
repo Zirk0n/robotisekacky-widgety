@@ -76,3 +76,16 @@
 .rs-left .link-icons{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:6px 22px;align-items:center}
 .rs-left .link-icons a.link-icon{display:inline-flex!important;width:auto!important;float:none!important;font-size:14px!important;font-weight:600!important;color:#5a6b56!important;margin:0!important;padding:4px 0!important}
 .rs-left .link-icons a.link-icon:hover{color:#1b3f20!important}
+/* šipky hlavní fotky (doplněk Šipky) ve stejném vzhledu jako šipky karuselů v popisu: tmavě zelený kruh, bílá šipka, stín */
+.p-image .carousel-control--product{width:50px!important;height:50px!important;border-radius:50%!important;background:rgba(27,63,32,.82)!important;box-shadow:0 14px 28px rgba(0,0,0,.18)!important;display:grid!important;place-items:center;top:50%!important;transform:translateY(-50%);margin:0!important;transition:background .2s,transform .2s}
+.p-image .carousel-control--product.left{left:14px!important}.p-image .carousel-control--product.right{right:14px!important}
+.p-image .carousel-control--product:hover{background:#1b3f20!important}
+.p-image .carousel-control--product::before{display:none!important}
+.p-image .carousel-control--product::after{content:'❮'!important;display:block!important;position:static!important;background:none!important;border:0!important;width:auto!important;height:auto!important;transform:none!important;color:#fff!important;font-size:20px!important;line-height:1!important;font-weight:400}
+.p-image .carousel-control--product.right::after{content:'❯'!important}
+/* dárek: větší obrázek */
+.p-gifts-wrapper.rs-gift .p-gift-image,.p-gifts-wrapper.rs-gift .p-gift-image img{width:84px!important;height:84px!important;flex:none}
+.p-gifts-wrapper.rs-gift .p-gift-image{background:#fff;border-radius:12px;padding:4px;box-sizing:border-box}
+/* Tisk / Zeptat se / Hlídat: vedle sebe, subtilně */
+.rs-left .link-icons a.link-icon{font-size:13px!important;font-weight:500!important;color:#7a8a74!important;gap:6px}
+.rs-left .link-icons a.link-icon:before{opacity:.7;transform:scale(.85)}
