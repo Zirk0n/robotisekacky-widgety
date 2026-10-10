@@ -73,3 +73,6 @@
 .p-gifts-wrapper.rs-gift .p-gift-name,.p-gifts-wrapper.rs-gift .p-gift-name a{font-size:14px!important;line-height:1.35!important;color:#1f2d1c!important;font-weight:600!important;text-decoration:none!important}
 /* šipky galerie (doplněk Šipky, J. Turský) v barvách šablony – proměnné doplňku */
 :root{--color-detail-product-arrows-BG:rgba(27,63,32,.78);--color-detail-product-arrows-BG-hover:#1b3f20;--color-detail-product-arrows-icon:#fff;--color-detail-product-arrows-icon-hover:#86BB41;--detail-product-arrows-border-radius:100%}
+.rs-left .link-icons{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:6px 22px;align-items:center}
+.rs-left .link-icons a.link-icon{display:inline-flex!important;width:auto!important;float:none!important;font-size:14px!important;font-weight:600!important;color:#5a6b56!important;margin:0!important;padding:4px 0!important}
+.rs-left .link-icons a.link-icon:hover{color:#1b3f20!important}
