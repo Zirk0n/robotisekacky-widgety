@@ -80,4 +80,15 @@ var adv=document.querySelector('.rs-advisor');if(adv&&!has('.rs-soldnote')){var 
 ready(safe(function run(){if(has('.rs-install'))return;var adv=document.querySelector('.rs-advisor');if(!adv){if((run.n=(run.n||0)+1)<20)setTimeout(safe(run),300);return}
 var a=document.createElement('a');a.className='rs-install';a.innerHTML='<span class="ic">🛠️</span><span class="tx"><b></b><span></span></span><span class="ar">→</span>';a.querySelector('b').textContent=C.install[0];a.querySelector('.tx span').textContent=C.install[1];svcLink(a);
 var note=document.querySelector('.rs-soldnote');(note||adv).insertAdjacentElement('beforebegin',a)}),200);
+
+/* 6) rozložení na desktopu: náš blok (instalace, poradce, výhody) pod galerii, ať pravý sloupec není nekonečný a vlevo nezůstává prázdno.
+   Upsell doplňku necháváme u tlačítka – je součástí formuláře košíku (zaškrtnuté příslušenství se odesílá s produktem). */
+(function(){var mq=window.matchMedia&&matchMedia('(min-width: 992px)');
+function place(){var gal=document.querySelector('.p-image-wrapper');var form=document.getElementById('product-detail-form');if(!gal||!form)return;
+var left=document.querySelector('.rs-left');var items=['.rs-install','.rs-advisor','.rs-usp'].map(function(s){return document.querySelector(s)}).filter(Boolean);if(!items.length)return;
+if(mq&&mq.matches){if(!left){left=document.createElement('div');left.className='rs-left';gal.appendChild(left)}items.forEach(function(e){left.appendChild(e)})}
+else if(left){var after=document.querySelector('.rs-soldnote')||form;var ref=form;items.slice().reverse().forEach(function(e){ref.insertAdjacentElement('afterend',e)})}}
+[900,2200,4000].forEach(function(t){setTimeout(safe(place),t)});if(mq&&mq.addEventListener)mq.addEventListener('change',safe(place));})();
+/* 7) upsell doplňku: název příslušenství bez dodavatelského kódu na začátku (jen zobrazení) */
+ready(safe(function(){document.querySelectorAll('.up-product-name a').forEach(function(a){var t=a.lastChild;if(t&&t.nodeType===3)t.textContent=t.textContent.replace(/^\s*[A-Z]{2,}[A-Z0-9]{4,}\s+/,' ')})}),1500);
 })();
