@@ -1,0 +1,9 @@
+/* robotisekacky.cz – globální drobnosti pro celý web (načítá se z HTML kódu Záhlaví). Spravuje Firma/playbooky/webove-stranky. */
+/* Šipky galerie produktu (doplněk Šipky, J. Turský): tmavě zelený kruh, bílá šipka – stejně jako karusely v popisu */
+:root{--color-detail-product-arrows-BG:rgba(27,63,32,.78);--color-detail-product-arrows-BG-hover:#1b3f20;--color-detail-product-arrows-icon:#fff;--color-detail-product-arrows-icon-hover:#86BB41;--detail-product-arrows-border-radius:100%}
+.p-image .carousel-control--product{width:50px!important;height:50px!important;border-radius:50%!important;background:rgba(27,63,32,.82)!important;box-shadow:0 14px 28px rgba(0,0,0,.18)!important;display:grid!important;place-items:center;top:50%!important;transform:translateY(-50%);margin:0!important;transition:background .2s}
+.p-image .carousel-control--product.left{left:14px!important}.p-image .carousel-control--product.right{right:14px!important}
+.p-image .carousel-control--product:hover{background:#1b3f20!important}
+.p-image .carousel-control--product::before{display:none!important}
+.p-image .carousel-control--product::after{content:'❮'!important;display:block!important;position:static!important;background:none!important;border:0!important;width:auto!important;height:auto!important;transform:none!important;color:#fff!important;font-size:20px!important;line-height:1!important;font-weight:400}
+.p-image .carousel-control--product.right::after{content:'❯'!important}
