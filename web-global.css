@@ -7,3 +7,18 @@
 .p-image .carousel-control--product::before{display:none!important}
 .p-image .carousel-control--product::after{content:'❮'!important;display:block!important;position:static!important;background:none!important;border:0!important;width:auto!important;height:auto!important;transform:none!important;color:#fff!important;font-size:20px!important;line-height:1!important;font-weight:400}
 .p-image .carousel-control--product.right::after{content:'❯'!important}
+/* Box „Potřebujete poradit s výběrem?“ (web-global.js) */
+.rs-poradime{padding:28px 16px;background:linear-gradient(180deg,#f7faf5,#eef6e6);border-top:1px solid #e6f0db}
+.rs-poradime__in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:22px;flex-wrap:wrap;background:#fff;border:1px solid #e6f0db;border-radius:18px;padding:20px 24px;box-shadow:0 14px 30px rgba(27,63,32,.08)}
+.rs-poradime__foto{width:96px;height:96px;border-radius:50%;object-fit:cover;flex:0 0 96px;border:3px solid #86BB41}
+.rs-poradime__foto--ini{display:grid;place-items:center;background:#1b3f20;color:#fff;font:700 30px/1 system-ui,sans-serif}
+.rs-poradime__txt{flex:1 1 320px;min-width:0}
+.rs-poradime__h{margin:0 0 4px!important;font-size:22px!important;font-weight:800;color:#1b3f20;line-height:1.25}
+.rs-poradime__p{margin:0 0 6px!important;color:#33402f;font-size:16px;line-height:1.5}
+.rs-poradime__jm{margin:0!important;color:#5a6b56;font-size:14px}
+.rs-poradime__cta{display:flex;flex-direction:column;gap:8px;flex:0 0 auto}
+.rs-poradime__btn{display:inline-flex;justify-content:center;align-items:center;padding:12px 20px;border-radius:999px;background:#1b3f20;color:#fff!important;font-weight:700;text-decoration:none!important;white-space:nowrap;transition:background .2s}
+.rs-poradime__btn:hover{background:#86BB41}
+.rs-poradime__btn--sec{background:#fff;color:#1b3f20!important;border:2px solid #1b3f20}
+.rs-poradime__btn--sec:hover{background:#eef6e6}
+@media (max-width:640px){.rs-poradime__in{flex-direction:column;text-align:center;padding:18px}.rs-poradime__cta{width:100%}.rs-poradime__btn{width:100%}}
