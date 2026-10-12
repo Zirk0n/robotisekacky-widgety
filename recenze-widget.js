@@ -4,7 +4,8 @@
 (function () {
   var DATA = 'https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json';
   var CSS = '' +
-    '.rsr{padding:34px 0 26px;font-family:inherit}' +
+    '#hodnoceniobchodu[data-rsr]{display:block!important;float:none!important;width:100%!important;max-width:1180px!important;margin-left:auto!important;margin-right:auto!important;padding-left:0!important;padding-right:0!important}' +
+    '.rsr{padding:34px 0 26px;font-family:inherit;overflow:hidden}' +
     '.rsr__head{text-align:center;margin:0 auto 18px;max-width:760px;padding:0 16px}' +
     '.rsr__h{margin:0 0 6px!important;font-size:30px!important;line-height:1.2;font-weight:800;color:#1b3f20}' +
     '.rsr__sum{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;color:#4d4d4f;font-size:15px}' +
@@ -19,7 +20,7 @@
     '.rsr__ini{width:34px;height:34px;border-radius:50%;background:#eef6e6;color:#1b3f20;display:grid;place-items:center;font-weight:800;font-size:13px;flex:0 0 34px}' +
     '.rsr__meta b{color:#1b3f20}' +
     '.rsr__arrow{position:absolute;top:44%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:0;background:rgba(27,63,32,.85);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 12px 24px rgba(0,0,0,.18);z-index:2}' +
-    '.rsr__arrow:hover{background:#1b3f20}.rsr__arrow--l{left:-6px}.rsr__arrow--r{right:-6px}' +
+    '.rsr__arrow:hover{background:#1b3f20}.rsr__arrow--l{left:4px}.rsr__arrow--r{right:4px}' +
     '.rsr__foot{text-align:center;margin-top:6px}' +
     '.rsr__btn{display:inline-block;padding:11px 22px;border-radius:999px;border:2px solid #1b3f20;color:#1b3f20!important;font-weight:700;text-decoration:none!important}' +
     '.rsr__btn:hover{background:#eef6e6}' +
@@ -28,6 +29,7 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function render(box, d) {
     if (!d || !d.recenze || d.recenze.length < 3) return;
+    box.setAttribute('data-rsr', '1');
     if (!document.getElementById('rsr-css')) { var st = document.createElement('style'); st.id = 'rsr-css'; st.textContent = CSS; document.head.appendChild(st); }
     var prumer = String(d.prumer || '5.0').replace('.', ',');
     var cards = d.recenze.map(function (r) {
