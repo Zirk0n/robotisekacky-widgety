@@ -2,7 +2,7 @@
    Bezpečné doplňky, které nic existujícího nemění, jen přidávají prvky:
    poradce s fotkou, hodnocení obchodu s rotujícími citacemi, USP, pruh služby instalace,
    náhrady u nedostupného modelu, skrytí prázdných hvězdiček „Neohodnoceno“.
-   Načítá ho widget-vysavac.js (šablona v1) i widget-vysavac-v2.js. Konfigurace podle typu níže. */
+   Načítají ho šablony v2 (vysavač, sekačka, bazén) i v1 vysavačů; bazén má modrou variantu CSS widget-prodej-bazen.css. Konfigurace podle typu níže. */
 (function(){
 if(window.__rsProdej)return;window.__rsProdej=1;
 var CDN='https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/';
@@ -15,10 +15,24 @@ var CFG={
   install:['Zprovozníme vám ho u vás doma','Wi-Fi, aplikace, mapa i plán úklidu · od 3 490 Kč · Praha a Středočeský kraj bez příplatku'],
   usp:[['🏠','Pomůžeme se zprovozněním – na dálku i u vás',1],['💬','Poradíme osobně i po nákupu'],['↩︎','Vrácení do 14 dnů bez dohadů'],['⭐','Ověřeno zákazníky – Heureka 5,0']],
   skip:/zprovozn|instalac|servis|kartáč|filtr|mop |sáček|kapalin|nádob|garáž|modul|anténa|kabel/i
+ },
+ sekacka:{
+  svcUrl:'/instalace-sekacek/',
+  advisorS:'Michael Boháček, majitel – poradím podle vaší zahrady a sekačku vám můžeme i nainstalovat.',
+  install:['Nainstalujeme vám ji na zahradě','Mapa, hranice, zakázané zóny i plán sekání · bezdrátové od 9 499 Kč · po celé ČR'],
+  usp:[['🛠️','Instalace a nastavení po celé ČR',1],['💬','Poradíme podle vaší zahrady'],['↩︎','Vrácení do 14 dnů bez dohadů'],['⭐','Ověřeno zákazníky – Heureka 5,0']],
+  skip:/instalac|obhlídk|servis|nůž|nože|čepel|garáž|domeček|kabel|drát|kolík|anténa|modul|kol[oa] |baterie/i
+ },
+ bazen:{
+  svcUrl:'/predvedeni-bazenovych-vysavacu/',
+  advisorS:'Michael Boháček, majitel – poradím podle tvaru, povrchu a schodů vašeho bazénu.',
+  install:['Nevíte, jestli zvládne váš bazén? Pošlete fotku','Poradíme s výběrem · vybrané modely předvedeme přímo u vás (Praha a Středočeský kraj)'],
+  usp:[['🏊','Poradíme podle vašeho bazénu',1],['💬','Pomoc i po nákupu'],['↩︎','Vrácení do 14 dnů bez dohadů'],['⭐','Ověřeno zákazníky – Heureka 5,0']],
+  skip:/předveden|servis|filtr|kartáč|vozík|kabel|nabíječ|plovák|baterie/i
  }
 };
 var C=CFG[TYPE];if(!C)return;
-if(!has('link[href*="widget-prodej.css"]')){var l=document.createElement('link');l.rel='stylesheet';l.href=CDN+'widget-prodej.css';document.head.appendChild(l);}
+if(!has('link[href*="widget-prodej"][href$=".css"]')){var l=document.createElement('link');l.rel='stylesheet';l.href=CDN+(TYPE==='bazen'?'widget-prodej-bazen.css':'widget-prodej.css');document.head.appendChild(l);}
 function ready(fn,d){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(fn,d||0)});else setTimeout(fn,d||0)}
 function safe(fn){return function(){try{fn()}catch(e){console.warn('[widget-prodej]',e)}}}
 /* posun na cíl v popisu – když je popis v záložce, nejdřív ji otevře */
