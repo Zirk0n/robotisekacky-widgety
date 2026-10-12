@@ -28,7 +28,7 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function render(box, d) {
     if (!d || !d.recenze || d.recenze.length < 3) return;
-    var st = document.createElement('style'); st.textContent = CSS; document.head.appendChild(st);
+    if (!document.getElementById('rsr-css')) { var st = document.createElement('style'); st.id = 'rsr-css'; st.textContent = CSS; document.head.appendChild(st); }
     var prumer = String(d.prumer || '5.0').replace('.', ',');
     var cards = d.recenze.map(function (r) {
       var ini = r.jmeno.split(' ').map(function (p) { return p[0]; }).join('').slice(0, 2).toUpperCase();
@@ -47,11 +47,30 @@
     box.querySelector('.rsr__arrow--l').onclick = function () { tr.scrollBy({ left: -tr.clientWidth * 0.9 }); };
     box.querySelector('.rsr__arrow--r').onclick = function () { tr.scrollBy({ left: tr.clientWidth * 0.9 }); };
   }
-  function init() {
-    var box = document.getElementById('hodnoceniobchodu');
-    if (!box || box.getAttribute('data-rsr')) return;
-    box.setAttribute('data-rsr', '1');
-    fetch(DATA, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { render(box, d); }).catch(function () {});
+  // Blok #hodnoceniobchodu vykresluje doplněk „Hodnocení obchodu+“ (dominikmartini/shop_rating) až po načtení stránky
+  // a umí ho později přepsat → čekáme, až existuje, na homepage ho přesuneme pod výhody a při přepsání vykreslíme znovu.
+  var data = null, tries = 0, rerenders = 0;
+  function place(box) {
+    var ben = document.querySelector('.in-index .container--bannersBenefit');
+    if (ben && box.previousElementSibling !== ben) ben.parentNode.insertBefore(box, ben.nextSibling);
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+  function apply() {
+    var box = document.getElementById('hodnoceniobchodu');
+    if (!box || !data) return false;
+    place(box);
+    if (!box.querySelector('.rsr')) render(box, data);
+    return true;
+  }
+  function wait() {
+    if (apply()) {
+      var box = document.getElementById('hodnoceniobchodu');
+      new MutationObserver(function () { if (rerenders < 5 && !box.querySelector('.rsr')) { rerenders++; render(box, data); } place(box); })
+        .observe(box.parentNode, { childList: true, subtree: false });
+      new MutationObserver(function () { if (rerenders < 5 && !box.querySelector('.rsr')) { rerenders++; render(box, data); } })
+        .observe(box, { childList: true });
+      return;
+    }
+    if (++tries < 75) setTimeout(wait, 200); // max ~15 s
+  }
+  fetch(DATA, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { if (d && d.recenze && d.recenze.length >= 3) { data = d; wait(); } }).catch(function () {});
 })();
