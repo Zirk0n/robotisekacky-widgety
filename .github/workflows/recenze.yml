@@ -1,0 +1,22 @@
+name: Výběr recenzí pro web
+on:
+  schedule:
+    - cron: '0 4 * * 1'   # každé pondělí 4:00 UTC
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  recenze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/recenze-sber.mjs data/recenze.json
+      - name: Commit, pokud se výběr změnil
+        run: |
+          git config user.name "recenze-bot"
+          git config user.email "recenze-bot@users.noreply.github.com"
+          git add data/recenze.json
+          git diff --cached --quiet || (git commit -m "Recenze: týdenní aktualizace výběru" && git push)
