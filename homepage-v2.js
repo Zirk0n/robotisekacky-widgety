@@ -32,7 +32,7 @@
     [U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/Aiper-Scuba-S1%20Teplice.jpg', 'Aiper Scuba S1', 'Teplice'],
     [U + 'Instalace%20-%20widget/IMG_1285.jpg', 'Husqvarna', 'Liberec'],
     [U + 'Instalace%20-%20widget/Robotick%C3%A9%20vysava%C4%8De/ecovacs%20ve%20st%C5%99edn%C3%AD%20velikosti.jpg', 'Ecovacs – zprovoznění', 'u zákazníka doma'],
-    [U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/Spino%20E1%20-%20Jihlava.jpg', 'Mammotion Spino E1', 'Jihlava'],
+    [U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/Spino%20E1%20Praha%20ve%20st%C5%99edn%C3%AD%20velikosti.jpg', 'Mammotion Spino E1', 'Praha'],
     [U + 'Instalace%20-%20widget/IMG_8330.jpg', 'AMA', 'Tábor']
   ];
   var FOTO = U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/michael-bohacek-profil-2026.jpg';
@@ -74,7 +74,8 @@
     '.rso-c{display:flex;flex-direction:column;gap:8px}.rso-c a{display:inline-flex;justify-content:center;padding:12px 20px;border-radius:999px;font-weight:700;text-decoration:none!important;white-space:nowrap}' +
     '.rso-c .pri{background:#1b3f20;color:#fff!important}.rso-c .pri:hover{background:#86BB41}.rso-c .sec{border:2px solid #1b3f20;color:#1b3f20!important;background:#fff}' +
     /* výhody jako karty */
-    '.in-index .benefitBanner{gap:14px!important}' +
+    '.in-index .benefitBanner{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px!important}.in-index .benefitBanner__item{width:auto!important;max-width:none!important;margin:0!important}' +
+    '@media(max-width:991px){.in-index .benefitBanner{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.in-index .benefitBanner{grid-template-columns:1fr}}' +
     '.in-index .benefitBanner__item{background:#fff;border:1px solid #e6f0db;border-radius:18px;box-shadow:0 8px 20px rgba(27,63,32,.06);padding:16px!important;transition:transform .2s,box-shadow .2s}' +
     '.in-index .benefitBanner__item:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(27,63,32,.11)}' +
     '.in-index .benefitBanner__title{color:#1b3f20!important}' +
