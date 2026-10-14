@@ -22,3 +22,5 @@
 .rs-poradime__btn--sec{background:#fff;color:#1b3f20!important;border:2px solid #1b3f20}
 .rs-poradime__btn--sec:hover{background:#eef6e6}
 @media (max-width:640px){.rs-poradime__in{flex-direction:column;text-align:center;padding:18px}.rs-poradime__cta{width:100%}.rs-poradime__btn{width:100%}}
+/* Patička: Instagram skrytý (14. 10. 2026) – zobrazoval příspěvky z roku 2023 vč. prošlého slevového kódu. Zapnout až s aktuálním obsahem. */
+.custom-footer__instagram{display:none!important}
