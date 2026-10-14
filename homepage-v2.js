@@ -75,7 +75,7 @@
     '.rso-c .pri{background:#1b3f20;color:#fff!important}.rso-c .pri:hover{background:#86BB41}.rso-c .sec{border:2px solid #1b3f20;color:#1b3f20!important;background:#fff}' +
     /* výhody jako karty */
     '.in-index .benefitBanner{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px!important}.in-index .benefitBanner__item{width:auto!important;max-width:none!important;margin:0!important}' +
-    '@media(max-width:991px){.in-index .benefitBanner{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.in-index .benefitBanner{grid-template-columns:1fr}}' +
+    '@media(max-width:991px){.in-index .benefitBanner{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.in-index .benefitBanner{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px!important;padding:4px 2px 10px;scrollbar-width:none}.in-index .benefitBanner::-webkit-scrollbar{display:none}.in-index .benefitBanner__item{flex:0 0 82%;scroll-snap-align:start}}' +
     '.in-index .benefitBanner__item{background:#fff;border:1px solid #e6f0db;border-radius:18px;box-shadow:0 8px 20px rgba(27,63,32,.06);padding:16px!important;transition:transform .2s,box-shadow .2s}' +
     '.in-index .benefitBanner__item:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(27,63,32,.11)}' +
     '.in-index .benefitBanner__title{color:#1b3f20!important}' +
