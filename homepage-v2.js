@@ -91,18 +91,8 @@
     '.in-index .next-to-carousel-banners .banner-wrapper a::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 0 0 1px rgba(255,255,255,.18);background:linear-gradient(155deg,rgba(255,255,255,.24) 0,rgba(255,255,255,.06) 30%,rgba(255,255,255,0) 48%)}' +
     '.in-index .next-to-carousel-banners .banner-wrapper a:hover{transform:translateY(-4px);box-shadow:0 24px 44px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.07)}' +
     '.in-index .next-to-carousel-banners .banner-wrapper img{display:block;width:100%;height:auto}' +
-    '.in-index .products-block .product{border:0!important;background:transparent!important;padding:8px!important}' +
-    '.in-index .products-block .product .p{background:#fff!important;border:1px solid #e6f0db!important;border-radius:20px!important;overflow:hidden;box-shadow:0 8px 22px rgba(27,63,32,.06);transition:transform .2s,box-shadow .2s;height:100%}' +
-    '.in-index .products-block .product .p:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(27,63,32,.13)}' +
-    '.in-index .products-block .product .image img{transition:transform .35s}.in-index .products-block .product .p:hover .image img{transform:scale(1.04)}' +
+    /* produktové karty jsou od 15. 10. 2026 v celoplošném web-v2.js (jeden zdroj pro homepage i kategorie) */
     '.in-index .products-block .product .name{color:#1b3f20!important;font-weight:700!important}.in-index .products-block .product .name span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}' +
-    '.in-index .products-block .price-final strong{color:#1b3f20!important;font-size:20px!important;font-weight:800!important}' +
-    '.in-index .products-block .btn-cart,.in-index .products-block .p-tools .btn{background:#1b3f20!important;border-color:#1b3f20!important;color:#fff!important;border-radius:999px!important;text-transform:none!important;font-weight:700!important;letter-spacing:0!important}' +
-    '.in-index .products-block .btn-cart:hover,.in-index .products-block .p-tools .btn:hover{background:#86BB41!important;border-color:#86BB41!important}' +
-    '.in-index .products-block .p-tools .btn[href]{background:#fff!important;color:#1b3f20!important;border:2px solid #1b3f20!important}' +
-    '.in-index .products-block .flags .flag{border-radius:999px!important;padding:3px 10px!important;font-weight:700!important;font-size:11px!important;margin:0 0 4px!important;box-shadow:0 4px 10px rgba(0,0,0,.08)}' +
-    '.in-index .products-block .flags .flag::before,.in-index .products-block .flags .flag::after{display:none!important}' +
-    '.in-index .products-block .flags-default{left:12px!important;top:12px!important}' +
     '.in-index .welcome-wrapper{background:#f2f7ec!important;box-shadow:0 0 0 100vmax #f2f7ec!important;clip-path:inset(0 -100vmax)!important;color:#2b3328!important;padding:40px 0!important;margin:34px 0!important}' +
     '.in-index .welcome-wrapper .welcome{max-width:1080px;margin:0 auto!important;background:#fff;border:1px solid #e6f0db;border-radius:22px;padding:28px 32px!important;box-shadow:0 14px 30px rgba(27,63,32,.08)}' +
     '.in-index .welcome-wrapper .welcome,.in-index .welcome-wrapper .welcome p{color:#2b3328!important;font-size:16px;line-height:1.65}' +
@@ -118,7 +108,6 @@
     '.in-index .homepage-blog-wrapper .news-item .description{color:#3d4a3d!important;font-size:14.5px!important;line-height:1.55!important}' +
     '.in-index .homepage-blog-wrapper .news-item .read-article{color:#4f8a2a!important;font-weight:700!important}' +
     '.in-index #hodnoceniobchodu h2,.in-index #hodnoceniobchodu h3,.in-index #hodnoceniobchodu .h2,.in-index #hodnoceniobchodu .h3{color:#1b3f20!important}' +
-    '@media(max-width:767px){.in-index .products-block{margin-left:-4px!important;margin-right:-4px!important;width:auto!important}.in-index .products-block .product{padding:4px!important}.in-index .products-block .product .p{border-radius:16px!important}}' +
     '@media(max-width:560px){.in-index .homepage-group-title{font-size:24px!important;margin:28px 0 14px!important}.in-index .welcome-wrapper .welcome{padding:20px!important}.in-index .welcome-wrapper .h1,.in-index .welcome-wrapper h1,.in-index .welcome-wrapper h2{font-size:21px!important}}';
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html) e.innerHTML = html; return e; }
   function situace() {
