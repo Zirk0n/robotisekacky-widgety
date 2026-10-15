@@ -42,7 +42,7 @@
     '.products-block .flags-default{left:12px!important;top:12px!important}' +
     '@media(max-width:767px){.products-block{margin-left:-4px!important;margin-right:-4px!important;width:auto!important}.products-block .product{padding:4px!important}.products-block .product .p{border-radius:16px!important}}' +
     /* --- 4) kategorie --- */
-    '.type-category .category-title,.type-category h1{color:' + G + '!important;font-weight:800!important}' +
+    '.type-category .category-title,.type-category h1,.type-detail h1,.type-page h1,.type-article h1,.type-posts-listing h1{color:' + G + '!important;font-weight:800!important}' +
     '.type-category .rs-cat-intro h2,.type-category .category-perex h2,.type-category .category-perex h3{color:' + G + '!important}' +
     '.subcategories.with-image li a{background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:16px!important;box-shadow:0 6px 16px rgba(27,63,32,.06);transition:transform .2s,box-shadow .2s;color:' + G + '!important;font-weight:700}' +
     '.subcategories.with-image li a:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(27,63,32,.12);border-color:' + L + '!important}' +
