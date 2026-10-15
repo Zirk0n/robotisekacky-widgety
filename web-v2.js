@@ -66,22 +66,36 @@
     '.rs-range input[type=range]::-webkit-slider-runnable-track{background:none}.rs-range input[type=range]::-moz-range-track{background:none}' +
     '.rs-range__hint{font-size:12.5px;color:#6b7a67;margin-top:2px}.rs-range__reset{background:none;border:0;padding:0;color:' + G + ';text-decoration:underline;font-size:12.5px;cursor:pointer;margin-left:6px}' +
     '.rs-range-src{display:none!important}' +
-    /* --- 5) patička --- */
-    '#footer{background:' + G + '!important;color:#e9f1e3;border-radius:28px 28px 0 0;margin-top:40px;overflow:hidden}#footer .socials-block{display:none!important}' +
-    '#footer .footer-rows{background:' + G + '!important;color:#e9f1e3!important}#footer .footer-rows::before{background:' + G + '!important}' +
-    '#footer .footer-symbol{display:none!important}#footer .footer-rows,#footer .custom-footer,#footer .footer-bottom{background:transparent!important}' +
-    '#footer .footer-rows{padding-top:44px!important;padding-bottom:20px!important}' +
-    '#footer .custom-footer{row-gap:28px}' +
-    '#footer .pageElement__heading,#footer .pageElement__heading span,#footer h3{color:#fff!important;font-size:16px!important;font-weight:800!important;text-transform:none!important;display:block!important;margin:0 0 12px!important}' +
+    /* --- 5) patička (vlastní rozložení podle e-shopů ESHOP BOOSTER: 4 sloupce + pruh plateb) --- */
+    '#footer{background:' + G + '!important;color:#e9f1e3;border-radius:28px 28px 0 0;margin-top:40px;overflow:hidden}' +
+    '#footer .socials-block,#footer .footer-symbol,#footer .footer-rows{display:none!important}' +
     '#footer a{color:#e9f1e3!important;text-decoration:none!important}#footer a:hover{color:' + L + '!important}' +
-    '#footer ul li{padding:3px 0!important}#footer ul li::before{color:' + L + '!important}' +
-    '#footer .contact-box strong{color:#fff}' +
-    '#footer .custom-footer__onlinePayments img{background:#fff;border-radius:10px;padding:6px 10px}' +
-    '#footer .footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding:14px 20px!important;color:#c9d8c2;font-size:13px}' +
+    '.rs-foot{max-width:1320px;margin:0 auto;padding:44px 24px 10px;box-sizing:border-box}' +
+    '.rs-foot__help{display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:18px 22px;margin-bottom:38px}' +
+    '.rs-foot__help img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid ' + L + ';flex:0 0 72px}' +
+    '.rs-foot__help b{display:block;color:#fff;font-size:19px;font-weight:800;margin-bottom:2px}.rs-foot__help p{margin:0;color:#c9d8c2;font-size:14.5px}' +
+    '.rs-foot__help .rs-foot__btns{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}' +
+    '.rs-foot__btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:10px 18px;font-weight:700;font-size:15px;white-space:nowrap}' +
+    '#footer .rs-foot__btn--p{background:#fff;color:' + G + '!important}#footer .rs-foot__btn--p:hover{background:' + L + ';color:#fff!important}' +
+    '#footer .rs-foot__btn--s{border:1px solid rgba(255,255,255,.5)}' +
+    '.rs-foot__btn svg,.rs-foot__soc svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
+    '.rs-foot__cols{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;gap:32px}' +
+    '.rs-foot__h{color:#fff;font-size:16px;font-weight:800;margin:0 0 14px}' +
+    '.rs-foot ul{list-style:none;margin:0;padding:0}.rs-foot li{padding:4px 0;font-size:15px}' +
+    '.rs-foot__logo img{height:54px;width:auto;display:block;margin-bottom:14px}' +
+    '.rs-foot__about{color:#c9d8c2;font-size:14.5px;line-height:1.6;margin:0 0 16px}' +
+    '.rs-foot__socs{display:flex;gap:10px}.rs-foot__soc{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1)}' +
+    '#footer .rs-foot__soc:hover{background:' + L + ';color:#fff!important}.rs-foot__soc svg{fill:currentColor;stroke:none}' +
+    '.rs-foot__contact li{display:flex;align-items:center;gap:8px}.rs-foot__contact li.ic::before{display:none!important}.rs-foot__contact li.ic a{display:inline-flex;align-items:center;gap:8px;font-weight:700}' +
+    '.rs-foot__contact svg{width:16px;height:16px;flex:0 0 16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
+    '.rs-foot__pay{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;border-top:1px solid rgba(255,255,255,.14);margin-top:34px;padding:20px 0 6px;font-size:14px;color:#c9d8c2}' +
+    '.rs-foot__pay b{color:#fff;margin-right:4px}' +
+    '.rs-foot__pay img{height:30px;width:auto;background:#fff;border-radius:8px;padding:4px 8px;box-sizing:content-box}' +
+    '.rs-foot__pay span.t{background:rgba(255,255,255,.1);border-radius:999px;padding:6px 12px}' +
+    '#footer .footer-bottom{border-top:1px solid rgba(255,255,255,.14);padding:14px 24px!important;color:#c9d8c2;font-size:13px;background:transparent!important}' +
     '#footer .footer-bottom a,#footer .footer-bottom strong{color:#c9d8c2!important}#footer #signature img{filter:grayscale(1) brightness(1.8);opacity:.7}' +
-    '.rs-fsvc ul{list-style:none;margin:0;padding:0}.rs-fsvc li{padding:3px 0}' +
-    '.rs-fcta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.rs-fcta a{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px}' +
-    '#footer .rs-fcta .p{background:#fff;color:' + G + '!important}#footer .rs-fcta .p:hover{background:' + L + ';color:#fff!important}#footer .rs-fcta .s{border:1px solid rgba(255,255,255,.5)}' +
+    '@media(max-width:991px){.rs-foot__cols{grid-template-columns:1fr 1fr}.rs-foot__help{flex-wrap:wrap}.rs-foot__help .rs-foot__btns{margin-left:0;width:100%}}' +
+    '@media(max-width:560px){.rs-foot{padding:32px 16px 6px}.rs-foot__cols{grid-template-columns:1fr;gap:26px}.rs-foot__help{padding:16px}.rs-foot__help img{width:56px;height:56px;flex-basis:56px}.rs-foot__btn{flex:1;justify-content:center}}' +
     '#filters .ui-slider-handle,#filters .noUi-handle{border-radius:50%!important;background:#fff!important;border:3px solid ' + G + '!important;box-shadow:0 3px 8px rgba(0,0,0,.18)!important}#filters .ui-slider-range,#filters .noUi-connect{background:' + L + '!important}' +
     '.rs-range-more{display:none!important}';
 
@@ -160,18 +174,53 @@
     });
   }
 
-  /* patička: sloupec Služby + rychlý kontakt */
+  /* patička: vlastní rozložení. Odkazy „Informace pro vás“ se berou z původní patičky Shoptetu,
+     takže úprava článků v adminu se projeví i tady. */
+  var FOTO = 'https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/michael-bohacek-profil-2026.jpg';
+  var PAY = 'https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/';
+  var SOC = {
+    facebook: '<svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.7-4 4.2V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg>',
+    instagram: '<svg viewBox="0 0 24 24"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 3.6c2.7 0 3 0 4.1.1 2.7.1 4 1.4 4.1 4.1.1 1 .1 1.4.1 4.1s0 3-.1 4.1c-.1 2.7-1.4 4-4.1 4.1-1 .1-1.4.1-4.1.1s-3 0-4.1-.1c-2.7-.1-4-1.4-4.1-4.1C3.7 15 3.6 14.7 3.6 12s0-3 .1-4.1c.1-2.7 1.4-4 4.1-4.1 1-.1 1.4-.1 4.2-.1z"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg>'
+  };
   function footer() {
-    var row = document.querySelector('#footer .custom-footer'); if (!row || row.querySelector('.rs-fsvc')) return;
-    var col = document.createElement('div'); col.className = 'rs-fsvc col-sm-6 col-lg-4';
-    col.innerHTML = '<h3 class="pageElement__heading"><span>Naše služby</span></h3><ul>' +
+    var f = document.getElementById('footer'); if (!f || f.querySelector('.rs-foot')) return;
+    var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var arts = [].map.call(f.querySelectorAll('.custom-footer__articles a'), function (a) { return [a.textContent.trim(), a.getAttribute('href')]; });
+    var poradime = /jak-vybrat|blog|kontakty|hodnoceni/;
+    var nakup = arts.filter(function (x) { return !poradime.test(x[1]); });
+    var rady = arts.filter(function (x) { return poradime.test(x[1]); });
+    var li = function (x) { return '<li><a href="' + esc(x[1]) + '">' + esc(x[0]) + '</a></li>'; };
+    var socs = [].map.call(f.querySelectorAll('.custom-footer__contact a[href*="facebook"],.custom-footer__contact a[href*="instagram"],.custom-footer__contact a[href*="youtube"]'), function (a) {
+      var k = /facebook/.test(a.href) ? 'facebook' : /instagram/.test(a.href) ? 'instagram' : 'youtube';
+      return '<a class="rs-foot__soc" href="' + esc(a.href) + '" target="_blank" rel="noopener" aria-label="' + k + '">' + SOC[k] + '</a>';
+    }).join('');
+    var logo = (f.querySelector('.custom-footer__banner9 img') || {}).src || '';
+    var isHome = document.body.classList.contains('in-index');
+    var box = document.createElement('div'); box.className = 'rs-foot';
+    box.innerHTML = (isHome ? '' :
+      '<div class="rs-foot__help"><img src="' + FOTO + '" alt="Michael Boháček" loading="lazy" width="72" height="72"><div><b>Potřebujete poradit s výběrem?</b><p>Zavolejte nebo napište – poradíme podle vaší zahrady, bytu nebo bazénu. Michael Boháček, majitel</p></div>' +
+      '<div class="rs-foot__btns"><a class="rs-foot__btn rs-foot__btn--p" href="tel:' + TEL + '">' + ICON.tel + TELT + '</a><a class="rs-foot__btn rs-foot__btn--s" href="mailto:' + MAIL + '">' + ICON.mail + 'Napsat e-mail</a></div></div>') +
+      '<div class="rs-foot__cols">' +
+      '<div><a class="rs-foot__logo" href="/">' + (logo ? '<img src="' + esc(logo) + '" alt="Robotí Sekačky" loading="lazy">' : '') + '</a>' +
+      '<p class="rs-foot__about">Robotické sekačky, robotické vysavače a bazénové vysavače s instalací, zprovozněním a servisem. Roboty známe, sami je instalujeme a poradíme.</p>' +
+      '<div class="rs-foot__socs">' + socs + '</div></div>' +
+      '<div><p class="rs-foot__h">Naše služby</p><ul>' +
       '<li><a href="/instalace-sekacek/">Instalace robotických sekaček</a></li>' +
       '<li><a href="/zprovozneni-robotickeho-vysavace/">Zprovoznění robotického vysavače</a></li>' +
       '<li><a href="/predvedeni-bazenovych-vysavacu/">Předvedení bazénových vysavačů</a></li>' +
-      '<li><a href="/zimni-servis-a-cisteni-robota/">Zimní servis a čištění robota</a></li></ul>' +
-      '<div class="rs-fcta"><a class="p" href="tel:' + TEL + '">' + TELT + '</a><a class="s" href="/kontakty/">Kontakty</a></div>';
-    var contact = row.querySelector('.custom-footer__contact');
-    row.insertBefore(col, contact || null);
+      '<li><a href="/zimni-servis-a-cisteni-robota/">Zimní servis a čištění robota</a></li></ul></div>' +
+      '<div><p class="rs-foot__h">Vše o nákupu</p><ul>' + nakup.map(li).join('') + '</ul></div>' +
+      '<div><p class="rs-foot__h">Poradíme vám</p><ul class="rs-foot__contact">' + rady.map(li).join('') +
+      '<li class="ic"><a href="tel:' + TEL + '">' + ICON.tel + TELT + '</a></li><li class="ic"><a href="mailto:' + MAIL + '">' + ICON.mail + MAIL + '</a></li></ul></div>' +
+      '</div>' +
+      '<div class="rs-foot__pay"><b>Platby:</b>' +
+      '<img src="' + PAY + 'mceclip2.png" alt="Visa" loading="lazy"><img src="' + PAY + 'mceclip1.png" alt="Mastercard" loading="lazy">' +
+      '<img src="' + PAY + 'mceclip5.png" alt="Apple Pay" loading="lazy"><img src="' + PAY + 'mceclip6.png" alt="Google Pay" loading="lazy">' +
+      '<span class="t">Bankovní převod s QR kódem</span><span class="t">Dobírka</span><span class="t">Platba u vás doma při instalaci</span>' +
+      '<a href="/platby/" style="text-decoration:underline!important">Více o platbách</a></div>';
+    var bottom = f.querySelector('.footer-bottom');
+    f.insertBefore(box, bottom || null);
   }
 
   function run() { css(); topbar(); footer(); filtersOpen(); sliders(); }
