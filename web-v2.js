@@ -124,8 +124,13 @@
   /* filtry: na desktopu rozbalit, na mobilu nechat sbalené */
   function filtersOpen() {
     if (!window.matchMedia('(min-width: 992px)').matches) return;
+    var hidden = [].some.call(document.querySelectorAll('#filters .filter-section-parametric, #filters .filter-section-manufacturer'), function (s) { return s.offsetHeight === 0; });
     var b = document.querySelector('#filters .filter-section-button .toggle-filters');
-    if (b && b.offsetParent !== null && !b.dataset.rsOpened) { b.dataset.rsOpened = 1; b.click(); }
+    if (!hidden || !b || b.offsetParent === null) return;
+    if ((+b.dataset.rsTries || 0) > 6) return;
+    b.dataset.rsTries = (+b.dataset.rsTries || 0) + 1; b.click();
+    /* Shoptet si obsluhu tlačítka váže až po načtení – když klik ještě nezabral, zkusit znovu */
+    setTimeout(filtersOpen, 600);
   }
 
   /* posuvník pro parametr s číselnými hodnotami (≥ 4 hodnoty) */
@@ -224,6 +229,7 @@
   }
 
   function run() { css(); topbar(); footer(); filtersOpen(); sliders(); }
+  window.addEventListener('load', function () { setTimeout(filtersOpen, 300); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
   var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); }, 120); });
