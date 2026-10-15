@@ -87,8 +87,9 @@
   /* ===== jednotný design homepage (15. 10. 2026) – stejný jazyk jako šablony v2 ===== */
   CSS += '' +
     '.in-index .homepage-group-title{color:#1b3f20!important;font-size:30px!important;font-weight:800!important;text-align:center!important;margin:38px 0 20px!important;line-height:1.2}' +
-    '.in-index .next-to-carousel-banners .banner-wrapper a{display:block;border-radius:20px;overflow:hidden;box-shadow:0 14px 30px rgba(0,0,0,.14);transition:transform .25s,box-shadow .25s}' +
-    '.in-index .next-to-carousel-banners .banner-wrapper a:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.18)}' +
+    '.in-index .next-to-carousel-banners .banner-wrapper a{display:block;position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.6);box-shadow:0 18px 36px rgba(0,0,0,.14),0 3px 8px rgba(0,0,0,.06);transition:transform .25s,box-shadow .25s}' +
+    '.in-index .next-to-carousel-banners .banner-wrapper a::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 0 0 1px rgba(255,255,255,.18);background:linear-gradient(155deg,rgba(255,255,255,.24) 0,rgba(255,255,255,.06) 30%,rgba(255,255,255,0) 48%)}' +
+    '.in-index .next-to-carousel-banners .banner-wrapper a:hover{transform:translateY(-4px);box-shadow:0 24px 44px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.07)}' +
     '.in-index .next-to-carousel-banners .banner-wrapper img{display:block;width:100%;height:auto}' +
     '.in-index .products-block .product{border:0!important;background:transparent!important;padding:8px!important}' +
     '.in-index .products-block .product .p{background:#fff!important;border:1px solid #e6f0db!important;border-radius:20px!important;overflow:hidden;box-shadow:0 8px 22px rgba(27,63,32,.06);transition:transform .2s,box-shadow .2s;height:100%}' +
