@@ -19,14 +19,43 @@
     '.rs-topbar .rs-topbar__kontakt{border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:4px 12px}' +
     '@media(max-width:991px){.rs-topbar__claim{display:none}.rs-topbar__in{justify-content:center;padding:6px 12px}.rs-topbar__links{gap:14px}}' +
     '@media(max-width:420px){.rs-topbar{font-size:12.5px}.rs-topbar__links{gap:10px}.rs-topbar .rs-topbar__mail span{display:none}.rs-topbar .rs-topbar__kontakt{padding:3px 10px}}' +
-    /* --- 2) menu --- */
-    '#navigation .menu-level-1>li>a{border-radius:999px;transition:background .2s,color .2s}' +
-    '#navigation .menu-level-1>li:hover>a,#navigation .menu-level-1>li>a:focus{color:' + G + '!important}' +
-    '@media(min-width:992px){#navigation .menu-level-1>li>a{padding-left:12px!important;padding-right:12px!important}' +
-    '#navigation .menu-level-1>li:hover>a{background:#eef6e6}' +
-    '#navigation .menu-level-2,.menu-helper .menu-level-1{border:1px solid ' + LINE + '!important;border-radius:16px!important;box-shadow:0 18px 36px rgba(27,63,32,.14)!important;padding:8px!important;overflow:hidden;background:#fff!important;margin-top:4px}' +
-    '#navigation .menu-level-2>li>a,.menu-helper .menu-level-1>li>a{border-radius:10px;padding:9px 12px!important;color:' + G + '!important;font-weight:600}' +
-    '#navigation .menu-level-2>li>a:hover,.menu-helper .menu-level-1>li>a:hover{background:#eef6e6}}' +
+    /* --- 2) hlavička a menu (liquid glass) --- */
+    '#header{background:#fff!important;border-bottom:1px solid ' + LINE + ';transition:box-shadow .25s}' +
+    '@media(min-width:992px){#header{background:rgba(255,255,255,.86)!important;-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px)}}' +
+    '#header.rs-scrolled{box-shadow:0 10px 30px rgba(27,63,32,.10)}' +
+    '#navigation .menu-level-1>li>a{border-radius:999px;transition:background .2s,color .2s;color:' + G + '!important;font-weight:700!important}' +
+    '#header .navigation-buttons>a,#header .navigation-buttons>button{border-radius:50%;transition:background .2s}' +
+    '@media(min-width:992px){#navigation .menu-level-1{align-items:center!important}#navigation .menu-level-1>li{display:flex!important;align-items:center;height:80px}#navigation .menu-level-1>li>a{padding:9px 14px!important;margin:0 1px;line-height:1.2!important;height:auto!important}' +
+    '#navigation .menu-level-1>li:hover>a,#navigation .menu-level-1>li.exp>a,#navigation .menu-level-1>li>a:focus{background:#eef6e6!important}' +
+    '#navigation .menu-level-1>li.active>a{background:' + G + '!important;color:#fff!important}' +
+    '#header .navigation-buttons>a:hover,#header .navigation-buttons>button:hover{background:#eef6e6}' +
+    '.menu-helper>span{border-radius:999px;padding:9px 14px;color:' + G + ';font-weight:700}.menu-helper:hover>span{background:#eef6e6}' +
+    /* mega nabídka */
+    '#navigation .menu-level-2.rs-mega{display:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;width:540px!important;padding:12px!important;background:rgba(255,255,255,.97)!important;border:1px solid ' + LINE + '!important;border-radius:20px!important;box-shadow:0 24px 48px rgba(27,63,32,.16)!important;margin-top:6px!important;left:0}' +
+    '#navigation li:hover>.menu-level-2.rs-mega,#navigation li.exp>.menu-level-2.rs-mega,#navigation li:focus-within>.menu-level-2.rs-mega{display:grid!important}' +
+    '#navigation .rs-mega>li{width:auto!important;float:none!important}' +
+    '#navigation .rs-mega>li>a{display:flex!important;align-items:center;gap:12px;border-radius:12px;padding:8px 10px!important;color:' + G + '!important;font-weight:700;font-size:14.5px;line-height:1.25;white-space:normal}' +
+    '#navigation .rs-mega>li>a:hover{background:#f2f7ec}' +
+    '#navigation .rs-mega .rs-mega__img{flex:0 0 54px;width:54px;height:38px;border-radius:10px;background:#fff;border:1px solid ' + LINE + ';display:grid;place-items:center;overflow:hidden}' +
+    '#navigation .rs-mega .rs-mega__img img{max-width:46px;max-height:30px;object-fit:contain}' +
+    '#navigation .rs-mega>li.rs-mega__foot{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;padding:10px 12px;border-radius:14px;background:#f2f7ec;font-size:14px;color:#3d4a3d}' +
+    '#navigation .rs-mega>li.rs-mega__foot a{display:inline-flex!important;padding:0!important;background:none!important;font-weight:800;color:' + G + '!important}' +
+    '.menu-helper .menu-level-1{border:1px solid ' + LINE + '!important;border-radius:18px!important;box-shadow:0 24px 48px rgba(27,63,32,.16)!important;padding:10px!important;background:#fff!important;margin-top:6px}' +
+    '.menu-helper .menu-level-1>li>a{border-radius:10px;padding:9px 12px!important;color:' + G + '!important;font-weight:700}' +
+    '.menu-helper .menu-level-1>li>a:hover{background:#f2f7ec}}' +
+    /* drobečková navigace – světlý pruh místo tmavého */
+    '.breadcrumbs{background:#f2f7ec!important;box-shadow:none!important;clip-path:none!important;border-radius:999px;margin:12px 0 4px!important;padding-left:18px!important;padding-right:18px!important;width:auto!important}.breadcrumbs::before,.breadcrumbs::after{display:none!important}' +
+    '.breadcrumbs,.breadcrumbs a,.breadcrumbs span{color:' + G + '!important}.breadcrumbs a{font-weight:600}' +
+    /* mobilní menu */
+    '@media(max-width:991px){.navigation-window-visible #navigation{background:#fff}' +
+    '#navigation .menu-level-1>li{border-bottom:1px solid ' + LINE + '}' +
+    '#navigation .menu-level-1>li>a{border-radius:0!important}' +
+    '#navigation .menu-level-2>li>a{color:' + G + '!important;font-weight:600}' +
+    '.rs-navcontact{display:block;margin:16px;padding:16px;border-radius:18px;background:#f2f7ec;border:1px solid ' + LINE + '}' +
+    '.rs-navcontact b{display:block;color:' + G + ';margin-bottom:8px}' +
+    '.rs-navcontact a{display:flex;align-items:center;gap:8px;color:' + G + '!important;font-weight:700;padding:6px 0;text-decoration:none!important}' +
+    '.rs-navcontact svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}}' +
+    '@media(min-width:992px){.rs-navcontact{display:none!important}}' +
     /* --- 3) produktové karty – stejné na homepage, v kategoriích i v doporučených --- */
     '.products-block .product{border:0!important;background:transparent!important;padding:8px!important}' +
     '.products-block .product .p{background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:20px!important;overflow:hidden;box-shadow:0 8px 22px rgba(27,63,32,.06);transition:transform .2s,box-shadow .2s;height:100%}' +
@@ -41,15 +70,50 @@
     '.products-block .flags .flag::before,.products-block .flags .flag::after{display:none!important}' +
     '.products-block .flags-default{left:12px!important;top:12px!important}' +
     '@media(max-width:767px){.products-block{margin-left:-4px!important;margin-right:-4px!important;width:auto!important}.products-block .product{padding:4px!important}.products-block .product .p{border-radius:16px!important}}' +
+    /* --- 3b) výhody, záložky a nákupní box na produktu (jazyk šablon v2) --- */
+    '.benefitBanner{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px!important}.benefitBanner__item{width:auto!important;max-width:none!important;margin:0!important}' +
+    '@media(max-width:560px){.benefitBanner{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;overflow:visible!important;padding:0!important}.benefitBanner__item{display:flex!important;align-items:center;gap:12px;padding:12px 14px!important;border-radius:14px!important}.benefitBanner__item:hover{transform:none}.benefitBanner__link{display:flex!important;align-items:center!important;gap:14px!important;width:100%}.benefitBanner__picture,.benefitBanner__item img{flex:0 0 42px!important;width:42px!important;max-width:42px!important;height:auto!important;margin:0!important}.benefitBanner__content{padding:0!important;margin:0!important;text-align:left!important}.benefitBanner__title{font-size:15px!important;line-height:1.25!important;margin:0 0 2px!important}.benefitBanner__data,.benefitBanner__data p{font-size:13.5px!important;line-height:1.4!important;margin:0!important}}' +
+    '.benefitBanner__item{background:#fff;border:1px solid #e6f0db;border-radius:18px;box-shadow:0 8px 20px rgba(27,63,32,.06);padding:16px!important;transition:transform .2s,box-shadow .2s}' +
+    '.benefitBanner__item:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(27,63,32,.11)}' +
+    '.benefitBanner__title{color:#1b3f20!important}' +
+    '.p-detail-tabs{border:0!important;display:flex!important;flex-wrap:wrap;gap:8px;margin-bottom:18px!important}' +
+    '.p-detail-tabs .shp-tab{border:0!important;margin:0!important;background:none!important}' +
+    '.p-detail-tabs .shp-tab-link{display:inline-block;border:1px solid ' + LINE + '!important;border-radius:999px!important;background:#fff!important;color:' + G + '!important;font-weight:700!important;padding:10px 18px!important;text-transform:none!important}' +
+    '.p-detail-tabs .shp-tab-link:hover{background:#f2f7ec!important}' +
+    '.p-detail-tabs .shp-tab.active .shp-tab-link{background:' + G + '!important;border-color:' + G + '!important;color:#fff!important}' +
+    '.p-detail-tabs .shp-tab::before,.p-detail-tabs .shp-tab::after,.p-detail-tabs::after{display:none!important}' +
+    '.type-detail .p-to-cart-block .add-to-cart-button,.type-detail .p-to-cart-block .btn-conversion{background:' + G + '!important;border-color:' + G + '!important;color:#fff!important;border-radius:999px!important;font-weight:800!important;text-transform:none!important;letter-spacing:0!important;padding-left:26px!important;padding-right:26px!important;box-shadow:0 10px 22px rgba(27,63,32,.18)}' +
+    '.type-detail .p-to-cart-block .add-to-cart-button:hover{background:' + L + '!important;border-color:' + L + '!important}' +
+    '.type-detail .p-to-cart-block .quantity{border-radius:999px!important;overflow:hidden;border:1px solid ' + LINE + '!important}' +
+    '.type-detail .p-to-cart-block .quantity input,.type-detail .p-to-cart-block .quantity button{border:0!important;background:#fff!important;color:' + G + '!important;font-weight:700}' +
+    '.type-detail .p-final-price-wrapper .price-final,.type-detail .p-final-price-wrapper .price-final strong{color:' + G + '!important;font-weight:800!important}' +
+    '.type-detail .price-save{background:#eef6e6;color:' + G + '!important;border-radius:999px;padding:2px 10px;font-weight:700}' +
     /* --- 4) kategorie --- */
     '.type-category .category-title,.type-category h1,.type-detail h1,.type-page h1,.type-article h1,.type-posts-listing h1{color:' + G + '!important;font-weight:800!important}' +
     '.type-category .rs-cat-intro h2,.type-category .category-perex h2,.type-category .category-perex h3{color:' + G + '!important}' +
-    '.subcategories.with-image li a{background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:16px!important;box-shadow:0 6px 16px rgba(27,63,32,.06);transition:transform .2s,box-shadow .2s;color:' + G + '!important;font-weight:700}' +
+    '.subcategories.with-image{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:18px 0 26px!important;padding:0!important}' +
+    '.subcategories.with-image li{display:block!important;width:auto!important;max-width:none!important;flex:none!important;padding:0!important;margin:0!important}.subcategories.with-image li a{width:100%!important;max-width:none!important;box-sizing:border-box}' +
+    '.subcategories.with-image li a{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:100%;min-height:128px;padding:16px 12px!important;background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:18px!important;box-shadow:0 6px 16px rgba(27,63,32,.06);transition:transform .2s,box-shadow .2s,border-color .2s;color:' + G + '!important;font-weight:700;font-size:14.5px;line-height:1.25;text-align:center;text-decoration:none!important}' +
     '.subcategories.with-image li a:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(27,63,32,.12);border-color:' + L + '!important}' +
+    '.subcategories.with-image .image{display:grid!important;place-items:center;width:100%;height:56px;margin:0!important}' +
+    '.subcategories.with-image .image img{max-width:120px!important;max-height:52px!important;width:auto!important;height:auto!important;object-fit:contain}' +
+    '.subcategories.with-image .text{padding:0!important;margin:0!important}' +
+    '@media(max-width:560px){.subcategories.with-image{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.subcategories.with-image li a{min-height:108px;font-size:13.5px}}' +
     '#filters{background:#fff;border:1px solid ' + LINE + ';border-radius:20px;padding:6px 18px 12px;box-shadow:0 8px 22px rgba(27,63,32,.06)}' +
     '#filters h4,#filters h4 span{color:' + G + '!important;font-weight:800!important;font-size:15px!important;text-transform:none!important}' +
     '#filters .filter-section{border-color:' + LINE + '!important}' +
-    '#filters input[type=checkbox]{accent-color:' + G + '}' +
+    '#filters input[type=checkbox]{-webkit-appearance:none;appearance:none;width:20px;height:20px;min-width:20px;border:2px solid #b9cfa9;border-radius:50%;background:#fff;margin:0 8px 0 0!important;vertical-align:middle;position:relative;cursor:pointer;transition:border-color .15s,background .15s}' +
+    '#filters input[type=checkbox]:hover{border-color:' + G + '}' +
+    '#filters input[type=checkbox]:checked{background:' + G + ';border-color:' + G + '}' +
+    '#filters input[type=checkbox]:checked::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}' +
+    '#filters input[type=checkbox]:focus-visible{outline:3px solid rgba(134,187,65,.45);outline-offset:2px}' +
+    '#filters .filter-label::before,#filters .filter-label::after{display:none!important}' +
+    '#filters .ui-slider{height:5px!important;border:0!important;border-radius:5px!important;background:' + LINE + '!important;margin:14px 10px 12px!important}' +
+    '#filters .ui-slider .ui-slider-range{background:' + L + '!important;border-radius:5px}' +
+    '#filters .ui-slider .ui-slider-handle{width:22px!important;height:22px!important;top:-9px!important;margin-left:-11px!important;border-radius:50%!important;background:#fff!important;border:3px solid ' + G + '!important;box-shadow:0 3px 8px rgba(0,0,0,.18)!important;cursor:pointer}' +
+    '#filters .slider-header{font-weight:700;color:' + G + ';font-size:14px}' +
+    '#filters .parametric-slider-input{border:1px solid ' + LINE + '!important;border-radius:999px!important;text-align:center;font-weight:700;color:' + G + ';height:34px}' +
+    '#filters .parametric-slider-submit-btn{border-radius:999px!important;background:' + G + '!important;border-color:' + G + '!important;font-weight:700}' +
     '#filters .filter-label{color:#2b3328}#filters .filter-count{color:#7a8a76;font-weight:600}' +
     '#filters .toggle-filters{color:' + G + '!important;font-weight:700}' +
     '.listSorting__controls{gap:6px;flex-wrap:wrap}.listSorting__control,.listSorting__controls button{border-radius:999px!important}' +
@@ -90,7 +154,7 @@
     '.rs-foot__contact svg{width:16px;height:16px;flex:0 0 16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
     '.rs-foot__pay{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;border-top:1px solid rgba(255,255,255,.14);margin-top:34px;padding:20px 0 6px;font-size:14px;color:#c9d8c2}' +
     '.rs-foot__pay b{color:#fff;margin-right:4px}' +
-    '.rs-foot__pay img{height:30px;width:auto;background:#fff;border-radius:8px;padding:4px 8px;box-sizing:content-box}' +
+    '.rs-foot__logos{display:inline-flex;align-items:center;gap:16px;background:#fff;border-radius:999px;padding:7px 18px}.rs-foot__logos img{height:22px;width:auto;display:block}.rs-foot__logos img.mc{height:26px}.rs-foot__logos img.ap,.rs-foot__logos img.gp{height:24px}' +
     '.rs-foot__pay span.t{background:rgba(255,255,255,.1);border-radius:999px;padding:6px 12px}' +
     '#footer .footer-bottom{border-top:1px solid rgba(255,255,255,.14);padding:14px 24px!important;color:#c9d8c2;font-size:13px;background:transparent!important}' +
     '#footer .footer-bottom a,#footer .footer-bottom strong{color:#c9d8c2!important}#footer #signature img{filter:grayscale(1) brightness(1.8);opacity:.7}' +
@@ -220,15 +284,41 @@
       '<li class="ic"><a href="tel:' + TEL + '">' + ICON.tel + TELT + '</a></li><li class="ic"><a href="mailto:' + MAIL + '">' + ICON.mail + MAIL + '</a></li></ul></div>' +
       '</div>' +
       '<div class="rs-foot__pay"><b>Platby:</b>' +
-      '<img src="' + PAY + 'mceclip2.png" alt="Visa" loading="lazy"><img src="' + PAY + 'mceclip1.png" alt="Mastercard" loading="lazy">' +
-      '<img src="' + PAY + 'mceclip5.png" alt="Apple Pay" loading="lazy"><img src="' + PAY + 'mceclip6.png" alt="Google Pay" loading="lazy">' +
-      '<span class="t">Bankovní převod s QR kódem</span><span class="t">Dobírka</span><span class="t">Platba u vás doma při instalaci</span>' +
+      '<span class="rs-foot__logos"><img src="' + PAY + 'mceclip2.png" alt="Visa" loading="lazy"><img class="mc" src="' + PAY + 'mceclip1.png" alt="Mastercard" loading="lazy">' +
+      '<img class="ap" src="' + PAY + 'mceclip5.png" alt="Apple Pay" loading="lazy"><img class="gp" src="' + PAY + 'mceclip6.png" alt="Google Pay" loading="lazy"></span>' +
+      '<span class="t">Převod s QR kódem</span><span class="t">Splátky a nákup na třetiny</span><span class="t">Platba u vás doma při instalaci</span>' +
       '<a href="/platby/" style="text-decoration:underline!important">Více o platbách</a></div>';
     var bottom = f.querySelector('.footer-bottom');
     f.insertBefore(box, bottom || null);
   }
 
-  function run() { css(); topbar(); footer(); filtersOpen(); sliders(); }
+
+  /* menu: obrázky podkategorií (data-image ze Shoptetu) + patička nabídky s kontaktem */
+  function megaMenu() {
+    [].forEach.call(document.querySelectorAll('#navigation .menu-level-1>li.ext'), function (li) {
+      var ul = li.querySelector(':scope>.menu-level-2'); if (!ul || ul.classList.contains('rs-mega')) return;
+      ul.classList.add('rs-mega');
+      [].forEach.call(ul.querySelectorAll(':scope>li>a'), function (a) {
+        var src = a.getAttribute('data-image'); if (!src || a.querySelector('.rs-mega__img')) return;
+        var w = document.createElement('span'); w.className = 'rs-mega__img'; w.innerHTML = '<img src="' + src + '" alt="" loading="lazy">';
+        a.insertBefore(w, a.firstChild);
+      });
+      var top = li.querySelector(':scope>a');
+      var f = document.createElement('li'); f.className = 'rs-mega__foot';
+      f.innerHTML = '<a href="' + (top ? top.getAttribute('href') : '/') + '">Zobrazit vše →</a><span>Nevíte si rady? <a href="tel:' + TEL + '">' + TELT + '</a></span>';
+      ul.appendChild(f);
+    });
+    var nav = document.getElementById('navigation');
+    if (nav && !nav.querySelector('.rs-navcontact')) {
+      var c = document.createElement('div'); c.className = 'rs-navcontact';
+      c.innerHTML = '<b>Poradíme s výběrem</b><a href="tel:' + TEL + '">' + ICON.tel + TELT + '</a><a href="mailto:' + MAIL + '">' + ICON.mail + MAIL + '</a><a href="/kontakty/">Kontakty →</a>';
+      (nav.querySelector('.navigation-in') || nav).appendChild(c);
+    }
+    var h = document.getElementById('header');
+    if (h && !h.dataset.rsScroll) { h.dataset.rsScroll = 1; var on = function () { h.classList.toggle('rs-scrolled', window.scrollY > 40); }; window.addEventListener('scroll', on, { passive: true }); on(); }
+  }
+
+  function run() { css(); topbar(); megaMenu(); footer(); filtersOpen(); sliders(); }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
