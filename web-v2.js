@@ -6,8 +6,20 @@
 (function () {
   if (window.__rsWeb2) return; window.__rsWeb2 = 1;
   var TEL = '+420792325839', TELT = '792 325 839', MAIL = 'info@robotisekacky.cz';
-  var G = '#1b3f20', L = '#86BB41', LINE = '#e6f0db';
+  /* barvy a tvary bereme z design tokenů (:root níže) – jediné místo pro změnu vzhledu */
+  var G = 'var(--rs-g)', L = 'var(--rs-l)', LINE = 'var(--rs-line)';
   var CSS = '' +
+    /* --- 0) design tokeny (používají je i homepage-v2.js a recenze-widget.js) --- */
+    ':root{--rs-g:#1b3f20;--rs-l:#86BB41;--rs-line:#e6f0db;--rs-soft:#f2f7ec;--rs-soft2:#eef6e6;--rs-text:#2b3328;--rs-muted:#5a6b56;' +
+    '--rs-r:20px;--rs-r-sm:14px;--rs-pill:999px;--rs-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 8px 22px rgba(47,74,42,.08);--rs-shadow-hover:0 1px 0 rgba(255,255,255,.9) inset,0 16px 36px rgba(47,74,42,.18);--rs-lift:translateY(-4px);--rs-btn-shadow:0 10px 22px rgba(27,63,32,.2);--rs-ease:.2s ease}' +
+    /* hodnoty převzaté ze šablon produktů v2 (widget-*-v2.css: karta hover, tlačítka) – Michael 16. 10. 2026: prvky brát ze šablon */
+    '.rsh-cta a,.rso-c a,.rs-foot__btn,.rs-topbar__kontakt,.products-block .btn-cart,.products-block .p-tools .btn,.type-detail .p-to-cart-block .add-to-cart-button,.rsr__btn{transition:transform var(--rs-ease),box-shadow var(--rs-ease),background var(--rs-ease)!important}' +
+    '.rsh-cta a:hover,.rso-c a:hover,.rs-foot__btn:hover,.products-block .btn-cart:hover,.products-block .p-tools .btn:hover,.type-detail .p-to-cart-block .add-to-cart-button:hover,.rsr__btn:hover{transform:translateY(-2px)!important;box-shadow:var(--rs-btn-shadow)!important}' +
+    /* jednotný hover všech karet – stejný jako u produktů (Michael 16. 10. 2026) */
+    '.products-block .product .p,.subcategories.with-image li a,.benefitBanner__item,.rsv-t,.rss-c,.rsz-c,.rsr__card,.in-index .homepage-blog-wrapper .news-item>a,.in-index .next-to-carousel-banners .banner-wrapper a,#navigation .rs-mega>li:not(.rs-mega__foot)>a,.rs-foot__heu{transition:transform var(--rs-ease),box-shadow var(--rs-ease),border-color var(--rs-ease)!important}' +
+    '.products-block .product .p:hover,.subcategories.with-image li a:hover,.benefitBanner__item:hover,.rsv-t:hover,.rss-c:hover,.rsz-c:hover,.rsr__card:hover,.in-index .homepage-blog-wrapper .news-item>a:hover,.in-index .next-to-carousel-banners .banner-wrapper a:hover,.rs-foot__heu:hover{transform:var(--rs-lift)!important;box-shadow:var(--rs-shadow-hover)!important}' +
+    '#navigation .rs-mega>li:not(.rs-mega__foot)>a:hover{background:#fff!important;transform:translateY(-2px);box-shadow:var(--rs-shadow-hover)}' +
+    '@media(hover:none){.products-block .product .p:hover,.subcategories.with-image li a:hover,.benefitBanner__item:hover,.rsv-t:hover,.rss-c:hover,.rsz-c:hover,.rsr__card:hover{transform:none!important}}' +
     /* --- 1) horní lišta --- */
     '.rs-topbar{background:' + G + ';color:#fff;font-size:13.5px;line-height:1.2}' +
     '.rs-topbar__in{max-width:1400px;margin:0 auto;padding:7px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}' +
@@ -29,14 +41,14 @@
     '@media(min-width:992px){#navigation .menu-level-1{align-items:center!important}#navigation .menu-level-1>li{display:flex!important;align-items:center;height:80px}#navigation .menu-level-1>li>a{padding:9px 14px!important;margin:0 1px;line-height:1.2!important;height:auto!important}' +
     '#navigation .menu-level-1>li:hover>a,#navigation .menu-level-1>li.exp>a,#navigation .menu-level-1>li>a:focus{background:#eef6e6!important}' +
     '#navigation .menu-level-1>li.active>a{background:' + G + '!important;color:#fff!important}' +
-    '#header .navigation-buttons>a:hover,#header .navigation-buttons>button:hover{background:#eef6e6!important}' +
+    '#header .navigation-buttons>a:not(.heureka-header-seal):hover,#header .navigation-buttons>button:hover{background:#eef6e6!important}#header .heureka-header-seal:hover{background:transparent!important;transform:scale(1.05)}#header .heureka-header-seal{transition:transform .2s}' +
+    '@media(min-width:992px){#navigation,#navigation .navigation-in{background:transparent!important}#navigation .navigation-in{height:auto!important;overflow:visible!important}}' +
     '.menu-helper>span{border-radius:999px;padding:9px 14px;color:' + G + ';font-weight:700}.menu-helper:hover>span{background:#eef6e6}' +
     /* mega nabídka */
     '#navigation .menu-level-2.rs-mega{display:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;width:540px!important;padding:12px!important;background:rgba(255,255,255,.97)!important;border:1px solid ' + LINE + '!important;border-radius:20px!important;box-shadow:0 24px 48px rgba(27,63,32,.16)!important;margin-top:6px!important;left:0}' +
     '#navigation li:hover>.menu-level-2.rs-mega,#navigation li.exp>.menu-level-2.rs-mega,#navigation li:focus-within>.menu-level-2.rs-mega{display:grid!important}' +
     '#navigation .rs-mega>li{width:auto!important;float:none!important}' +
     '#navigation .rs-mega>li>a{display:flex!important;align-items:center;gap:12px;border-radius:12px;padding:8px 10px!important;color:' + G + '!important;font-weight:700;font-size:14.5px;line-height:1.25;white-space:normal}' +
-    '#navigation .rs-mega>li>a:hover{background:#f2f7ec}' +
     '#navigation .rs-mega .rs-mega__img{flex:0 0 54px;width:54px;height:38px;border-radius:10px;background:#fff;border:1px solid ' + LINE + ';display:grid;place-items:center;overflow:hidden}' +
     '#navigation .rs-mega .rs-mega__img img{max-width:46px;max-height:30px;object-fit:contain}' +
     '#navigation .rs-mega>li.rs-mega__foot{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;padding:10px 12px;border-radius:14px;background:#f2f7ec;font-size:14px;color:#3d4a3d}' +
@@ -59,8 +71,7 @@
     '@media(min-width:992px){.rs-navcontact{display:none!important}}' +
     /* --- 3) produktové karty – stejné na homepage, v kategoriích i v doporučených --- */
     '.products-block .product{border:0!important;background:transparent!important;padding:8px!important}' +
-    '.products-block .product .p{background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:20px!important;overflow:hidden;box-shadow:0 8px 22px rgba(27,63,32,.06);transition:transform .2s,box-shadow .2s;height:100%}' +
-    '.products-block .product .p:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(27,63,32,.13)}' +
+    '.products-block .product .p{background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-r)!important;overflow:hidden;box-shadow:var(--rs-shadow);height:100%}' +
     '.products-block .product .image img{transition:transform .35s}.products-block .product .p:hover .image img{transform:scale(1.04)}' +
     '.products-block .product .name{color:' + G + '!important;font-weight:700!important}' +
     '.products-block .price-final strong{color:' + G + '!important;font-size:20px!important;font-weight:800!important}' +
@@ -75,7 +86,6 @@
     '.benefitBanner{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px!important}.benefitBanner__item{width:auto!important;max-width:none!important;margin:0!important}' +
     '@media(max-width:560px){.benefitBanner{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;overflow:visible!important;padding:0!important}.benefitBanner__item{display:flex!important;align-items:center;gap:12px;padding:12px 14px!important;border-radius:14px!important}.benefitBanner__item:hover{transform:none}.benefitBanner__link{display:flex!important;align-items:center!important;gap:14px!important;width:100%}.benefitBanner__picture,.benefitBanner__item img{flex:0 0 42px!important;width:42px!important;max-width:42px!important;height:auto!important;margin:0!important}.benefitBanner__content{padding:0!important;margin:0!important;text-align:left!important}.benefitBanner__title{font-size:15px!important;line-height:1.25!important;margin:0 0 2px!important}.benefitBanner__data,.benefitBanner__data p{font-size:13.5px!important;line-height:1.4!important;margin:0!important}}' +
     '.benefitBanner__item{background:#fff;border:1px solid #e6f0db;border-radius:18px;box-shadow:0 8px 20px rgba(27,63,32,.06);padding:16px!important;transition:transform .2s,box-shadow .2s}' +
-    '.benefitBanner__item:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(27,63,32,.11)}' +
     '.benefitBanner__title{color:#1b3f20!important}' +
     '.p-detail-tabs{border:0!important;display:flex!important;flex-wrap:wrap;gap:8px;margin-bottom:18px!important}' +
     '.p-detail-tabs .shp-tab{border:0!important;margin:0!important;background:none!important}' +
@@ -94,8 +104,7 @@
     '.type-category .rs-cat-intro h2,.type-category .category-perex h2,.type-category .category-perex h3{color:' + G + '!important}' +
     '.subcategories.with-image{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin:18px 0 26px!important;padding:0!important}' +
     '.subcategories.with-image li{display:block!important;width:auto!important;max-width:none!important;flex:none!important;padding:0!important;margin:0!important}.subcategories.with-image li a{width:100%!important;max-width:none!important;box-sizing:border-box}' +
-    '.subcategories.with-image li a{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:100%;min-height:128px;padding:16px 12px!important;background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:18px!important;box-shadow:0 6px 16px rgba(27,63,32,.06);transition:transform .2s,box-shadow .2s,border-color .2s;color:' + G + '!important;font-weight:700;font-size:14.5px;line-height:1.25;text-align:center;text-decoration:none!important}' +
-    '.subcategories.with-image li a:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(27,63,32,.12);border-color:' + L + '!important}' +
+    '.subcategories.with-image li a{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:100%;min-height:128px;padding:16px 12px!important;background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:18px!important;box-shadow:var(--rs-shadow);color:' + G + '!important;font-weight:700;font-size:14.5px;line-height:1.25;text-align:center;text-decoration:none!important}' +
     '.subcategories.with-image .image{display:grid!important;place-items:center;width:100%;height:56px;margin:0!important}' +
     '.subcategories.with-image .image img{max-width:120px!important;max-height:52px!important;width:auto!important;height:auto!important;object-fit:contain}' +
     '.subcategories.with-image .text{padding:0!important;margin:0!important}' +
@@ -307,8 +316,9 @@
       var ul = li.querySelector(':scope>.menu-level-2'); if (!ul || ul.classList.contains('rs-mega')) return;
       ul.classList.add('rs-mega');
       [].forEach.call(ul.querySelectorAll(':scope>li>a'), function (a) {
-        var src = a.getAttribute('data-image'); if (!src || a.querySelector('.rs-mega__img')) return;
-        var w = document.createElement('span'); w.className = 'rs-mega__img'; w.innerHTML = '<img src="' + src + '" alt="" loading="lazy">';
+        if (a.querySelector('.rs-mega__img')) return; var src = a.getAttribute('data-image');
+        var w = document.createElement('span'); w.className = 'rs-mega__img';
+        w.innerHTML = src ? '<img src="' + src + '" alt="" loading="lazy">' : '<b style="color:' + G + ';font-size:16px">' + (a.textContent.trim().charAt(0) || '•') + '</b>';
         a.insertBefore(w, a.firstChild);
       });
       var top = li.querySelector(':scope>a');

@@ -23,7 +23,7 @@
       ['🎁', 'Kupuji rodičům', 'Nejvíc pomůže <b>plně automatická stanice</b> – rodiče pak robota skoro neřeší. A <a href="/zprovozneni-robotickeho-vysavace/">zprovozníme ho přímo u nich doma</a>.', '?pv228=459&pv180=465', 'Plně automatické vysavače']
     ] },
     sekacka: { label: 'Robotická sekačka', base: '/roboticke-bezdratove-sekacky/', items: [
-      ['⛰️', 'Zahrada ve svahu', 'Deklarovaný svah je maximum za ideálních podmínek – nechte si <b>rezervu</b>. Na mokré trávě a v prudkém svahu drží nejlépe <b>pohon všech kol (AWD)</b>.', '?pv40=115,2193,2172,2154,730,2264,2258', 'Sekačky do svahu 45 % a víc'],
+      ['⛰️', 'Zahrada ve svahu', 'Do prudšího svahu patří <b>čtyřkolky (AWD)</b> – zvládají obvykle <b>65 % (33°) a víc</b>. Deklarovaný svah je maximum za sucha, na mokré trávě si nechte rezervu. Pro představu: 45 % = 24°, 65 % = 33°, 80 % = 38°.', '?pv40=663,672,730,2264,2258', 'Čtyřkolky do svahu od 65 % (33°)'],
       ['🌳', 'Hodně stromů a vysoké budovy', 'Stromy a domy ruší signál GPS/RTK. Spolehlivější jsou sekačky s <b>LiDARem</b>, které se orientují podle okolí a signál z oblohy nepotřebují.', '?pv34=2245,2136', 'Sekačky s LiDARem a kamerou'],
       ['📐', 'Velká zahrada', 'Maximální plocha výrobce je strop, ne doporučení. Vybírejte s <b>rezervou</b> a počítejte s členitostí, průjezdy a nabíjením.', '?pv28=124,2148,2163,2252,136,2166,2169', 'Sekačky na 1 500 m² a víc'],
       ['🌱', 'Menší zahrada', 'Na menší zahradu nepotřebujete nejvýkonnější model. Důležitější je přesná navigace u záhonů a <b>dosekávání k okrajům</b>.', '?pv28=2142,154,2181,2130,2178', 'Sekačky na zahrady do 1 000 m²'],
@@ -58,51 +58,49 @@
   var FOTO = U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/michael-bohacek-profil-2026.jpg';
   var CSS = '' +
     '.rsh{max-width:1180px;margin:0 auto;padding:30px 16px;font-family:inherit}' +
-    '.rsh h2{margin:0 0 6px!important;text-align:center;font-size:30px!important;line-height:1.2;font-weight:800;color:#1b3f20}' +
+    '.rsh h2{margin:0 0 6px!important;text-align:center;font-size:30px!important;line-height:1.2;font-weight:800;color:var(--rs-g,#1b3f20)}' +
     '.rsh .rsh-sub{text-align:center;color:#4d4d4f;margin:0 auto 20px!important;max-width:720px}' +
     /* výběr podle situace */
     '.rsv-tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:0 0 16px}' +
-    '.rsv-tab{border:1px solid #e6f0db;background:#fff;color:#1b3f20;border-radius:999px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer;transition:background .2s,color .2s}' +
-    '.rsv-tab:hover{background:#f2f7ec}.rsv-tab[aria-selected="true"]{background:#1b3f20;border-color:#1b3f20;color:#fff}' +
+    '.rsv-tab{border:1px solid var(--rs-line,#e6f0db);background:#fff;color:var(--rs-g,#1b3f20);border-radius:999px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer;transition:background .2s,color .2s}' +
+    '.rsv-tab:hover{background:var(--rs-soft,#f2f7ec)}.rsv-tab[aria-selected="true"]{background:var(--rs-g,#1b3f20);border-color:var(--rs-g,#1b3f20);color:#fff}' +
     '.rsz-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}' +
-    '.rsz-c{display:grid;grid-template-columns:42% 1fr;background:#fff;border:1px solid #e6f0db;border-radius:22px;overflow:hidden;box-shadow:0 14px 30px rgba(27,63,32,.08)}' +
+    '.rsz-c{display:grid;grid-template-columns:42% 1fr;background:#fff;border:1px solid var(--rs-line,#e6f0db);border-radius:22px;overflow:hidden;box-shadow:0 14px 30px rgba(27,63,32,.08)}' +
     '.rsz-c img{width:100%;height:100%;object-fit:cover;min-height:240px;display:block}' +
-    '.rsz-b{padding:20px 22px;display:flex;flex-direction:column;gap:8px}.rsz-b b{font-size:20px;color:#1b3f20;line-height:1.25}.rsz-b p{margin:0;color:#3d4a3d;font-size:15px;line-height:1.55}' +
-    '.rsz-tag{align-self:flex-start;background:#eef6e6;color:#1b3f20;border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:800}' +
+    '.rsz-b{padding:20px 22px;display:flex;flex-direction:column;gap:8px}.rsz-b b{font-size:20px;color:var(--rs-g,#1b3f20);line-height:1.25}.rsz-b p{margin:0;color:#3d4a3d;font-size:15px;line-height:1.55}' +
+    '.rsz-tag{align-self:flex-start;background:var(--rs-soft2,#eef6e6);color:var(--rs-g,#1b3f20);border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:800}' +
     '.rsz-b .rsh-cta{margin-top:auto}' +
     '@media(max-width:991px){.rsz-g{grid-template-columns:1fr}}@media(max-width:560px){.rsz-c{grid-template-columns:1fr}.rsz-c img{min-height:0;aspect-ratio:16/10}}' +
     '.rsv-g{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}' +
-    '.rsv-t{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:118px;padding:14px 10px;border-radius:18px;border:1px solid #e6f0db;background:#fff;box-shadow:0 8px 20px rgba(27,63,32,.07);cursor:pointer;font:inherit;color:#1b3f20;font-weight:700;font-size:15px;line-height:1.25;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s}' +
-    '.rsv-t:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(27,63,32,.12)}' +
-    '.rsv-t[aria-expanded="true"]{border-color:#86BB41;background:#f4f9ef;box-shadow:0 0 0 2px rgba(134,187,65,.35)}.rsv-t .e{font-size:30px;line-height:1}' +
+    '.rsv-t{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:118px;padding:14px 10px;border-radius:18px;border:1px solid var(--rs-line,#e6f0db);background:#fff;box-shadow:0 8px 20px rgba(27,63,32,.07);cursor:pointer;font:inherit;color:var(--rs-g,#1b3f20);font-weight:700;font-size:15px;line-height:1.25;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s}' +
+    '.rsv-t[aria-expanded="true"]{border-color:var(--rs-l,#86BB41);background:#f4f9ef;box-shadow:0 0 0 2px rgba(134,187,65,.35)}.rsv-t .e{font-size:30px;line-height:1}' +
     '.rsv-p{margin-top:14px;padding:18px 22px;border-radius:18px;background:linear-gradient(160deg,#fff 0,#f4f9ef 100%);border:1px solid #e3eed8;display:none}' +
-    '.rsv-p.on{display:block}.rsv-p h3{margin:0 0 6px!important;font-size:20px!important;color:#1b3f20}' +
-    '.rsv-p p{margin:0 0 12px!important;color:#2b3328;font-size:16px;line-height:1.6}.rsv-p a{color:#1b3f20;font-weight:700}' +
+    '.rsv-p.on{display:block}.rsv-p h3{margin:0 0 6px!important;font-size:20px!important;color:var(--rs-g,#1b3f20)}' +
+    '.rsv-p p{margin:0 0 12px!important;color:#2b3328;font-size:16px;line-height:1.6}.rsv-p a{color:var(--rs-g,#1b3f20);font-weight:700}' +
     '.rsh-cta{display:flex;flex-wrap:wrap;gap:10px}.rsh-cta a{display:inline-flex;align-items:center;padding:10px 18px;border-radius:999px;text-decoration:none!important;font-weight:700}' +
-    '.rsh-cta .pri{background:#1b3f20;color:#fff!important}.rsh-cta .pri:hover{background:#86BB41}.rsh-cta .sec{border:2px solid #1b3f20;color:#1b3f20!important;background:#fff}' +
+    '.rsh-cta .pri{background:var(--rs-g,#1b3f20);color:#fff!important}.rsh-cta .pri:hover{background:var(--rs-l,#86BB41)}.rsh-cta .sec{border:2px solid var(--rs-g,#1b3f20);color:var(--rs-g,#1b3f20)!important;background:#fff}' +
     /* služby */
     '.rss-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}' +
-    '.rss-c{display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #e6f0db;box-shadow:0 10px 24px rgba(27,63,32,.08);text-decoration:none!important;color:inherit!important;transition:transform .2s,box-shadow .2s}' +
-    '.rss-c:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(27,63,32,.14)}' +
+    '.rss-c{display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:#fff;border:1px solid var(--rs-line,#e6f0db);box-shadow:0 10px 24px rgba(27,63,32,.08);text-decoration:none!important;color:inherit!important;transition:transform .2s,box-shadow .2s}' +
     '.rss-c img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}' +
     '.rss-b{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}' +
-    '.rss-b b{font-size:18px;color:#1b3f20;line-height:1.25}.rss-b span{color:#3d4a3d;font-size:15px;line-height:1.5;flex:1}' +
-    '.rss-pr{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-weight:800;color:#1b3f20}.rss-pr i{font-style:normal;color:#4f8a2a}' +
+    '.rss-b b{font-size:18px;color:var(--rs-g,#1b3f20);line-height:1.25}.rss-b span{color:#3d4a3d;font-size:15px;line-height:1.5;flex:1}' +
+    '.rss-pr{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-weight:800;color:var(--rs-g,#1b3f20)}.rss-pr i{font-style:normal;color:#4f8a2a}' +
     /* realizace */
     '.rsr2-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}' +
-    '.rsr2-f{position:relative;margin:0;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:#eef6e6}' +
+    '.rsr2-f{position:relative;margin:0;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:var(--rs-soft2,#eef6e6)}' +
     '.rsr2-f img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}.rsr2-f:hover img{transform:scale(1.05)}' +
-    '.rsr2-f figcaption{position:absolute;left:10px;bottom:10px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:13px;color:#1b3f20;font-weight:700;line-height:1.2}' +
+    '.rsr2-f figcaption{position:absolute;left:10px;bottom:10px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:13px;color:var(--rs-g,#1b3f20);font-weight:700;line-height:1.2}' +
     '.rsr2-f figcaption small{display:block;font-weight:500;color:#5a6b56}' +
-    '.rsr2-more{text-align:center;margin-top:16px}.rsr2-more a{color:#1b3f20;font-weight:700}' +
+    '.rsr2-more{text-align:center;margin-top:16px}.rsr2-more a{color:var(--rs-g,#1b3f20);font-weight:700}' +
     /* majitel */
-    '.rso{padding:28px 16px;background:linear-gradient(180deg,#f7faf5,#eef6e6);border-top:1px solid #e6f0db}' +
-    '.rso-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:24px;flex-wrap:wrap;background:#fff;border:1px solid #e6f0db;border-radius:20px;padding:20px 24px;box-shadow:0 14px 30px rgba(27,63,32,.08)}' +
-    '.rso-in img{width:104px;height:104px;border-radius:50%;object-fit:cover;flex:0 0 104px;border:3px solid #86BB41}' +
-    '.rso-t{flex:1 1 320px;min-width:0}.rso-t p{margin:0!important}.rso-h{font-size:22px;font-weight:800;color:#1b3f20;line-height:1.25;margin-bottom:4px!important}' +
+    '.rso{padding:28px 16px 68px;margin-bottom:-28px!important;background:linear-gradient(180deg,#f7faf5,var(--rs-soft2,#eef6e6));border-top:1px solid var(--rs-line,#e6f0db)}.in-index #footer{margin-top:0!important;position:relative;z-index:1}' +
+    '.rso-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:24px;flex-wrap:wrap;background:#fff;border:1px solid var(--rs-line,#e6f0db);border-radius:20px;padding:20px 24px;box-shadow:0 14px 30px rgba(27,63,32,.08)}' +
+    '.rso-in img{width:104px;height:104px;border-radius:50%;object-fit:cover;flex:0 0 104px;border:3px solid var(--rs-l,#86BB41)}' +
+    '.rso-t{flex:1 1 320px;min-width:0}.rso-t p{margin:0!important}.rso-h{font-size:22px;font-weight:800;color:var(--rs-g,#1b3f20);line-height:1.25;margin-bottom:4px!important}' +
     '.rso-p{color:#33402f;font-size:16px;line-height:1.5;margin-bottom:6px!important}.rso-n{color:#5a6b56;font-size:14px}' +
     '.rso-c{display:flex;flex-direction:column;gap:8px}.rso-c a{display:inline-flex;justify-content:center;padding:12px 20px;border-radius:999px;font-weight:700;text-decoration:none!important;white-space:nowrap}' +
-    '.rso-c .pri{background:#1b3f20;color:#fff!important}.rso-c .pri:hover{background:#86BB41}.rso-c .sec{border:2px solid #1b3f20;color:#1b3f20!important;background:#fff}' +
+    '.rso-c .pri{background:var(--rs-g,#1b3f20);color:#fff!important}.rso-c .pri:hover{background:var(--rs-l,#86BB41)}.rso-c .sec{border:2px solid var(--rs-g,#1b3f20);color:var(--rs-g,#1b3f20)!important;background:#fff}' +
     /* výhody jako karty */
     /* výhody (benefitBanner) jsou od 16. 10. 2026 v celoplošném web-v2.js – stejné na titulce, v kategoriích i na produktech */
     '@media(max-width:991px){.rsv-g{grid-template-columns:repeat(3,minmax(0,1fr))}.rss-g{grid-template-columns:repeat(2,minmax(0,1fr))}.rsr2-g{grid-template-columns:repeat(2,minmax(0,1fr))}}' +
@@ -112,28 +110,26 @@
     '.rso-in{flex-direction:column;text-align:center;padding:18px}.rso-c{width:100%}}';
   /* ===== jednotný design homepage (15. 10. 2026) – stejný jazyk jako šablony v2 ===== */
   CSS += '' +
-    '.in-index .homepage-group-title{color:#1b3f20!important;font-size:30px!important;font-weight:800!important;text-align:center!important;margin:38px 0 20px!important;line-height:1.2}' +
+    '.in-index .homepage-group-title{color:var(--rs-g,#1b3f20)!important;font-size:30px!important;font-weight:800!important;text-align:center!important;margin:38px 0 20px!important;line-height:1.2}' +
     '.in-index .next-to-carousel-banners .banner-wrapper a{display:block;position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.6);box-shadow:0 18px 36px rgba(0,0,0,.14),0 3px 8px rgba(0,0,0,.06);transition:transform .25s,box-shadow .25s}' +
     '.in-index .next-to-carousel-banners .banner-wrapper a::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 0 0 1px rgba(255,255,255,.18);background:linear-gradient(155deg,rgba(255,255,255,.24) 0,rgba(255,255,255,.06) 30%,rgba(255,255,255,0) 48%)}' +
-    '.in-index .next-to-carousel-banners .banner-wrapper a:hover{transform:translateY(-4px);box-shadow:0 24px 44px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.07)}' +
     '.in-index .next-to-carousel-banners .banner-wrapper img{display:block;width:100%;height:auto}' +
     /* produktové karty jsou od 15. 10. 2026 v celoplošném web-v2.js (jeden zdroj pro homepage i kategorie) */
-    '.in-index .products-block .product .name{color:#1b3f20!important;font-weight:700!important}.in-index .products-block .product .name span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}' +
-    '.in-index .welcome-wrapper{background:#f2f7ec!important;box-shadow:0 0 0 100vmax #f2f7ec!important;clip-path:inset(0 -100vmax)!important;color:#2b3328!important;padding:40px 0!important;margin:34px 0!important}' +
-    '.in-index .welcome-wrapper .welcome{max-width:1080px;margin:0 auto!important;background:#fff;border:1px solid #e6f0db;border-radius:22px;padding:28px 32px!important;box-shadow:0 14px 30px rgba(27,63,32,.08)}' +
+    '.in-index .products-block .product .name{color:var(--rs-g,#1b3f20)!important;font-weight:700!important}.in-index .products-block .product .name span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}' +
+    '.in-index .welcome-wrapper{background:var(--rs-soft,#f2f7ec)!important;box-shadow:0 0 0 100vmax var(--rs-soft,#f2f7ec)!important;clip-path:inset(0 -100vmax)!important;color:#2b3328!important;padding:40px 0!important;margin:34px 0!important}' +
+    '.in-index .welcome-wrapper .welcome{max-width:1080px;margin:0 auto!important;background:#fff;border:1px solid var(--rs-line,#e6f0db);border-radius:22px;padding:28px 32px!important;box-shadow:0 14px 30px rgba(27,63,32,.08)}' +
     '.in-index .welcome-wrapper .welcome,.in-index .welcome-wrapper .welcome p{color:#2b3328!important;font-size:16px;line-height:1.65}' +
-    '.in-index .welcome-wrapper h1,.in-index .welcome-wrapper .h1,.in-index .welcome-wrapper h2,.in-index .welcome-wrapper h3{color:#1b3f20!important;font-size:26px!important;font-weight:800!important;line-height:1.25;margin:0 0 14px!important;text-align:left}' +
-    '.in-index .welcome-wrapper a{color:#1b3f20!important;font-weight:700!important;text-decoration:underline!important;text-decoration-color:#86BB41!important;text-decoration-thickness:2px!important;text-underline-offset:3px}' +
+    '.in-index .welcome-wrapper h1,.in-index .welcome-wrapper .h1,.in-index .welcome-wrapper h2,.in-index .welcome-wrapper h3{color:var(--rs-g,#1b3f20)!important;font-size:26px!important;font-weight:800!important;line-height:1.25;margin:0 0 14px!important;text-align:left}' +
+    '.in-index .welcome-wrapper a{color:var(--rs-g,#1b3f20)!important;font-weight:700!important;text-decoration:underline!important;text-decoration-color:var(--rs-l,#86BB41)!important;text-decoration-thickness:2px!important;text-underline-offset:3px}' +
     '.in-index .welcome-wrapper a:hover{color:#4f8a2a!important}' +
     '.in-index .homepage-blog-wrapper .news-item{padding:8px!important}' +
-    '.in-index .homepage-blog-wrapper .news-item>a{display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid #e6f0db;border-radius:20px;overflow:hidden;box-shadow:0 8px 22px rgba(27,63,32,.06);text-decoration:none!important;transition:transform .2s,box-shadow .2s}' +
-    '.in-index .homepage-blog-wrapper .news-item>a:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(27,63,32,.13)}' +
+    '.in-index .homepage-blog-wrapper .news-item>a{display:flex;flex-direction:column;height:100%;background:#fff;border:1px solid var(--rs-line,#e6f0db);border-radius:20px;overflow:hidden;box-shadow:0 8px 22px rgba(27,63,32,.06);text-decoration:none!important;transition:transform .2s,box-shadow .2s}' +
     '.in-index .homepage-blog-wrapper .news-item .image{margin:0!important}.in-index .homepage-blog-wrapper .news-item .image img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}' +
     '.in-index .homepage-blog-wrapper .news-item .text{padding:14px 18px 18px!important}' +
-    '.in-index .homepage-blog-wrapper .news-item .title{color:#1b3f20!important;font-weight:800!important;font-size:18px!important;line-height:1.3}' +
+    '.in-index .homepage-blog-wrapper .news-item .title{color:var(--rs-g,#1b3f20)!important;font-weight:800!important;font-size:18px!important;line-height:1.3}' +
     '.in-index .homepage-blog-wrapper .news-item .description{color:#3d4a3d!important;font-size:14.5px!important;line-height:1.55!important}' +
     '.in-index .homepage-blog-wrapper .news-item .read-article{color:#4f8a2a!important;font-weight:700!important}' +
-    '.in-index #hodnoceniobchodu h2,.in-index #hodnoceniobchodu h3,.in-index #hodnoceniobchodu .h2,.in-index #hodnoceniobchodu .h3{color:#1b3f20!important}' +
+    '.in-index #hodnoceniobchodu h2,.in-index #hodnoceniobchodu h3,.in-index #hodnoceniobchodu .h2,.in-index #hodnoceniobchodu .h3{color:var(--rs-g,#1b3f20)!important}' +
     '@media(max-width:560px){.in-index .homepage-group-title{font-size:24px!important;margin:28px 0 14px!important}.in-index .welcome-wrapper .welcome{padding:20px!important}.in-index .welcome-wrapper .h1,.in-index .welcome-wrapper h1,.in-index .welcome-wrapper h2{font-size:21px!important}}';
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html) e.innerHTML = html; return e; }
   function situace() {
