@@ -31,7 +31,7 @@
     '.rs-topbar svg{width:15px;height:15px;flex:0 0 15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
     '.rs-topbar .rs-topbar__kontakt{border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:4px 12px}' +
     '.rs-topbar__who{display:inline-flex;align-items:center;gap:7px;opacity:.95;white-space:nowrap}.rs-topbar__who img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid var(--rs-l)}' +
-    '.rs-seal{display:none}@media(min-width:1200px){#header .heureka-header-seal{width:auto!important;flex:0 0 auto!important;gap:8px;padding-right:6px}.rs-seal{display:flex;flex-direction:column;line-height:1.15;font-size:12.5px;color:var(--rs-g);white-space:nowrap}.rs-seal b{font-size:14px}.rs-seal i{color:#f5b301;font-style:normal;letter-spacing:1px}}' +
+    '.rs-seal{display:none}@media(min-width:1600px){#header .heureka-header-seal{width:auto!important;flex:0 0 auto!important;gap:8px;padding-right:6px}.rs-seal{display:flex;flex-direction:column;line-height:1.15;font-size:12.5px;color:var(--rs-g);white-space:nowrap}.rs-seal b{font-size:14px}.rs-seal i{color:#f5b301;font-style:normal;letter-spacing:1px}}' +
     '@media(max-width:1199px){.rs-topbar__who{display:none}}' +
     '@media(max-width:991px){.rs-topbar__claim{display:none}.rs-topbar__in{justify-content:center;padding:6px 12px}.rs-topbar__links{gap:14px}}' +
     '@media(max-width:420px){.rs-topbar{font-size:12.5px}.rs-topbar__links{gap:10px}.rs-topbar .rs-topbar__mail span{display:none}.rs-topbar .rs-topbar__kontakt{padding:3px 10px}}' +
@@ -316,7 +316,7 @@
   /* menu: obrázky podkategorií (data-image ze Shoptetu) + patička nabídky s kontaktem */
   function sealRating() {
     var a = document.querySelector('#header .heureka-header-seal'); if (!a || a.querySelector('.rs-seal')) return;
-    var t = document.createElement('span'); t.className = 'rs-seal'; t.innerHTML = '<b>5,0 <i>★★★★★</i></b><span>400+ hodnocení</span>'; a.appendChild(t);
+    var t = document.createElement('span'); t.className = 'rs-seal'; t.innerHTML = '<b>5,0 <i>★★★★★</i></b><span>400+ hodnocení</span>'; a.appendChild(t); try { window.dispatchEvent(new Event('resize')); } catch (e) {}
     try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).then(function (d) {
       if (d && d.celkem) { t.querySelector('span').textContent = d.celkem + ' hodnocení'; if (d.prumer) t.querySelector('b').firstChild.nodeValue = String(d.prumer).replace('.', ',') + ' '; }
     }).catch(function () {}); } catch (e) {}
