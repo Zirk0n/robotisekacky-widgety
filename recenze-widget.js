@@ -8,6 +8,10 @@
     '.rsr{padding:34px 0 26px;font-family:inherit;overflow:hidden}' +
     '.rsr__head{text-align:center;margin:0 auto 18px;max-width:760px;padding:0 16px}' +
     '.rsr__h{margin:0 0 6px!important;font-size:30px!important;line-height:1.2;font-weight:800;color:#1b3f20}' +
+    '.rsr__score{display:inline-flex;align-items:center;gap:16px;margin-top:8px;padding:12px 22px 12px 12px;border-radius:999px;background:#fff;border:1px solid #e6f0db;box-shadow:0 12px 28px rgba(27,63,32,.10);text-decoration:none!important;color:#1b3f20}' +
+    '.rsr__score img{width:72px;height:72px;flex:0 0 72px}.rsr__num{font-size:44px;font-weight:800;line-height:1;color:#1b3f20}' +
+    '.rsr__meta2{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;font-size:14.5px;color:#4d4d4f}.rsr__meta2 b{color:#1b3f20}.rsr__big{color:#f5b301;font-size:24px;letter-spacing:2px;line-height:1}' +
+    '@media (max-width:640px){.rsr__score{gap:10px;padding:10px 16px 10px 10px;border-radius:22px}.rsr__score img{width:54px;height:54px;flex-basis:54px}.rsr__num{font-size:34px}.rsr__big{font-size:19px}.rsr__meta2{font-size:13px}}' +
     '.rsr__sum{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;color:#4d4d4f;font-size:15px}' +
     '.rsr__stars{color:#f5b301;letter-spacing:1px;font-size:17px}' +
     '.rsr__wrap{position:relative;max-width:1180px;margin:0 auto;padding:0 60px;box-sizing:border-box}' +
@@ -40,7 +44,7 @@
     }).join('');
     box.innerHTML = '<section class="rsr" aria-label="Hodnocení zákazníků">' +
       '<div class="rsr__head"><h2 class="rsr__h">Co o nás píšou zákazníci</h2>' +
-      '<div class="rsr__sum"><span class="rsr__stars">★★★★★</span><b>' + prumer + ' z 5</b> · ' + esc(d.celkem) + ' hodnocení obchodu</div></div>' +
+      '<a class="rsr__score" href="/hodnoceni-obchodu/"><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/banners/logo-overeno--gold.svg?69c559fe" alt="Ověřeno zákazníky – Heureka" width="72" height="72"><span class="rsr__num">' + prumer + '</span><span class="rsr__meta2"><span class="rsr__big">★★★★★</span><span><b>' + esc(d.celkem) + ' ověřených hodnocení</b> · Ověřeno zákazníky Heureka</span></span></a></div>' +
       '<div class="rsr__wrap"><button class="rsr__arrow rsr__arrow--l" type="button" aria-label="Předchozí">❮</button>' +
       '<div class="rsr__track">' + cards + '</div>' +
       '<button class="rsr__arrow rsr__arrow--r" type="button" aria-label="Další">❯</button></div>' +

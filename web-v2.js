@@ -151,6 +151,8 @@
     '.rs-foot__about{color:#c9d8c2;font-size:14.5px;line-height:1.6;margin:0 0 16px}' +
     '.rs-foot__socs{display:flex;gap:10px}.rs-foot__soc{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1)}' +
     '#footer .rs-foot__soc:hover{background:' + L + ';color:#fff!important}.rs-foot__soc svg{fill:currentColor;stroke:none}' +
+    '.rs-foot__heu{display:flex;align-items:center;gap:12px;margin:0 0 16px;padding:10px 14px 10px 10px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);width:max-content;max-width:100%}' +
+    '.rs-foot__heu img{width:58px;height:58px;flex:0 0 58px}.rs-foot__heu>span{display:flex;flex-direction:column;line-height:1.3}.rs-foot__stars{color:#f5b301;font-size:15px;letter-spacing:1px}.rs-foot__stars i{color:#fff;font-style:normal;letter-spacing:0;font-size:14px;margin-left:4px}.rs-foot__cnt{color:#e9f1e3;font-size:14px;font-weight:600}' +
     '.rs-foot__contact li{display:flex;align-items:center;gap:8px}.rs-foot__contact li.ic::before{display:none!important}.rs-foot__contact li.ic a{display:inline-flex;align-items:center;gap:8px;font-weight:700}' +
     '.rs-foot__contact svg{width:16px;height:16px;flex:0 0 16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
     '.rs-foot__pay{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;border-top:1px solid rgba(255,255,255,.14);margin-top:34px;padding:20px 0 6px;font-size:14px;color:#c9d8c2}' +
@@ -274,6 +276,7 @@
       '<div class="rs-foot__cols">' +
       '<div><a class="rs-foot__logo" href="/">' + (logo ? '<img src="' + esc(logo) + '" alt="Robotí Sekačky" loading="lazy">' : '') + '</a>' +
       '<p class="rs-foot__about">Robotické sekačky, robotické vysavače a bazénové vysavače s instalací, zprovozněním a servisem. Roboty známe, sami je instalujeme a poradíme.</p>' +
+      '<a class="rs-foot__heu" href="/hodnoceni-obchodu/"><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/banners/logo-overeno--gold.svg?69c559fe" alt="Ověřeno zákazníky – Heureka" width="58" height="58" loading="lazy"><span><b class="rs-foot__stars">★★★★★ <i>5,0 z 5</i></b><span class="rs-foot__cnt">400+ ověřených hodnocení</span></span></a>' +
       '<div class="rs-foot__socs">' + socs + '</div></div>' +
       '<div><p class="rs-foot__h">Naše služby</p><ul>' +
       '<li><a href="/instalace-sekacek/">Instalace robotických sekaček</a></li>' +
@@ -289,6 +292,10 @@
       '<img class="ap" src="' + PAY + 'mceclip5.png" alt="Apple Pay" loading="lazy"><img class="gp" src="' + PAY + 'mceclip6.png" alt="Google Pay" loading="lazy"></span>' +
       '<span class="t">Převod s QR kódem</span><span class="t">Splátky a nákup na třetiny</span><span class="t">Platba u vás doma při instalaci</span>' +
       '<a href="/platby/" style="text-decoration:underline!important">Více o platbách</a></div>';
+    try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.celkem) return; var c = box.querySelector('.rs-foot__cnt'), i = box.querySelector('.rs-foot__stars i');
+      if (c) c.textContent = d.celkem + ' ověřených hodnocení'; if (i && d.prumer) i.textContent = String(d.prumer).replace('.', ',') + ' z 5';
+    }).catch(function () {}); } catch (e) {}
     var bottom = f.querySelector('.footer-bottom');
     f.insertBefore(box, bottom || null);
   }
