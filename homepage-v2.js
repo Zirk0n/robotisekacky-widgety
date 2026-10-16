@@ -5,20 +5,40 @@
    4) „Potřebujete poradit s výběrem?“ – Michael s fotkou, telefon a e-mail (nad patičkou)
    5) výhody jako karty
    Jen titulní strana (body.in-index). CSS je uvnitř (žádná závislost na cache dalšího souboru). Zdroj pravdy: Firma/nastroje/homepage/.
-   Sezónně: blok 1 v jaru/létě přepnout na sekačky (pole SIT). Ceny služeb ověřit při změně ceníku (viz playbook bannery-a-homepage.md). */
+   Výběr podle situace má 3 záložky (vysavač/sekačka/bazén) s odkazy do filtrů; výchozí záložka se řídí měsícem (3–8 sekačka, jinak vysavač). Ceny služeb ověřit při změně ceníku (viz playbook bannery-a-homepage.md). */
 (function () {
   if (!document.body || !document.body.classList.contains('in-index') || window.__rsHome2) return;
   window.__rsHome2 = 1;
   var U = 'https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/';
   var TEL = '+420792325839', TELT = '792 325 839', MAIL = 'info@robotisekacky.cz';
-  var SIT = [
-    ['🐕', 'Máme psa nebo kočku', 'Chlupy se nejvíc namotávají na štětinové kartáče – hledejte <b>gumové válce</b> nebo kartáč proti namotávání. Kamera a <b>rozpoznávání překážek</b> pomůže objet misky, kabely i nehodu na podlaze. A protože chlupy plní nádobku rychle, vyplatí se <b>stanice s automatickým vysypáváním</b>.'],
-    ['🧽', 'Chci, aby i vytíral', 'Na skutečné vytírání jsou nejlepší <b>rotační mopy nebo mycí válec</b> s přítlakem. Rozhoduje i stanice: když mopy <b>sama pere a suší</b>, nebudou zapáchat. Máte koberce? Hledejte <b>zvedání mopů</b>, aby zůstaly suché.'],
-    ['🗑️', 'Nechci nic vysypávat', 'Zvolte robota se <b>stanicí s automatickým vysypáváním</b> – prach jde do sáčku, který obvykle vydrží několik týdnů. Plně automatická stanice navíc <b>doplňuje vodu a pere mopy</b>, takže na robota sáhnete jen výjimečně.'],
-    ['🛋️', 'Hodně nábytku a nízké postele', 'Rozhoduje <b>výška robota</b> – pod gauč nebo postel s mezerou kolem 10 cm se vejde jen nižší model. Věžička LiDARu robota zvyšuje, některé modely ji mají <b>zapuštěnou nebo výsuvnou</b>. Změřte si mezeru a poradíme.'],
-    ['🏠', 'Velký byt nebo dům s patrem', 'U větších ploch se vyplatí <b>přesná navigace LiDAR</b>, ukládání <b>více map</b> (každé patro zvlášť) a větší baterie. Robot schody nevyjede – na patro ho přenesete, nebo zvolíte druhého robota.'],
-    ['🎁', 'Kupuji rodičům', 'Nejvíc pomůže <b>plně automatická stanice</b> – rodiče pak robota skoro neřeší. A aby se nemuseli trápit s aplikací, <a href="/zprovozneni-robotickeho-vysavace/">zprovozníme ho přímo u nich doma</a>: Wi-Fi, mapa, plán úklidu i vysvětlení v klidu.']
-  ];
+  /* Výběr podle situace – 3 záložky. Odkazy vedou rovnou do vyfiltrované kategorie (pv<id parametru>=<id hodnot>).
+     ID parametrů a hodnot: playbook bannery-a-homepage.md, sekce „Výběr podle situace“. Při změně hodnot filtrů ověřit. */
+  var SIT = {
+    vysavac: { label: 'Robotický vysavač', base: '/roboticke-vysavace/', items: [
+      ['🐕', 'Máme psa nebo kočku', 'Chlupy se nejvíc namotávají na štětinové kartáče – hledejte <b>gumové válce</b> nebo kartáč proti namotávání. <b>Kamera s rozpoznáváním překážek</b> objede misky, kabely i nehodu na podlaze.', '?pv186=636', 'Vysavače s kamerou'],
+      ['🧽', 'Chci, aby i vytíral', 'Na skutečné vytírání jsou nejlepší <b>rotační mopy nebo mycí válec</b>. Když je stanice <b>sama pere</b>, nezapáchají, a <b>zvedání mopů</b> ochrání koberce.', '?pv201=516&pv228=459', 'Vysavače s praním a zvedáním mopů'],
+      ['🗑️', 'Nechci nic vysypávat', 'Zvolte robota se <b>stanicí s automatickým vysypáváním</b> – prach jde do sáčku, který obvykle vydrží několik týdnů.', '?pv180=465', 'Vysavače s vysypávací stanicí'],
+      ['🛋️', 'Hodně nábytku a nízké postele', 'Rozhoduje <b>výška robota</b>. Změřte mezeru pod gaučem a postelí – níže najdete roboty do 9,5 cm, některé mají <b>výsuvný LiDAR</b>.', '?pv195=2643,2769,612,2563,2658', 'Vysavače do výšky 9,5 cm'],
+      ['🏠', 'Velký byt nebo dům s patrem', 'U větších ploch se vyplatí <b>navigace LiDAR</b>, ukládání více map a plně automatická stanice. Schody robot nevyjede – na patro ho přenesete.', '?pv183=468&pv228=459', 'Vysavače s LiDARem a samočisticí stanicí'],
+      ['🎁', 'Kupuji rodičům', 'Nejvíc pomůže <b>plně automatická stanice</b> – rodiče pak robota skoro neřeší. A <a href="/zprovozneni-robotickeho-vysavace/">zprovozníme ho přímo u nich doma</a>.', '?pv228=459&pv180=465', 'Plně automatické vysavače']
+    ] },
+    sekacka: { label: 'Robotická sekačka', base: '/roboticke-bezdratove-sekacky/', items: [
+      ['⛰️', 'Zahrada ve svahu', 'Deklarovaný svah je maximum za ideálních podmínek – nechte si <b>rezervu</b>. Na mokré trávě a v prudkém svahu drží nejlépe <b>pohon všech kol (AWD)</b>.', '?pv40=115,2193,2172,2154,730,2264,2258', 'Sekačky do svahu 45 % a víc'],
+      ['🌳', 'Hodně stromů a vysoké budovy', 'Stromy a domy ruší signál GPS/RTK. Spolehlivější jsou sekačky s <b>LiDARem</b>, které se orientují podle okolí a signál z oblohy nepotřebují.', '?pv34=2245,2136', 'Sekačky s LiDARem a kamerou'],
+      ['📐', 'Velká zahrada', 'Maximální plocha výrobce je strop, ne doporučení. Vybírejte s <b>rezervou</b> a počítejte s členitostí, průjezdy a nabíjením.', '?pv28=124,2148,2163,2252,136,2166,2169', 'Sekačky na 1 500 m² a víc'],
+      ['🌱', 'Menší zahrada', 'Na menší zahradu nepotřebujete nejvýkonnější model. Důležitější je přesná navigace u záhonů a <b>dosekávání k okrajům</b>.', '?pv28=2142,154,2181,2130,2178', 'Sekačky na zahrady do 1 000 m²'],
+      ['🧩', 'Více ploch a úzké průjezdy', 'Oddělené části zahrady, chodníky a úzké průchody vyřešíme při <a href="/instalace-sekacek/">instalaci</a> – nastavíme zóny i trasy mezi nimi.', '', 'Bezdrátové sekačky'],
+      ['🎄', 'Sekačka jako dárek', 'Sekačku můžete vybrat a koupit teď, <b>instalaci domluvíme na jaro</b>, až začne sezóna. Nebo darujte <a href="/darkove-poukazy/">dárkový poukaz</a>.', '', 'Bezdrátové sekačky']
+    ] },
+    bazen: { label: 'Bazénový vysavač', base: '/bazenove-vysavace/', items: [
+      ['🏊', 'Zapuštěný bazén', 'U zapuštěného bazénu se vyplatí robot, který vyjede <b>stěny až k vodní lince</b> – tam se drží nejvíc nečistot.', '?pv913=2338', 'Vysavače do zapuštěného bazénu'],
+      ['⭕', 'Nadzemní bazén', 'Do nadzemního bazénu stačí lehčí robot. Hlídejte <b>tvar a povrch</b> bazénu a způsob vyjmutí z vody.', '?pv913=2347', 'Vysavače do nadzemního bazénu'],
+      ['🧱', 'Stěny i vodní linka', 'Pokud vás trápí okraj u hladiny, vybírejte robota, který <b>čistí vodní linku</b>, ne jen dno.', '?pv346=991', 'Vysavače s čištěním vodní linky'],
+      ['🍂', 'Listí na hladině', 'Na listí a pyl na hladině je nejlepší <b>funkce skimmeru</b> – robot sbírá nečistoty dřív, než klesnou ke dnu.', '?pv907=2302', 'Vysavače se skimmerem'],
+      ['🟦', 'Bazén s fólií', 'Fólie potřebuje šetrné kartáče a dobrou přilnavost. Vyberte robota, který je pro <b>fólii</b> výslovně určený.', '?pv64=2287', 'Vysavače vhodné na fólii'],
+      ['🤝', 'Chci ho nejdřív vyzkoušet', 'Vybrané modely vám <a href="/predvedeni-bazenovych-vysavacu/">předvedeme přímo ve vašem bazénu</a> – uvidíte, jak si poradí s vaším tvarem a povrchem.', '', 'Bazénové vysavače']
+    ] }
+  };
   var SVC = [
     [U + 'Instalace%20-%20widget/IMG_5724.jpg', 'Instalace robotické sekačky', 'Projedeme s robotem zahradu, nastavíme hranice, zakázané zóny i plán sekání a všechno vysvětlíme. Po celé ČR.', 'od 7 999 Kč', '/instalace-sekacek/'],
     [U + 'Instalace%20-%20widget/Robotick%C3%A9%20vysava%C4%8De/574383985_10161740614830318_6422739092694342679_n%20ve%20st%C5%99edn%C3%AD%20velikosti.jpg', 'Zprovoznění vysavače doma', 'Připojíme robota k Wi-Fi, vytvoříme mapu a plán úklidu a v klidu vás zaučíme. Praha a Středočeský kraj bez příplatku.', 'od 3 490 Kč', '/zprovozneni-robotickeho-vysavace/'],
@@ -41,6 +61,16 @@
     '.rsh h2{margin:0 0 6px!important;text-align:center;font-size:30px!important;line-height:1.2;font-weight:800;color:#1b3f20}' +
     '.rsh .rsh-sub{text-align:center;color:#4d4d4f;margin:0 auto 20px!important;max-width:720px}' +
     /* výběr podle situace */
+    '.rsv-tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:0 0 16px}' +
+    '.rsv-tab{border:1px solid #e6f0db;background:#fff;color:#1b3f20;border-radius:999px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer;transition:background .2s,color .2s}' +
+    '.rsv-tab:hover{background:#f2f7ec}.rsv-tab[aria-selected="true"]{background:#1b3f20;border-color:#1b3f20;color:#fff}' +
+    '.rsz-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}' +
+    '.rsz-c{display:grid;grid-template-columns:42% 1fr;background:#fff;border:1px solid #e6f0db;border-radius:22px;overflow:hidden;box-shadow:0 14px 30px rgba(27,63,32,.08)}' +
+    '.rsz-c img{width:100%;height:100%;object-fit:cover;min-height:240px;display:block}' +
+    '.rsz-b{padding:20px 22px;display:flex;flex-direction:column;gap:8px}.rsz-b b{font-size:20px;color:#1b3f20;line-height:1.25}.rsz-b p{margin:0;color:#3d4a3d;font-size:15px;line-height:1.55}' +
+    '.rsz-tag{align-self:flex-start;background:#eef6e6;color:#1b3f20;border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:800}' +
+    '.rsz-b .rsh-cta{margin-top:auto}' +
+    '@media(max-width:991px){.rsz-g{grid-template-columns:1fr}}@media(max-width:560px){.rsz-c{grid-template-columns:1fr}.rsz-c img{min-height:0;aspect-ratio:16/10}}' +
     '.rsv-g{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}' +
     '.rsv-t{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:118px;padding:14px 10px;border-radius:18px;border:1px solid #e6f0db;background:#fff;box-shadow:0 8px 20px rgba(27,63,32,.07);cursor:pointer;font:inherit;color:#1b3f20;font-weight:700;font-size:15px;line-height:1.25;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s}' +
     '.rsv-t:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(27,63,32,.12)}' +
@@ -107,23 +137,43 @@
     '@media(max-width:560px){.in-index .homepage-group-title{font-size:24px!important;margin:28px 0 14px!important}.in-index .welcome-wrapper .welcome{padding:20px!important}.in-index .welcome-wrapper .h1,.in-index .welcome-wrapper h1,.in-index .welcome-wrapper h2{font-size:21px!important}}';
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html) e.innerHTML = html; return e; }
   function situace() {
-    var sec = el('section', 'rsh rsv', '<h2>S čím vám poradíme?</h2><p class="rsh-sub">Vyberte, co u vás doma řešíte – řekneme, na co se při výběru robotického vysavače dívat.</p>' +
-      '<div class="rsv-g">' + SIT.map(function (s, i) { return '<button type="button" class="rsv-t" aria-expanded="false" aria-controls="rsv-p" data-i="' + i + '"><span class="e" aria-hidden="true">' + s[0] + '</span>' + s[1] + '</button>'; }).join('') +
-      '</div><div class="rsv-p" id="rsv-p" role="region" aria-live="polite"></div>');
-    sec.setAttribute('aria-label', 'Výběr robotického vysavače podle situace');
-    var panel = sec.querySelector('.rsv-p');
+    var m = new Date().getMonth() + 1, def = (m >= 3 && m <= 8) ? 'sekacka' : 'vysavac';
+    var sec = el('section', 'rsh rsv', '<h2>S čím vám poradíme?</h2><p class="rsh-sub">Vyberte, co řešíte – ukážeme vám rovnou roboty, kteří se na to hodí.</p>' +
+      '<div class="rsv-tabs" role="tablist">' + Object.keys(SIT).map(function (k) { return '<button type="button" role="tab" class="rsv-tab" data-k="' + k + '">' + SIT[k].label + '</button>'; }).join('') + '</div>' +
+      '<div class="rsv-g"></div><div class="rsv-p" id="rsv-p" role="region" aria-live="polite"></div>');
+    sec.setAttribute('aria-label', 'Výběr robota podle situace');
+    var grid = sec.querySelector('.rsv-g'), panel = sec.querySelector('.rsv-p'), cur = def;
+    function tab(k) {
+      cur = k; panel.classList.remove('on');
+      [].forEach.call(sec.querySelectorAll('.rsv-tab'), function (t) { t.setAttribute('aria-selected', t.dataset.k === k ? 'true' : 'false'); });
+      grid.innerHTML = SIT[k].items.map(function (s, i) { return '<button type="button" class="rsv-t" aria-expanded="false" aria-controls="rsv-p" data-i="' + i + '"><span class="e" aria-hidden="true">' + s[0] + '</span>' + s[1] + '</button>'; }).join('');
+    }
     sec.addEventListener('click', function (e) {
+      var t = e.target.closest && e.target.closest('.rsv-tab'); if (t) { tab(t.dataset.k); return; }
       var b = e.target.closest && e.target.closest('.rsv-t'); if (!b) return;
       var open = b.getAttribute('aria-expanded') === 'true';
-      [].forEach.call(sec.querySelectorAll('.rsv-t'), function (x) { x.setAttribute('aria-expanded', 'false'); });
+      [].forEach.call(grid.querySelectorAll('.rsv-t'), function (x) { x.setAttribute('aria-expanded', 'false'); });
       if (open) { panel.classList.remove('on'); return; }
-      var s = SIT[+b.getAttribute('data-i')]; b.setAttribute('aria-expanded', 'true');
-      panel.innerHTML = '<h3>' + s[0] + ' ' + s[1] + '</h3><p>' + s[2] + '</p><div class="rsh-cta"><a class="pri" href="tel:' + TEL + '">📞 Poradit konkrétní model – ' + TELT + '</a>' +
-        '<a class="sec" href="mailto:' + MAIL + '?subject=' + encodeURIComponent('Výběr robotického vysavače – ' + s[1]) + '">✉️ Napsat e-mail</a><a class="sec" href="/roboticke-vysavace/">Prohlédnout robotické vysavače →</a></div>';
+      var g = SIT[cur], s = g.items[+b.getAttribute('data-i')]; b.setAttribute('aria-expanded', 'true');
+      panel.innerHTML = '<h3>' + s[0] + ' ' + s[1] + '</h3><p>' + s[2] + '</p><div class="rsh-cta"><a class="pri" href="' + g.base + s[3] + '">' + s[4] + ' →</a>' +
+        '<a class="sec" href="tel:' + TEL + '">📞 Poradit model – ' + TELT + '</a>' +
+        '<a class="sec" href="mailto:' + MAIL + '?subject=' + encodeURIComponent(g.label + ' – ' + s[1]) + '">✉️ Napsat e-mail</a></div>';
       panel.classList.add('on');
       if (window.innerWidth < 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
+    tab(def);
     return sec;
+  }
+  /* sezónní blok: sekačky a bazény i mimo sezónu (dárek, příprava na jaro) */
+  function sezona() {
+    return el('section', 'rsh rsz', '<h2>Myslíte už na jaro?</h2><p class="rsh-sub">Robotickou sekačku nebo bazénový vysavač vyberete v klidu teď – a na jaře je rovnou spustíme.</p><div class="rsz-g">' +
+      '<div class="rsz-c"><img src="' + U + 'Instalace%20-%20widget/IMG_5724.jpg" alt="Instalace robotické sekačky Mammotion LUBA 2" loading="lazy"><div class="rsz-b"><span class="rsz-tag">Tip na Vánoce</span><b>Robotická sekačka pod stromeček</b>' +
+      '<p>Vyberte sekačku teď a instalaci domluvíme na jaro, až začne sezóna. Projedeme zahradu, nastavíme zóny a všechno vysvětlíme.</p>' +
+      '<div class="rsh-cta"><a class="pri" href="/roboticke-bezdratove-sekacky/">Bezdrátové sekačky →</a><a class="sec" href="/darkove-poukazy/">Dárkový poukaz</a><a class="sec" href="/instalace-sekacek/">Instalace</a></div></div></div>' +
+      '<div class="rsz-c"><img src="' + U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/Aiper-Scuba-S1%20Teplice.jpg" alt="Bazénový vysavač Aiper Scuba S1 u zákazníka" loading="lazy"><div class="rsz-b"><span class="rsz-tag">Příprava na sezónu</span><b>Bazénový vysavač na příští léto</b>' +
+      '<p>Poradíme podle tvaru a povrchu bazénu. Vybrané modely vám předvedeme přímo ve vašem bazénu ještě před nákupem.</p>' +
+      '<div class="rsh-cta"><a class="pri" href="/bazenove-vysavace/">Bazénové vysavače →</a><a class="sec" href="/predvedeni-bazenovych-vysavacu/">Předvedení u vás</a></div></div></div>' +
+      '</div>');
   }
   function sluzby() {
     return el('section', 'rsh rss', '<h2>Služby, které u velkých obchodů nedostanete</h2><p class="rsh-sub">Robota vám nejen prodáme – přijedeme, nastavíme ho a postaráme se o něj i po nákupu.</p><div class="rss-g">' +
@@ -146,7 +196,8 @@
     host.insertBefore(situace(), host.firstChild);
     var blog = host.querySelector('.homepage-blog-wrapper');
     var s = sluzby(), r = realizace();
-    if (blog) { host.insertBefore(s, blog); host.insertBefore(r, blog); } else { host.appendChild(s); host.appendChild(r); }
+    var z = sezona();
+    if (blog) { host.insertBefore(z, blog); host.insertBefore(s, blog); host.insertBefore(r, blog); } else { host.appendChild(z); host.appendChild(s); host.appendChild(r); }
     var foot = document.getElementById('footer');
     if (foot && !document.querySelector('.rso')) foot.parentNode.insertBefore(majitel(), foot);
   }
