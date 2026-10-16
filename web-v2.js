@@ -21,6 +21,36 @@
     '.products-block .product .p:hover,.subcategories.with-image li a:hover,.benefitBanner__item:hover,.rsv-t:hover,.rss-c:hover,.rsz-c:hover,.rsr__card:hover,.in-index .homepage-blog-wrapper .news-item>a:hover,.in-index .next-to-carousel-banners .banner-wrapper a:hover,.rs-foot__heu:hover{transform:var(--rs-lift)!important;box-shadow:var(--rs-shadow-hover)!important}' +
     '#navigation .rs-mega>li:not(.rs-mega__foot)>a:hover{background:#fff!important;transform:translateY(-2px);box-shadow:var(--rs-shadow-hover)}' +
     '@media(hover:none){.products-block .product .p:hover,.subcategories.with-image li a:hover,.benefitBanner__item:hover,.rsv-t:hover,.rss-c:hover,.rsz-c:hover,.rsr__card:hover{transform:none!important}}' +
+    /* --- 17. 10. 2026: sjednocení hoverů menu, Více, ikony, šipky karuselu, zaškrtávátka, MIME podpis --- */
+    '@media(min-width:992px){#navigation .menu-level-1>li>a{transition:transform var(--rs-ease),box-shadow var(--rs-ease),background var(--rs-ease)!important}' +
+    '#navigation .menu-level-1>li:hover>a,#navigation .menu-level-1>li.exp>a{background:#fff!important;transform:translateY(-2px);box-shadow:var(--rs-shadow-hover)}' +
+    '#header .navigation-buttons>a:not(.heureka-header-seal),#header .navigation-buttons>button{width:46px!important;height:46px!important;margin:17px 2px!important;border-radius:50%!important;display:grid!important;place-items:center;transition:transform var(--rs-ease),box-shadow var(--rs-ease)!important}' +
+    '#header .navigation-buttons>a:not(.heureka-header-seal):hover,#header .navigation-buttons>button:hover{background:#fff!important;transform:translateY(-2px);box-shadow:var(--rs-shadow-hover)!important}' +
+    '.menu-helper:hover>span{background:#fff!important;transform:translateY(-2px);box-shadow:var(--rs-shadow-hover)}.menu-helper>span{transition:transform var(--rs-ease),box-shadow var(--rs-ease)}' +
+    /* rozbalené „Více“ – kompaktní seznam s malými logy */
+    '.menu-helper .menu-level-1{min-width:300px;max-height:70vh;overflow:auto!important;text-align:left!important}.menu-helper .menu-level-1>li{text-align:left!important}.menu-helper .menu-level-1>li>a{display:flex!important;justify-content:flex-start!important;text-align:left!important;font-weight:800!important;font-size:15px!important}' +
+    '.menu-helper .menu-level-2{position:static!important;display:block!important;box-shadow:none!important;border:0!important;padding:0 0 6px 10px!important;margin:0!important;width:auto!important;background:transparent!important}' +
+    '.menu-helper .menu-level-2>li>a{display:flex!important;align-items:center;gap:10px;padding:6px 10px!important;border-radius:10px;font-size:14px!important;font-weight:600!important;color:var(--rs-g)!important;text-align:left!important}' +
+    '.menu-helper .menu-level-2>li>a:hover{background:var(--rs-soft)!important}' +
+    '.menu-helper .menu-level-2 img,.menu-helper .rs-mega__img img{max-width:34px!important;max-height:22px!important;width:auto!important;height:auto!important}' +
+    '.menu-helper .rs-mega__img{flex:0 0 40px;width:40px;height:28px;border-radius:8px;background:#fff;border:1px solid var(--rs-line);display:grid;place-items:center}' +
+    '.menu-helper .rs-mega__foot{display:none!important}' +
+    /* šipky hlavního karuselu = šipky šablon produktů */
+    '.carousel .carousel-control,#carousel .carousel-control{width:46px!important;height:46px!important;border-radius:50%!important;top:50%!important;bottom:auto!important;transform:translateY(-50%);background:rgba(27,63,32,.80)!important;border:1px solid rgba(255,255,255,.6)!important;box-shadow:0 14px 28px rgba(0,0,0,.18)!important;opacity:1!important;display:grid!important;place-items:center;transition:transform var(--rs-ease),box-shadow var(--rs-ease),background var(--rs-ease)!important}' +
+    '.carousel .carousel-control.left{left:18px!important}.carousel .carousel-control.right{right:18px!important}' +
+    '.carousel .carousel-control:hover{transform:translateY(-50%) scale(1.04);box-shadow:0 16px 32px rgba(0,0,0,.28)!important;background:rgba(27,63,32,.92)!important}' +
+    '.carousel .carousel-control>*,.carousel .carousel-control::before{display:none!important}' +
+    '.carousel .carousel-control::after{content:"❮"!important;display:block!important;position:static!important;color:#fff!important;font-size:18px!important;line-height:1!important;background:none!important;border:0!important;width:auto!important;height:auto!important;transform:none!important}' +
+    '.carousel .carousel-control.right::after{content:"❯"!important}' +
+    /* zaškrtávátka: kroužek, po výběru zelená tečka; šablonové čtverečky pryč */
+    '#filters label.filter-label::before,#filters label.filter-label::after,#filters input+label::before,#filters input+label::after{display:none!important;content:none!important}' +
+    '#filters label.filter-label{padding-left:2px!important;margin-left:0!important}' +
+    '#filters input[type=checkbox]:checked{background:radial-gradient(circle,var(--rs-l) 0 5px,#fff 5.5px)!important;border-color:var(--rs-g)!important}' +
+    '#filters input[type=checkbox]:checked::after{display:none!important}' +
+    /* podpis agentury v patičce – Michael 17. 10. 2026: nechat jen Shoptet */
+    '#signature>span,#signature a[href*="mime"],#signature img[src*="mime"]{display:none!important}' +
+    /* loga v kartách podkategorií větší */
+    '.subcategories.with-image .image{height:72px!important}.subcategories.with-image .image img{max-width:150px!important;max-height:64px!important}' +
     /* --- 1) horní lišta --- */
     '.rs-topbar{background:' + G + ';color:#fff;font-size:13.5px;line-height:1.2}' +
     '.rs-topbar__in{max-width:1400px;margin:0 auto;padding:7px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}' +
@@ -328,7 +358,7 @@
       [].forEach.call(ul.querySelectorAll(':scope>li>a'), function (a) {
         if (a.querySelector('.rs-mega__img')) return; var src = a.getAttribute('data-image');
         var w = document.createElement('span'); w.className = 'rs-mega__img';
-        w.innerHTML = src ? '<img src="' + src + '" alt="" loading="lazy">' : '<b style="color:' + G + ';font-size:16px">' + (a.textContent.trim().charAt(0) || '•') + '</b>';
+        if (!src) return; w.innerHTML = '<img src="' + src + '" alt="" loading="lazy">';
         a.insertBefore(w, a.firstChild);
       });
       var top = li.querySelector(':scope>a');
