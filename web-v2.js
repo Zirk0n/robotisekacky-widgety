@@ -51,6 +51,33 @@
     '#signature>span,#signature a[href*="mime"],#signature img[src*="mime"]{display:none!important}' +
     /* loga v kartách podkategorií větší */
     '.subcategories.with-image .image{height:72px!important}.subcategories.with-image .image img{max-width:150px!important;max-height:64px!important}' +
+    /* --- košík a objednávka (17. 10. 2026) – jazyk šablon v2 --- */
+    '.cart-header{display:flex!important;gap:10px;border:0!important;margin:10px 0 22px!important}' +
+    '.cart-header .step{flex:1;border:1px solid var(--rs-line)!important;border-radius:var(--rs-pill)!important;background:#fff!important;text-align:center;padding:12px 16px!important;color:var(--rs-muted)!important;font-weight:700;box-shadow:none!important}' +
+    '.cart-header .step::before,.cart-header .step::after{display:none!important}' +
+    '.cart-header .step{flex:1 1 0!important;width:auto!important;max-width:none!important;display:flex!important;align-items:center;justify-content:center;min-height:0!important;height:auto!important}' +
+    '.cart-header .step>strong,.cart-header .step>a,.cart-header .step span{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important;min-height:0!important;height:auto!important;width:auto!important;color:inherit!important;display:inline!important;font-size:15px!important;line-height:1.3!important}' +
+    '.cart-header .step>strong::after,.cart-header .step>a::after{display:none!important}' +
+    '.cart-header .step.active{background:var(--rs-g)!important;border-color:var(--rs-g)!important;color:#fff!important}' +
+    '.cart-header .step.completed{background:var(--rs-soft2)!important;color:var(--rs-g)!important}.cart-header .step a{color:inherit!important;text-decoration:none!important}' +
+    '.cart-inner .cart-table{border:1px solid var(--rs-line);border-radius:var(--rs-r);overflow:hidden;background:#fff;box-shadow:var(--rs-shadow)}' +
+    '.cart-table tr{border-color:var(--rs-line)!important}.cart-table .p-name a,.cart-table .main-link{color:var(--rs-g)!important;font-weight:700}' +
+    '.cart-table .price-final,.cart-table .p-total{color:var(--rs-g)!important;font-weight:800}' +
+    '.quantity{border:1px solid var(--rs-line)!important;border-radius:var(--rs-pill)!important;overflow:hidden;background:#fff}.quantity input,.quantity button{border:0!important;background:#fff!important;color:var(--rs-g)!important;font-weight:700}' +
+    '.discount-coupon .form-control{border-radius:var(--rs-pill) 0 0 var(--rs-pill)!important;border-color:var(--rs-line)!important}' +
+    '.discount-coupon .btn,.discount-coupon button{border-radius:0 var(--rs-pill) var(--rs-pill) 0!important;background:var(--rs-g)!important;border-color:var(--rs-g)!important;color:#fff!important;text-transform:none!important;font-weight:700}' +
+    '.co-box,.order-recapitulation,.order-summary{border:1px solid var(--rs-line)!important;border-radius:var(--rs-r)!important;background:#fff!important;box-shadow:var(--rs-shadow);overflow:hidden}' +
+    '.co-box h4,.co-box .h4,.order-summary h4,.order-recapitulation h4,.cart-inner h4{color:var(--rs-g)!important;font-weight:800!important;text-transform:none!important}' +
+    '.co-box .radio-wrapper{border-color:var(--rs-line)!important;transition:background var(--rs-ease)}.co-box .radio-wrapper:hover{background:var(--rs-soft)}' +
+    '.co-box .radio-wrapper.active{background:var(--rs-soft2)!important}.co-box .radio-wrapper label{text-transform:none!important;color:var(--rs-text)!important;font-weight:700}' +
+    '.co-box input[type=radio]{-webkit-appearance:none;appearance:none;width:20px;height:20px;border:2px solid #b9cfa9;border-radius:50%;background:#fff;vertical-align:middle}' +
+    '.co-box input[type=radio]:checked{background:radial-gradient(circle,var(--rs-l) 0 5px,#fff 5.5px);border-color:var(--rs-g)}' +
+    '.co-box .radio-wrapper label::before,.co-box .radio-wrapper label::after{display:none!important}' +
+    '.for-free,.payment-shipping-price.for-free{color:var(--rs-l)!important;font-weight:800}' +
+    '.next-step .btn-conversion,.next-step-forward{background:var(--rs-g)!important;border-color:var(--rs-g)!important;color:#fff!important;border-radius:var(--rs-pill)!important;text-transform:none!important;font-weight:800!important;padding:14px 28px!important;box-shadow:var(--rs-btn-shadow);transition:transform var(--rs-ease),background var(--rs-ease)!important}' +
+    '.next-step .btn-conversion:hover,.next-step-forward:hover{background:var(--rs-l)!important;transform:translateY(-2px)}' +
+    '.next-step-back,.continue-shopping{color:var(--rs-g)!important;font-weight:700}' +
+    '.cart-inner .summary .price-final,.order-summary .price-final,.order-recapitulation .price-primary{color:var(--rs-g)!important;font-weight:800}' +
     /* --- 1) horní lišta --- */
     '.rs-topbar{background:' + G + ';color:#fff;font-size:13.5px;line-height:1.2}' +
     '.rs-topbar__in{max-width:1400px;margin:0 auto;padding:7px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}' +
