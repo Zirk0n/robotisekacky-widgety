@@ -24,11 +24,12 @@
     '@media(min-width:992px){#header{background:rgba(255,255,255,.86)!important;-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px)}}' +
     '#header.rs-scrolled{box-shadow:0 10px 30px rgba(27,63,32,.10)}' +
     '#navigation .menu-level-1>li>a{border-radius:999px;transition:background .2s,color .2s;color:' + G + '!important;font-weight:700!important}' +
+    '#header .navigation-buttons,#header .navigation-buttons>a,#header .navigation-buttons>button,#header .menu-helper,#header .site-name,#header .navigation-wrapper{background:transparent!important}' +
     '#header .navigation-buttons>a,#header .navigation-buttons>button{border-radius:50%;transition:background .2s}' +
     '@media(min-width:992px){#navigation .menu-level-1{align-items:center!important}#navigation .menu-level-1>li{display:flex!important;align-items:center;height:80px}#navigation .menu-level-1>li>a{padding:9px 14px!important;margin:0 1px;line-height:1.2!important;height:auto!important}' +
     '#navigation .menu-level-1>li:hover>a,#navigation .menu-level-1>li.exp>a,#navigation .menu-level-1>li>a:focus{background:#eef6e6!important}' +
     '#navigation .menu-level-1>li.active>a{background:' + G + '!important;color:#fff!important}' +
-    '#header .navigation-buttons>a:hover,#header .navigation-buttons>button:hover{background:#eef6e6}' +
+    '#header .navigation-buttons>a:hover,#header .navigation-buttons>button:hover{background:#eef6e6!important}' +
     '.menu-helper>span{border-radius:999px;padding:9px 14px;color:' + G + ';font-weight:700}.menu-helper:hover>span{background:#eef6e6}' +
     /* mega nabídka */
     '#navigation .menu-level-2.rs-mega{display:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;width:540px!important;padding:12px!important;background:rgba(255,255,255,.97)!important;border:1px solid ' + LINE + '!important;border-radius:20px!important;box-shadow:0 24px 48px rgba(27,63,32,.16)!important;margin-top:6px!important;left:0}' +
