@@ -84,6 +84,7 @@
     '.in-index{overflow-x:hidden}.in-index .top-products-wrapper,.in-index .shp-tabs-row{display:none!important}.in-index .tab-content>#homepageProducts2{display:block!important;opacity:1!important}' +
     '.detail-parameters tr,.detail-parameters-wrapper tr{border-bottom:1px solid ' + LINE + '}.browse-p .p-prev,.browse-p .p-next{color:' + L + '!important;background:none!important}' +
     /* karusel produktů na titulce: základní rozložení pro knihovnu Slick (MIT) + naše šipky */
+    '.products-block .slick-list,.products-block .slick-track{float:none!important;clear:both}.products-block.slick-slider::after{content:"";display:table;clear:both}' +
     '.slick-slider{position:relative;display:block;box-sizing:border-box;touch-action:pan-y;-webkit-user-select:none;user-select:none}.slick-list{position:relative;display:block;overflow:hidden;margin:0;padding:0}' +
     '.slick-track{position:relative;left:0;top:0;display:flex!important}.slick-slide{display:none;min-height:1px;float:none!important}.slick-initialized .slick-slide{display:block}.slick-slide img{display:block}' +
     '.in-index .homepage-group-title{display:block;text-align:center}#filters .has-parametric-slider .more-filters,#filters .rs-has-range .more-filters{display:none!important}' +
@@ -116,6 +117,22 @@
     '.listingControls .loadMore__button,.listingControls .btn{text-transform:none!important;letter-spacing:0!important}.listingControls .loadMore__button{border:0!important;background:' + G + '!important;color:#fff!important;border-radius:var(--rs-pill)!important;padding:12px 26px!important;font-weight:700!important;box-shadow:var(--rs-btn-shadow);transition:transform var(--rs-ease)}.listingControls .loadMore__button:hover{transform:var(--rs-lift)}' +
     '.listingControls .btn:not(.loadMore__button),.listingControls a.btn{border:1px solid ' + LINE + '!important;background:#fff!important;color:' + G + '!important;border-radius:var(--rs-pill)!important;font-weight:700!important}' +
     '.pagination__list{gap:6px}.pagination__link,.pagination__currentPage{min-width:40px;height:40px;border-radius:50%!important;display:inline-flex!important;align-items:center;justify-content:center;border:1px solid ' + LINE + '!important;background:#fff;color:' + G + '!important;font-weight:700}.pagination__currentPage{background:' + G + '!important;color:#fff!important;border-color:' + G + '!important}.pagination__link:hover{box-shadow:var(--rs-shadow-hover)}' +
+    /* --- 17. 10. odpoledne: drobnosti z kontroly Michaela --- */
+    '#category-header{border-bottom:0!important}' + /* zbytečná linka pod tlačítky řazení */
+    '.order-summary .order-recapitulation{border:0!important;box-shadow:none!important;background:none!important;padding:0!important;border-radius:0!important;margin:0!important}.order-summary .recapitulation-single{border-bottom:1px solid ' + LINE + '!important;padding:12px 0!important}' +
+    '.ordering-process .form-control,.ordering-process input[type=text],.ordering-process input[type=email],.ordering-process input[type=tel],.ordering-process input[type=password],.ordering-process select,.ordering-process textarea{border:1px solid ' + LINE + '!important;border-radius:12px!important;background:#fff!important;box-shadow:inset 0 1px 2px rgba(27,63,32,.05)!important;min-height:46px;transition:border-color var(--rs-ease),box-shadow var(--rs-ease)}' +
+    '.ordering-process .form-control:focus,.ordering-process input:focus,.ordering-process select:focus,.ordering-process textarea:focus{border-color:' + L + '!important;box-shadow:0 0 0 3px rgba(134,187,65,.25)!important;outline:0!important}' +
+    '.ordering-process .login-button,.ordering-process .btn-secondary{border:1px solid ' + G + '!important;color:' + G + '!important;background:#fff!important;border-radius:var(--rs-pill)!important;text-transform:none!important;letter-spacing:0!important;font-weight:700!important;padding:11px 22px!important}.ordering-process .login-button:hover{background:' + G + '!important;color:#fff!important}' +
+    '.ordering-process input[type=checkbox]{-webkit-appearance:none;appearance:none;width:20px;height:20px;border:2px solid ' + LINE + ';border-radius:6px;background:#fff;vertical-align:-4px;cursor:pointer;position:relative}.ordering-process input[type=checkbox]:checked{background:' + G + ';border-color:' + G + '}.ordering-process input[type=checkbox]:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}' +
+    '.ordering-process .next-step-finish,.ordering-process .btn-conversion{background:' + G + '!important;border:0!important;border-radius:var(--rs-pill)!important;color:#fff!important}' +
+    '.co-box h4,.co-box .h4,.ordering-process .co-box label,.ordering-process .co-box label *,.ordering-process .radio-wrapper *{text-transform:none!important;letter-spacing:0!important}' +
+    '.type-detail .p-code,.type-detail .p-detail-info .p-code{font-size:11px!important;color:#a3ab9f!important;font-weight:400!important}.type-detail .p-code span{font-weight:400!important}' +
+    /* „Více“ jako přehledný panel (Michael 17. 10.): skupiny vedle sebe ve sloupcích místo dlouhého seznamu */
+    '@media(min-width:992px){#header .menu-helper>ul,#header .menu-helper .menu-level-1{display:none;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px 18px;width:min(980px,calc(100vw - 80px))!important;min-width:0!important;max-height:calc(100vh - 140px)!important;overflow:auto!important;left:auto!important;right:0!important;padding:18px!important;border-radius:20px!important;background:rgba(255,255,255,.98)!important;border:1px solid ' + LINE + '!important;box-shadow:0 24px 48px rgba(27,63,32,.16)!important}' +
+    '#header .menu-helper:hover>ul,#header .menu-helper.visible>ul,#header .menu-helper:focus-within>ul{display:grid!important}' +
+    '#header .menu-helper>ul>li{float:none!important;width:auto!important;break-inside:avoid;padding:6px!important;border-radius:14px}#header .menu-helper>ul>li:hover{background:var(--rs-soft)}' +
+    '#header .menu-helper>ul>li>a{padding:6px 8px!important;font-size:15px!important}#header .menu-helper .menu-level-2>li>a{padding:5px 8px!important;font-size:13.5px!important}' +
+    '#header .menu-helper .rs-mega__img{flex-basis:32px;width:32px;height:24px}#header .menu-helper .rs-mega__quick{padding:4px 8px 6px!important}}' +
     /* --- 1) horní lišta --- */
     '.rs-topbar{background:' + G + ';color:#fff;font-size:13.5px;line-height:1.2}' +
     '.rs-topbar__in{max-width:1400px;margin:0 auto;padding:7px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}' +
@@ -486,6 +503,13 @@
       f.innerHTML = '<a href="' + (top ? top.getAttribute('href') : '/') + '">Zobrazit vše →</a><span>Nevíte si rady? <a href="tel:' + TEL + '">' + TELT + '</a></span>';
       ul.appendChild(f);
     });
+    /* panel „Více“ udržet celý na obrazovce (posunout doprava, když by přetekl vlevo) */
+    var helper = document.querySelector('#header .menu-helper');
+    if (helper && !helper.dataset.rsFit) {
+      helper.dataset.rsFit = 1;
+      var fit = function () { var ul = helper.querySelector(':scope>ul'); if (!ul) return; ul.style.setProperty('right', '0px', 'important'); requestAnimationFrame(function () { var r = ul.getBoundingClientRect(); if (r.width && r.left < 16) ul.style.setProperty('right', Math.round(r.left - 16) + 'px', 'important'); }); };
+      helper.addEventListener('mouseenter', fit); helper.addEventListener('focusin', fit);
+    }
     var nav = document.getElementById('navigation');
     if (nav && !nav.querySelector('.rs-navcontact')) {
       var c = document.createElement('div'); c.className = 'rs-navcontact';
