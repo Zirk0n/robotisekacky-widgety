@@ -113,6 +113,11 @@
     '#navigation .rs-mega .rs-mega__img{flex:0 0 54px;width:54px;height:38px;border-radius:10px;background:#fff;border:1px solid ' + LINE + ';display:grid;place-items:center;overflow:hidden}' +
     '#navigation .rs-mega .rs-mega__img img{max-width:46px;max-height:30px;object-fit:contain}' +
     '#navigation .rs-mega>li.rs-mega__foot{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;padding:10px 12px;border-radius:14px;background:#f2f7ec;font-size:14px;color:#3d4a3d}' +
+    '#navigation .rs-mega>li.rs-mega__quick{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:6px;padding:10px 4px 2px;border-top:1px solid ' + LINE + '}' +
+    '#navigation .rs-mega>li.rs-mega__quick b{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--rs-muted);margin-right:4px}' +
+    '#navigation .rs-mega>li.rs-mega__quick a{display:inline-flex!important;padding:6px 12px!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-pill)!important;background:#fff!important;font-size:13px!important;font-weight:700!important;color:' + G + '!important;line-height:1.2!important;transition:transform var(--rs-ease),box-shadow var(--rs-ease)}' +
+    '#navigation .rs-mega>li.rs-mega__quick a:hover{transform:translateY(-2px);box-shadow:var(--rs-shadow-hover)}' +
+    '.menu-helper .rs-mega__quick{display:none!important}' +
     '#navigation .rs-mega>li.rs-mega__foot a{display:inline-flex!important;padding:0!important;background:none!important;font-weight:800;color:' + G + '!important}' +
     '.menu-helper .menu-level-1{border:1px solid ' + LINE + '!important;border-radius:18px!important;box-shadow:0 24px 48px rgba(27,63,32,.16)!important;padding:10px!important;background:#fff!important;margin-top:6px}' +
     '.menu-helper .menu-level-1>li>a{border-radius:10px;padding:9px 12px!important;color:' + G + '!important;font-weight:700}' +
@@ -381,6 +386,11 @@
       if (d && d.celkem) { t.querySelector('span').textContent = d.celkem + ' hodnocení'; if (d.prumer) t.querySelector('b').firstChild.nodeValue = String(d.prumer).replace('.', ',') + ' '; }
     }).catch(function () {}); } catch (e) {}
   }
+  var QUICK = [
+    ['/roboticke-bezdratove-sekacky/', [['Do svahu (AWD od 65 %)', '?pv40=663,672,730,2264,2258'], ['Velká zahrada 1 500 m²+', '?pv28=124,2148,2163,2252,136,2166,2169'], ['Do 1 000 m²', '?pv28=2142,154,2181,2130,2178'], ['Stromy a budovy (LiDAR/kamera)', '?pv34=2245,2136']]],
+    ['/roboticke-vysavace/', [['Na zvířecí chlupy', '?pv186=636'], ['I vytírá', '?pv201=516&pv228=459'], ['Bez vysypávání', '?pv180=465'], ['Pod nízký nábytek', '?pv195=2643,2769,612,2563,2658']]],
+    ['/bazenove-vysavace/', [['Zapuštěný bazén', '?pv913=2338'], ['Nadzemní bazén', '?pv913=2347'], ['Vodní linka', '?pv346=991'], ['Listí na hladině', '?pv907=2302']]]
+  ];
   function megaMenu() {
     [].forEach.call(document.querySelectorAll('#navigation .menu-level-1>li.ext'), function (li) {
       var ul = li.querySelector(':scope>.menu-level-2'); if (!ul || ul.classList.contains('rs-mega')) return;
@@ -392,6 +402,14 @@
         a.insertBefore(w, a.firstChild);
       });
       var top = li.querySelector(':scope>a');
+      /* rychlé odkazy „Podle potřeby“ do filtrů (Michael 17. 10. 2026) – ID hodnot viz playbooky/webove-stranky/bannery-a-homepage.md */
+      var href = top ? top.getAttribute('href') || '' : '';
+      var q = QUICK.filter(function (x) { return href.indexOf(x[0]) > -1; })[0];
+      if (q) {
+        var qi = document.createElement('li'); qi.className = 'rs-mega__quick';
+        qi.innerHTML = '<b>Podle potřeby</b>' + q[1].map(function (c) { return '<a href="' + q[0] + c[1] + '">' + c[0] + '</a>'; }).join('');
+        ul.appendChild(qi);
+      }
       var f = document.createElement('li'); f.className = 'rs-mega__foot';
       f.innerHTML = '<a href="' + (top ? top.getAttribute('href') : '/') + '">Zobrazit vše →</a><span>Nevíte si rady? <a href="tel:' + TEL + '">' + TELT + '</a></span>';
       ul.appendChild(f);
