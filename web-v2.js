@@ -99,6 +99,8 @@
     '#filters .filter-open>h4::after{transform:rotate(-135deg);margin-top:4px}#filters .filter-section.filter-section-boolean{display:block}' +
     '#filters .filter-section:not(.filter-open)>form,#filters .filter-section:not(.filter-open) .more-filters,#filters .filter-section:not(.filter-open) .rs-range,#filters .filter-section:not(.filter-open) .parametric-slider-wrapper,#filters .slider-wrapper:not(.filter-open)>.slider-header,#filters .slider-wrapper:not(.filter-open)>.slider-content{display:none!important}' +
     '#filters .filter-section.has-parametric-slider .more-filters{display:none!important}.filters-wrapper{margin-bottom:20px}}' +
+    /* mobil: tlačítko Otevřít filtr (Shoptet ho barví křiklavě zeleně) v našem vzhledu */
+    '.filters-unveil-button-wrapper .unveil-button{background:' + G + '!important;color:#fff!important;border:0!important;border-radius:var(--rs-pill)!important;font-weight:700!important;text-transform:none!important;letter-spacing:0!important;padding:13px 22px!important;box-shadow:var(--rs-btn-shadow)!important}' +
     /* posuvník ceny: bez šedého rámečku kolem dráhy (Michael 17. 10.) */
     '.slider-wrapper .slider-content{border:0!important;background:none!important;box-shadow:none!important}' +
     /* informační lišta Shoptetu dole (site-msg) v našem vzhledu */
@@ -153,7 +155,11 @@
     '#navigation .rs-mega>li.rs-mega__quick b{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--rs-muted);margin-right:4px}' +
     '#navigation .rs-mega>li.rs-mega__quick a{display:inline-flex!important;padding:6px 12px!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-pill)!important;background:#fff!important;font-size:13px!important;font-weight:700!important;color:' + G + '!important;line-height:1.2!important;transition:transform var(--rs-ease),box-shadow var(--rs-ease)}' +
     '#navigation .rs-mega>li.rs-mega__quick a:hover{transform:translateY(-2px);box-shadow:var(--rs-shadow-hover)}' +
-    '.menu-helper .rs-mega__quick{display:none!important}' +
+    /* „Více“: skupiny jako nadpisy, rychlé odkazy i tady, kolečko neskroluje stránku pod menu */
+    '.menu-helper .menu-level-1,.menu-helper>ul{overscroll-behavior:contain;padding-bottom:8px!important}.menu-helper .menu-level-1>li>a,.menu-helper .menu-level-1>li>a>b,.menu-helper>ul>li>a{font-weight:800!important;color:' + G + '!important;font-size:14.5px!important;padding-top:10px!important}' +
+    '.menu-helper>ul>li>a .submenu-arrow,.menu-helper>ul>li>a::after,.menu-helper .menu-level-1>li>a::after{display:none!important}' +
+    '.menu-helper .rs-mega__quick{display:flex!important;flex-wrap:wrap;gap:5px;padding:2px 10px 10px 20px!important;border:0!important;margin:0!important}.menu-helper .rs-mega__quick b{display:none}' +
+    '.menu-helper .rs-mega__quick a{padding:4px 10px!important;font-size:12px!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-pill)!important;background:#fff!important;color:' + G + '!important;font-weight:700!important;display:inline-flex!important}' +
     '#navigation .rs-mega>li.rs-mega__foot a{display:inline-flex!important;padding:0!important;background:none!important;font-weight:800;color:' + G + '!important}' +
     '.menu-helper .menu-level-1{border:1px solid ' + LINE + '!important;border-radius:18px!important;box-shadow:0 24px 48px rgba(27,63,32,.16)!important;padding:10px!important;background:#fff!important;margin-top:6px}' +
     '.menu-helper .menu-level-1>li>a{border-radius:10px;padding:9px 12px!important;color:' + G + '!important;font-weight:700}' +
