@@ -113,7 +113,7 @@
     '.products-block .p-code{font-size:10.5px!important;color:#a3ab9f!important;opacity:.8;font-weight:400!important}' +
     '.flag.flag-discount,.flag.flag-action{background-color:#e2231a!important}' +
     /* tlačítka pod výpisem: Načíst další, Nahoru, stránkování */
-    '.listingControls .loadMore__button{border:0!important;background:' + G + '!important;color:#fff!important;border-radius:var(--rs-pill)!important;padding:12px 26px!important;font-weight:700!important;box-shadow:var(--rs-btn-shadow);transition:transform var(--rs-ease)}.listingControls .loadMore__button:hover{transform:var(--rs-lift)}' +
+    '.listingControls .loadMore__button,.listingControls .btn{text-transform:none!important;letter-spacing:0!important}.listingControls .loadMore__button{border:0!important;background:' + G + '!important;color:#fff!important;border-radius:var(--rs-pill)!important;padding:12px 26px!important;font-weight:700!important;box-shadow:var(--rs-btn-shadow);transition:transform var(--rs-ease)}.listingControls .loadMore__button:hover{transform:var(--rs-lift)}' +
     '.listingControls .btn:not(.loadMore__button),.listingControls a.btn{border:1px solid ' + LINE + '!important;background:#fff!important;color:' + G + '!important;border-radius:var(--rs-pill)!important;font-weight:700!important}' +
     '.pagination__list{gap:6px}.pagination__link,.pagination__currentPage{min-width:40px;height:40px;border-radius:50%!important;display:inline-flex!important;align-items:center;justify-content:center;border:1px solid ' + LINE + '!important;background:#fff;color:' + G + '!important;font-weight:700}.pagination__currentPage{background:' + G + '!important;color:#fff!important;border-color:' + G + '!important}.pagination__link:hover{box-shadow:var(--rs-shadow-hover)}' +
     /* --- 1) horní lišta --- */
@@ -434,6 +434,18 @@
       });
     }).catch(function () {}); } catch (e) {}
   }
+  /* vyprodané a ukončené produkty na konec výpisu (Michael 17. 10. 2026) – v rámci načtené stránky výpisu;
+     jen při výchozím řazení (bez ?order= v adrese), aby se nerozbilo řazení podle ceny nebo abecedy */
+  function soldOutLast() {
+    if (/[?&]order=/.test(location.search)) return;
+    var list = document.querySelector('#products'); if (!list) return;
+    var items = [].slice.call(list.querySelectorAll(':scope > .product'));
+    var out = items.filter(function (it) { var a = it.querySelector('.availability, .p-availability'); return a && /nedostupn|ukončen/i.test(a.textContent); });
+    if (!out.length || out.length === items.length) return;
+    var lastIn = items.filter(function (it) { return out.indexOf(it) < 0; }).pop();
+    if (out.every(function (it) { return items.indexOf(it) > items.indexOf(lastIn); })) return; /* už jsou na konci */
+    out.forEach(function (it) { list.appendChild(it); });
+  }
   /* blok „Nejprodávanější“ nad výpisem nemá smysl, když má kategorie jen pár produktů */
   function topProducts() {
     var w = document.querySelector('.products-top-wrapper'); if (!w) return;
@@ -484,11 +496,11 @@
     if (h && !h.dataset.rsScroll) { h.dataset.rsScroll = 1; var on = function () { h.classList.toggle('rs-scrolled', window.scrollY > 40); }; window.addEventListener('scroll', on, { passive: true }); on(); }
   }
 
-  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); benefitCount(); topProducts(); }
+  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); benefitCount(); topProducts(); soldOutLast(); }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
-  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); }, 120); });
+  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); soldOutLast(); }, 120); });
   function watch() { var c = document.getElementById('content') || document.body; mo.observe(c, { childList: true, subtree: true }); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch); else watch();
 })();
