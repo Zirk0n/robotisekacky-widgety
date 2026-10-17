@@ -78,6 +78,42 @@
     '.next-step .btn-conversion:hover,.next-step-forward:hover{background:var(--rs-l)!important;transform:translateY(-2px)}' +
     '.next-step-back,.continue-shopping{color:var(--rs-g)!important;font-weight:700}' +
     '.cart-inner .summary .price-final,.order-summary .price-final,.order-recapitulation .price-primary{color:var(--rs-g)!important;font-weight:800}' +
+    /* --- vlastní základ webu (17. 10. 2026) – napsáno od nuly, nahrazuje vzhled agentury MIME (jejich kód nekopírujeme) --- */
+    ':root body,:root body h1,:root body h2,:root body h3,:root body h4,:root body h5,:root body h6,:root body .h1,:root body .h2,:root body .h3,:root body .h4,:root body #navigation,:root body .menu-helper,:root body .p-detail-tabs,:root body .cart-table .main-link,:root body .btn,:root body button,:root body input,:root body select,:root body textarea{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}' +
+    'body{-webkit-font-smoothing:antialiased;color:#4b4f49;font-size:16px}a{color:' + G + '}li::marker{color:' + G + '}' +
+    '.in-index{overflow-x:hidden}.in-index .top-products-wrapper,.in-index .shp-tabs-row{display:none!important}.in-index .tab-content>#homepageProducts2{display:block!important;opacity:1!important}' +
+    '.detail-parameters tr,.detail-parameters-wrapper tr{border-bottom:1px solid ' + LINE + '}.browse-p .p-prev,.browse-p .p-next{color:' + L + '!important;background:none!important}' +
+    /* karusel produktů na titulce: základní rozložení pro knihovnu Slick (MIT) + naše šipky */
+    '.slick-slider{position:relative;display:block;box-sizing:border-box;touch-action:pan-y;-webkit-user-select:none;user-select:none}.slick-list{position:relative;display:block;overflow:hidden;margin:0;padding:0}' +
+    '.slick-track{position:relative;left:0;top:0;display:flex!important}.slick-slide{display:none;min-height:1px;float:none!important}.slick-initialized .slick-slide{display:block}.slick-slide img{display:block}' +
+    '.in-index .homepage-group-title{display:block;text-align:center}#filters .has-parametric-slider .more-filters,#filters .rs-has-range .more-filters{display:none!important}' +
+    '.slick-slider .product .p{margin:16px}.products-block.slick-slider>div{border:0;padding:0;width:100%}' +
+    '.slick-slider .slick-arrow{position:absolute;top:42%;z-index:5;width:46px;height:46px;border-radius:50%;border:0;background:' + G + '!important;color:transparent;font-size:0;cursor:pointer;box-shadow:var(--rs-btn-shadow);transition:transform var(--rs-ease)}' +
+    '.slick-slider .slick-arrow::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;border-top:2.5px solid #fff;border-right:2.5px solid #fff;transform:translate(-65%,-50%) rotate(45deg)}' +
+    '.slick-slider .slick-prev{left:-6px}.slick-slider .slick-prev::after{transform:translate(-35%,-50%) rotate(-135deg)}.slick-slider .slick-next{right:-6px}.slick-slider .slick-arrow:hover{transform:translateY(-2px)}' +
+    /* filtry: „Zobrazit všechny“ a sbalené sekce na mobilu (třídy přidává skript filtrů) */
+    '#filters .filter-section form{max-height:244px;overflow:hidden}#filters .filter-section form fieldset{overflow:auto}#filters .filter-section.filter-showall form{max-height:none;overflow:visible}#filters .filter-section.filter-showall .more-filters{display:none}' +
+    '#filters .more-filters{display:inline-flex;align-items:center;gap:6px;margin:10px 0 2px;padding:6px 14px;border:1px solid ' + LINE + ';border-radius:var(--rs-pill);background:#fff;color:' + G + ';font-size:13px;font-weight:700;cursor:pointer}#filters .more-filters span{display:none}#filters .more-filters:hover{box-shadow:var(--rs-shadow-hover)}' +
+    '@media(max-width:767px){#filters .filter-section-button{display:none}#filters .filter-section>h4,#filters .slider-wrapper>h4{display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-bottom:0}' +
+    '#filters .filter-section>h4::after,#filters .slider-wrapper>h4::after{content:"";width:9px;height:9px;border-right:2px solid ' + G + ';border-bottom:2px solid ' + G + ';transform:rotate(45deg);margin:-4px 6px 0 0;transition:transform var(--rs-ease)}' +
+    '#filters .filter-open>h4::after{transform:rotate(-135deg);margin-top:4px}#filters .filter-section.filter-section-boolean{display:block}' +
+    '#filters .filter-section:not(.filter-open)>form,#filters .filter-section:not(.filter-open) .more-filters,#filters .filter-section:not(.filter-open) .rs-range,#filters .filter-section:not(.filter-open) .parametric-slider-wrapper,#filters .slider-wrapper:not(.filter-open)>.slider-header,#filters .slider-wrapper:not(.filter-open)>.slider-content{display:none!important}' +
+    '#filters .filter-section.has-parametric-slider .more-filters{display:none!important}.filters-wrapper{margin-bottom:20px}}' +
+    /* posuvník ceny: bez šedého rámečku kolem dráhy (Michael 17. 10.) */
+    '.slider-wrapper .slider-content{border:0!important;background:none!important;box-shadow:none!important}' +
+    /* informační lišta Shoptetu dole (site-msg) v našem vzhledu */
+    '.site-msg.information{background:rgba(255,255,255,.96)!important;border:1px solid ' + LINE + '!important;border-radius:16px!important;box-shadow:0 16px 36px rgba(27,63,32,.16)!important;color:var(--rs-text)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}' +
+    '.site-msg.information .text a{color:' + G + '!important;text-decoration:none!important;font-size:15px!important}.site-msg.information .text a:hover{color:' + L + '!important}.site-msg.information .close{opacity:.6}' +
+    /* blok Shoptetu „Nejprodávanější“ nad výpisem – malé karty */
+    '.products-top-wrapper{margin:6px 0 18px!important}.products-top-header{font-size:20px!important;color:' + G + '!important;margin:0 0 10px!important}' +
+    '.products-top .product .p{background:#fff;border:1px solid ' + LINE + '!important;border-radius:14px!important;padding:12px 14px!important;box-shadow:var(--rs-shadow);height:100%}.products-top .product .name{font-size:14px!important;font-weight:700;color:' + G + '!important}' +
+    /* produktové karty: kód nenápadně, sleva červeně (Michael 17. 10.) */
+    '.products-block .p-code{font-size:10.5px!important;color:#a3ab9f!important;opacity:.8;font-weight:400!important}' +
+    '.flag.flag-discount,.flag.flag-action{background-color:#e2231a!important}' +
+    /* tlačítka pod výpisem: Načíst další, Nahoru, stránkování */
+    '.listingControls .loadMore__button{border:0!important;background:' + G + '!important;color:#fff!important;border-radius:var(--rs-pill)!important;padding:12px 26px!important;font-weight:700!important;box-shadow:var(--rs-btn-shadow);transition:transform var(--rs-ease)}.listingControls .loadMore__button:hover{transform:var(--rs-lift)}' +
+    '.listingControls .btn:not(.loadMore__button),.listingControls a.btn{border:1px solid ' + LINE + '!important;background:#fff!important;color:' + G + '!important;border-radius:var(--rs-pill)!important;font-weight:700!important}' +
+    '.pagination__list{gap:6px}.pagination__link,.pagination__currentPage{min-width:40px;height:40px;border-radius:50%!important;display:inline-flex!important;align-items:center;justify-content:center;border:1px solid ' + LINE + '!important;background:#fff;color:' + G + '!important;font-weight:700}.pagination__currentPage{background:' + G + '!important;color:#fff!important;border-color:' + G + '!important}.pagination__link:hover{box-shadow:var(--rs-shadow-hover)}' +
     /* --- 1) horní lišta --- */
     '.rs-topbar{background:' + G + ';color:#fff;font-size:13.5px;line-height:1.2}' +
     '.rs-topbar__in{max-width:1400px;margin:0 auto;padding:7px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}' +
@@ -297,7 +333,7 @@
       var on = items.map(function (x, k) { return x.on ? k : -1; }).filter(function (k) { return k >= 0; });
       var lo = on.length ? on[0] : 0, hi = on.length ? on[on.length - 1] : items.length - 1, max = items.length - 1;
       var fs = sec.querySelector('fieldset') || sec; fs.classList.add('rs-range-src');
-      var box = document.createElement('div'); box.className = 'rs-range';
+      var box = document.createElement('div'); box.className = 'rs-range'; sec.classList.add('rs-has-range');
       box.innerHTML = '<div class="rs-range__vals"><span class="a"></span><span class="b"></span></div><div class="rs-range__box"><div class="rs-range__track"></div><div class="rs-range__fill"></div>' +
         '<input type="range" min="0" max="' + max + '" step="1" value="' + lo + '" aria-label="' + title + ' od"><input type="range" min="0" max="' + max + '" step="1" value="' + hi + '" aria-label="' + title + ' do"></div>' +
         '<div class="rs-range__hint">Posuňte jezdce' + (on.length ? '<button type="button" class="rs-range__reset">zrušit</button>' : '') + '</div>';
@@ -379,6 +415,24 @@
 
 
   /* menu: obrázky podkategorií (data-image ze Shoptetu) + patička nabídky s kontaktem */
+  /* počet hodnocení v pásku výhod (text banneru v Shoptetu má pevné „310+ recenzí“) → aktuální číslo z recenze.json */
+  function benefitCount() {
+    var items = [].filter.call(document.querySelectorAll('.benefitBanner__item'), function (i) { return /recenz|hodnocen/i.test(i.textContent) && !i.dataset.rsCnt; });
+    if (!items.length) return;
+    items.forEach(function (i) { i.dataset.rsCnt = 1; });
+    try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.celkem) return;
+      items.forEach(function (it) {
+        var w = document.createTreeWalker(it, NodeFilter.SHOW_TEXT), n;
+        while ((n = w.nextNode())) { if (/\d[\d\s]*\+?\s*(recenz|hodnocen)/i.test(n.nodeValue)) n.nodeValue = n.nodeValue.replace(/\d[\d\s]*\+?(\s*)(recenz\S*|hodnocen\S*)/i, d.celkem + '$1hodnocení'); }
+      });
+    }).catch(function () {}); } catch (e) {}
+  }
+  /* blok „Nejprodávanější“ nad výpisem nemá smysl, když má kategorie jen pár produktů */
+  function topProducts() {
+    var w = document.querySelector('.products-top-wrapper'); if (!w) return;
+    var n = document.querySelectorAll('#products .product').length; if (n && n < 5) w.style.display = 'none';
+  }
   function sealRating() {
     var a = document.querySelector('#header .heureka-header-seal'); if (!a || a.querySelector('.rs-seal')) return;
     var t = document.createElement('span'); t.className = 'rs-seal'; t.innerHTML = '<b>5,0 <i>★★★★★</i></b><span>400+ hodnocení</span>'; a.appendChild(t); try { window.dispatchEvent(new Event('resize')); } catch (e) {}
@@ -424,7 +478,7 @@
     if (h && !h.dataset.rsScroll) { h.dataset.rsScroll = 1; var on = function () { h.classList.toggle('rs-scrolled', window.scrollY > 40); }; window.addEventListener('scroll', on, { passive: true }); on(); }
   }
 
-  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); }
+  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); benefitCount(); topProducts(); }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
