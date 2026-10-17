@@ -129,7 +129,7 @@
     '.type-detail .p-code,.type-detail .p-detail-info .p-code{font-size:11px!important;color:#a3ab9f!important;font-weight:400!important}.type-detail .p-code span{font-weight:400!important}' +
     /* „Více“ jako přehledný panel (Michael 17. 10.): skupiny vedle sebe ve sloupcích místo dlouhého seznamu */
     '@media(min-width:992px){#header .menu-helper>ul,#header .menu-helper .menu-level-1{display:none;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px 18px;width:min(980px,calc(100vw - 80px))!important;min-width:0!important;max-height:calc(100vh - 140px)!important;overflow:auto!important;left:auto!important;right:0!important;padding:18px!important;border-radius:20px!important;background:rgba(255,255,255,.98)!important;border:1px solid ' + LINE + '!important;box-shadow:0 24px 48px rgba(27,63,32,.16)!important}' +
-    '#header .menu-helper:hover>ul,#header .menu-helper.visible>ul,#header .menu-helper:focus-within>ul{display:grid!important}' +
+    '#header .menu-helper:hover>ul,#header .menu-helper:focus-within>ul{display:grid!important}' +
     '#header .menu-helper>ul>li{float:none!important;width:auto!important;break-inside:avoid;padding:6px!important;border-radius:14px}#header .menu-helper>ul>li:hover{background:var(--rs-soft)}' +
     '#header .menu-helper>ul>li>a{padding:6px 8px!important;font-size:15px!important}#header .menu-helper .menu-level-2>li>a{padding:5px 8px!important;font-size:13.5px!important}' +
     '#header .menu-helper .rs-mega__img{flex-basis:32px;width:32px;height:24px}#header .menu-helper .rs-mega__quick{padding:4px 8px 6px!important}}' +
