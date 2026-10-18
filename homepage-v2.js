@@ -45,15 +45,17 @@
     [U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/predvedeni-aiper-scuba-v3-u-vas-doma.jpg', 'Předvedení na vašem bazénu', 'Vybrané bazénové vysavače vyzkoušíte přímo ve svém bazénu ještě před nákupem. Bez závazku ke koupi.', 'od 3 490 Kč', '/predvedeni-bazenovych-vysavacu/'],
     [U + 'Instalace%20-%20widget/IMG_7219.jpg', 'Zimní a předsezónní servis', 'Vyčistíme a zkontrolujeme robota před zimou nebo před sezónou, aby na jaře rovnou vyjel.', '2 500 Kč', '/zimni-servis-a-cisteni-robota/']
   ];
+  // realizace: 3 starší značky (Gardena drát, Husqvarna drát, AMA) nahrazeny letošními fotkami z Fotek (18. 10. 2026, bez EXIF)
+  var J = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/img/realizace/';
   var REAL = [
     [U + 'Instalace%20-%20widget/IMG_5724.jpg', 'Mammotion LUBA 2', 'Kladno'],
-    [U + 'Instalace%20-%20widget/IMG_4644.jpg', 'Gardena', 'Kolovraty'],
+    [J + 'realizace-2026-luba-01.jpg', 'Mammotion LUBA', 'instalace 2026'],
     [U + 'Instalace%20-%20widget/Robotick%C3%A9%20vysava%C4%8De/Dreame%20roller%20ve%20st%C5%99edn%C3%AD%20velikosti.jpg', 'Dreame – zprovoznění', 'u zákazníka doma'],
     [U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/Aiper-Scuba-S1%20Teplice.jpg', 'Aiper Scuba S1', 'Teplice'],
-    [U + 'Instalace%20-%20widget/IMG_1285.jpg', 'Husqvarna', 'Liberec'],
+    [J + 'realizace-2026-luba-mini-05.jpg', 'Mammotion LUBA mini', 'instalace 2026'],
     [U + 'Instalace%20-%20widget/Robotick%C3%A9%20vysava%C4%8De/ecovacs%20ve%20st%C5%99edn%C3%AD%20velikosti.jpg', 'Ecovacs – zprovoznění', 'u zákazníka doma'],
     [U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/Spino%20E1%20Praha%20ve%20st%C5%99edn%C3%AD%20velikosti.jpg', 'Mammotion Spino E1', 'Praha'],
-    [U + 'Instalace%20-%20widget/IMG_8330.jpg', 'AMA', 'Tábor']
+    [J + 'realizace-2026-luba-04.jpg', 'Mammotion LUBA', 'instalace 2026']
   ];
   var FOTO = U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/michael-bohacek-profil-2026.jpg';
   var CSS = '' +
