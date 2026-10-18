@@ -185,7 +185,39 @@
       '<div class="rso-t"><p class="rso-h">Potřebujete poradit s výběrem?</p><p class="rso-p">Zavolejte mi nebo napište. Poradím vám podle vaší domácnosti, zahrady nebo bazénu.</p><p class="rso-n"><strong>Michael Boháček</strong> · majitel Robotisekacky.cz</p></div>' +
       '<div class="rso-c"><a class="pri" href="tel:' + TEL + '">📞 ' + TELT + '</a><a class="sec" href="mailto:' + MAIL + '">✉️ ' + MAIL + '</a></div></div>');
   }
+  // uvítací text (17. 10. 2026): dvousloupcová karta – vlevo mozaika fotek služeb (instalace sekačky – skutečná realizace, vysavač a bazén – fotky ze stránek služeb) (vysavač, sekačka, bazén),
+  // vpravo text z adminu (Shoptet → úvodní text) beze změny; poslední odstavec „Nevíte si rady?“ → tlačítka telefon/e-mail
+  var WCSS = '' +
+    '.in-index .welcome-wrapper .welcome.rsw{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.25fr);gap:32px;align-items:center;max-width:1180px;padding:24px!important}' +
+    '.rsw-m{display:grid;grid-template-columns:1.35fr 1fr;grid-template-rows:1fr 1fr;gap:10px;height:380px}' +
+    '.rsw-m figure{position:relative;margin:0;border-radius:16px;overflow:hidden;background:var(--rs-soft,#f2f7ec)}.rsw-m figure:first-child{grid-row:1/3}' +
+    '.rsw-m img{width:100%;height:100%;object-fit:cover;display:block}' +
+    '.rsw-m figcaption{position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--rs-g,#1b3f20);font-size:12.5px;font-weight:800;padding:4px 10px;border-radius:999px}' +
+    '.rsw-t>div>p{margin:0 0 12px!important}' +
+    '.in-index .welcome-wrapper p.rsw-c{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:18px 0 0!important;padding-top:16px;border-top:1px solid var(--rs-line,#e6f0db)}' +
+    '.rsw-c span{font-weight:700;color:var(--rs-g,#1b3f20);margin-right:4px}' +
+    '.in-index .welcome-wrapper .rsw-c a{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:10px 18px;text-decoration:none!important;font-weight:800!important}' +
+    '.in-index .welcome-wrapper .rsw-c a.pri{background:var(--rs-g,#1b3f20);color:#fff!important}.in-index .welcome-wrapper .rsw-c a.pri:hover{background:#2a5a30}' +
+    '.in-index .welcome-wrapper .rsw-c a.sec{background:#fff;border:1px solid var(--rs-line,#e6f0db);color:var(--rs-g,#1b3f20)!important}' +
+    '@media(max-width:991px){.in-index .welcome-wrapper .welcome.rsw{grid-template-columns:1fr;gap:20px}.rsw-m{height:300px}}' +
+    '@media(max-width:560px){.rsw-m{height:220px}.rsw-m figcaption{font-size:11px;padding:3px 8px;white-space:nowrap;left:6px;bottom:6px}.in-index .welcome-wrapper .welcome.rsw{padding:14px!important}.in-index .welcome-wrapper .rsw-c a{flex:1 1 100%;justify-content:center}}';
+  function uvod() {
+    var w = document.querySelector('.welcome-wrapper .welcome');
+    if (!w || w.classList.contains('rsw')) return;
+    var st = document.createElement('style'); st.id = 'rsw-css'; st.textContent = WCSS; document.head.appendChild(st);
+    var t = el('div', 'rsw-t'); while (w.firstChild) t.appendChild(w.firstChild);
+    var svc = function (href) { for (var i = 0; i < SVC.length; i++) if (SVC[i][4] === href) return SVC[i][0]; return REAL[2][0]; };
+    var pick = [[REAL[0][0], 'Instalace sekačky'], [svc('/zprovozneni-robotickeho-vysavace/'), 'Zprovoznění vysavače'], [svc('/predvedeni-bazenovych-vysavacu/'), 'Předvedení u bazénu']];
+    var m = el('div', 'rsw-m', pick.map(function (p, i) { return '<figure><img src="' + p[0] + '" alt="' + p[1] + '" loading="' + (i ? 'lazy' : 'eager') + '"><figcaption>' + p[1] + '</figcaption></figure>'; }).join(''));
+    w.appendChild(m); w.appendChild(t); w.classList.add('rsw');
+    var ps = t.querySelectorAll('p'), last = ps[ps.length - 1];
+    if (last && /Nevíte si rady/i.test(last.textContent)) {
+      last.className = 'rsw-c';
+      last.innerHTML = '<span>Nevíte si rady? Poradím vám osobně.</span><a class="pri" href="tel:' + TEL + '">📞 ' + TELT + '</a><a class="sec" href="mailto:' + MAIL + '">✉️ ' + MAIL + '</a>';
+    }
+  }
   function build() {
+    try { uvod(); } catch (e) {}
     var host = document.querySelector('.index-content-wrapper');
     if (!host || document.querySelector('.rsv')) return;
     var st = document.createElement('style'); st.id = 'rsh-css'; st.textContent = CSS; document.head.appendChild(st);
