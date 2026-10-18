@@ -644,6 +644,13 @@
     });
   }
   // krok 3 objednávky: krátké vysvětlení nad odhlášením dotazníků (zaškrtnutí dál možné, jen víc kontextu)
+  // stránka Reklamace (bloky rk-*): styl z CDN místo inline <style> v obsahu stránky (18. 10. 2026)
+  function pageCss() {
+    if (document.querySelector('.rk-hero, .rk-sec') && !document.getElementById('rs-rk-css')) {
+      var lk = document.createElement('link'); lk.id = 'rs-rk-css'; lk.rel = 'stylesheet';
+      lk.href = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/reklamace-v1.css'; document.head.appendChild(lk);
+    }
+  }
   function checkoutNotes() {
     var first = document.getElementById('consentszboziConsent') || document.getElementById('consentsheurekaConsent');
     if (!first || document.querySelector('.rs-optout-note')) return;
@@ -728,7 +735,7 @@
     if (h && !h.dataset.rsScroll) { h.dataset.rsScroll = 1; var on = function () { h.classList.toggle('rs-scrolled', window.scrollY > 40); }; window.addEventListener('scroll', on, { passive: true }); on(); }
   }
 
-  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} }
+  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
