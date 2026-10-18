@@ -123,10 +123,48 @@
     '.ordering-process .form-control,.ordering-process input[type=text],.ordering-process input[type=email],.ordering-process input[type=tel],.ordering-process input[type=password],.ordering-process select,.ordering-process textarea{border:1px solid ' + LINE + '!important;border-radius:12px!important;background:#fff!important;box-shadow:inset 0 1px 2px rgba(27,63,32,.05)!important;min-height:46px;transition:border-color var(--rs-ease),box-shadow var(--rs-ease)}' +
     '.ordering-process .form-control:focus,.ordering-process input:focus,.ordering-process select:focus,.ordering-process textarea:focus{border-color:' + L + '!important;box-shadow:0 0 0 3px rgba(134,187,65,.25)!important;outline:0!important}' +
     '.ordering-process .login-button,.ordering-process .btn-secondary{border:1px solid ' + G + '!important;color:' + G + '!important;background:#fff!important;border-radius:var(--rs-pill)!important;text-transform:none!important;letter-spacing:0!important;font-weight:700!important;padding:11px 22px!important}.ordering-process .login-button:hover{background:' + G + '!important;color:#fff!important}' +
-    '.ordering-process input[type=checkbox]{-webkit-appearance:none;appearance:none;width:20px;height:20px;border:2px solid ' + LINE + ';border-radius:6px;background:#fff;vertical-align:-4px;cursor:pointer;position:relative}.ordering-process input[type=checkbox]:checked{background:' + G + ';border-color:' + G + '}.ordering-process input[type=checkbox]:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}' +
+    /* zaškrtávátka v objednávce: Shoptet kreslí vlastní čtvereček přes label::before → nativní input jen schovat (18. 10.: byly zdvojené) */
+    '.ordering-process input[type=checkbox]{position:absolute!important;opacity:0!important;width:1px!important;height:1px!important;margin:0!important;pointer-events:none}' +
+    '.ordering-process input[type=checkbox]+label::before{border-radius:5px!important;border-color:#b9c9ad!important;background-color:#fff!important}' +
+    '.ordering-process input[type=checkbox]:checked+label::before{background-color:' + G + '!important;border-color:' + G + '!important}' +
+    '.ordering-process input[type=checkbox]:focus-visible+label::before{box-shadow:0 0 0 3px rgba(134,187,65,.35)}' +
     '.ordering-process .next-step-finish,.ordering-process .btn-conversion{background:' + G + '!important;border:0!important;border-radius:var(--rs-pill)!important;color:#fff!important}' +
     '.co-box h4,.co-box .h4,.ordering-process .co-box label,.ordering-process .co-box label *,.ordering-process .radio-wrapper *{text-transform:none!important;letter-spacing:0!important}' +
     '.type-detail .p-code,.type-detail .p-detail-info .p-code{font-size:11px!important;color:#a3ab9f!important;font-weight:400!important}.type-detail .p-code span{font-weight:400!important}' +
+    /* --- 18. 10.: jednotné najetí v menu (dřív se míchalo bílé pozadí + stín + světle zelené + zvýrazněný sloupec) --- */
+    '#navigation .menu-level-1>li>a,#header .menu-helper>span,#navigation .rs-mega>li>a,#header .menu-helper a{transition:background-color .15s,color .15s!important;transform:none!important}' +
+    '#navigation .menu-level-1>li:hover>a,#navigation .menu-level-1>li.exp>a,#navigation .menu-level-1>li>a:focus,#header .menu-helper:hover>span{background:#eef6e6!important;color:' + G + '!important;box-shadow:none!important;transform:none!important}' +
+    '#navigation .rs-mega>li:not(.rs-mega__foot)>a:hover,#navigation .rs-mega .menu-level-3 a:hover,#header .menu-helper .menu-level-2>li>a:hover,#header .menu-helper>ul>li>a:hover{background:#f2f7ec!important;color:' + G + '!important;box-shadow:none!important;transform:none!important}' +
+    '#header .menu-helper>ul>li:hover,#header .menu-helper>ul>li{background:transparent!important}' +
+    '#navigation a:hover,#header .menu-helper a:hover{color:' + G + '!important}' +
+    /* okna Shoptetu (colorbox: „Přidáno do košíku“, hlídací pes, dotaz…) a hlavní tlačítko v našem vzhledu (18. 10.) */
+    '#cboxOverlay{background:rgba(20,40,22,.45)!important;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}' +
+    '#colorbox,#cboxWrapper,#cboxContent,#cboxLoadedContent{border-radius:24px!important}#cboxContent,#cboxLoadedContent{overflow:hidden;background:#fff!important}#colorbox{box-shadow:0 30px 70px rgba(20,40,22,.28)!important}' +
+    '#cboxClose{width:40px!important;height:40px!important;border-radius:50%!important;background:#f2f7ec!important;top:14px!important;right:14px!important;transition:background .15s}#cboxClose:hover{background:#e3eed8!important}' +
+    '.advanced-order .h1{color:' + G + '!important;font-weight:800!important;font-size:28px!important}.advanced-order .h2{color:#2b3328!important;font-weight:700!important;font-size:19px!important}' +
+    '.advanced-order .extras-wrap .extra{margin:0!important;padding:0!important}.advanced-order .extras-wrap{display:inline-flex;align-items:center;gap:8px;background:#f2f7ec;border-radius:999px;padding:8px 16px;color:' + G + '}' +
+    '.advancedOrder__buttons{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap}' +
+    '.advancedOrder__buttons .colorbox-close,.advancedOrder__buttons .next-step-back{border:1px solid ' + LINE + '!important;background:#fff!important;color:' + G + '!important;border-radius:999px!important;padding:12px 22px!important;font-weight:700!important;text-transform:none!important}' +
+    '.advanced-order .advanced-order-suggestion{color:' + G + '!important;font-size:24px!important}' +
+    '.btn.btn-conversion,a.btn-conversion,button.btn-conversion{background:' + G + '!important;border:0!important;color:#fff!important;border-radius:999px!important;text-transform:none!important;letter-spacing:0!important;font-weight:800!important;box-shadow:0 10px 22px rgba(27,63,32,.18);transition:background .15s,transform .15s}' +
+    '.btn.btn-conversion:hover,a.btn-conversion:hover,button.btn-conversion:hover{background:#2a5a30!important;transform:translateY(-1px)}' +
+    /* karusely produktů: spodek karet (rámeček, zaoblení, stín) se ořezával o slick-list */
+    '.products-block .slick-list{padding:4px 0 22px!important;margin-bottom:-14px!important}' +
+    /* košík: související produkty (upsell) automaticky rozbalené jako jeden vodorovný pás */
+    '.cart-table tr.related.rs-rel>td{padding:6px 0 14px!important;border:0!important}' +
+    '.rs-rel-h{font-weight:800;color:' + G + ';font-size:14px;margin:0 0 8px 2px}' +
+    '.cart-table tr.rs-rel>td{max-width:0}' +
+    '.rs-rel-strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 8px;scrollbar-width:thin;width:100%}' +
+    '.rs-rel-strip .cart-related-product{flex:0 0 250px;scroll-snap-align:start;display:grid!important;grid-template-columns:52px 1fr;grid-template-rows:auto auto;column-gap:10px;row-gap:6px;align-items:center;margin:0!important;padding:10px 12px!important;border:1px solid ' + LINE + '!important;border-radius:16px!important;background:#fff!important;box-shadow:0 6px 16px rgba(27,63,32,.06);float:none!important;width:auto!important}' +
+    '.rs-rel-strip .cart-related-info{display:contents!important}' +
+    '.rs-rel-strip .cart-related-img{grid-row:1/3;grid-column:1}.rs-rel-strip .cart-related-img img{width:52px!important;height:52px!important;object-fit:contain}' +
+    '.rs-rel-strip .cart-related-name{grid-column:2;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:12.5px!important;line-height:1.3;font-weight:700;color:' + G + '!important;white-space:normal!important}' +
+    '.rs-rel-strip .cart-related-availability{display:none!important}' +
+    '.rs-rel-strip .cart-related-button{grid-column:2;display:flex!important;align-items:center;justify-content:space-between;gap:8px;float:none!important;width:auto!important;padding:0!important;white-space:nowrap}' +
+    '.rs-rel-strip .cart-related-button .price{font-size:13px!important;color:' + G + '!important;margin:0!important}' +
+    '.rs-rel-strip .cart-related-button .btn,.rs-rel-strip .cart-related-button button{padding:5px 12px!important;font-size:12px!important;text-transform:none!important;letter-spacing:0!important;border-radius:999px!important;min-height:0!important;line-height:1.2!important;background:' + G + '!important;color:#fff!important;border:0!important}' +
+    '.rs-rel-strip .cart-related-button .btn::after,.rs-rel-strip .cart-related-button .btn::before,.rs-rel-strip .cart-related-button button::after,.rs-rel-strip .cart-related-button button::before{display:none!important}' +
+    '.rs-rel-strip .rs-rel-na{opacity:.55}' +
     /* „Více“ jako přehledný panel (Michael 17. 10.): skupiny vedle sebe ve sloupcích místo dlouhého seznamu */
     '@media(min-width:992px){#header .menu-helper>ul,#header .menu-helper .menu-level-1{display:none;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px 18px;width:min(980px,calc(100vw - 80px))!important;min-width:0!important;max-height:calc(100vh - 140px)!important;overflow:auto!important;left:auto!important;right:0!important;padding:18px!important;border-radius:20px!important;background:rgba(255,255,255,.98)!important;border:1px solid ' + LINE + '!important;box-shadow:0 24px 48px rgba(27,63,32,.16)!important}' +
     '#header .menu-helper:hover>ul,#header .menu-helper:focus-within>ul{display:grid!important}' +
@@ -453,6 +491,22 @@
   }
   /* vyprodané a ukončené produkty na konec výpisu (Michael 17. 10. 2026) – v rámci načtené stránky výpisu;
      jen při výchozím řazení (bez ?order= v adrese), aby se nerozbilo řazení podle ceny nebo abecedy */
+  // košík (18. 10., Michael: zvýšit upsell, ale nezabrat celou obrazovku): související produkty se rozbalí samy
+  // jako jeden vodorovný pás karet; nedostupné na konec. Jen při max. 3 položkách v košíku.
+  function cartRelated() {
+    var rows = document.querySelectorAll('.cart-table tr.related');
+    if (!rows.length || document.querySelectorAll('.cart-table tr.removeable').length > 3) return;
+    [].forEach.call(rows, function (tr) {
+      if (tr.classList.contains('rs-rel')) return;
+      var td = tr.querySelector('td'); if (!td) return;
+      var items = [].slice.call(td.querySelectorAll('.cart-related-product')); if (!items.length) return;
+      var strip = document.createElement('div'); strip.className = 'rs-rel-strip';
+      items.forEach(function (it) { if (/nedostupn|ukončen/i.test((it.querySelector('.cart-related-availability') || {}).textContent || '')) it.classList.add('rs-rel-na'); });
+      items.sort(function (a, b) { return a.classList.contains('rs-rel-na') - b.classList.contains('rs-rel-na'); }).forEach(function (it) { strip.appendChild(it); });
+      td.innerHTML = '<p class="rs-rel-h">K tomuto produktu se hodí</p>'; td.appendChild(strip);
+      tr.classList.add('rs-rel', 'visible'); tr.style.display = 'table-row';
+    });
+  }
   function soldOutLast() {
     if (/[?&]order=/.test(location.search)) return;
     var list = document.querySelector('#products'); if (!list) return;
@@ -520,11 +574,11 @@
     if (h && !h.dataset.rsScroll) { h.dataset.rsScroll = 1; var on = function () { h.classList.toggle('rs-scrolled', window.scrollY > 40); }; window.addEventListener('scroll', on, { passive: true }); on(); }
   }
 
-  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); benefitCount(); topProducts(); soldOutLast(); }
+  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
-  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); soldOutLast(); }, 120); });
+  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); soldOutLast(); try { cartRelated(); } catch (e) {} }, 120); });
   function watch() { var c = document.getElementById('content') || document.body; mo.observe(c, { childList: true, subtree: true }); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch); else watch();
 })();
