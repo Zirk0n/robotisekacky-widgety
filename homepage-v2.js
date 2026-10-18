@@ -94,6 +94,13 @@
     '.rsr2-f img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}.rsr2-f:hover img{transform:scale(1.05)}' +
     '.rsr2-f figcaption{position:absolute;left:10px;bottom:10px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:13px;color:var(--rs-g,#1b3f20);font-weight:700;line-height:1.2}' +
     '.rsr2-f figcaption small{display:block;font-weight:500;color:#5a6b56}' +
+    /* pohyblivý pás realizací */
+    '.rsr2-m{overflow:hidden;margin:0 -16px;padding:4px 0 10px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}' +
+    '.rsr2-track{display:flex;gap:12px;width:max-content;animation:rsr2run 110s linear infinite}.rsr2-m:hover .rsr2-track{animation-play-state:paused}' +
+    '@keyframes rsr2run{from{transform:translateX(0)}to{transform:translateX(-50%)}}' +
+    '.rsr2-m .rsr2-f{flex:0 0 auto;height:260px;aspect-ratio:auto;width:auto}.rsr2-m .rsr2-f img{height:100%;width:auto;max-width:420px;min-width:195px;object-fit:cover}' +
+    '@media(prefers-reduced-motion:reduce){.rsr2-track{animation:none}.rsr2-m{overflow-x:auto}}' +
+    '@media(max-width:560px){.rsr2-m .rsr2-f{height:200px}.rsr2-m .rsr2-f img{max-width:300px;min-width:150px}.rsr2-track{animation-duration:80s}}' +
     '.rsr2-more{text-align:center;margin-top:16px}.rsr2-more a{color:var(--rs-g,#1b3f20);font-weight:700}' +
     /* majitel */
     '.rso{padding:28px 16px 68px;margin-bottom:-28px!important;background:linear-gradient(180deg,#f7faf5,var(--rs-soft2,#eef6e6));border-top:1px solid var(--rs-line,#e6f0db)}.in-index #footer{margin-top:0!important;position:relative;z-index:1}' +
@@ -177,10 +184,18 @@
     return el('section', 'rsh rss', '<h2>Služby, které u velkých obchodů nedostanete</h2><p class="rsh-sub">Robota vám nejen prodáme – přijedeme, nastavíme ho a postaráme se o něj i po nákupu.</p><div class="rss-g">' +
       SVC.map(function (s) { return '<a class="rss-c" href="' + s[4] + '"><img src="' + s[0] + '" alt="' + s[1] + '" loading="lazy"><span class="rss-b"><b>' + s[1] + '</b><span>' + s[2] + '</span><span class="rss-pr">' + s[3] + '<i>Více →</i></span></span></a>'; }).join('') + '</div>');
   }
+  // realizace jako pohyblivý pás (Michael 18. 10. 2026: rozmanité fotky z různých let, pak případně vyměníme)
+  // MIX = fotky z knihovny Fotky 2023–2025 (bez EXIF), rok podle data pořízení
+  var MIXY = ['2024', '2024', '2023', '2023', '2025', '2025', '2025', '2025', '2025', '2023', '2023', '2023', '2025', '2024', '2024', '2024'];
+  var MIX = MIXY.map(function (y, i) { return [J + 'realizace-mix-' + (i < 9 ? '0' : '') + (i + 1) + '.jpg', 'Instalace sekačky', y]; })
+    .concat([[J + 'realizace-2026-luba-02.jpg', 'Mammotion LUBA', '2026'], [J + 'realizace-2026-luba-mini-03.jpg', 'Mammotion LUBA mini', '2026'], [J + 'realizace-2026-luba-06.jpg', 'Mammotion LUBA', '2026']]);
   function realizace() {
-    return el('section', 'rsh rsr2', '<h2>Naše realizace</h2><p class="rsh-sub">Skutečné zahrady, byty a bazény našich zákazníků po celé České republice.</p><div class="rsr2-g">' +
-      REAL.map(function (r) { return '<figure class="rsr2-f"><img src="' + r[0] + '" alt="' + r[1] + ' – ' + r[2] + '" loading="lazy"><figcaption>' + r[1] + '<small>' + r[2] + '</small></figcaption></figure>'; }).join('') +
-      '</div><p class="rsr2-more"><a href="/instalace-sekacek/">Více o instalacích a servisu →</a></p>');
+    var all = [], a = REAL.slice(), b = MIX.slice();
+    while (a.length || b.length) { if (a.length) all.push(a.shift()); if (b.length) all.push(b.shift()); if (b.length) all.push(b.shift()); }
+    var fig = function (r, dup) { return '<figure class="rsr2-f"' + (dup ? ' aria-hidden="true"' : '') + '><img src="' + r[0] + '" alt="' + (dup ? '' : r[1] + ' – ' + r[2]) + '" loading="lazy"><figcaption>' + r[1] + '<small>' + r[2] + '</small></figcaption></figure>'; };
+    return el('section', 'rsh rsr2', '<h2>Naše realizace</h2><p class="rsh-sub">Skutečné zahrady, byty a bazény našich zákazníků – od roku 2023 po celé České republice.</p>' +
+      '<div class="rsr2-m"><div class="rsr2-track">' + all.map(function (r) { return fig(r); }).join('') + all.map(function (r) { return fig(r, 1); }).join('') + '</div></div>' +
+      '<p class="rsr2-more"><a href="/instalace-sekacek/">Více o instalacích a servisu →</a></p>');
   }
   function majitel() {
     return el('section', 'rso', '<div class="rso-in"><img src="' + FOTO + '" alt="Michael Boháček, majitel Robotí Sekačky" loading="lazy" width="104" height="104">' +
