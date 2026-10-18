@@ -195,7 +195,7 @@
     '@media(max-width:767px){body:not(.rs-cat-blue) .rs-review-head{display:block;padding-right:0}body:not(.rs-cat-blue) .rs-review-badge{margin:0 0 10px}body:not(.rs-cat-blue) .rs-review-controls{position:static;margin:12px 0 0}body:not(.rs-cat-blue) .rs-review-card{flex-basis:86%}body:not(.rs-cat-blue) .rs-cat-contact a{width:100%;justify-content:center}}' +
     /* menu: informační stránky ve Více + průvodce výběrem sekačky v mega nabídce */
     '#header .menu-helper .rs-vice-info{display:flex!important;flex-direction:column;gap:2px;padding:6px!important;border-left:1px solid ' + LINE + '}' +
-    '.rs-vice-info__h{font-weight:800;color:' + G + ';font-size:15px;padding:6px 8px}.rs-vice-info a{padding:5px 8px!important;font-size:13.5px!important;font-weight:600!important;color:' + G + '!important;border-radius:10px}.rs-vice-info a:hover{background:#f2f7ec!important}' +
+    '.rs-vice-info__h{font-weight:800;color:' + G + ';font-size:15px;padding:6px 8px}#header .menu-helper .rs-vice-info>a{padding:5px 8px!important;font-size:14px!important;font-weight:600!important;color:' + G + '!important;border-radius:10px}.rs-vice-info a:hover{background:#f2f7ec!important}' +
     '#navigation .rs-mega>li.rs-mega__guide{grid-column:1/-1}#navigation .rs-mega>li.rs-mega__guide>a{display:flex!important;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:12px 16px!important;border-radius:14px;background:#f2f7ec!important;border:1px solid ' + LINE + '}' +
     '#navigation .rs-mega__guide b{color:' + G + ';font-weight:800}#navigation .rs-mega__guide span{color:#3d4a3d;font-weight:600;font-size:13.5px}' +
     /* --- statické stránky rs-pg-* (O nás, Kontakty; 18. 10.) – obsah v Shoptetu bez inline stylů, vzhled odsud --- */
