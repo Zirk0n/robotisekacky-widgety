@@ -592,7 +592,16 @@
   // od 18. 10. jen tady (CDN, cache). Příznaky data-ready zabrání dvojímu spuštění, dokud inline kopie ještě existuje.
   function catBlocks() {
     // bazénové kategorie mají vlastní modrý vzhled a jiný karusel (rs-cat-review-*) → jednotné zelené styly se na ně nepoužijí
-    if (document.querySelector('.rs-cat-theme-blue, .rs-cat-theme-pool, .rs-cat-review-track')) { document.body.classList.add('rs-cat-blue'); return; }
+    if (document.querySelector('.rs-cat-theme-blue, .rs-cat-theme-pool, .rs-cat-review-track')) {
+      document.body.classList.add('rs-cat-blue');
+      // modrý (bazénový) vzhled textů z CDN – načte se jen na těchto stránkách (18. 10.: dřív 25 kB inline v každém popisu)
+      if (document.querySelector('.rs-cat-review-track') && !document.getElementById('rs-cat-blue-css')) {
+        var CB = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/cat-modre-v1';
+        var lk = document.createElement('link'); lk.id = 'rs-cat-blue-css'; lk.rel = 'stylesheet'; lk.href = CB + '.css'; document.head.appendChild(lk);
+        if (!document.querySelector('.rs-cat-reviews--carousel[data-rs-js]')) { var sj = document.createElement('script'); sj.src = CB + '.js'; sj.defer = true; document.head.appendChild(sj); [].forEach.call(document.querySelectorAll('.rs-cat-reviews--carousel'), function (x) { x.setAttribute('data-rs-js', '1'); }); }
+      }
+      return;
+    }
     [].forEach.call(document.querySelectorAll('.rs-cat-topitem'), function (card) {
       if (card.dataset.ready === '1') return; card.dataset.ready = '1'; card.setAttribute('tabindex', '0');
       var toggle = function (e) { if (e && e.target && e.target.tagName === 'A') return; card.classList.toggle('is-open'); };
