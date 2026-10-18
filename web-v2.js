@@ -137,6 +137,50 @@
     '#navigation .rs-mega>li:not(.rs-mega__foot)>a:hover,#navigation .rs-mega .menu-level-3 a:hover,#header .menu-helper .menu-level-2>li>a:hover,#header .menu-helper>ul>li>a:hover{background:#f2f7ec!important;color:' + G + '!important;box-shadow:none!important;transform:none!important}' +
     '#header .menu-helper>ul>li:hover,#header .menu-helper>ul>li{background:transparent!important}' +
     '#navigation a:hover,#header .menu-helper a:hover{color:' + G + '!important}' +
+    /* --- texty kategorií rs-cat-* (18. 10.): jednotný vzhled z CDN místo inline <style> v každém popisu; tokeny webu, šipky jako CSS chevron --- */
+    'body .rs-cat-intro,body .rs-cat-guide{color:#2b3328;line-height:1.62}body .rs-cat-intro{margin:18px 0 30px}' +
+    'body .rs-cat-intro h2{font-size:32px;line-height:1.18;color:' + G + ';font-weight:800;margin:0 0 14px}body .rs-cat-intro>p{font-size:17px;margin:0 0 16px}body .rs-cat-intro strong,body .rs-cat-guide strong{color:' + G + '}' +
+    'body .rs-cat-topgrid,body .rs-cat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}' +
+    'body .rs-cat-topitem,body .rs-cat-mini,body .rs-cat-more,body .rs-cat-card{border:1px solid ' + LINE + ';border-radius:20px;background:#fff;box-shadow:0 12px 28px rgba(27,63,32,.07);clip-path:none}' +
+    'body .rs-cat-topitem{position:relative;min-height:0;padding:20px 58px 18px 20px;overflow:hidden;cursor:pointer;transition:box-shadow .2s,border-color .2s;transform:none}' +
+    'body .rs-cat-topitem:hover,body .rs-cat-topitem:focus-within,body .rs-cat-topitem.is-open{transform:none;border-color:#cfe3bd;box-shadow:0 16px 34px rgba(27,63,32,.11)}' +
+    'body .rs-cat-topitem strong,body .rs-cat-mini strong{display:block;color:' + G + ';font-size:19px;font-weight:800;line-height:1.2;margin:0 0 8px}' +
+    'body .rs-cat-topitem span{display:block;max-height:74px;overflow:hidden;color:#3d4a3d;font-size:15.5px;transition:max-height .25s}' +
+    'body .rs-cat-topitem.is-open span,body .rs-cat-topitem:hover span,body .rs-cat-topitem:focus-within span{max-height:240px}' +
+    /* tlačítko se znakem „⌄“ → čistá šipka (chevron) */
+    'body .rs-cat-topitem button{position:absolute;right:16px;top:22px;transform:none;width:32px;height:32px;border-radius:50%;border:1px solid ' + LINE + ';background:#f2f7ec;font-size:0!important;color:transparent;box-shadow:none;cursor:pointer;padding:0;transition:background .15s}' +
+    'body .rs-cat-topitem button::before,body .rs-cat-more summary::after,body .rs-cat-faq summary::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;border:solid ' + G + ';border-width:0 2px 2px 0;transform:translate(-50%,-70%) rotate(45deg);transition:transform .2s;background:none;border-radius:0}' +
+    'body .rs-cat-topitem.is-open button::before,body .rs-cat-topitem:hover button::before,body .rs-cat-more[open] summary::after,body .rs-cat-faq details[open] summary::after{transform:translate(-50%,-30%) rotate(-135deg)}' +
+    'body .rs-cat-topitem.is-open button,body .rs-cat-topitem:hover button{transform:none;background:#e3eed8}' +
+    'body .rs-cat-more{overflow:hidden;margin:16px 0}body .rs-cat-more summary,body .rs-cat-faq summary{list-style:none;cursor:pointer;position:relative;color:' + G + ';font-weight:800}' +
+    'body .rs-cat-more summary{padding:16px 58px 16px 20px;font-size:17px}body .rs-cat-more summary::-webkit-details-marker,body .rs-cat-faq summary::-webkit-details-marker{display:none}' +
+    'body .rs-cat-more summary::after{left:auto;right:24px}body .rs-cat-more summary::before,body .rs-cat-faq summary::before{content:"";position:absolute;right:16px;top:50%;width:32px;height:32px;margin-top:-16px;border-radius:50%;background:#f2f7ec;border:1px solid ' + LINE + '}' +
+    'body .rs-cat-more summary::after{content:"";width:8px;height:8px;display:block;z-index:1}body .rs-cat-more p{padding:0 20px 18px;margin:0;color:#3d4a3d}' +
+    'body .rs-cat-guide{margin:36px 0}body .rs-cat-card,body .rs-cat-cta{position:relative;padding:24px;margin:18px 0}' +
+    'body .rs-cat-guide h2{color:' + G + ';font-size:28px;font-weight:800;line-height:1.2;margin:0 0 14px}body .rs-cat-guide h3{color:' + G + ';margin:0 0 8px}body .rs-cat-guide p{font-size:16.5px;margin:0 0 14px;color:#3d4a3d}' +
+    'body .rs-cat-intro p a,body .rs-cat-guide p a,body .rs-cat-more a{color:' + G + '!important;font-weight:700;text-decoration:underline;text-decoration-color:' + L + ';text-decoration-thickness:2px;text-underline-offset:3px}body .rs-cat-cta p a{color:#fff!important;text-decoration-color:rgba(255,255,255,.6)}' +
+    'body .rs-cat-mini{padding:18px}body .rs-cat-mini span{color:#3d4a3d}' +
+    /* FAQ: otázky jako řádky se šipkou (dřív holé texty bez značky) */
+    'body .rs-cat-faq details{border-top:1px solid ' + LINE + ';padding:0}body .rs-cat-faq details:first-of-type{border-top:0}' +
+    'body .rs-cat-faq summary{padding:14px 56px 14px 0;font-size:16.5px}body .rs-cat-faq summary::after{left:auto;right:24px;z-index:1}body .rs-cat-faq details p{margin:0 0 14px;padding-right:40px}' +
+    'body .rs-cat-cta{border-radius:20px;border:0;background:linear-gradient(135deg,' + G + ',#4f8a2a);color:#fff;box-shadow:0 18px 40px rgba(27,63,32,.22);clip-path:none}' +
+    'body .rs-cat-cta h2,body .rs-cat-cta p{color:#fff!important}body .rs-cat-cta a{color:#fff!important;font-weight:800}' +
+    'body .rs-cat-contact{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0!important}' +
+    'body .rs-cat-contact a{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;background:#fff;border:0;color:' + G + '!important;text-decoration:none!important;font-weight:800;white-space:nowrap;box-shadow:none;transition:background .15s}body .rs-cat-contact a:hover{background:#eef6e6;transform:none}' +
+    /* recenze v kategoriích */
+    'body .rs-cat-reviews{position:relative;margin:24px 0 8px;padding:22px 22px 30px;border-radius:24px;clip-path:none;border:1px solid ' + LINE + ';background:linear-gradient(160deg,#fff 0,#f4f9ef 100%);box-shadow:0 14px 32px rgba(27,63,32,.08);overflow:hidden}' +
+    'body .rs-cat-reviews::before{display:none}body .rs-review-head{display:flex;align-items:center;gap:16px;margin:0 120px 16px 0}' +
+    'body .rs-review-badge{width:68px;height:68px;flex:0 0 68px;border-radius:18px;background:#fff;box-shadow:0 8px 20px rgba(27,63,32,.08);display:flex;align-items:center;justify-content:center}body .rs-review-badge img{width:58px;height:58px}' +
+    'body .rs-review-title{margin:0;color:' + G + ';font-size:24px;font-weight:800;line-height:1.16}body .rs-review-sub{margin:6px 0 0;color:#3d4a3d;font-size:15px}body .rs-review-sub a{color:' + G + ';font-weight:800}' +
+    'body .rs-review-controls{position:absolute;right:22px;top:28px;display:flex;gap:10px}' +
+    'body .rs-review-btn{width:42px;height:42px;border-radius:50%;border:1px solid ' + LINE + ';background:#fff;color:transparent;font-size:0;position:relative;cursor:pointer;box-shadow:none;transition:background .15s}body .rs-review-btn:hover{background:#eef6e6;transform:none}' +
+    'body .rs-review-btn::before{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;border:solid ' + G + ';border-width:0 2px 2px 0;transform:translate(-65%,-50%) rotate(-45deg)}body .rs-review-btn[data-rs-review-prev]::before{transform:translate(-35%,-50%) rotate(135deg)}' +
+    'body .rs-review-window{overflow:hidden;padding:2px 0 26px}body .rs-review-track{display:flex;gap:14px;transition:transform .42s ease}' +
+    'body .rs-review-card{flex:0 0 calc((100% - 28px)/3);min-height:200px;box-sizing:border-box;border:1px solid ' + LINE + ';border-radius:18px;background:#fff;box-shadow:0 8px 20px rgba(27,63,32,.06);padding:18px;text-decoration:none!important;color:#2b3328!important;display:flex;flex-direction:column;justify-content:space-between;transition:box-shadow .18s}body .rs-review-card:hover{transform:none;box-shadow:0 14px 30px rgba(27,63,32,.11)}' +
+    'body .rs-review-stars{color:#F6A000;font-size:24px;letter-spacing:1px;line-height:1;margin:0 0 10px}body .rs-review-text{font-size:16px;line-height:1.4;margin:0}body .rs-review-author{font-size:13.5px;color:#6b7a69;margin-top:14px}' +
+    'body .rs-review-dots{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:flex;gap:7px}body .rs-review-dot{width:8px;height:8px;border-radius:999px;border:0;background:#d6e6c6;padding:0;cursor:pointer}body .rs-review-dot.is-active{width:26px;background:' + L + '}' +
+    '@media(max-width:991px){body .rs-cat-topgrid,body .rs-cat-grid{grid-template-columns:1fr}body .rs-cat-intro h2{font-size:27px}body .rs-review-head{margin-right:0;padding-right:100px}body .rs-review-card{flex-basis:calc((100% - 14px)/2)}}' +
+    '@media(max-width:767px){body .rs-review-head{display:block;padding-right:0}body .rs-review-badge{margin:0 0 10px}body .rs-review-controls{position:static;margin:12px 0 0}body .rs-review-card{flex-basis:86%}body .rs-cat-contact a{width:100%;justify-content:center}}' +
     /* okna Shoptetu (colorbox: „Přidáno do košíku“, hlídací pes, dotaz…) a hlavní tlačítko v našem vzhledu (18. 10.) */
     '#cboxOverlay{background:rgba(20,40,22,.45)!important;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}' +
     '#colorbox,#cboxWrapper,#cboxContent,#cboxLoadedContent{border-radius:24px!important}#cboxContent,#cboxLoadedContent{overflow:hidden;background:#fff!important}#colorbox{box-shadow:0 30px 70px rgba(20,40,22,.28)!important}' +
@@ -491,6 +535,34 @@
   }
   /* vyprodané a ukončené produkty na konec výpisu (Michael 17. 10. 2026) – v rámci načtené stránky výpisu;
      jen při výchozím řazení (bez ?order= v adrese), aby se nerozbilo řazení podle ceny nebo abecedy */
+  // texty kategorií (rs-cat-*): rozbalovací karty a karusel recenzí – dřív inline <script> v každém popisu kategorie,
+  // od 18. 10. jen tady (CDN, cache). Příznaky data-ready zabrání dvojímu spuštění, dokud inline kopie ještě existuje.
+  function catBlocks() {
+    [].forEach.call(document.querySelectorAll('.rs-cat-topitem'), function (card) {
+      if (card.dataset.ready === '1') return; card.dataset.ready = '1'; card.setAttribute('tabindex', '0');
+      var toggle = function (e) { if (e && e.target && e.target.tagName === 'A') return; card.classList.toggle('is-open'); };
+      card.addEventListener('click', toggle);
+      card.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); } });
+    });
+    [].forEach.call(document.querySelectorAll('.rs-cat-reviews'), function (box) {
+      if (box.dataset.reviewReady === '1') return; box.dataset.reviewReady = '1';
+      var track = box.querySelector('.rs-review-track'), cards = [].slice.call(box.querySelectorAll('.rs-review-card')), dots = box.querySelector('.rs-review-dots');
+      if (!track || !cards.length) return;
+      var i = 0, timer = null;
+      function per() { return window.innerWidth < 768 ? 1 : (window.innerWidth < 992 ? 2 : 3); }
+      function max() { return Math.max(0, cards.length - per()); }
+      function buildDots() { if (!dots) return; dots.innerHTML = ''; for (var d = 0; d <= max(); d++) { var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Recenze ' + (d + 1)); b.className = 'rs-review-dot' + (d === i ? ' is-active' : ''); (function (n) { b.addEventListener('click', function () { go(n, true); }); })(d); dots.appendChild(b); } }
+      function render() { if (i > max()) i = max(); track.style.transform = 'translateX(' + (-(cards[i] ? cards[i].offsetLeft : 0)) + 'px)'; if (dots) [].forEach.call(dots.children, function (dot, n) { dot.classList.toggle('is-active', n === i); }); }
+      function go(n, manual) { i = (n < 0 ? max() : (n > max() ? 0 : n)); render(); if (manual) restart(); }
+      function restart() { if (timer) clearInterval(timer); timer = setInterval(function () { go(i + 1, false); }, 5200); }
+      var pv = box.querySelector('[data-rs-review-prev]'), nx = box.querySelector('[data-rs-review-next]');
+      if (pv) pv.addEventListener('click', function () { go(i - 1, true); }); if (nx) nx.addEventListener('click', function () { go(i + 1, true); });
+      window.addEventListener('resize', function () { buildDots(); render(); });
+      buildDots(); render(); restart();
+    });
+    var cnt = [].filter.call(document.querySelectorAll('[data-rs-review-count]'), function (e) { return !e.dataset.rsDone; });
+    if (cnt.length) { cnt.forEach(function (e) { e.dataset.rsDone = 1; }); try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).then(function (d) { if (d && d.celkem) cnt.forEach(function (e) { e.textContent = d.celkem + '+'; }); }).catch(function () {}); } catch (e) {} }
+  }
   // košík (18. 10., Michael: zvýšit upsell, ale nezabrat celou obrazovku): související produkty se rozbalí samy
   // jako jeden vodorovný pás karet; nedostupné na konec. Jen při max. 3 položkách v košíku.
   function cartRelated() {
@@ -574,7 +646,7 @@
     if (h && !h.dataset.rsScroll) { h.dataset.rsScroll = 1; var on = function () { h.classList.toggle('rs-scrolled', window.scrollY > 40); }; window.addEventListener('scroll', on, { passive: true }); on(); }
   }
 
-  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} }
+  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
