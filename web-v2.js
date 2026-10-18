@@ -128,6 +128,18 @@
     '.ordering-process input[type=checkbox]+label::before{border-radius:5px!important;border-color:#b9c9ad!important;background-color:#fff!important}' +
     '.ordering-process input[type=checkbox]:checked+label::before{background-color:' + G + '!important;border-color:' + G + '!important}' +
     '.ordering-process input[type=checkbox]:focus-visible+label::before{box-shadow:0 0 0 3px rgba(134,187,65,.35)}' +
+    /* krok 3 – souhlasy (18. 10., Michael: táhnout k tomu, co potřebujeme): souhlas s podmínkami jako výrazná karta,
+       odhlášení dotazníků (Zboží, Heureka, hodnocení produktů) nenápadně a s vysvětlením, proč nám pomáhají */
+    '.ordering-process .form-group:has(> input[name="consents[]"]){padding:14px 16px;border:2px solid ' + L + ';border-radius:16px;background:#f6faf1;margin:6px 0 14px!important}' +
+    '.ordering-process input[name="consents[]"]+label{font-weight:700!important;color:' + G + '!important;font-size:15.5px!important}' +
+    '.ordering-process .form-group:has(> input[name="consents[]"]):has(> input:checked){border-color:' + G + ';background:#eef6e6}' +
+    '.ordering-process .form-group:has(> #consentszboziConsent),.ordering-process .form-group:has(> #consentsheurekaConsent),.ordering-process .form-group:has(> #consentsproductRatingRequestOptOut){opacity:.72;margin:2px 0!important}' +
+    '.ordering-process #consentszboziConsent+label,.ordering-process #consentsheurekaConsent+label,.ordering-process #consentsproductRatingRequestOptOut+label{font-size:12.5px!important;color:#6b7a69!important;font-weight:400!important}' +
+    '.rs-optout-note{font-size:13px;color:#4f5d4c;margin:14px 0 4px;padding-left:2px}.rs-optout-note b{color:' + G + '}' +
+    /* košík – dárek zdarma výrazněji */
+    '.free-product-gifts-wrapper .free-product-gifts>li,.free-product-gifts>li{position:relative;border:2px solid #f2c94c!important;border-radius:16px!important;background:linear-gradient(135deg,#fffaf0,#fff3d6)!important;padding:14px 16px 14px 16px!important;box-shadow:0 10px 24px rgba(242,201,76,.25)}' +
+    '.free-product-gifts>li::before{content:"🎁 Dárek zdarma k vaší objednávce";display:block;font-weight:800;color:#8a5a00;font-size:14px;margin:0 0 6px}' +
+    '.free-gift-name{font-weight:700;color:#3d3a2a}' +
     '.ordering-process .next-step-finish,.ordering-process .btn-conversion{background:' + G + '!important;border:0!important;border-radius:var(--rs-pill)!important;color:#fff!important}' +
     '.co-box h4,.co-box .h4,.ordering-process .co-box label,.ordering-process .co-box label *,.ordering-process .radio-wrapper *{text-transform:none!important;letter-spacing:0!important}' +
     '.type-detail .p-code,.type-detail .p-detail-info .p-code{font-size:11px!important;color:#a3ab9f!important;font-weight:400!important}.type-detail .p-code span{font-weight:400!important}' +
@@ -181,6 +193,11 @@
     'body:not(.rs-cat-blue) .rs-review-dots{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:flex;gap:7px}body:not(.rs-cat-blue) .rs-review-dot{width:8px;height:8px;border-radius:999px;border:0;background:#d6e6c6;padding:0;cursor:pointer}body:not(.rs-cat-blue) .rs-review-dot.is-active{width:26px;background:' + L + '}' +
     '@media(max-width:991px){body:not(.rs-cat-blue) .rs-cat-topgrid,body:not(.rs-cat-blue) .rs-cat-grid{grid-template-columns:1fr}body:not(.rs-cat-blue) .rs-cat-intro h2{font-size:27px}body:not(.rs-cat-blue) .rs-review-head{margin-right:0;padding-right:100px}body:not(.rs-cat-blue) .rs-review-card{flex-basis:calc((100% - 14px)/2)}}' +
     '@media(max-width:767px){body:not(.rs-cat-blue) .rs-review-head{display:block;padding-right:0}body:not(.rs-cat-blue) .rs-review-badge{margin:0 0 10px}body:not(.rs-cat-blue) .rs-review-controls{position:static;margin:12px 0 0}body:not(.rs-cat-blue) .rs-review-card{flex-basis:86%}body:not(.rs-cat-blue) .rs-cat-contact a{width:100%;justify-content:center}}' +
+    /* menu: informační stránky ve Více + průvodce výběrem sekačky v mega nabídce */
+    '#header .menu-helper .rs-vice-info{display:flex!important;flex-direction:column;gap:2px;padding:6px!important;border-left:1px solid ' + LINE + '}' +
+    '.rs-vice-info__h{font-weight:800;color:' + G + ';font-size:15px;padding:6px 8px}.rs-vice-info a{padding:5px 8px!important;font-size:13.5px!important;font-weight:600!important;color:' + G + '!important;border-radius:10px}.rs-vice-info a:hover{background:#f2f7ec!important}' +
+    '#navigation .rs-mega>li.rs-mega__guide{grid-column:1/-1}#navigation .rs-mega>li.rs-mega__guide>a{display:flex!important;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:12px 16px!important;border-radius:14px;background:#f2f7ec!important;border:1px solid ' + LINE + '}' +
+    '#navigation .rs-mega__guide b{color:' + G + ';font-weight:800}#navigation .rs-mega__guide span{color:#3d4a3d;font-weight:600;font-size:13.5px}' +
     /* --- statické stránky rs-pg-* (O nás, Kontakty; 18. 10.) – obsah v Shoptetu bez inline stylů, vzhled odsud --- */
     '.rs-pg{color:#2b3328;line-height:1.62;font-size:16.5px}.rs-pg h2{color:' + G + ';font-weight:800;line-height:1.2;margin:0 0 14px}.rs-pg h3{color:' + G + ';font-weight:800;font-size:18px;margin:0 0 6px}' +
     '.rs-pg a:not(.rs-pg-btn):not(.rs-pg-contact){color:' + G + ';font-weight:700;text-decoration:underline;text-decoration-color:' + L + ';text-decoration-thickness:2px;text-underline-offset:3px}' +
@@ -205,6 +222,10 @@
     '.rs-pg-steps strong{display:block;color:' + G + ';font-size:17px;margin:0 0 4px}.rs-pg-steps span{font-size:15px;color:#3d4a3d}' +
     '.rs-pg-gal{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.rs-pg-gal img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:16px;display:block}' +
     '.rs-pg-cta{padding:28px;border-radius:24px;background:linear-gradient(135deg,' + G + ',#4f8a2a);color:#fff;margin:0 0 18px}.rs-pg-cta h2,.rs-pg-cta p{color:#fff!important}' +
+    '.rs-pg-grid--3{grid-template-columns:repeat(3,minmax(0,1fr))}.rs-pg-table-w{overflow-x:auto;border:1px solid ' + LINE + ';border-radius:18px;background:#fff}' +
+    '.rs-pg-table{width:100%;border-collapse:collapse;font-size:15.5px}.rs-pg-table th{background:#f2f7ec;color:' + G + ';text-align:left;padding:12px 16px;font-weight:800}.rs-pg-table td{padding:12px 16px;border-top:1px solid ' + LINE + '}.rs-pg-free{color:#2f7d1e;font-weight:800}' +
+    '.rs-pg-list{margin:0;padding:0 0 0 2px;list-style:none}.rs-pg-list li{position:relative;padding:6px 0 6px 28px}.rs-pg-list li::before{content:"";position:absolute;left:4px;top:13px;width:12px;height:7px;border:solid ' + L + ';border-width:0 0 3px 3px;transform:rotate(-45deg)}' +
+    '.rs-pg-toc{display:flex;flex-wrap:wrap;gap:8px;padding:16px 18px;border:1px solid ' + LINE + ';border-radius:18px;background:#f6faf1;margin:0 0 24px}.rs-pg-toc strong{width:100%;color:' + G + '}.rs-pg .rs-pg-toc a{padding:7px 14px;border-radius:999px;background:#fff;border:1px solid ' + LINE + ';text-decoration:none!important;font-size:14px}' +
     '.rs-pg-small{font-size:13.5px;color:#6b7a69}.rs-pg-form{padding:24px;border:1px solid ' + LINE + ';border-radius:22px;background:#fff}' +
     '.rs-pg-firma{padding:22px 24px;border-radius:20px;background:#f6faf1;border:1px solid ' + LINE + '}.rs-pg-firma-g{display:grid;grid-template-columns:1fr 1fr;gap:16px}.rs-pg-firma p{margin:0}' +
     '@media(max-width:991px){.rs-pg-hero{grid-template-columns:1fr;padding:22px}.rs-pg-hero-f--sm{justify-self:start;max-width:220px}.rs-pg-grid,.rs-pg-steps{grid-template-columns:1fr 1fr}.rs-pg-gal{grid-template-columns:repeat(3,1fr)}.rs-pg-hero h2{font-size:27px}}' +
@@ -225,7 +246,7 @@
     /* karusely produktů: spodek karet (rámeček, zaoblení, stín) se ořezával o slick-list */
     '.products-block .slick-list{padding:4px 0 22px!important;margin-bottom:-14px!important}' +
     /* košík: související produkty (upsell) automaticky rozbalené jako jeden vodorovný pás */
-    '.cart-table tr.related.rs-rel>td{padding:6px 0 14px!important;border:0!important}' +
+    '.cart-table tr.related.rs-rel>td{padding:4px 18px 16px!important;border:0!important}' +
     '.rs-rel-h{font-weight:800;color:' + G + ';font-size:14px;margin:0 0 8px 2px}' +
     '.cart-table tr.rs-rel>td{max-width:0}' +
     '.rs-rel-strip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 8px;scrollbar-width:thin;width:100%}' +
@@ -510,6 +531,8 @@
     var poradime = /jak-vybrat|blog|kontakty|hodnoceni/;
     var nakup = arts.filter(function (x) { return !poradime.test(x[1]); });
     var rady = arts.filter(function (x) { return poradime.test(x[1]); });
+    /* nové informační stránky (18. 10.), pokud je Shoptet v patičce ještě nemá */
+    [['Doprava', '/doprava/'], ['O nás', '/o-nas/']].forEach(function (x) { if (!arts.some(function (a) { return a[1].indexOf(x[1]) > -1; })) nakup.unshift(x); });
     var li = function (x) { return '<li><a href="' + esc(x[1]) + '">' + esc(x[0]) + '</a></li>'; };
     var socs = [].map.call(f.querySelectorAll('.custom-footer__contact a[href*="facebook"],.custom-footer__contact a[href*="instagram"],.custom-footer__contact a[href*="youtube"]'), function (a) {
       var k = /facebook/.test(a.href) ? 'facebook' : /instagram/.test(a.href) ? 'instagram' : 'youtube';
@@ -611,6 +634,15 @@
       tr.classList.add('rs-rel', 'visible'); tr.style.display = 'table-row';
     });
   }
+  // krok 3 objednávky: krátké vysvětlení nad odhlášením dotazníků (zaškrtnutí dál možné, jen víc kontextu)
+  function checkoutNotes() {
+    var first = document.getElementById('consentszboziConsent') || document.getElementById('consentsheurekaConsent');
+    if (!first || document.querySelector('.rs-optout-note')) return;
+    var g = first.closest('.form-group') || first.parentElement;
+    var n = document.createElement('p'); n.className = 'rs-optout-note';
+    n.innerHTML = '<b>Krátký dotazník po nákupu</b> – vaše hodnocení pomáhá dalším zákazníkům s výběrem a nám se zlepšovat. Pokud ho dostávat nechcete, zaškrtněte:';
+    g.parentNode.insertBefore(n, g);
+  }
   function soldOutLast() {
     if (/[?&]order=/.test(location.search)) return;
     var list = document.querySelector('#products'); if (!list) return;
@@ -657,6 +689,12 @@
         qi.innerHTML = '<b>Podle potřeby</b>' + q[1].map(function (c) { return '<a href="' + q[0] + c[1] + '">' + c[0] + '</a>'; }).join('');
         ul.appendChild(qi);
       }
+      /* průvodce výběrem sekačky jako hlavní rozcestník (Michael 18. 10. 2026) */
+      if (/sekack/.test(href) && !ul.querySelector('.rs-mega__guide')) {
+        var gi = document.createElement('li'); gi.className = 'rs-mega__guide';
+        gi.innerHTML = '<a href="/jak-vybrat-robotickou-sekacku/"><b>Nevíte, kterou vybrat?</b><span>Průvodce výběrem robotické sekačky podle vaší zahrady →</span></a>';
+        ul.appendChild(gi);
+      }
       var f = document.createElement('li'); f.className = 'rs-mega__foot';
       f.innerHTML = '<a href="' + (top ? top.getAttribute('href') : '/') + '">Zobrazit vše →</a><span>Nevíte si rady? <a href="tel:' + TEL + '">' + TELT + '</a></span>';
       ul.appendChild(f);
@@ -665,7 +703,10 @@
     var helper = document.querySelector('#header .menu-helper');
     if (helper && !helper.dataset.rsFit) {
       helper.dataset.rsFit = 1;
-      var fit = function () { var ul = helper.querySelector(':scope>ul'); if (!ul) return; ul.style.setProperty('right', '0px', 'important'); requestAnimationFrame(function () { var r = ul.getBoundingClientRect(); if (r.width && r.left < 16) ul.style.setProperty('right', Math.round(r.left - 16) + 'px', 'important'); }); };
+      var fit = function () { var ul = helper.querySelector(':scope>ul'); if (!ul) return;
+        /* informační stránky na konec panelu Více (Michael 18. 10.); Shoptet panel přestavuje, proto vkládat při otevření */
+        if (!ul.querySelector('.rs-vice-info')) { var ii = document.createElement('li'); ii.className = 'rs-vice-info'; ii.innerHTML = '<span class="rs-vice-info__h">Nakupování u nás</span><a href="/o-nas/">O nás</a><a href="/doprava/">Doprava</a><a href="/platby/">Platby</a><a href="/reklamace-a-vraceni-zbozi/">Reklamace a vrácení</a><a href="/kontakty/">Kontakty</a>'; ul.appendChild(ii); }
+        ul.style.setProperty('right', '0px', 'important'); requestAnimationFrame(function () { var r = ul.getBoundingClientRect(); if (r.width && r.left < 16) ul.style.setProperty('right', Math.round(r.left - 16) + 'px', 'important'); }); };
       helper.addEventListener('mouseenter', fit); helper.addEventListener('focusin', fit);
     }
     var nav = document.getElementById('navigation');
@@ -678,11 +719,11 @@
     if (h && !h.dataset.rsScroll) { h.dataset.rsScroll = 1; var on = function () { h.classList.toggle('rs-scrolled', window.scrollY > 40); }; window.addEventListener('scroll', on, { passive: true }); on(); }
   }
 
-  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} }
+  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
-  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); soldOutLast(); try { cartRelated(); } catch (e) {} }, 120); });
+  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); soldOutLast(); try { cartRelated(); } catch (e) {} try { checkoutNotes(); } catch (e) {} }, 120); });
   function watch() { var c = document.getElementById('content') || document.body; mo.observe(c, { childList: true, subtree: true }); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch); else watch();
 })();
