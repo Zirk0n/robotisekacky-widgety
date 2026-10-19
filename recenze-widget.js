@@ -57,6 +57,7 @@
     '.rs-hodn .add-comment{text-align:center;margin:0 0 18px}.rs-hodn .add-comment .btn{background:#fff!important;border:2px solid var(--rs-g,#1b3f20)!important;color:var(--rs-g,#1b3f20)!important;border-radius:999px!important;text-transform:none!important;letter-spacing:0!important;font-weight:800!important;font-size:15px!important;padding:10px 22px!important;height:auto!important}' +
     '.rs-hodn .add-comment .btn:hover{background:var(--rs-soft2,#eef6e6)!important}.rs-hodn #rate-form{padding:22px!important;margin-bottom:18px}.rs-hodn #rate-form h3{color:var(--rs-g,#1b3f20)!important;font-weight:800}' +
     '.rs-hodn .votes-wrap{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.rs-hodn .vote-wrap{background:#fff!important;border:1px solid var(--rs-line,#e6f0db)!important;border-radius:18px!important;box-shadow:0 8px 20px rgba(27,63,32,.06)!important;padding:16px 18px!important;margin:0!important;width:auto!important}' +
+    'body.rs-hodn #ratingsList.rs-short-hidden>.vote-wrap.rs-short{display:none!important}.rs-hodn .rsr__more{grid-column:1/-1;justify-self:center;margin:6px 0;padding:10px 22px;border-radius:999px;border:2px solid var(--rs-g,#1b3f20);background:#fff;color:var(--rs-g,#1b3f20);font-weight:800;cursor:pointer}' +
     '.rs-hodn .vote-wrap.rs-hl{border-left:4px solid var(--rs-l,#86BB41)!important}.rs-hodn .vote-wrap.rs-dim{opacity:.75}.rs-hodn .vote-name{color:var(--rs-g,#1b3f20)!important;font-weight:800!important;font-size:16px!important}' +
     '.rs-hodn .vote-initials{background:var(--rs-soft2,#eef6e6)!important;color:var(--rs-g,#1b3f20)!important;font-weight:800}.rs-hodn .vote-content{color:#2b3328!important;font-size:14.5px!important;line-height:1.55}.rs-hodn .vote-time,.rs-hodn .vote-delimeter{color:#7a8a72!important}' +
     '.rs-hodn .listingControls .pagination__currentPage{background:var(--rs-g,#1b3f20)!important;color:#fff!important;border-radius:999px!important}.rs-hodn .listingControls .btn,.rs-hodn .listingControls .pagination__link{border-radius:999px!important;border:1px solid var(--rs-line,#e6f0db)!important;background:#fff!important;color:var(--rs-g,#1b3f20)!important;text-transform:none!important}' +
@@ -172,6 +173,33 @@
     var b = box.querySelector('.rsr__btn'); if (b) b.addEventListener('click', function (e) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
     return true;
   }
+  /* první strana výpisu: nahoru podrobná hodnocení (i z dalších stran), krátká („Zboží i ceny“) sbalit pod tlačítko */
+  function boostVotes() {
+    var list = document.getElementById('ratingsList');
+    if (!list || list.dataset.rsBoost || !/^\/hodnoceni-obchodu\/?$/.test(location.pathname)) return;
+    list.dataset.rsBoost = '1';
+    var txt = function (v) { return ((v.querySelector('.vote-content') || {}).textContent || '').replace(/\s+/g, ' ').trim(); };
+    var own = [].slice.call(list.querySelectorAll(':scope>.vote-wrap'));
+    var seen = {}; own.forEach(function (v) { seen[txt(v)] = 1; });
+    var pages = [2, 3, 4, 5, 6].map(function (n) { return fetch('/hodnoceni-obchodu/strana-' + n + '/', { credentials: 'same-origin' }).then(function (r) { return r.ok ? r.text() : ''; }).catch(function () { return ''; }); });
+    Promise.all(pages).then(function (htmls) {
+      var extra = [];
+      htmls.forEach(function (h) {
+        if (!h) return; var d = new DOMParser().parseFromString(h, 'text/html');
+        [].forEach.call(d.querySelectorAll('#ratingsList > .vote-wrap'), function (v) { var t = txt(v); if (t.length >= 80 && !seen[t]) { seen[t] = 1; extra.push(document.importNode(v, true)); } });
+      });
+      var longOwn = own.filter(function (v) { return txt(v).length >= 60; }), shortOwn = own.filter(function (v) { return txt(v).length < 60; });
+      var top = longOwn.concat(extra.slice(0, Math.max(0, 18 - longOwn.length)));
+      top.forEach(function (v) { v.classList.add('rs-hl'); list.appendChild(v); });
+      if (shortOwn.length) {
+        var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'rsr__more'; btn.textContent = 'Zobrazit i krátká hodnocení (' + shortOwn.length + ')';
+        list.appendChild(btn);
+        shortOwn.forEach(function (v) { v.classList.add('rs-short'); v.style.setProperty('display', 'none', 'important'); list.appendChild(v); });
+        list.classList.add('rs-short-hidden');
+        btn.addEventListener('click', function () { list.classList.remove('rs-short-hidden'); shortOwn.forEach(function (v) { v.style.removeProperty('display'); }); btn.remove(); });
+      }
+    });
+  }
   function markVotes() {
     [].forEach.call(document.querySelectorAll('.vote-wrap:not(.rs-hl):not(.rs-dim)'), function (it) {
       var c = ((it.querySelector('.vote-content') || {}).textContent || '').trim();
@@ -189,7 +217,7 @@
   }
   var ptries = 0;
   function waitPage() {
-    if (page()) { schema(); markVotes(); new MutationObserver(markVotes).observe(document.getElementById('ratingWrapper').parentNode, { childList: true, subtree: true }); return; }
+    if (page()) { schema(); boostVotes(); markVotes(); new MutationObserver(markVotes).observe(document.getElementById('ratingWrapper').parentNode, { childList: true, subtree: true }); return; }
     if (++ptries < 75) setTimeout(waitPage, 200);
   }
   var isPage = location.pathname.indexOf('/hodnoceni-obchodu') === 0;
