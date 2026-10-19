@@ -40,6 +40,7 @@
     '.rsr__badge{align-self:flex-start;padding:3px 10px;border-radius:999px;background:var(--rs-soft2,#eef6e6);color:var(--rs-g,#1b3f20);font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}' +
     '.rsr__tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.rsr__tile{padding:20px;display:flex;flex-direction:column;gap:6px}' +
     '.rsr__ic{width:44px;height:44px;border-radius:14px;background:var(--rs-soft2,#eef6e6);display:grid;place-items:center;margin-bottom:4px}.rsr__ic svg{width:24px;height:24px;fill:none;stroke:var(--rs-g,#1b3f20);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}' +
+    'a.rsr__tile{text-decoration:none!important;color:inherit!important;transition:transform .15s,box-shadow .15s}a.rsr__tile:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(27,63,32,.12)}.rsr__tile em{font-style:normal;font-size:12.5px;color:#6f7d68}.rsr__ic{font-size:24px;line-height:1}.rsr__ic--img{background:none!important}.rsr__ic--img img{width:44px;height:44px}.rsr__trophy{font-size:34px;line-height:1;display:block;margin-bottom:8px}.rsr__since{text-transform:none!important;letter-spacing:0!important;font-weight:600!important}' +
     '.rsr__tile h3{margin:0!important;font-size:18px!important;font-weight:800;color:var(--rs-g,#1b3f20)}.rsr__tile p{margin:0!important;font-size:14.5px;line-height:1.55;color:#2b3328;flex:1}.rsr__tile a{font-weight:800;color:var(--rs-g,#1b3f20)!important;text-decoration:none!important;font-size:14px}' +
     '.rsr__owner{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:center;padding:22px}.rsr__owner img{width:220px;aspect-ratio:3/4;object-fit:cover;object-position:center top;border-radius:16px;display:block}' +
     '.rsr__owner h3{margin:2px 0 10px!important;font-size:24px!important;font-weight:800;color:var(--rs-g,#1b3f20)}.rsr__owner p{margin:0 0 12px!important;color:#2b3328;font-size:15.5px;line-height:1.6}' +
@@ -72,7 +73,7 @@
       var ini = r.jmeno.split(' ').map(function (p) { return p[0]; }).join('').slice(0, 2).toUpperCase();
       return '<article class="rsr__card">' + (o.badge ? '<span class="rsr__badge">Doporučená recenze</span>' : '') + '<span class="rsr__stars" aria-label="5 z 5 hvězdiček">★★★★★</span>' +
         '<p class="rsr__q">' + esc(r.text) + '</p>' +
-        '<div class="rsr__meta"><span class="rsr__ini" aria-hidden="true">' + esc(ini) + '</span><span><b>' + esc(r.jmeno) + '</b> · ' + esc(r.datum) + '</span></div></article>';
+        '<div class="rsr__meta"><span class="rsr__ini" aria-hidden="true">' + esc(ini) + '</span><span><b>' + esc(r.jmeno) + '</b>' + (r.datum ? ' · ' + esc(r.datum) : '') + '</span></div></article>';
     }).join('');
     box.innerHTML = '<section class="rsr" aria-label="Hodnocení zákazníků">' +
       '<div class="rsr__head"><h2 class="rsr__h">' + (o.title || 'Co o nás píšou zákazníci') + '</h2>' +
@@ -121,30 +122,43 @@
     star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.8z"/></svg>'
   };
   function num(d) { return String(d.prumer || '5.0').replace('.', ','); }
+  /* texty stránky převzaté z původního widgetu hodnoceni23.js (Michael 19. 10.: vrátit) */
+  var VYBER = [
+    ['Jan Marek', 'Pan Boháček to se mnou neměl jednoduché a ještě přišly nečekané potíže, ale nakonec našel řešení za které bych mu dal hvězdiček hned šest, kdyby to šlo :-)'],
+    ['Jan Jarolím', 'Naprostá spokojenost. Připlatil jsem si instalaci sekačky a pan Boháček ji provedl perfektně. Nevynechal nastavení jediné zakázané zóny a obvody nastavil také perfektně. Precizní práce. 👍'],
+    ['Michal Válka', 'Velmi spokojen!!! Vše proběhlo na 100 %. Instalace sekačky v den pracovního klidu, mne opravdu překvapila! Děkuji za Vše – příště nakoupíme opět u Vás!'],
+    ['Iva Miřacká', 'Roboti sekačky je pro mě po dlouhé době vynikající obchod, jak z hlediska jednání se zákazníkem, tak s provedením instalace robotické sekačky. Mohu vřele všem doporučit a posílám jim touto cestou obrovskou pochvalu.'],
+    ['Jakub', 'Pořídil jsem si od firmy sekačku i s instalací. Domluva byla rychlá a profesionální a instalace sekačky na naší zahradě proběhla naprosto hladce. Všechno funguje jak má a už máme sekání bez práce, skvělá práce!'],
+    ['Petr Smoták', 'Jsem nad míru spokojený. Nejdřív jsem si myslel, že robot u nás úzkým průjezdem o cca 100 cm neprojede, ale nyní tam projíždí zcela bez problémů. Chlapi přijeli, udělali instalaci sekačky Gardena, pomohli mi nainstalovat aplikaci a vše nastavili. Děkuji.'],
+    ['Jan', 'Absolutní spokojenost s poradenskou činností, pán na telefonu přesně ví o čem hovoří, má přehled, dokáže poradit a uvádět rozdíly mezi jednotlivými typy sekaček. Super!!!'],
+    ['Martin Šafránek', 'Skvělý přístup, díky za konzultaci a následné bleskové doručení. Doporučuji všem.']
+  ];
+  var HK_LOGO = '/user/documents/upload/Obr%C3%A1zky/Robot%C3%AD%20Seka%C4%8Dky%20fotky/logo-verified-by-customers-gold--cs-2.svg';
   function statsBar(d) {
-    return '<div class="rsr__stats"><a class="rsr__hk" href="https://obchody.heureka.cz/robotisekacky-cz/recenze/" target="_blank" rel="noopener"><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/banners/logo-overeno--gold.svg?69c559fe" alt="Heureka – Ověřeno zákazníky" width="110" height="110"></a>' +
-      '<div class="rsr__badges"><small>Ocenění Heureka</small><span class="rsr__b1">2024 – modrý odznak Ověřeno zákazníky</span><span class="rsr__b2">2026 – zlatý odznak</span></div>' +
-      '<div class="rsr__st"><b>' + num(d) + '</b><span>průměr</span></div><div class="rsr__st"><b>' + esc(d.celkem) + '</b><span>hodnocení</span></div><div class="rsr__st"><b>2020</b><span>roboty prodáváme od</span></div></div>';
+    return '<div class="rsr__stats"><a class="rsr__hk" href="https://obchody.heureka.cz/robotisekacky-cz/recenze/" target="_blank" rel="noopener" title="Naše hodnocení na Heurece"><img src="' + HK_LOGO + '" alt="Heureka Ověřeno zákazníky" width="110" height="110"></a>' +
+      '<div class="rsr__badges"><small>Ocenění Heureka</small><span class="rsr__b1">● 2024 – modrý odznak</span><span class="rsr__b2">★ 2026 – zlatý odznak</span><small class="rsr__since">Ověřeno zákazníky od roku 2024</small></div>' +
+      '<div class="rsr__st"><b>' + num(d) + '</b><span>Průměr</span></div><div class="rsr__st"><b>' + esc(d.celkem) + '+</b><span>Hodnocení</span></div><div class="rsr__st"><b>250+</b><span>Realizací instalací</span></div></div>';
   }
   function tiles(d) {
     var t = [
-      ['star', 'Důvěra zákazníků', 'Ověřeno zákazníky', 'Certifikát Heureka máme od roku 2024, v roce 2026 jsme získali zlatý odznak. Průměr ' + num(d) + ' z ' + esc(d.celkem) + ' hodnocení.', 'https://obchody.heureka.cz/robotisekacky-cz/recenze/', 'Recenze na Heurece'],
-      ['tool', 'Servis na klíč', 'Instalace po celé ČR', 'Pomůžeme vybrat robota, projedeme zahradu, nastavíme hranice, zóny i aplikaci a ukážeme vám obsluhu.', '/instalace-sekacek/', 'Jak probíhá instalace'],
-      ['phone', 'Přímý kontakt', 'Voláte přímo majiteli', 'Žádné call centrum. Telefon zvedá Michael, který roboty sám instaluje a servisuje.', 'tel:+420792325839', '+420 792 325 839'],
-      ['shield', 'Nákup bez rizika', 'Servis a záruky', 'Reklamaci i servis řešíme osobně a rychle. Ozvěte se klidně i po skončení záruky.', '/reklamace-a-vraceni-zbozi/', 'Reklamace a vrácení']
+      ['<img src="' + HK_LOGO + '" alt="Heureka Ověřeno zákazníky">', 'Důvěra zákazníků', 'Ověřeno zákazníky', 'Certifikát Heureka získaný v roce 2024 – průměr <b>' + num(d) + '</b> z více než <b>' + esc(d.celkem) + ' hodnocení</b>. V roce 2026 jsme získali prestižní <b>zlatý odznak</b>.', 'https://obchody.heureka.cz/robotisekacky-cz/recenze/', 'Klikněte pro zobrazení všech recenzí na Heurece.', true],
+      ['🔧', 'Servis na klíč', 'Profesionální instalace', 'Přes 250 realizací po celé ČR – od výběru sekačky přes mapování zahrady až po nastavení aplikace a první seč.', '/instalace-sekacek/', 'Zákazníci oceňují přesnost, komunikaci a rychlost.'],
+      ['📞', 'Přímý kontakt', 'Voláte přímo mně', 'Nezvednu vám call centrum. Voláte přímo Michaelovi – majiteli, který robotické sekačky prodává od roku 2017 a osobně instaloval přes 100 zahrad.', 'tel:+420792325839', '<b>+420 792 325 839</b><br>Michael Boháček, majitel'],
+      ['🛡️', 'Nákup bez rizika', 'Servis & záruky', 'Reklamace a servis řešíme rychle a osobně. Stojíme za každým produktem – i po skončení záruky se ozvěme.', '/reklamace-a-vraceni-zbozi/', 'Podrobnosti o reklamaci a vrácení zboží kliknutím.']
     ];
-    return '<div class="rsr__tiles">' + t.map(function (x) { return '<div class="rsr__tile"><span class="rsr__ic">' + IC[x[0]] + '</span><small>' + x[1] + '</small><h3>' + x[2] + '</h3><p>' + x[3] + '</p><a href="' + x[4] + '"' + (/^https/.test(x[4]) ? ' target="_blank" rel="noopener"' : '') + '>' + x[5] + ' →</a></div>'; }).join('') + '</div>';
+    return '<div class="rsr__tiles">' + t.map(function (x) { return '<a class="rsr__tile" href="' + x[4] + '"' + (x[6] ? ' target="_blank" rel="noopener"' : '') + '><span class="rsr__ic' + (x[0].charAt(0) === '<' ? ' rsr__ic--img' : '') + '">' + x[0] + '</span><small>' + x[1] + '</small><h3>' + x[2] + '</h3><p>' + x[3] + '</p><em>' + x[5] + '</em></a>'; }).join('') + '</div>';
   }
   function ownerCard(d) {
     return tiles(d) +
-      '<div class="rsr__owner"><img src="' + OWNER_IMG + '" alt="Michael Boháček s certifikátem Heureka Ověřeno zákazníky" loading="lazy">' +
-      '<div><small class="rsr__kick">Zakladatel a majitel</small><h3>Michael Boháček</h3>' +
-      '<p>V roce 2024 jsme získali certifikát Heureka <b>Ověřeno zákazníky</b>, který dostávají obchody s dlouhodobě dobrou péčí o zákazníky. Od té doby držíme průměr <b>' + num(d) + '</b> ze všech hodnocení a v roce 2026 nám Heureka udělila <b>zlatý odznak</b>.</p>' +
-      '<div class="rsr__ostats"><span><b>2020</b>roboty prodáváme od</span><span><b>' + num(d) + '</b>průměrné hodnocení</span><span><b>' + esc(d.celkem) + '</b>hodnocení</span></div>' +
+      '<div class="rsr__owner"><img src="' + OWNER_IMG + '" alt="Michael Boháček – zakladatel Robotích Sekaček" loading="lazy">' +
+      '<div><span class="rsr__trophy" aria-hidden="true">🏆</span>' +
+      '<p><b>V roce 2024 jsme získali certifikát Heureka Ověřeno zákazníky</b> – udělovaný jen obchodům, které trvale splňují přísná kritéria kvality zákaznické péče. Od té doby si držíme průměrné hodnocení <b>' + num(d) + '</b> ze všech recenzí. V roce 2026 nám Heureka udělila prestižní <b>zlatý odznak</b> – jedno z nejvyšších ocenění pro online prodejce v ČR.</p>' +
+      '<div class="rsr__ostats"><span><b>2017</b>Prodej robotů od</span><span><b>250+</b>Instalací po ČR</span><span><b>' + num(d) + '</b>Průměrné hod.</span><span><b>' + esc(d.celkem) + '+</b>Recenzí</span></div>' +
+      '<small class="rsr__kick">Zakladatel &amp; majitel</small><h3>Michael Boháček</h3>' +
       '<p class="rsr__contact">Volejte přímo mně: <a href="tel:+420792325839">+420 792 325 839</a> · <a href="mailto:info@robotisekacky.cz">info@robotisekacky.cz</a></p></div></div>' +
-      '<div class="rsr__ctap"><div><h3>Máte otázku nebo potřebujete poradit?</h3><p>Jsme tu pro vás před nákupem i po něm.</p></div>' +
-      '<div class="rsr__cta"><a class="pri" href="/kontakty/">Kontaktujte nás</a><a href="/reklamace-a-vraceni-zbozi/">Reklamace a servis</a><a href="/instalace-sekacek/">Instalace sekaček</a><a href="/zprovozneni-robotickeho-vysavace/">Zprovoznění vysavače</a></div></div>' +
-      '<div class="rsr__all"><h2>Všechna hodnocení zákazníků</h2><p>Hodnocení z našeho obchodu i z Heureky (Ověřeno zákazníky). Celkem ' + esc(d.celkem) + ' hodnocení.</p></div>';
+      '<div class="rsr__ctap"><div><h3>Máte otázku nebo potřebujete poradit?</h3><p>Jsme tu pro vás před nákupem i po něm. Kontaktujte nás nebo navštivte sekci servis a reklamace.</p></div>' +
+      '<div class="rsr__cta"><a class="pri" href="/kontakty/">📞 Kontaktujte nás</a><a href="/reklamace-a-vraceni-zbozi/">🛡️ Reklamace &amp; servis</a><a href="/instalace-sekacek/">🔧 Instalace sekaček</a><a href="/zprovozneni-robotickeho-vysavace/">🤖 Zprovoznění vysavače</a></div></div>' +
+      '<div class="rsr__all"><h2>Všechna hodnocení zákazníků</h2><p>Zobrazena hodnocení z našeho obchodu i z platformy Heureka (Ověřeno zákazníky). Celkem ' + esc(d.celkem) + '+ hodnocení.</p></div>';
   }
   function page() {
     var target = document.getElementById('ratingWrapper');
@@ -153,7 +167,8 @@
     var box = document.createElement('div'); box.className = 'rsr-page';
     target.parentNode.insertBefore(box, target);
     document.body.classList.add('rs-hodn');
-    render(box, data, { title: 'Co říkají zákazníci vlastními slovy', btnText: 'Zobrazit všechna hodnocení', btnHref: '#ratingWrapper', noScore: true, badge: true, before: statsBar(data), after: ownerCard(data) });
+    var vyber = { celkem: data.celkem, prumer: data.prumer, recenze: VYBER.map(function (x) { return { jmeno: x[0], text: x[1], datum: '' }; }) };
+    render(box, vyber, { title: 'Co říkají zákazníci vlastními slovy', btnText: 'Zobrazit všechny recenze', btnHref: '#ratingWrapper', noScore: true, badge: true, before: statsBar(data), after: ownerCard(data) });
     var b = box.querySelector('.rsr__btn'); if (b) b.addEventListener('click', function (e) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
     return true;
   }
