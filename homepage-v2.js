@@ -162,8 +162,8 @@
       if (open) { panel.classList.remove('on'); return; }
       var g = SIT[cur], s = g.items[+b.getAttribute('data-i')]; b.setAttribute('aria-expanded', 'true');
       panel.innerHTML = '<h3>' + s[0] + ' ' + s[1] + '</h3><p>' + s[2] + '</p><div class="rsh-cta"><a class="pri" href="' + g.base + s[3] + '">' + s[4] + ' →</a>' +
-        '<a class="sec" href="tel:' + TEL + '">📞 Poradit model – ' + TELT + '</a>' +
-        '<a class="sec" href="mailto:' + MAIL + '?subject=' + encodeURIComponent(g.label + ' – ' + s[1]) + '">✉️ Napsat e-mail</a></div>';
+        '<a class="sec" href="tel:' + TEL + '">Poradit model – ' + TELT + '</a>' +
+        '<a class="sec" href="mailto:' + MAIL + '?subject=' + encodeURIComponent(g.label + ' – ' + s[1]) + '">Napsat e-mail</a></div>';
       panel.classList.add('on');
       if (window.innerWidth < 760) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
@@ -201,7 +201,7 @@
   function majitel() {
     return el('section', 'rso', '<div class="rso-in"><img src="' + FOTO + '" alt="Michael Boháček, majitel Robotí Sekačky" loading="lazy" width="104" height="104">' +
       '<div class="rso-t"><p class="rso-h">Potřebujete poradit s výběrem?</p><p class="rso-p">Zavolejte mi nebo napište. Poradím vám podle vaší domácnosti, zahrady nebo bazénu.</p><p class="rso-n"><strong>Michael Boháček</strong> · majitel Robotisekacky.cz</p></div>' +
-      '<div class="rso-c"><a class="pri" href="tel:' + TEL + '">📞 ' + TELT + '</a><a class="sec" href="mailto:' + MAIL + '">✉️ ' + MAIL + '</a></div></div>');
+      '<div class="rso-c"><a class="pri" href="tel:' + TEL + '">' + TELT + '</a><a class="sec" href="mailto:' + MAIL + '">' + MAIL + '</a></div></div>');
   }
   // uvítací text (17. 10. 2026): dvousloupcová karta – vlevo mozaika fotek služeb (instalace sekačky – skutečná realizace, vysavač a bazén – fotky ze stránek služeb) (vysavač, sekačka, bazén),
   // vpravo text z adminu (Shoptet → úvodní text) beze změny; poslední odstavec „Nevíte si rady?“ → tlačítka telefon/e-mail
@@ -231,7 +231,7 @@
     var ps = t.querySelectorAll('p'), last = ps[ps.length - 1];
     if (last && /Nevíte si rady/i.test(last.textContent)) {
       last.className = 'rsw-c';
-      last.innerHTML = '<span>Nevíte si rady? Poradím vám osobně.</span><a class="pri" href="tel:' + TEL + '">📞 ' + TELT + '</a><a class="sec" href="mailto:' + MAIL + '">✉️ ' + MAIL + '</a>';
+      last.innerHTML = '<span>Nevíte si rady? Poradím vám osobně.</span><a class="pri" href="tel:' + TEL + '">' + TELT + '</a><a class="sec" href="mailto:' + MAIL + '">' + MAIL + '</a>';
     }
   }
   function build() {
