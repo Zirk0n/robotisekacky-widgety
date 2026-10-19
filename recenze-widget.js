@@ -29,9 +29,21 @@
     '.rsr__btn{display:inline-block;padding:11px 22px;border-radius:999px;border:2px solid var(--rs-g,#1b3f20);color:var(--rs-g,#1b3f20)!important;font-weight:700;text-decoration:none!important}' +
     '.rsr__btn:hover{background:var(--rs-soft2,#eef6e6)}' +
     '@media (max-width:991px){.rsr__wrap{padding:0 54px}.rsr__card{flex-basis:calc((100% - 16px)/2)}}' +
-    '@media (max-width:640px){.rsr__wrap{padding:0}.rsr__track{padding:8px 16px 22px;margin:0;scroll-padding:0 16px}.rsr__h{font-size:24px!important}.rsr__card{flex-basis:84%}.rsr__arrow{display:none}}';
+    '@media (max-width:640px){.rsr__wrap{padding:0}.rsr__track{padding:8px 16px 22px;margin:0;scroll-padding:0 16px}.rsr__h{font-size:24px!important}.rsr__card{flex-basis:84%}.rsr__arrow{display:none}}' +
+    /* stránka Hodnocení obchodu: stejný widget + karta majitele (dříve samostatný skript hodnoceni23.js) */
+    '.rsr-page{max-width:1180px;margin:0 auto 26px}.rsr-page .rsr{padding-top:6px}' +
+    '.rsr__owner{display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:center;max-width:1000px;margin:10px auto 0;padding:22px;background:#fff;border:1px solid var(--rs-line,#e6f0db);border-radius:22px;box-shadow:0 12px 28px rgba(27,63,32,.08)}' +
+    '.rsr__owner img{width:200px;aspect-ratio:3/4;object-fit:cover;object-position:center top;border-radius:16px;display:block}' +
+    '.rsr__owner h3{margin:0 0 8px!important;font-size:22px!important;font-weight:800;color:var(--rs-g,#1b3f20)}.rsr__owner p{margin:0 0 10px!important;color:#2b3328;font-size:15.5px;line-height:1.6}' +
+    '.rsr__badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}.rsr__badges span{padding:5px 12px;border-radius:999px;font-size:13px;font-weight:700}.rsr__b1{background:#dbeafe;color:#1d4ed8}.rsr__b2{background:#fef3c7;color:#92400e}' +
+    '.rsr__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}.rsr__cta a{display:inline-flex;align-items:center;padding:10px 18px;border-radius:999px;font-weight:800;text-decoration:none!important;border:1px solid var(--rs-line,#e6f0db);color:var(--rs-g,#1b3f20)!important;background:#fff}' +
+    '.rsr__cta a.pri{background:var(--rs-g,#1b3f20);border-color:var(--rs-g,#1b3f20);color:#fff!important}.rsr__cta a:hover{transform:translateY(-2px)}' +
+    '.rsr__all{text-align:center;margin:30px 0 4px}.rsr__all h2{margin:0!important;font-size:24px!important;font-weight:800;color:var(--rs-g,#1b3f20)}.rsr__all p{margin:4px 0 0!important;color:#5a6b56;font-size:14px}' +
+    '.vote-wrap.rs-hl{border-left:3px solid var(--rs-l,#86BB41)!important}.vote-wrap.rs-dim{opacity:.62}' +
+    '@media (max-width:640px){.rsr__owner{grid-template-columns:1fr;padding:16px}.rsr__owner img{width:100%;max-width:240px;margin:0 auto}}';
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  function render(box, d) {
+  function render(box, d, o) {
+    o = o || {};
     if (!d || !d.recenze || d.recenze.length < 3) return;
     box.setAttribute('data-rsr', '1');
     if (!document.getElementById('rsr-css')) { var st = document.createElement('style'); st.id = 'rsr-css'; st.textContent = CSS; document.head.appendChild(st); }
@@ -43,12 +55,12 @@
         '<div class="rsr__meta"><span class="rsr__ini" aria-hidden="true">' + esc(ini) + '</span><span><b>' + esc(r.jmeno) + '</b> · ' + esc(r.datum) + '</span></div></article>';
     }).join('');
     box.innerHTML = '<section class="rsr" aria-label="Hodnocení zákazníků">' +
-      '<div class="rsr__head"><h2 class="rsr__h">Co o nás píšou zákazníci</h2>' +
-      '<a class="rsr__score" href="/hodnoceni-obchodu/"><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/banners/logo-overeno--gold.svg?69c559fe" alt="Ověřeno zákazníky – Heureka" width="72" height="72"><span class="rsr__num">' + prumer + '</span><span class="rsr__meta2"><span class="rsr__big">★★★★★</span><span><b>' + esc(d.celkem) + ' ověřených hodnocení</b> · Ověřeno zákazníky Heureka</span></span></a></div>' +
+      '<div class="rsr__head"><h2 class="rsr__h">' + (o.title || 'Co o nás píšou zákazníci') + '</h2>' +
+      '<a class="rsr__score" href="' + (o.scoreHref || '/hodnoceni-obchodu/') + '"' + (o.scoreHref ? ' target="_blank" rel="noopener"' : '') + '><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/banners/logo-overeno--gold.svg?69c559fe" alt="Ověřeno zákazníky – Heureka" width="72" height="72"><span class="rsr__num">' + prumer + '</span><span class="rsr__meta2"><span class="rsr__big">★★★★★</span><span><b>' + esc(d.celkem) + ' ověřených hodnocení</b> · Ověřeno zákazníky Heureka</span></span></a></div>' +
       '<div class="rsr__wrap"><button class="rsr__arrow rsr__arrow--l" type="button" aria-label="Předchozí">❮</button>' +
       '<div class="rsr__track">' + cards + '</div>' +
       '<button class="rsr__arrow rsr__arrow--r" type="button" aria-label="Další">❯</button></div>' +
-      '<div class="rsr__foot"><a class="rsr__btn" href="/hodnoceni-obchodu/">Přečíst všechna hodnocení (' + esc(d.celkem) + ')</a></div></section>';
+      '<div class="rsr__foot"><a class="rsr__btn" href="' + (o.btnHref || '/hodnoceni-obchodu/') + '">' + (o.btnText || 'Přečíst všechna hodnocení') + ' (' + esc(d.celkem) + ')</a></div></section>' + (o.after || '');
     var tr = box.querySelector('.rsr__track');
     box.querySelector('.rsr__arrow--l').onclick = function () { tr.scrollBy({ left: -tr.clientWidth * 0.9 }); };
     box.querySelector('.rsr__arrow--r').onclick = function () { tr.scrollBy({ left: tr.clientWidth * 0.9 }); };
@@ -78,5 +90,47 @@
     }
     if (++tries < 75) setTimeout(wait, 200); // max ~15 s
   }
-  fetch(DATA, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { if (d && d.recenze && d.recenze.length >= 3) { data = d; wait(); } }).catch(function () {});
+
+  /* ---- stránka /hodnoceni-obchodu/: widget nad seznamem hodnocení, karta majitele, zvýraznění podrobných recenzí, schema ---- */
+  var OWNER_IMG = 'https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/michael%20boha%CC%81c%CC%8Cek%20-%20Heureka%20Ove%CC%8Cr%CC%8Ceno%20za%CC%81kazni%CC%81ky%20certifika%CC%81t.jpg';
+  function ownerCard(d) {
+    return '<div class="rsr__owner"><img src="' + OWNER_IMG + '" alt="Michael Boháček s certifikátem Heureka Ověřeno zákazníky" loading="lazy">' +
+      '<div><h3>Za hodnocením stojí konkrétní lidé</h3><div class="rsr__badges"><span class="rsr__b1">2024 – Ověřeno zákazníky, modrý odznak</span><span class="rsr__b2">2026 – zlatý odznak Heureka</span></div>' +
+      '<p>Hodnocení píšou zákazníci našeho obchodu a Heureky (Ověřeno zákazníky). Průměr <b>' + String(d.prumer || '5.0').replace('.', ',') + '</b> z <b>' + esc(d.celkem) + '</b> hodnocení si držíme tím, že radíme podle zahrady, robota vám nainstalujeme a jsme na telefonu i po nákupu.</p>' +
+      '<p><b>Michael Boháček</b>, majitel · <a href="tel:+420792325839">+420 792 325 839</a> · <a href="mailto:info@robotisekacky.cz">info@robotisekacky.cz</a></p>' +
+      '<div class="rsr__cta"><a class="pri" href="/kontakty/">Kontaktujte nás</a><a href="/instalace-sekacek/">Instalace sekaček</a><a href="/zprovozneni-robotickeho-vysavace/">Zprovoznění vysavače</a><a href="/reklamace-a-vraceni-zbozi/">Reklamace a servis</a></div></div></div>' +
+      '<div class="rsr__all"><h2>Všechna hodnocení zákazníků</h2><p>Hodnocení z našeho obchodu i z Heureky (Ověřeno zákazníky).</p></div>';
+  }
+  function page() {
+    var target = document.getElementById('ratingWrapper');
+    if (!target) return false;
+    if (document.querySelector('.rsr-page')) return true;
+    var box = document.createElement('div'); box.className = 'rsr-page';
+    target.parentNode.insertBefore(box, target);
+    render(box, data, { title: 'Vybrané recenze našich zákazníků', btnText: 'Zobrazit všechna hodnocení', btnHref: '#ratingWrapper', scoreHref: 'https://obchody.heureka.cz/robotisekacky-cz/recenze/', after: ownerCard(data) });
+    var b = box.querySelector('.rsr__btn'); if (b) b.addEventListener('click', function (e) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    return true;
+  }
+  function markVotes() {
+    [].forEach.call(document.querySelectorAll('.vote-wrap:not(.rs-hl):not(.rs-dim)'), function (it) {
+      var c = ((it.querySelector('.vote-content') || {}).textContent || '').trim();
+      if (c.length > 60) it.classList.add('rs-hl'); else if (c.length < 30) it.classList.add('rs-dim');
+    });
+  }
+  function schema() {
+    if (!data || document.getElementById('rsr-schema')) return;
+    var org = [].find.call(document.querySelectorAll('script[type="application/ld+json"]'), function (x) { try { return JSON.parse(x.textContent)['@type'] === 'Organization'; } catch (e) { return false; } });
+    var agg = { '@type': 'AggregateRating', ratingValue: String(data.prumer || '5.0'), reviewCount: String(data.celkem), bestRating: '5', worstRating: '1' };
+    if (org) { try { var o = JSON.parse(org.textContent); if (!o.aggregateRating) { o.aggregateRating = agg; org.textContent = JSON.stringify(o); } } catch (e) {} org.id = 'rsr-schema'; return; }
+    var ld = document.createElement('script'); ld.type = 'application/ld+json'; ld.id = 'rsr-schema';
+    ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'Robotí Sekačky', url: 'https://www.robotisekacky.cz', aggregateRating: agg });
+    document.head.appendChild(ld);
+  }
+  var ptries = 0;
+  function waitPage() {
+    if (page()) { schema(); markVotes(); new MutationObserver(markVotes).observe(document.getElementById('ratingWrapper').parentNode, { childList: true, subtree: true }); return; }
+    if (++ptries < 75) setTimeout(waitPage, 200);
+  }
+  var isPage = location.pathname.indexOf('/hodnoceni-obchodu') === 0;
+  fetch(DATA, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { if (d && d.recenze && d.recenze.length >= 3) { data = d; if (isPage) waitPage(); wait(); } }).catch(function () {});
 })();
