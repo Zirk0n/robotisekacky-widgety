@@ -10,6 +10,7 @@
   if (!document.body || !document.body.classList.contains('in-index') || window.__rsHome2) return;
   window.__rsHome2 = 1;
   var U = 'https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/';
+  var H = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/img/hp/';
   var TEL = '+420792325839', TELT = '792 325 839', MAIL = 'info@robotisekacky.cz';
   /* Výběr podle situace – 3 záložky. Odkazy vedou rovnou do vyfiltrované kategorie (pv<id parametru>=<id hodnot>).
      ID parametrů a hodnot: playbook bannery-a-homepage.md, sekce „Výběr podle situace“. Při změně hodnot filtrů ověřit. */
@@ -40,24 +41,24 @@
     ] }
   };
   var SVC = [
-    [U + 'Instalace%20-%20widget/IMG_5724.jpg', 'Instalace robotické sekačky', 'Projedeme s robotem zahradu, nastavíme hranice, zakázané zóny i plán sekání a všechno vysvětlíme. Po celé ČR.', 'od 7 999 Kč', '/instalace-sekacek/'],
-    [U + 'Instalace%20-%20widget/Robotick%C3%A9%20vysava%C4%8De/574383985_10161740614830318_6422739092694342679_n%20ve%20st%C5%99edn%C3%AD%20velikosti.jpg', 'Zprovoznění vysavače doma', 'Připojíme robota k Wi-Fi, vytvoříme mapu a plán úklidu a v klidu vás zaučíme. Praha a Středočeský kraj bez příplatku.', 'od 3 490 Kč', '/zprovozneni-robotickeho-vysavace/'],
-    [U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/predvedeni-aiper-scuba-v3-u-vas-doma.jpg', 'Předvedení na vašem bazénu', 'Vybrané bazénové vysavače vyzkoušíte přímo ve svém bazénu ještě před nákupem. Bez závazku ke koupi.', 'od 3 490 Kč', '/predvedeni-bazenovych-vysavacu/'],
-    [U + 'Instalace%20-%20widget/IMG_7219.jpg', 'Zimní a předsezónní servis', 'Vyčistíme a zkontrolujeme robota před zimou nebo před sezónou, aby na jaře rovnou vyjel.', '2 500 Kč', '/zimni-servis-a-cisteni-robota/']
+    [H + 'img-5724.webp', 'Instalace robotické sekačky', 'Projedeme s robotem zahradu, nastavíme hranice, zakázané zóny i plán sekání a všechno vysvětlíme. Po celé ČR.', 'od 7 999 Kč', '/instalace-sekacek/'],
+    [H + '574383985-10161740614830318-642273909269.webp', 'Zprovoznění vysavače doma', 'Připojíme robota k Wi-Fi, vytvoříme mapu a plán úklidu a v klidu vás zaučíme. Praha a Středočeský kraj bez příplatku.', 'od 3 490 Kč', '/zprovozneni-robotickeho-vysavace/'],
+    [H + 'predvedeni-aiper-scuba-v3-u-vas-doma.webp', 'Předvedení na vašem bazénu', 'Vybrané bazénové vysavače vyzkoušíte přímo ve svém bazénu ještě před nákupem. Bez závazku ke koupi.', 'od 3 490 Kč', '/predvedeni-bazenovych-vysavacu/'],
+    [H + 'img-7219.webp', 'Zimní a předsezónní servis', 'Vyčistíme a zkontrolujeme robota před zimou nebo před sezónou, aby na jaře rovnou vyjel.', '2 500 Kč', '/zimni-servis-a-cisteni-robota/']
   ];
   // realizace: 3 starší značky (Gardena drát, Husqvarna drát, AMA) nahrazeny letošními fotkami z Fotek (18. 10. 2026, bez EXIF)
   var J = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/img/realizace/';
   var REAL = [
-    [U + 'Instalace%20-%20widget/IMG_5724.jpg', 'Mammotion LUBA 2', 'Kladno'],
-    [J + 'realizace-2026-luba-01.jpg', 'Mammotion LUBA', 'instalace 2026'],
-    [U + 'Instalace%20-%20widget/Robotick%C3%A9%20vysava%C4%8De/Dreame%20roller%20ve%20st%C5%99edn%C3%AD%20velikosti.jpg', 'Dreame – zprovoznění', 'u zákazníka doma'],
-    [U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/Aiper-Scuba-S1%20Teplice.jpg', 'Aiper Scuba S1', 'Teplice'],
-    [J + 'realizace-2026-luba-mini-05.jpg', 'Mammotion LUBA mini', 'instalace 2026'],
-    [U + 'Instalace%20-%20widget/Robotick%C3%A9%20vysava%C4%8De/ecovacs%20ve%20st%C5%99edn%C3%AD%20velikosti.jpg', 'Ecovacs – zprovoznění', 'u zákazníka doma'],
-    [U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/Spino%20E1%20Praha%20ve%20st%C5%99edn%C3%AD%20velikosti.jpg', 'Mammotion Spino E1', 'Praha'],
-    [J + 'realizace-2026-luba-04.jpg', 'Mammotion LUBA', 'instalace 2026']
+    [H + 'img-5724.webp', 'Mammotion LUBA 2', 'Kladno'],
+    [J + 'realizace-2026-luba-01.webp', 'Mammotion LUBA', 'instalace 2026'],
+    [H + 'dreame-roller.webp', 'Dreame – zprovoznění', 'u zákazníka doma'],
+    [H + 'aiper-scuba-s1-teplice.webp', 'Aiper Scuba S1', 'Teplice'],
+    [J + 'realizace-2026-luba-mini-05.webp', 'Mammotion LUBA mini', 'instalace 2026'],
+    [H + 'ecovacs.webp', 'Ecovacs – zprovoznění', 'u zákazníka doma'],
+    [H + 'spino-e1-praha.webp', 'Mammotion Spino E1', 'Praha'],
+    [J + 'realizace-2026-luba-04.webp', 'Mammotion LUBA', 'instalace 2026']
   ];
-  var FOTO = U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/michael-bohacek-profil-2026.jpg';
+  var FOTO = H + 'michael-bohacek-profil-2026.webp';
   var CSS = '' +
     '.rsh{max-width:1180px;margin:0 auto;padding:30px 16px;font-family:inherit}' +
     '.rsh h2{margin:0 0 6px!important;text-align:center;font-size:30px!important;line-height:1.2;font-weight:800;color:var(--rs-g,#1b3f20)}' +
@@ -172,10 +173,10 @@
   /* sezónní blok: sekačky a bazény i mimo sezónu (dárek, příprava na jaro) */
   function sezona() {
     return el('section', 'rsh rsz', '<h2>Myslíte už na jaro?</h2><p class="rsh-sub">Robotickou sekačku nebo bazénový vysavač vyberete v klidu teď – a na jaře je rovnou spustíme.</p><div class="rsz-g">' +
-      '<div class="rsz-c"><img src="' + U + 'Instalace%20-%20widget/IMG_5724.jpg" alt="Instalace robotické sekačky Mammotion LUBA 2" loading="lazy"><div class="rsz-b"><span class="rsz-tag">Tip na Vánoce</span><b>Robotická sekačka pod stromeček</b>' +
+      '<div class="rsz-c"><img src="' + H + 'img-5724.webp" alt="Instalace robotické sekačky Mammotion LUBA 2" loading="lazy"><div class="rsz-b"><span class="rsz-tag">Tip na Vánoce</span><b>Robotická sekačka pod stromeček</b>' +
       '<p>Vyberte sekačku teď a instalaci domluvíme na jaro, až začne sezóna. Projedeme zahradu, nastavíme zóny a všechno vysvětlíme.</p>' +
       '<div class="rsh-cta"><a class="pri" href="/roboticke-bezdratove-sekacky/">Bezdrátové sekačky →</a><a class="sec" href="/darkove-poukazy/">Dárkový poukaz</a><a class="sec" href="/instalace-sekacek/">Instalace</a></div></div></div>' +
-      '<div class="rsz-c"><img src="' + U + 'Instalace%20-%20widget/baz%C3%A9nov%C3%A9%20vysava%C4%8De/Aiper-Scuba-S1%20Teplice.jpg" alt="Bazénový vysavač Aiper Scuba S1 u zákazníka" loading="lazy"><div class="rsz-b"><span class="rsz-tag">Příprava na sezónu</span><b>Bazénový vysavač na příští léto</b>' +
+      '<div class="rsz-c"><img src="' + H + 'aiper-scuba-s1-teplice.webp" alt="Bazénový vysavač Aiper Scuba S1 u zákazníka" loading="lazy"><div class="rsz-b"><span class="rsz-tag">Příprava na sezónu</span><b>Bazénový vysavač na příští léto</b>' +
       '<p>Poradíme podle tvaru a povrchu bazénu. Vybrané modely vám předvedeme přímo ve vašem bazénu ještě před nákupem.</p>' +
       '<div class="rsh-cta"><a class="pri" href="/bazenove-vysavace/">Bazénové vysavače →</a><a class="sec" href="/predvedeni-bazenovych-vysavacu/">Předvedení u vás</a></div></div></div>' +
       '</div>');
@@ -187,8 +188,8 @@
   // realizace jako pohyblivý pás (Michael 18. 10. 2026: rozmanité fotky z různých let, pak případně vyměníme)
   // MIX = fotky z knihovny Fotky 2023–2025 (bez EXIF), rok podle data pořízení
   var MIXY = ['2024', '2024', '2023', '2023', '2025', '2025', '2025', '2025', '2025', '2023', '2023', '2023', '2025', '2024', '2024', '2024'];
-  var MIX = MIXY.map(function (y, i) { return [J + 'realizace-mix-' + (i < 9 ? '0' : '') + (i + 1) + '.jpg', 'Instalace sekačky', y]; })
-    .concat([[J + 'realizace-2026-luba-02.jpg', 'Mammotion LUBA', '2026'], [J + 'realizace-2026-luba-mini-03.jpg', 'Mammotion LUBA mini', '2026'], [J + 'realizace-2026-luba-06.jpg', 'Mammotion LUBA', '2026']]);
+  var MIX = MIXY.map(function (y, i) { return [J + 'realizace-mix-' + (i < 9 ? '0' : '') + (i + 1) + '.webp', 'Instalace sekačky', y]; })
+    .concat([[J + 'realizace-2026-luba-02.webp', 'Mammotion LUBA', '2026'], [J + 'realizace-2026-luba-mini-03.webp', 'Mammotion LUBA mini', '2026'], [J + 'realizace-2026-luba-06.webp', 'Mammotion LUBA', '2026']]);
   function realizace() {
     var all = [], a = REAL.slice(), b = MIX.slice();
     while (a.length || b.length) { if (a.length) all.push(a.shift()); if (b.length) all.push(b.shift()); if (b.length) all.push(b.shift()); }
