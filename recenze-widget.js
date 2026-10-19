@@ -30,17 +30,37 @@
     '.rsr__btn:hover{background:var(--rs-soft2,#eef6e6)}' +
     '@media (max-width:991px){.rsr__wrap{padding:0 54px}.rsr__card{flex-basis:calc((100% - 16px)/2)}}' +
     '@media (max-width:640px){.rsr__wrap{padding:0}.rsr__track{padding:8px 16px 22px;margin:0;scroll-padding:0 16px}.rsr__h{font-size:24px!important}.rsr__card{flex-basis:84%}.rsr__arrow{display:none}}' +
-    /* stránka Hodnocení obchodu: stejný widget + karta majitele (dříve samostatný skript hodnoceni23.js) */
-    '.rsr-page{max-width:1180px;margin:0 auto 26px}.rsr-page .rsr{padding-top:6px}' +
-    '.rsr__owner{display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:center;max-width:1000px;margin:10px auto 0;padding:22px;background:#fff;border:1px solid var(--rs-line,#e6f0db);border-radius:22px;box-shadow:0 12px 28px rgba(27,63,32,.08)}' +
-    '.rsr__owner img{width:200px;aspect-ratio:3/4;object-fit:cover;object-position:center top;border-radius:16px;display:block}' +
-    '.rsr__owner h3{margin:0 0 8px!important;font-size:22px!important;font-weight:800;color:var(--rs-g,#1b3f20)}.rsr__owner p{margin:0 0 10px!important;color:#2b3328;font-size:15.5px;line-height:1.6}' +
-    '.rsr__badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}.rsr__badges span{padding:5px 12px;border-radius:999px;font-size:13px;font-weight:700}.rsr__b1{background:#dbeafe;color:#1d4ed8}.rsr__b2{background:#fef3c7;color:#92400e}' +
-    '.rsr__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}.rsr__cta a{display:inline-flex;align-items:center;padding:10px 18px;border-radius:999px;font-weight:800;text-decoration:none!important;border:1px solid var(--rs-line,#e6f0db);color:var(--rs-g,#1b3f20)!important;background:#fff}' +
+    /* stránka Hodnocení obchodu: statistiky, dlaždice, karta majitele, CTA + nativní seznam hodnocení v našem vzhledu */
+    '.rsr-page{max-width:1180px;margin:0 auto 26px}.rsr-page .rsr{padding-top:10px}.rsr-page>*+*{margin-top:22px}' +
+    '.rsr__stats,.rsr__owner,.rsr__ctap,.rsr__tile,.rs-hodn .rate-wrap,.rs-hodn #rate-form{background:#fff;border:1px solid var(--rs-line,#e6f0db);border-radius:20px;box-shadow:0 10px 24px rgba(27,63,32,.07)}' +
+    '.rsr__stats{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:22px 34px;padding:22px 28px}.rsr__hk img{width:110px;height:110px;display:block}' +
+    '.rsr__badges{display:flex;flex-direction:column;gap:7px;align-items:flex-start}.rsr__badges small,.rsr__tile small,.rsr__kick{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6f8a5f}' +
+    '.rsr__badges span{padding:5px 12px;border-radius:999px;font-size:13px;font-weight:700}.rsr__b1{background:#dbeafe;color:#1d4ed8}.rsr__b2{background:#fef3c7;color:#92400e}' +
+    '.rsr__st{text-align:center;padding-left:28px;border-left:1px solid var(--rs-line,#e6f0db)}.rsr__st b{display:block;font-size:36px;line-height:1;font-weight:800;color:var(--rs-g,#1b3f20)}.rsr__st span{font-size:13px;color:#5a6b56}' +
+    '.rsr__badge{align-self:flex-start;padding:3px 10px;border-radius:999px;background:var(--rs-soft2,#eef6e6);color:var(--rs-g,#1b3f20);font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}' +
+    '.rsr__tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.rsr__tile{padding:20px;display:flex;flex-direction:column;gap:6px}' +
+    '.rsr__ic{width:44px;height:44px;border-radius:14px;background:var(--rs-soft2,#eef6e6);display:grid;place-items:center;margin-bottom:4px}.rsr__ic svg{width:24px;height:24px;fill:none;stroke:var(--rs-g,#1b3f20);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}' +
+    '.rsr__tile h3{margin:0!important;font-size:18px!important;font-weight:800;color:var(--rs-g,#1b3f20)}.rsr__tile p{margin:0!important;font-size:14.5px;line-height:1.55;color:#2b3328;flex:1}.rsr__tile a{font-weight:800;color:var(--rs-g,#1b3f20)!important;text-decoration:none!important;font-size:14px}' +
+    '.rsr__owner{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:center;padding:22px}.rsr__owner img{width:220px;aspect-ratio:3/4;object-fit:cover;object-position:center top;border-radius:16px;display:block}' +
+    '.rsr__owner h3{margin:2px 0 10px!important;font-size:24px!important;font-weight:800;color:var(--rs-g,#1b3f20)}.rsr__owner p{margin:0 0 12px!important;color:#2b3328;font-size:15.5px;line-height:1.6}' +
+    '.rsr__ostats{display:flex;flex-wrap:wrap;gap:12px;margin:4px 0 14px}.rsr__ostats span{padding:10px 16px;border-radius:14px;background:var(--rs-soft,#f2f7ec);font-size:12.5px;color:#5a6b56}.rsr__ostats b{display:block;font-size:22px;color:var(--rs-g,#1b3f20)}' +
+    '.rsr__contact a{color:var(--rs-g,#1b3f20)!important;font-weight:800}' +
+    '.rsr__ctap{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:20px 24px}.rsr__ctap h3{margin:0!important;font-size:19px!important;font-weight:800;color:var(--rs-g,#1b3f20)}.rsr__ctap p{margin:4px 0 0!important;color:#5a6b56;font-size:14.5px}' +
+    '.rsr__cta{display:flex;flex-wrap:wrap;gap:10px}.rsr__cta a{display:inline-flex;align-items:center;padding:10px 18px;border-radius:999px;font-weight:800;text-decoration:none!important;border:1px solid var(--rs-line,#e6f0db);color:var(--rs-g,#1b3f20)!important;background:#fff;transition:transform .15s}' +
     '.rsr__cta a.pri{background:var(--rs-g,#1b3f20);border-color:var(--rs-g,#1b3f20);color:#fff!important}.rsr__cta a:hover{transform:translateY(-2px)}' +
-    '.rsr__all{text-align:center;margin:30px 0 4px}.rsr__all h2{margin:0!important;font-size:24px!important;font-weight:800;color:var(--rs-g,#1b3f20)}.rsr__all p{margin:4px 0 0!important;color:#5a6b56;font-size:14px}' +
-    '.vote-wrap.rs-hl{border-left:3px solid var(--rs-l,#86BB41)!important}.vote-wrap.rs-dim{opacity:.62}' +
-    '@media (max-width:640px){.rsr__owner{grid-template-columns:1fr;padding:16px}.rsr__owner img{width:100%;max-width:240px;margin:0 auto}}';
+    '.rsr__all{text-align:center;margin:34px 0 8px!important}.rsr__all h2{margin:0!important;font-size:26px!important;font-weight:800;color:var(--rs-g,#1b3f20)}.rsr__all p{margin:4px 0 0!important;color:#5a6b56;font-size:14px}' +
+    /* nativní souhrn, formulář a výpis hodnocení */
+    '.rs-hodn .rate-wrap{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:24px;align-items:center;padding:22px 26px!important;margin:0 0 16px!important}' +
+    '.rs-hodn .rate-average{color:var(--rs-g,#1b3f20)!important;font-weight:800!important;font-size:56px!important;line-height:1}.rs-hodn .stars-label{color:#5a6b56!important;font-size:14px}.rs-hodn .star-on::before,.rs-hodn .rate-star-wrap .star::before,.rs-hodn .vote-wrap .star-on::before{color:#f5b301!important}' +
+    '.rs-hodn .rate-list{align-items:center}.rs-hodn .rate-value{color:var(--rs-g,#1b3f20);font-weight:700}.rs-hodn .rate-count{color:#5a6b56!important;font-weight:700}.rs-hodn .rate-bar::before{background:#eef3ea!important;border-radius:999px}.rs-hodn .rate-bar::after{background:var(--rs-l,#86BB41)!important;border-radius:999px}' +
+    '.rs-hodn .add-comment{text-align:center;margin:0 0 18px}.rs-hodn .add-comment .btn{background:#fff!important;border:2px solid var(--rs-g,#1b3f20)!important;color:var(--rs-g,#1b3f20)!important;border-radius:999px!important;text-transform:none!important;letter-spacing:0!important;font-weight:800!important;font-size:15px!important;padding:10px 22px!important;height:auto!important}' +
+    '.rs-hodn .add-comment .btn:hover{background:var(--rs-soft2,#eef6e6)!important}.rs-hodn #rate-form{padding:22px!important;margin-bottom:18px}.rs-hodn #rate-form h3{color:var(--rs-g,#1b3f20)!important;font-weight:800}' +
+    '.rs-hodn .votes-wrap{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.rs-hodn .vote-wrap{background:#fff!important;border:1px solid var(--rs-line,#e6f0db)!important;border-radius:18px!important;box-shadow:0 8px 20px rgba(27,63,32,.06)!important;padding:16px 18px!important;margin:0!important;width:auto!important}' +
+    '.rs-hodn .vote-wrap.rs-hl{border-left:4px solid var(--rs-l,#86BB41)!important}.rs-hodn .vote-wrap.rs-dim{opacity:.75}.rs-hodn .vote-name{color:var(--rs-g,#1b3f20)!important;font-weight:800!important;font-size:16px!important}' +
+    '.rs-hodn .vote-initials{background:var(--rs-soft2,#eef6e6)!important;color:var(--rs-g,#1b3f20)!important;font-weight:800}.rs-hodn .vote-content{color:#2b3328!important;font-size:14.5px!important;line-height:1.55}.rs-hodn .vote-time,.rs-hodn .vote-delimeter{color:#7a8a72!important}' +
+    '.rs-hodn .listingControls .pagination__currentPage{background:var(--rs-g,#1b3f20)!important;color:#fff!important;border-radius:999px!important}.rs-hodn .listingControls .btn,.rs-hodn .listingControls .pagination__link{border-radius:999px!important;border:1px solid var(--rs-line,#e6f0db)!important;background:#fff!important;color:var(--rs-g,#1b3f20)!important;text-transform:none!important}' +
+    '@media (max-width:991px){.rsr__tiles{grid-template-columns:1fr 1fr}.rs-hodn .votes-wrap{grid-template-columns:1fr 1fr}.rs-hodn .rate-wrap{grid-template-columns:1fr}}' +
+    '@media (max-width:640px){.rsr__tiles,.rs-hodn .votes-wrap{grid-template-columns:1fr}.rsr__st{border-left:0;padding-left:0}.rsr__stats{gap:16px 22px;padding:18px}.rsr__owner{grid-template-columns:1fr;padding:16px}.rsr__owner img{width:100%;max-width:240px;margin:0 auto}}';
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function render(box, d, o) {
     o = o || {};
@@ -50,17 +70,18 @@
     var prumer = String(d.prumer || '5.0').replace('.', ',');
     var cards = d.recenze.map(function (r) {
       var ini = r.jmeno.split(' ').map(function (p) { return p[0]; }).join('').slice(0, 2).toUpperCase();
-      return '<article class="rsr__card"><span class="rsr__stars" aria-label="5 z 5 hvězdiček">★★★★★</span>' +
+      return '<article class="rsr__card">' + (o.badge ? '<span class="rsr__badge">Doporučená recenze</span>' : '') + '<span class="rsr__stars" aria-label="5 z 5 hvězdiček">★★★★★</span>' +
         '<p class="rsr__q">' + esc(r.text) + '</p>' +
         '<div class="rsr__meta"><span class="rsr__ini" aria-hidden="true">' + esc(ini) + '</span><span><b>' + esc(r.jmeno) + '</b> · ' + esc(r.datum) + '</span></div></article>';
     }).join('');
     box.innerHTML = '<section class="rsr" aria-label="Hodnocení zákazníků">' +
       '<div class="rsr__head"><h2 class="rsr__h">' + (o.title || 'Co o nás píšou zákazníci') + '</h2>' +
-      '<a class="rsr__score" href="' + (o.scoreHref || '/hodnoceni-obchodu/') + '"' + (o.scoreHref ? ' target="_blank" rel="noopener"' : '') + '><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/banners/logo-overeno--gold.svg?69c559fe" alt="Ověřeno zákazníky – Heureka" width="72" height="72"><span class="rsr__num">' + prumer + '</span><span class="rsr__meta2"><span class="rsr__big">★★★★★</span><span><b>' + esc(d.celkem) + ' ověřených hodnocení</b> · Ověřeno zákazníky Heureka</span></span></a></div>' +
+      (o.noScore ? '' : '<a class="rsr__score" href="' + (o.scoreHref || '/hodnoceni-obchodu/') + '"' + (o.scoreHref ? ' target="_blank" rel="noopener"' : '') + '><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/banners/logo-overeno--gold.svg?69c559fe" alt="Ověřeno zákazníky – Heureka" width="72" height="72"><span class="rsr__num">' + prumer + '</span><span class="rsr__meta2"><span class="rsr__big">★★★★★</span><span><b>' + esc(d.celkem) + ' ověřených hodnocení</b> · Ověřeno zákazníky Heureka</span></span></a>') + '</div>' +
       '<div class="rsr__wrap"><button class="rsr__arrow rsr__arrow--l" type="button" aria-label="Předchozí">❮</button>' +
       '<div class="rsr__track">' + cards + '</div>' +
       '<button class="rsr__arrow rsr__arrow--r" type="button" aria-label="Další">❯</button></div>' +
       '<div class="rsr__foot"><a class="rsr__btn" href="' + (o.btnHref || '/hodnoceni-obchodu/') + '">' + (o.btnText || 'Přečíst všechna hodnocení') + ' (' + esc(d.celkem) + ')</a></div></section>' + (o.after || '');
+    if (o.before) box.insertAdjacentHTML('afterbegin', o.before);
     var tr = box.querySelector('.rsr__track');
     box.querySelector('.rsr__arrow--l').onclick = function () { tr.scrollBy({ left: -tr.clientWidth * 0.9 }); };
     box.querySelector('.rsr__arrow--r').onclick = function () { tr.scrollBy({ left: tr.clientWidth * 0.9 }); };
@@ -93,13 +114,37 @@
 
   /* ---- stránka /hodnoceni-obchodu/: widget nad seznamem hodnocení, karta majitele, zvýraznění podrobných recenzí, schema ---- */
   var OWNER_IMG = 'https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/michael%20boha%CC%81c%CC%8Cek%20-%20Heureka%20Ove%CC%8Cr%CC%8Ceno%20za%CC%81kazni%CC%81ky%20certifika%CC%81t.jpg';
+  var IC = {
+    shield: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.4-7 10-4-1.6-7-5.5-7-10V6l7-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>',
+    tool: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4 2.5-2.5z"/></svg>',
+    phone: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l2.6 3-1.6 2.2a12 12 0 0 0 7.7 7.7l2.2-1.6 3 2.6-1.4 2.9C11 21 3 13 3.6 4.9z"/></svg>',
+    star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.8z"/></svg>'
+  };
+  function num(d) { return String(d.prumer || '5.0').replace('.', ','); }
+  function statsBar(d) {
+    return '<div class="rsr__stats"><a class="rsr__hk" href="https://obchody.heureka.cz/robotisekacky-cz/recenze/" target="_blank" rel="noopener"><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/banners/logo-overeno--gold.svg?69c559fe" alt="Heureka – Ověřeno zákazníky" width="110" height="110"></a>' +
+      '<div class="rsr__badges"><small>Ocenění Heureka</small><span class="rsr__b1">2024 – modrý odznak Ověřeno zákazníky</span><span class="rsr__b2">2026 – zlatý odznak</span></div>' +
+      '<div class="rsr__st"><b>' + num(d) + '</b><span>průměr</span></div><div class="rsr__st"><b>' + esc(d.celkem) + '</b><span>hodnocení</span></div><div class="rsr__st"><b>2020</b><span>roboty prodáváme od</span></div></div>';
+  }
+  function tiles(d) {
+    var t = [
+      ['star', 'Důvěra zákazníků', 'Ověřeno zákazníky', 'Certifikát Heureka máme od roku 2024, v roce 2026 jsme získali zlatý odznak. Průměr ' + num(d) + ' z ' + esc(d.celkem) + ' hodnocení.', 'https://obchody.heureka.cz/robotisekacky-cz/recenze/', 'Recenze na Heurece'],
+      ['tool', 'Servis na klíč', 'Instalace po celé ČR', 'Pomůžeme vybrat robota, projedeme zahradu, nastavíme hranice, zóny i aplikaci a ukážeme vám obsluhu.', '/instalace-sekacek/', 'Jak probíhá instalace'],
+      ['phone', 'Přímý kontakt', 'Voláte přímo majiteli', 'Žádné call centrum. Telefon zvedá Michael, který roboty sám instaluje a servisuje.', 'tel:+420792325839', '+420 792 325 839'],
+      ['shield', 'Nákup bez rizika', 'Servis a záruky', 'Reklamaci i servis řešíme osobně a rychle. Ozvěte se klidně i po skončení záruky.', '/reklamace-a-vraceni-zbozi/', 'Reklamace a vrácení']
+    ];
+    return '<div class="rsr__tiles">' + t.map(function (x) { return '<div class="rsr__tile"><span class="rsr__ic">' + IC[x[0]] + '</span><small>' + x[1] + '</small><h3>' + x[2] + '</h3><p>' + x[3] + '</p><a href="' + x[4] + '"' + (/^https/.test(x[4]) ? ' target="_blank" rel="noopener"' : '') + '>' + x[5] + ' →</a></div>'; }).join('') + '</div>';
+  }
   function ownerCard(d) {
-    return '<div class="rsr__owner"><img src="' + OWNER_IMG + '" alt="Michael Boháček s certifikátem Heureka Ověřeno zákazníky" loading="lazy">' +
-      '<div><h3>Za hodnocením stojí konkrétní lidé</h3><div class="rsr__badges"><span class="rsr__b1">2024 – Ověřeno zákazníky, modrý odznak</span><span class="rsr__b2">2026 – zlatý odznak Heureka</span></div>' +
-      '<p>Hodnocení píšou zákazníci našeho obchodu a Heureky (Ověřeno zákazníky). Průměr <b>' + String(d.prumer || '5.0').replace('.', ',') + '</b> z <b>' + esc(d.celkem) + '</b> hodnocení si držíme tím, že radíme podle zahrady, robota vám nainstalujeme a jsme na telefonu i po nákupu.</p>' +
-      '<p><b>Michael Boháček</b>, majitel · <a href="tel:+420792325839">+420 792 325 839</a> · <a href="mailto:info@robotisekacky.cz">info@robotisekacky.cz</a></p>' +
-      '<div class="rsr__cta"><a class="pri" href="/kontakty/">Kontaktujte nás</a><a href="/instalace-sekacek/">Instalace sekaček</a><a href="/zprovozneni-robotickeho-vysavace/">Zprovoznění vysavače</a><a href="/reklamace-a-vraceni-zbozi/">Reklamace a servis</a></div></div></div>' +
-      '<div class="rsr__all"><h2>Všechna hodnocení zákazníků</h2><p>Hodnocení z našeho obchodu i z Heureky (Ověřeno zákazníky).</p></div>';
+    return tiles(d) +
+      '<div class="rsr__owner"><img src="' + OWNER_IMG + '" alt="Michael Boháček s certifikátem Heureka Ověřeno zákazníky" loading="lazy">' +
+      '<div><small class="rsr__kick">Zakladatel a majitel</small><h3>Michael Boháček</h3>' +
+      '<p>V roce 2024 jsme získali certifikát Heureka <b>Ověřeno zákazníky</b>, který dostávají obchody s dlouhodobě dobrou péčí o zákazníky. Od té doby držíme průměr <b>' + num(d) + '</b> ze všech hodnocení a v roce 2026 nám Heureka udělila <b>zlatý odznak</b>.</p>' +
+      '<div class="rsr__ostats"><span><b>2020</b>roboty prodáváme od</span><span><b>' + num(d) + '</b>průměrné hodnocení</span><span><b>' + esc(d.celkem) + '</b>hodnocení</span></div>' +
+      '<p class="rsr__contact">Volejte přímo mně: <a href="tel:+420792325839">+420 792 325 839</a> · <a href="mailto:info@robotisekacky.cz">info@robotisekacky.cz</a></p></div></div>' +
+      '<div class="rsr__ctap"><div><h3>Máte otázku nebo potřebujete poradit?</h3><p>Jsme tu pro vás před nákupem i po něm.</p></div>' +
+      '<div class="rsr__cta"><a class="pri" href="/kontakty/">Kontaktujte nás</a><a href="/reklamace-a-vraceni-zbozi/">Reklamace a servis</a><a href="/instalace-sekacek/">Instalace sekaček</a><a href="/zprovozneni-robotickeho-vysavace/">Zprovoznění vysavače</a></div></div>' +
+      '<div class="rsr__all"><h2>Všechna hodnocení zákazníků</h2><p>Hodnocení z našeho obchodu i z Heureky (Ověřeno zákazníky). Celkem ' + esc(d.celkem) + ' hodnocení.</p></div>';
   }
   function page() {
     var target = document.getElementById('ratingWrapper');
@@ -107,7 +152,8 @@
     if (document.querySelector('.rsr-page')) return true;
     var box = document.createElement('div'); box.className = 'rsr-page';
     target.parentNode.insertBefore(box, target);
-    render(box, data, { title: 'Vybrané recenze našich zákazníků', btnText: 'Zobrazit všechna hodnocení', btnHref: '#ratingWrapper', scoreHref: 'https://obchody.heureka.cz/robotisekacky-cz/recenze/', after: ownerCard(data) });
+    document.body.classList.add('rs-hodn');
+    render(box, data, { title: 'Co říkají zákazníci vlastními slovy', btnText: 'Zobrazit všechna hodnocení', btnHref: '#ratingWrapper', noScore: true, badge: true, before: statsBar(data), after: ownerCard(data) });
     var b = box.querySelector('.rsr__btn'); if (b) b.addEventListener('click', function (e) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
     return true;
   }
