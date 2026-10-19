@@ -140,6 +140,9 @@
     '.free-product-gifts-wrapper .free-product-gifts>li,.free-product-gifts>li{position:relative;border:2px solid #f2c94c!important;border-radius:16px!important;background:linear-gradient(135deg,#fffaf0,#fff3d6)!important;padding:14px 16px 14px 16px!important;box-shadow:0 10px 24px rgba(242,201,76,.25)}' +
     '.free-product-gifts>li::before{content:"🎁 Dárek zdarma k vaší objednávce";display:block;font-weight:800;color:#8a5a00;font-size:14px;margin:0 0 6px}' +
     '.free-gift-name{font-weight:700;color:#3d3a2a}' +
+    /* rekapitulace objednávky: řádek dárku jako zlatá karta, text tlačítka Pokračovat bez verzálek */
+    '.order-summary-item.gift-items{border:2px solid #f2c94c!important;border-radius:16px!important;background:linear-gradient(135deg,#fffaf0,#fff3d6)!important;padding:12px 16px!important;margin:8px 0!important}.order-summary-item.gift-items strong{display:block;color:#8a5a00;font-weight:800}.order-summary-item.gift-items strong::before{content:"🎁 "}.order-summary-item.gift-items [data-testid=recapItemName]{color:#3d3a2a;font-weight:600}' +
+    '.next-step-forward .order-button-text,.btn-conversion .order-button-text{text-transform:none!important;letter-spacing:0!important}' +
     '.ordering-process .next-step-finish,.ordering-process .btn-conversion{background:' + G + '!important;border:0!important;border-radius:var(--rs-pill)!important;color:#fff!important}' +
     '.co-box h4,.co-box .h4,.ordering-process .co-box label,.ordering-process .co-box label *,.ordering-process .radio-wrapper *{text-transform:none!important;letter-spacing:0!important}' +
     '.type-detail .p-code,.type-detail .p-detail-info .p-code{font-size:11px!important;color:#a3ab9f!important;font-weight:400!important}.type-detail .p-code span{font-weight:400!important}' +
@@ -757,6 +760,9 @@
       if (!sec.querySelector(':scope>h4') && sec.querySelector('form[action*="StockFilter"]')) {
         var h = document.createElement('h4'); h.innerHTML = '<span>Dostupnost</span>'; sec.insertBefore(h, sec.firstChild);
       }
+      /* Navigace u vysavačů: hodnoty senzorů (gyroskop, enkodér…) nejsou typ navigace – nezobrazovat, typ navigace zůstává (LiDAR, kamera, vSLAM) */
+      var ht = ((sec.querySelector(':scope>h4') || {}).textContent || '').trim();
+      if (/^Navigace\b/.test(ht)) [].forEach.call(sec.querySelectorAll('label.filter-label'), function (l) { if (/Fix-Distances|Gyroskop|E-compass|Encoder|proti pádu/i.test(l.textContent) && l.parentNode) l.parentNode.style.display = 'none'; });
       if (sec.classList.contains('rs-has-range') || sec.classList.contains('has-parametric-slider') || sec.querySelector(':scope>.more-filters')) return;
       var form = sec.querySelector(':scope>form'); if (!form) return;
       var n = form.querySelectorAll('input[type=checkbox]').length;
@@ -811,7 +817,18 @@
     });
   }
 
-  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  /* strukturovaná data FAQPage z bloků „Časté otázky“ na našich stránkách (.rs-pg-faq details) */
+  function faqSchema() {
+    var items = document.querySelectorAll('.rs-pg-faq details'); if (!items.length || document.getElementById('rs-faq-ld')) return;
+    if ([].some.call(document.querySelectorAll('script[type="application/ld+json"]'), function (x) { return /FAQPage/.test(x.textContent); })) return;
+    var q = [].map.call(items, function (d) { var s = d.querySelector('summary'); var a = d.cloneNode(true); var ss = a.querySelector('summary'); if (ss) ss.remove();
+      return { '@type': 'Question', name: (s ? s.textContent : '').trim(), acceptedAnswer: { '@type': 'Answer', text: a.textContent.trim() } }; }).filter(function (x) { return x.name && x.acceptedAnswer.text; });
+    if (!q.length) return;
+    var ld = document.createElement('script'); ld.type = 'application/ld+json'; ld.id = 'rs-faq-ld';
+    ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: q }); document.head.appendChild(ld);
+  }
+
+  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
