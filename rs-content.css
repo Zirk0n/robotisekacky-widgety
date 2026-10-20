@@ -51,8 +51,6 @@
 .rs-media.hero.rs-photo > figcaption.inner span { display: block; color: #fff; font-size: 14px; line-height: 1.5; }
 .rs-media .zoomable { cursor: zoom-in; }
 .rs-media > a:focus-visible { outline: 3px solid #86bb41; outline-offset: -4px; }
-.rs-media .rs-zoom-hint { position: absolute; z-index: 3; top: 10px; right: 10px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; background: rgba(27,63,32,.76); color: #fff; pointer-events: none; }
-.rs-media .rs-zoom-hint svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; }
 /* Stejné názvy ovládání jako produktový lightbox, vlastní ID a nativní dialog. */
 dialog.rs-lightbox.lightbox { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 12px; width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 70px 80px 24px; border: 0; background: rgba(0,0,0,.94); color: #fff; overflow: auto; box-sizing: border-box; }
 dialog.rs-lightbox.lightbox[open] { display: flex; }

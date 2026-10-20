@@ -100,13 +100,6 @@
         anchor.classList.add('rs-gallery-trigger');
         anchor.setAttribute('aria-label', 'Zvětšit fotografii: ' + (img.alt || text));
         anchor.setAttribute('aria-haspopup', 'dialog');
-        if (!figure.querySelector('.rs-zoom-hint')) {
-          var hint = document.createElement('span');
-          hint.className = 'rs-zoom-hint';
-          hint.setAttribute('aria-hidden', 'true');
-          hint.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"></circle><path d="m15 15 6 6M7 10h6M10 7v6"></path></svg>';
-          figure.appendChild(hint);
-        }
         var item = { anchor: anchor, img: img, href: anchor.href, caption: text };
         group.push(item);
         anchor.addEventListener('click', function (e) {
