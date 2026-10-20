@@ -67,7 +67,9 @@ dialog.rs-lightbox::backdrop { background: rgba(0,0,0,.88); }
 .rs-lightbox .lb-next { right: 16px; top: 50%; transform: translateY(-50%); }
 .rs-lightbox button:focus-visible { outline: 3px solid #86bb41; outline-offset: 4px; }
 @media (max-width:1000px) {
-  .rs-content[data-rs-content] .feat-card > .g { grid-template-columns: 1fr; }
+  .rs-content[data-rs-content] .feat-card > .g,
+  .rs-content[data-rs-content] .rs-fit-g,
+  .rs-content[data-rs-content] > .g { grid-template-columns: 1fr; }
 }
 @media (max-width:600px) {
   .rs-content[data-rs-content] { --content-radius: 10px; }
