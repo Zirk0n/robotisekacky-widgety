@@ -138,13 +138,13 @@
   function statsBar(d) {
     return '<div class="rsr__stats"><a class="rsr__hk" href="https://obchody.heureka.cz/robotisekacky-cz/recenze/" target="_blank" rel="noopener" title="Naše hodnocení na Heurece"><img src="' + HK_LOGO + '" alt="Heureka Ověřeno zákazníky" width="110" height="110"></a>' +
       '<div class="rsr__badges"><small>Ocenění Heureka</small><span class="rsr__b1">● 2024 – modrý odznak</span><span class="rsr__b2">★ 2026 – zlatý odznak</span><small class="rsr__since">Ověřeno zákazníky od roku 2024</small></div>' +
-      '<div class="rsr__st"><b>' + num(d) + '</b><span>Průměr</span></div><div class="rsr__st"><b>' + esc(d.celkem) + '+</b><span>Hodnocení</span></div><div class="rsr__st"><b>250+</b><span>Realizací instalací</span></div></div>';
+      '<div class="rsr__st"><b>' + num(d) + '</b><span>Průměr</span></div><div class="rsr__st"><b>' + esc(d.celkem) + '+</b><span>Hodnocení</span></div><div class="rsr__st"><b>300+</b><span>Realizací</span></div></div>';
   }
   function tiles(d) {
     var t = [
       ['<img src="' + HK_LOGO + '" alt="Heureka Ověřeno zákazníky">', 'Důvěra zákazníků', 'Ověřeno zákazníky', 'Certifikát Heureka získaný v roce 2024 – průměr <b>' + num(d) + '</b> z více než <b>' + esc(d.celkem) + ' hodnocení</b>. V roce 2026 jsme získali prestižní <b>zlatý odznak</b>.', 'https://obchody.heureka.cz/robotisekacky-cz/recenze/', 'Klikněte pro zobrazení všech recenzí na Heurece.', true],
-      ['🔧', 'Servis na klíč', 'Profesionální instalace', 'Přes 250 realizací po celé ČR – od výběru sekačky přes mapování zahrady až po nastavení aplikace a první seč.', '/instalace-sekacek/', 'Zákazníci oceňují přesnost, komunikaci a rychlost.'],
-      ['📞', 'Přímý kontakt', 'Voláte přímo mně', 'Nezvednu vám call centrum. Voláte přímo Michaelovi – majiteli, který roboty sám prodává, instaluje i opravuje a osobně instaloval přes 100 zahrad.', 'tel:+420792325839', '<b>+420 792 325 839</b><br>Michael Boháček, majitel'],
+      ['🔧', 'Servis na klíč', 'Profesionální instalace', 'Přes 300 realizací po celé ČR – od výběru sekačky přes mapování zahrady až po nastavení aplikace a první seč.', '/instalace-sekacek/', 'Zákazníci oceňují přesnost, komunikaci a rychlost.'],
+      ['📞', 'Přímý kontakt', 'Voláte přímo mně', 'Nezvednu vám call centrum. Voláte přímo Michaelovi – majiteli, který roboty sám prodává, instaluje i opravuje – za sebou má přes 300 realizací.', 'tel:+420792325839', '<b>+420 792 325 839</b><br>Michael Boháček, majitel'],
       ['🛡️', 'Nákup bez rizika', 'Servis & záruky', 'Reklamace a servis řešíme rychle a osobně. Stojíme za každým produktem – i po skončení záruky se ozvěme.', '/reklamace-a-vraceni-zbozi/', 'Podrobnosti o reklamaci a vrácení zboží kliknutím.']
     ];
     return '<div class="rsr__tiles">' + t.map(function (x) { return '<a class="rsr__tile" href="' + x[4] + '"' + (x[6] ? ' target="_blank" rel="noopener"' : '') + '><span class="rsr__ic' + (x[0].charAt(0) === '<' ? ' rsr__ic--img' : '') + '">' + x[0] + '</span><small>' + x[1] + '</small><h3>' + x[2] + '</h3><p>' + x[3] + '</p><em>' + x[5] + '</em></a>'; }).join('') + '</div>';
@@ -154,7 +154,7 @@
       '<div class="rsr__owner"><img src="' + OWNER_IMG + '" alt="Michael Boháček – zakladatel Robotích Sekaček" loading="lazy">' +
       '<div><span class="rsr__trophy" aria-hidden="true">🏆</span>' +
       '<p><b>V roce 2024 jsme získali certifikát Heureka Ověřeno zákazníky</b> – udělovaný jen obchodům, které trvale splňují přísná kritéria kvality zákaznické péče. Od té doby si držíme průměrné hodnocení <b>' + num(d) + '</b> ze všech recenzí. V roce 2026 nám Heureka udělila prestižní <b>zlatý odznak</b> – jedno z nejvyšších ocenění pro online prodejce v ČR.</p>' +
-      '<div class="rsr__ostats"><span><b>2017</b>V elektronice od</span><span><b>250+</b>Instalací po ČR</span><span><b>' + num(d) + '</b>Průměrné hod.</span><span><b>' + esc(d.celkem) + '+</b>Recenzí</span></div>' +
+      '<div class="rsr__ostats"><span><b>2017</b>V elektronice od</span><span><b>300+</b>Realizací po ČR</span><span><b>' + num(d) + '</b>Průměrné hod.</span><span><b>' + esc(d.celkem) + '+</b>Recenzí</span></div>' +
       '<small class="rsr__kick">Zakladatel &amp; majitel</small><h3>Michael Boháček</h3>' +
       '<p class="rsr__contact">Volejte přímo mně: <a href="tel:+420792325839">+420 792 325 839</a> · <a href="mailto:info@robotisekacky.cz">info@robotisekacky.cz</a></p></div></div>' +
       '<div class="rsr__ctap"><div><h3>Máte otázku nebo potřebujete poradit?</h3><p>Jsme tu pro vás před nákupem i po něm. Kontaktujte nás nebo navštivte sekci servis a reklamace.</p></div>' +
