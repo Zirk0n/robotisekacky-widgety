@@ -31,6 +31,7 @@ var CFG={
   skip:/předveden|servis|filtr|kartáč|vozík|kabel|nabíječ|plovák|baterie/i
  }
 };
+if(!TYPE)TYPE=window.__rsProdejType||''; /* web-v2.js dosazuje typ podle drobečkové navigace u produktů bez šablony v2 (20. 10.) */
 var C=CFG[TYPE];if(!C)return;
 if(!has('link[href*="widget-prodej"][href$=".css"]')){var l=document.createElement('link');l.rel='stylesheet';l.href=CDN+(TYPE==='bazen'?'widget-prodej-bazen.css':'widget-prodej.css');document.head.appendChild(l);}
 function ready(fn,d){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(fn,d||0)});else setTimeout(fn,d||0)}
