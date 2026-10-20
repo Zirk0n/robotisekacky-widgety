@@ -60,6 +60,7 @@ dialog.rs-lightbox::backdrop { background: rgba(0,0,0,.88); }
 .rs-lightbox .lb-caption { max-width: 900px; color: #fff; font-size: 14px; line-height: 1.5; text-align: center; }
 .rs-lightbox .lb-count { position: absolute; top: 24px; left: 24px; margin: 0; color: #fff; font-size: 16px; line-height: 1.5; }
 .rs-lightbox button { position: absolute; display: grid; place-items: center; width: 56px; height: 56px; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; background: rgba(27,63,32,.85); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
+.rs-lightbox button[hidden] { display: none; }
 .rs-lightbox .lb-close { top: 12px; right: 16px; width: 46px; height: 46px; }
 .rs-lightbox .lb-prev { left: 16px; top: 50%; transform: translateY(-50%); }
 .rs-lightbox .lb-next { right: 16px; top: 50%; transform: translateY(-50%); }
