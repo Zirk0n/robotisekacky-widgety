@@ -44,7 +44,7 @@
     [H + 'img-5724.webp', 'Instalace robotické sekačky', 'Projedeme s robotem zahradu, nastavíme hranice, zakázané zóny i plán sekání a všechno vysvětlíme. Po celé ČR.', 'od 7 999 Kč', '/instalace-sekacek/'],
     [H + '574383985-10161740614830318-642273909269.webp', 'Zprovoznění vysavače doma', 'Připojíme robota k Wi-Fi, vytvoříme mapu a plán úklidu a v klidu vás zaučíme. Praha a Středočeský kraj bez příplatku.', 'od 3 490 Kč', '/zprovozneni-robotickeho-vysavace/'],
     [H + 'predvedeni-aiper-scuba-v3-u-vas-doma.webp', 'Předvedení na vašem bazénu', 'Vybrané bazénové vysavače vyzkoušíte přímo ve svém bazénu ještě před nákupem. Bez závazku ke koupi.', 'od 3 490 Kč', '/predvedeni-bazenovych-vysavacu/'],
-    [H + 'img-7219.webp', 'Zimní a předsezónní servis', 'Vyčistíme a zkontrolujeme robota před zimou nebo před sezónou, aby na jaře rovnou vyjel.', '2 500 Kč', '/zimni-servis-a-cisteni-robota/']
+    [H + 'img-7219.webp', 'Zimní servis a uskladnění', 'Přijedeme si pro robota, vyčistíme ho, vyměníme nože a přes zimu ho u nás uskladníme a dobíjíme.', 'od 3 500 Kč', '/zimni-servis-a-cisteni-robota/']
   ];
   // realizace: 3 starší značky (Gardena drát, Husqvarna drát, AMA) nahrazeny letošními fotkami z Fotek (18. 10. 2026, bez EXIF)
   var J = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/img/realizace/';
