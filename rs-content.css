@@ -41,9 +41,11 @@
 .rs-content[data-rs-content] a.st-btn--pri { background: var(--brand-dark); color: #fff; }
 .rs-content[data-rs-content] a.st-btn:hover { filter: brightness(.94); }
 .rs-content[data-rs-content] a:focus-visible { outline: 3px solid var(--brand-dark); outline-offset: 4px; }
-/* Starší články: zdrojový kontext jako běžný text, nikdy box s bočním pruhem. */
-article.rs-article .rs-context { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; color: inherit; font-size: inherit; line-height: inherit; }
-article.rs-article .rs-context::before, article.rs-article .rs-context::after { content: none; }
+/* Starší články: kontext, tip i výstraha jako běžný text, nikdy boční pruh. */
+article.rs-article .rs-context, article.rs-article .rs-tip, article.rs-article .rs-warning { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; color: inherit; font-size: inherit; line-height: inherit; }
+article.rs-article .rs-context::before, article.rs-article .rs-context::after,
+article.rs-article .rs-tip::before, article.rs-article .rs-tip::after,
+article.rs-article .rs-warning::before, article.rs-article .rs-warning::after { content: none; }
 /* Jediná fotografická komponenta pro články i další opt-in obsah. */
 .rs-media.hero.rs-photo { position: relative; display: grid; overflow: hidden; min-width: 0; margin: 28px 0; border-radius: 14px; background: #101910; box-shadow: 0 12px 28px rgba(27,63,32,.12); isolation: isolate; }
 .rs-media.hero.rs-photo > a, .rs-media.hero.rs-photo > img.hero-img { grid-area: 1 / 1; align-self: start; display: block; min-width: 0; width: 100%; line-height: 0; border: 0; }
