@@ -107,6 +107,16 @@
     /* informační lišta Shoptetu dole (site-msg) v našem vzhledu */
     '.site-msg.information{background:rgba(255,255,255,.96)!important;border:1px solid ' + LINE + '!important;border-radius:16px!important;box-shadow:0 16px 36px rgba(27,63,32,.16)!important;color:var(--rs-text)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}' +
     '.site-msg.information .text a{color:' + G + '!important;text-decoration:none!important;font-size:15px!important}.site-msg.information .text a:hover{color:' + L + '!important}.site-msg.information .close{opacity:.6}' +
+    /* lišta výhod usps() – kategorie a produkty bez widget-prodej */
+    '.rs-usps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 20px}' +
+    '.rs-usps a{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border:1px solid ' + LINE + ';border-radius:var(--rs-r-sm);box-shadow:var(--rs-shadow);text-decoration:none!important;color:var(--rs-text)!important;transition:transform var(--rs-ease),box-shadow var(--rs-ease)}' +
+    '.rs-usps a:hover{transform:translateY(-2px);box-shadow:var(--rs-shadow-hover)}' +
+    '.rs-usps i{flex:0 0 34px;height:34px;border-radius:50%;background:#eef6e6;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:17px}' +
+    '.rs-usps a>span{display:flex;flex-direction:column;min-width:0}.rs-usps b{font-size:14px;line-height:1.25;color:' + G + '}.rs-usps small{font-size:13px;line-height:1.3;color:#4f5f51;margin-top:2px}' +
+    '.rs-usps--bazen i{background:#e6f3fa}' +
+    '.rs-usps--detail{grid-template-columns:repeat(2,minmax(0,1fr))!important;margin:16px 0}' +
+    '@media(max-width:991px){.rs-usps{grid-template-columns:repeat(2,minmax(0,1fr))}}' +
+    '@media(max-width:480px){.rs-usps{gap:8px}.rs-usps a{padding:9px 10px;gap:8px}.rs-usps i{flex-basis:28px;height:28px;font-size:14px}.rs-usps b{font-size:13.5px}.rs-usps small{display:none}}' +
     /* upoutávka pop-upu Leadhub („Chcete občas tipy…“): nahoru pod hlavičku, menší, v našem vzhledu (Michael 20. 10.); třídu rs-lh přidává leadhubTeaser() */
     'html body .rs-lh{top:calc(var(--rs-hb,130px) + 12px)!important;bottom:auto!important;right:24px!important;left:auto!important;transform:none!important;width:auto!important;max-width:380px!important;min-height:0!important;display:flex!important;align-items:center!important;gap:6px!important;padding:6px 6px 6px 16px!important;background:rgba(255,255,255,.97)!important;color:' + G + '!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-pill)!important;box-shadow:0 10px 28px rgba(27,63,32,.16)!important;font-family:inherit!important;font-size:13px!important;line-height:1.3!important;font-weight:600!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);z-index:8!important;transition:top .2s ease}' +
     'html body .rs-lh>span{position:static!important;display:inline-flex!important;align-items:center!important;height:auto!important;min-height:0!important;margin:0!important;border:0!important;background:none!important;color:inherit!important;font:inherit!important;padding:4px 0!important;width:auto!important;flex:0 0 auto!important;cursor:pointer}' +
@@ -837,6 +847,31 @@
     ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: q }); document.head.appendChild(ld);
   }
 
+  /* lišta výhod (ESHOP BOOSTER: výhody na každé vstupní stránce, proklikávací) – kategorie + produkty bez widget-prodej (20. 10.) */
+  function usps() {
+    var b = document.body, isCat = b.classList.contains('type-category'), isDet = b.classList.contains('type-detail');
+    if ((!isCat && !isDet) || document.querySelector('.rs-usps')) return;
+    var crumbs = [].map.call(document.querySelectorAll('.breadcrumbs a, [class*="breadcrumb"] a'), function (a) { return (a.getAttribute('href') || '') + ' ' + a.textContent; }).join(' ') + ' ' + location.pathname;
+    if (/instalace|predveden|zprovozn|servis|darkov/i.test(location.pathname)) return;
+    var seg = /bazen/i.test(crumbs) ? 'bazen' : /vysava/i.test(crumbs) ? 'vysavac' : /sekac/i.test(crumbs) ? 'sekacka' : 'obecne';
+    var svc = { vysavac: ['🏠', 'Zprovozníme u vás doma', 'Wi-Fi, mapu a plán úklidu nastavíme za vás', '/zprovozneni-robotickeho-vysavace/'],
+      sekacka: ['🛠️', 'Instalace po celé ČR', 'Mapu, hranice i plán sekání nastavíme za vás', '/instalace-sekacek/'],
+      bazen: ['🏊', 'Poradíme podle bazénu', 'Vybrané modely předvedeme v Praze a okolí', '/predvedeni-bazenovych-vysavacu/'],
+      obecne: ['🛠️', 'Instalace a servis', 'Roboty nainstalujeme, zprovozníme i opravíme', '/instalace-sekacek/'] }[seg];
+    var items = [svc, ['💬', 'Poradí vám Michael', 'Majitel, který roboty sám instaluje a opravuje', '/o-nas/'],
+      ['⭐', 'Heureka 5,0', '<span data-rs-usp-cnt>400+</span> ověřených hodnocení zákazníků', '/hodnoceni-obchodu/'],
+      ['🚚', 'Doprava zdarma od 3\u00a0000\u00a0Kč', 'S instalací robota přivezeme sami', '/doprava/']];
+    var d = document.createElement('div'); d.className = 'rs-usps rs-usps--' + seg; d.setAttribute('aria-label', 'Proč nakoupit u nás');
+    d.innerHTML = items.map(function (x) { return '<a href="' + x[3] + '"><i aria-hidden="true">' + x[0] + '</i><span><b>' + x[1] + '</b><small>' + x[2] + '</small></span></a>'; }).join('');
+    var ok = false;
+    if (isCat) { var h = document.querySelector('.category-title, #content h1'); if (h) { h.insertAdjacentElement('afterend', d); ok = true; } }
+    else { /* produkt: jen když šablona nemá vlastní USP z widget-prodej (počkat, až se načte) */
+      setTimeout(function () { if (document.querySelector('.rs-usp')) return; var f = document.querySelector('.p-to-cart-block') || document.getElementById('product-detail-form'); if (f) { d.classList.add('rs-usps--detail'); f.insertAdjacentElement('afterend', d); fill(); } }, 2500);
+      return; }
+    if (ok) fill();
+    function fill() { try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).then(function (j) { if (j && j.celkem) [].forEach.call(document.querySelectorAll('[data-rs-usp-cnt]'), function (e) { e.textContent = j.celkem + '+'; }); }).catch(function () {}); } catch (e) {} }
+  }
+
   /* Leadhub vkládá upoutávku pop-upu dynamicky (třídy s hashem, inline styly) → označit ji třídou rs-lh a držet pod hlavičkou */
   function leadhubTeaser() {
     var root = document.documentElement, h = document.getElementById('header');
@@ -846,7 +881,7 @@
     tag(); var o = new MutationObserver(function () { clearTimeout(o.t); o.t = setTimeout(tag, 150); }); o.observe(document.body, { childList: true, subtree: true });
   }
 
-  function run() { css(); topbar(); try { leadhubTeaser(); } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  function run() { css(); topbar(); try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
