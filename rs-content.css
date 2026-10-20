@@ -1,0 +1,90 @@
+/* Robotisekacky.cz: společné obsahové komponenty v1, 20. 10. 2026.
+   Produktové názvy tříd, explicitní opt-in .rs-content[data-rs-content] / .rs-media.
+   Bez resetu stránky a bez změn navigace, formulářů nebo košíku. */
+.rs-content[data-rs-content] {
+  --brand: #86bb41;
+  --brand-dark: #1b3f20;
+  --line: #dce6d5;
+  --shadow: 0 12px 28px rgba(27,63,32,.10);
+  --card-glass-bg: rgba(255,255,255,.92);
+  --content-radius: 12px;
+}
+.rs-content[data-rs-content] .card-glass {
+  background: var(--card-glass-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--content-radius);
+  box-shadow: var(--shadow);
+}
+.rs-content[data-rs-content] .feat-card { display: block; padding: 0; overflow: hidden; }
+.rs-content[data-rs-content] .feat-card > .g { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); align-items: center; gap: 24px; margin: 0; padding: 24px; }
+.rs-content[data-rs-content] .feat-card .glass-float { min-width: 0; margin: 0; }
+.rs-content[data-rs-content] .feat-card .frame { margin: 0; }
+.rs-content[data-rs-content] .feat-title { margin-top: 0; }
+.rs-content[data-rs-content] .spec-card { margin: 32px 0; padding: 24px; }
+.rs-content[data-rs-content] .spec-title { margin-top: 0; }
+.rs-content[data-rs-content] .glass-table { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--content-radius); }
+.rs-content[data-rs-content] .spec-table { width: 100%; margin: 0; border-collapse: collapse; font-size: 16px; line-height: 1.5; }
+.rs-content[data-rs-content] .spec-table th, .rs-content[data-rs-content] .spec-table td { padding: 14px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.rs-content[data-rs-content] .spec-table th { background: #f2f8ea; color: var(--brand-dark); }
+.rs-content[data-rs-content] .spec-table tbody tr:nth-child(even) { background: #fafcf6; }
+.rs-content[data-rs-content] .spec-table tbody tr:last-child td { border-bottom: 0; }
+.rs-content[data-rs-content] .rs-fit { margin: 32px 0; padding: 24px; }
+.rs-content[data-rs-content] .rs-fit-g { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+.rs-content[data-rs-content] .rs-fit-g h3 { margin-top: 0; }
+.rs-content[data-rs-content] .rs-fit-g ul { margin-bottom: 0; }
+.rs-content[data-rs-content] .rs-fit-g .ok, .rs-content[data-rs-content] .rs-fit-g .no { padding: 20px; border-radius: 10px; background: #f3f8ec; }
+.rs-content[data-rs-content] .rs-fit-g .no { background: #fffaf0; }
+.rs-content[data-rs-content] .bottom.st { margin: 36px 0; padding: 24px; border: 1px solid var(--line); border-radius: var(--content-radius); background: #f3f8ec; }
+.rs-content[data-rs-content] .bottom.st h2 { margin-top: 0; }
+.rs-content[data-rs-content] .st-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.rs-content[data-rs-content] a.st-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 12px 22px; border: 1px solid var(--brand-dark); border-radius: 999px; color: var(--brand-dark); background: #fff; font-size: 16px; line-height: 1.5; font-weight: 600; text-decoration: none; }
+.rs-content[data-rs-content] a.st-btn--pri { background: var(--brand-dark); color: #fff; }
+.rs-content[data-rs-content] a.st-btn:hover { filter: brightness(.94); }
+.rs-content[data-rs-content] a:focus-visible { outline: 3px solid var(--brand-dark); outline-offset: 4px; }
+/* Jediná fotografická komponenta pro články i další opt-in obsah. */
+.rs-media.hero.rs-photo { position: relative; display: grid; overflow: hidden; min-width: 0; margin: 28px 0; border-radius: 14px; background: #101910; box-shadow: 0 12px 28px rgba(27,63,32,.12); isolation: isolate; }
+.rs-media.hero.rs-photo > a, .rs-media.hero.rs-photo > img.hero-img { grid-area: 1 / 1; align-self: start; display: block; min-width: 0; width: 100%; line-height: 0; border: 0; }
+.rs-media.hero.rs-photo img.hero-img { display: block; width: 100%; height: auto; max-width: 100%; border-radius: 0; object-fit: contain; }
+.rs-media.hero.rs-photo::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(0deg,rgba(0,0,0,.94),rgba(0,0,0,.78) 18%,rgba(0,0,0,.40) 36%,transparent 65%); }
+.rs-media.hero.rs-photo > figcaption.inner { grid-area: 1 / 1; align-self: end; position: relative; z-index: 2; margin: 0; padding: 22px; color: #fff; font-size: 16px; line-height: 1.55; pointer-events: none; text-shadow: 0 2px 12px rgba(0,0,0,.8); }
+.rs-media.hero.rs-photo > figcaption.inner strong { display: block; margin: 0 0 6px; color: #86bb41; font-size: 22px; line-height: 1.3; font-weight: 700; }
+.rs-media.hero.rs-photo > figcaption.inner span { display: block; color: #fff; font-size: 14px; line-height: 1.5; }
+.rs-media .zoomable { cursor: zoom-in; }
+.rs-media > a:focus-visible { outline: 3px solid #86bb41; outline-offset: -4px; }
+.rs-media .rs-zoom-hint { position: absolute; z-index: 3; top: 10px; right: 10px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; background: rgba(27,63,32,.76); color: #fff; pointer-events: none; }
+.rs-media .rs-zoom-hint svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; }
+/* Stejné názvy ovládání jako produktový lightbox, vlastní ID a nativní dialog. */
+dialog.rs-lightbox.lightbox { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 12px; width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 70px 80px 24px; border: 0; background: rgba(0,0,0,.94); color: #fff; overflow: auto; box-sizing: border-box; }
+dialog.rs-lightbox.lightbox[open] { display: flex; }
+dialog.rs-lightbox::backdrop { background: rgba(0,0,0,.88); }
+.rs-lightbox .lb-figure { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 100%; margin: 0; }
+.rs-lightbox .lb-figure img { display: block; width: auto; height: auto; max-width: 100%; max-height: 72vh; max-height: 72dvh; object-fit: contain; border-radius: 12px; }
+.rs-lightbox .lb-caption { max-width: 900px; color: #fff; font-size: 14px; line-height: 1.5; text-align: center; }
+.rs-lightbox .lb-count { position: absolute; top: 24px; left: 24px; margin: 0; color: #fff; font-size: 16px; line-height: 1.5; }
+.rs-lightbox button { position: absolute; display: grid; place-items: center; width: 56px; height: 56px; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; background: rgba(27,63,32,.85); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
+.rs-lightbox .lb-close { top: 12px; right: 16px; width: 46px; height: 46px; }
+.rs-lightbox .lb-prev { left: 16px; top: 50%; transform: translateY(-50%); }
+.rs-lightbox .lb-next { right: 16px; top: 50%; transform: translateY(-50%); }
+.rs-lightbox button:focus-visible { outline: 3px solid #86bb41; outline-offset: 4px; }
+@media (max-width:1000px) {
+  .rs-content[data-rs-content] .feat-card > .g { grid-template-columns: 1fr; }
+}
+@media (max-width:600px) {
+  .rs-content[data-rs-content] { --content-radius: 10px; }
+  .rs-content[data-rs-content] .feat-card > .g, .rs-content[data-rs-content] .spec-card, .rs-content[data-rs-content] .rs-fit, .rs-content[data-rs-content] .bottom.st { padding: 20px; }
+  .rs-content[data-rs-content] .rs-fit-g { grid-template-columns: 1fr; gap: 16px; }
+  .rs-content[data-rs-content] .rs-fit-g .ok, .rs-content[data-rs-content] .rs-fit-g .no { padding: 16px; }
+  .rs-content[data-rs-content] .spec-table { min-width: 580px; }
+  .rs-media.hero.rs-photo { border-radius: 10px; margin: 24px 0; }
+  .rs-media.hero.rs-photo > figcaption.inner { padding: 14px; }
+  .rs-media.hero.rs-photo > figcaption.inner strong { font-size: 18px; line-height: 1.35; }
+  .rs-media.hero.rs-photo > figcaption.inner span { font-size: 14px; }
+  dialog.rs-lightbox.lightbox { padding: 70px 12px 90px; }
+  .rs-lightbox .lb-figure img { max-height: 65vh; max-height: 65dvh; }
+  .rs-lightbox .lb-prev, .rs-lightbox .lb-next { top: auto; bottom: 16px; transform: none; }
+  .rs-lightbox .lb-prev { left: calc(50% - 66px); }
+  .rs-lightbox .lb-next { right: calc(50% - 66px); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .rs-content[data-rs-content] a, .rs-media img, .rs-lightbox { transition: none; scroll-behavior: auto; }
+}
