@@ -330,7 +330,7 @@
     '.rs-topbar .rs-topbar__kontakt{border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:4px 12px}' +
     '.rs-topbar__who{display:inline-flex;align-items:center;gap:7px;opacity:.95;white-space:nowrap}.rs-topbar__who img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid var(--rs-l)}' +
     '.rs-seal{display:none}@media(min-width:1600px){#header .heureka-header-seal{width:auto!important;flex:0 0 auto!important;gap:8px;padding-right:6px}.rs-seal{display:flex;flex-direction:column;line-height:1.15;font-size:12.5px;color:var(--rs-g);white-space:nowrap}.rs-seal b{font-size:14px}.rs-seal i{color:#f5b301;font-style:normal;letter-spacing:1px}}' +
-    '@media(max-width:1199px){.rs-topbar__who{display:none}}' +
+    '@media(max-width:1199px){.rs-topbar__wt{display:none}.rs-topbar__who img{width:24px;height:24px}}' +
     '@media(max-width:991px){.rs-topbar__claim{display:none}.rs-topbar__in{justify-content:center;padding:6px 12px}.rs-topbar__links{gap:14px}}' +
     '@media(max-width:420px){.rs-topbar{font-size:12.5px}.rs-topbar__links{gap:10px}.rs-topbar .rs-topbar__mail span{display:none}.rs-topbar .rs-topbar__kontakt{padding:3px 10px}}' +
     /* --- 2) hlavička a menu (liquid glass) --- */
@@ -409,7 +409,7 @@
     '.type-detail .p-to-cart-block .quantity{border-radius:999px!important;overflow:hidden;border:1px solid ' + LINE + '!important}' +
     '.type-detail .p-to-cart-block .quantity input,.type-detail .p-to-cart-block .quantity button{border:0!important;background:#fff!important;color:' + G + '!important;font-weight:700}' +
     '.type-detail .p-final-price-wrapper .price-final,.type-detail .p-final-price-wrapper .price-final strong{color:' + G + '!important;font-weight:800!important}' +
-    '.type-detail .price-save{background:#eef6e6;color:' + G + '!important;border-radius:999px;padding:2px 10px;font-weight:700}' +
+    '.type-detail .price-save{display:inline-block!important;width:auto!important;background:#fde8e7;color:#c4170f!important;border-radius:999px;padding:2px 10px;font-weight:700}' + /* 20. 10.: stejně červeně jako kolečko slevy na fotce */
     /* --- 4) kategorie --- */
     '.type-category .category-title,.type-category h1,.type-detail h1,.type-page h1,.type-article h1,.type-posts-listing h1{color:' + G + '!important;font-weight:800!important}' +
     '.type-category .rs-cat-intro h2,.type-category .category-perex h2,.type-category .category-perex h3{color:' + G + '!important}' +
@@ -491,13 +491,29 @@
     mail: '<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>'
   };
 
-  function css() { if (document.getElementById('rs-web2-css')) return; var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS; document.head.appendChild(s); }
+  /* mobilní menu musí stát mimo blok @media(min-width:992px) → samostatně na konec CSS */
+  var CSS_MOB =
+    '.rs-navcontact b{display:flex;align-items:center;gap:10px}.rs-navcontact__foto{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--rs-l)}' +
+    /* mobilní menu (do 991 px): podmenu jako na počítači – karty s malým logem, štítky „Podle potřeby“, zelený box s telefonem (Michael 20. 10.) */
+    '@media(max-width:991px){#navigation .menu-level-2.rs-mega{display:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px 14px 16px!important;margin:0!important;background:#f6faf1!important;border:0!important;box-shadow:none!important;width:auto!important}' +
+    '#navigation li.exp>.menu-level-2.rs-mega{display:grid!important}#navigation .rs-mega>li{width:auto!important;float:none!important;border:0!important;padding:0!important;margin:0!important;background:none!important}' +
+    '#navigation .rs-mega>li:not(.rs-mega__quick):not(.rs-mega__foot)>a{display:flex!important;align-items:center;gap:10px;min-height:52px;padding:8px 10px!important;background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:12px!important;color:' + G + '!important;font-size:14px!important;font-weight:700!important;line-height:1.25!important;text-decoration:none!important}' +
+    '#navigation .rs-mega .rs-mega__img{flex:0 0 44px;width:44px;height:32px;border-radius:8px;background:#fff;border:1px solid ' + LINE + ';display:grid;place-items:center;overflow:hidden}' +
+    '#navigation .rs-mega .rs-mega__img img{max-width:38px!important;max-height:24px!important;width:auto!important;height:auto!important;object-fit:contain}' +
+    '#navigation .rs-mega>li.rs-mega__guide,#navigation .rs-mega>li.rs-mega__quick,#navigation .rs-mega>li.rs-mega__foot{grid-column:1/-1}' +
+    '#navigation .rs-mega>li.rs-mega__quick{display:flex!important;flex-wrap:wrap;align-items:center;gap:6px;padding:6px 0 0!important}' +
+    '#navigation .rs-mega>li.rs-mega__quick b{width:100%;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#5e655c;margin:2px 0}' +
+    '#navigation .rs-mega>li.rs-mega__quick a{display:inline-flex!important;min-height:0!important;padding:7px 12px!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-pill)!important;background:#fff!important;color:' + G + '!important;font-size:13.5px!important;font-weight:700!important}' +
+    '#navigation .rs-mega>li.rs-mega__foot{display:flex!important;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 12px;margin-top:4px!important;padding:10px 12px!important;border-radius:12px;background:#e9f3dd!important;color:#3d4a3d;font-size:13.5px}' +
+    '#navigation .rs-mega>li.rs-mega__foot a{display:inline!important;padding:0!important;min-height:0!important;border:0!important;background:none!important;color:' + G + '!important;font-weight:800!important}' +
+    '#navigation .rs-mega>li.rs-mega__guide>a{display:block!important;padding:10px 12px!important;background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:12px!important}}';
+  function css() { if (document.getElementById('rs-web2-css')) return; var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB; document.head.appendChild(s); }
 
   function topbar() {
     var h = document.getElementById('header'); if (!h || document.querySelector('.rs-topbar')) return;
     var d = document.createElement('div'); d.className = 'rs-topbar'; d.setAttribute('role', 'region'); d.setAttribute('aria-label', 'Kontakt');
     d.innerHTML = '<div class="rs-topbar__in"><span class="rs-topbar__claim">Robotické sekačky, vysavače a bazénové vysavače – poradíme, nainstalujeme, zprovozníme</span>' +
-      '<span class="rs-topbar__links"><span class="rs-topbar__who"><img src="' + FOTO + '" alt="" width="26" height="26">Poradí vám Michael</span><a href="tel:' + TEL + '">' + ICON.tel + '<span>' + TELT + '</span></a>' +
+      '<span class="rs-topbar__links"><span class="rs-topbar__who" title="Poradí vám Michael Boháček"><img src="' + FOTO + '" alt="Michael Boháček" width="26" height="26"><span class="rs-topbar__wt">Poradí vám Michael</span></span><a href="tel:' + TEL + '">' + ICON.tel + '<span>' + TELT + '</span></a>' +
       '<a class="rs-topbar__mail" href="mailto:' + MAIL + '" aria-label="E-mail ' + MAIL + '">' + ICON.mail + '<span>' + MAIL + '</span></a>' +
       '<a class="rs-topbar__kontakt" href="/kontakty/">Kontakty</a></span></div>';
     if (getComputedStyle(h).position === 'fixed') {
@@ -781,7 +797,7 @@
     var nav = document.getElementById('navigation');
     if (nav && !nav.querySelector('.rs-navcontact')) {
       var c = document.createElement('div'); c.className = 'rs-navcontact';
-      c.innerHTML = '<b>Poradíme s výběrem</b><a href="tel:' + TEL + '">' + ICON.tel + TELT + '</a><a href="mailto:' + MAIL + '">' + ICON.mail + MAIL + '</a><a href="/kontakty/">Kontakty →</a>';
+      c.innerHTML = '<b><img src="' + FOTO + '" alt="Michael Boháček" width="36" height="36" class="rs-navcontact__foto">Poradíme s výběrem</b><a href="tel:' + TEL + '">' + ICON.tel + TELT + '</a><a href="mailto:' + MAIL + '">' + ICON.mail + MAIL + '</a><a href="/kontakty/">Kontakty →</a>';
       (nav.querySelector('.navigation-in') || nav).appendChild(c);
     }
     var h = document.getElementById('header');
@@ -883,8 +899,15 @@
     d.innerHTML = items.map(function (x) { return '<a href="' + x[3] + '"><i aria-hidden="true">' + x[0] + '</i><span><b>' + x[1] + '</b><small>' + x[2] + '</small></span></a>'; }).join('');
     var ok = false;
     if (isCat) { var h = document.querySelector('.category-title, #content h1'); if (h) { h.insertAdjacentElement('afterend', d); ok = true; } }
-    else { /* produkt: jen když šablona nemá vlastní USP z widget-prodej (počkat, až se načte) */
-      setTimeout(function () { if (document.querySelector('.rs-usp')) return; var f = document.querySelector('.p-to-cart-block') || document.getElementById('product-detail-form'); if (f) { d.classList.add('rs-usps--detail'); f.insertAdjacentElement('afterend', d); fill(); } }, 2500);
+    else { /* produkt: komponenty widget-prodej (stejné jako šablona vysavačů v2); typ podle drobečkové navigace */
+      setTimeout(function () {
+        if (window.__rsProdej || document.querySelector('script[src*="widget-prodej.js"]')) return;
+        var cr = [].map.call(document.querySelectorAll('.breadcrumbs a, [class*="breadcrumb"] a'), function (a) { return a.textContent; }).join(' / ') + ' ' + ((document.querySelector('h1') || {}).textContent || '');
+        if (/příslušenství|náhradní|nože|baterie|instalace|servis|zprovozn|předveden|obhlídk|oprava|dárkov|poukaz|zavlažov|reproduktor/i.test(cr)) return;
+        window.__rsProdejType = seg === 'bazen' ? 'bazen' : seg === 'vysavac' ? 'vysavac' : seg === 'sekacka' ? 'sekacka' : '';
+        if (!window.__rsProdejType) return;
+        var sc = document.createElement('script'); sc.src = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/widget-prodej.js'; sc.defer = true; document.head.appendChild(sc);
+      }, 1500);
       return; }
     if (ok) fill();
     function fill() { try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).then(function (j) { if (j && j.celkem) [].forEach.call(document.querySelectorAll('[data-rs-usp-cnt]'), function (e) { e.textContent = j.celkem + '+'; }); }).catch(function () {}); } catch (e) {} }
