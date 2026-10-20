@@ -10,9 +10,8 @@
   /* barvy a tvary bereme z design tokenů (:root níže) – jediné místo pro změnu vzhledu */
   var G = 'var(--rs-g)', L = 'var(--rs-l)', LINE = 'var(--rs-line)';
   var CSS = '' +
-    /* --- 0) design tokeny (používají je i homepage-v2.js a recenze-widget.js) --- */
-    ':root{--rs-g:#1b3f20;--rs-l:#86BB41;--rs-line:#e6f0db;--rs-soft:#f2f7ec;--rs-soft2:#eef6e6;--rs-text:#2b3328;--rs-muted:#5a6b56;' +
-    '--rs-r:20px;--rs-r-sm:14px;--rs-pill:999px;--rs-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 8px 22px rgba(47,74,42,.08);--rs-shadow-hover:0 1px 0 rgba(255,255,255,.9) inset,0 16px 36px rgba(47,74,42,.18);--rs-lift:translateY(-4px);--rs-btn-shadow:0 10px 22px rgba(27,63,32,.2);--rs-ease:.2s ease}' +
+    /* --- 0) design tokeny: od 21. 10. 2026 JEN ve web-global.css (zdroj Firma/nastroje/web/tokeny-a-tlacitka.css).
+       Tady je nedefinovat – web-v2 se načítá později a přebil by je. Tlačítka celého webu se stylují tamtéž. --- */
     /* hodnoty převzaté ze šablon produktů v2 (widget-*-v2.css: karta hover, tlačítka) – Michael 16. 10. 2026: prvky brát ze šablon */
     '.rsh-cta a,.rso-c a,.rs-foot__btn,.rs-topbar__kontakt,.products-block .btn-cart,.products-block .p-tools .btn,.type-detail .p-to-cart-block .add-to-cart-button,.rsr__btn{transition:transform var(--rs-ease),box-shadow var(--rs-ease),background var(--rs-ease)!important}' +
     '.rsh-cta a:hover,.rso-c a:hover,.rs-foot__btn:hover,.products-block .btn-cart:hover,.products-block .p-tools .btn:hover,.type-detail .p-to-cart-block .add-to-cart-button:hover,.rsr__btn:hover{transform:translateY(-2px)!important;box-shadow:var(--rs-btn-shadow)!important}' +
