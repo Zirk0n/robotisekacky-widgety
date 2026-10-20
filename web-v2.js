@@ -80,7 +80,7 @@
     '.cart-inner .summary .price-final,.order-summary .price-final,.order-recapitulation .price-primary{color:var(--rs-g)!important;font-weight:800}' +
     /* --- vlastní základ webu (17. 10. 2026) – napsáno od nuly, nahrazuje vzhled agentury MIME (jejich kód nekopírujeme) --- */
     ':root body,:root body h1,:root body h2,:root body h3,:root body h4,:root body h5,:root body h6,:root body .h1,:root body .h2,:root body .h3,:root body .h4,:root body #navigation,:root body .menu-helper,:root body .p-detail-tabs,:root body .cart-table .main-link,:root body .btn,:root body button,:root body input,:root body select,:root body textarea{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}' +
-    'body{-webkit-font-smoothing:antialiased;color:#4b4f49;font-size:16px}a{color:' + G + '}li::marker{color:' + G + '}' +
+    'html{font-size:16px}body{-webkit-font-smoothing:antialiased;color:#4b4f49;font-size:16px}a{color:' + G + '}li::marker{color:' + G + '}' +
     '.in-index{overflow-x:hidden}.in-index .top-products-wrapper,.in-index .shp-tabs-row{display:none!important}.in-index .tab-content>#homepageProducts2{display:block!important;opacity:1!important}' +
     '.detail-parameters tr,.detail-parameters-wrapper tr{border-bottom:1px solid ' + LINE + '}.browse-p .p-prev,.browse-p .p-next{color:' + L + '!important;background:none!important}' +
     /* karusel produktů na titulce (vlastní, bez knihovny): vodorovné posouvání se zarovnáním + naše šipky */
@@ -107,6 +107,22 @@
     /* informační lišta Shoptetu dole (site-msg) v našem vzhledu */
     '.site-msg.information{background:rgba(255,255,255,.96)!important;border:1px solid ' + LINE + '!important;border-radius:16px!important;box-shadow:0 16px 36px rgba(27,63,32,.16)!important;color:var(--rs-text)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}' +
     '.site-msg.information .text a{color:' + G + '!important;text-decoration:none!important;font-size:15px!important}.site-msg.information .text a:hover{color:' + L + '!important}.site-msg.information .close{opacity:.6}' +
+    /* kontrast WCAG AA (audit 20. 10., nastroje/web/kontrast-audit.mjs): dostupnost, kód, šedé popisky – tmavší odstíny stejných barev */
+    '.availability [style*="009901" i],.up-in-stock-label{color:#1d7a22!important}.availability [style*="77bb41" i]{color:#2f6f1a!important}.availability [style*="f8a102" i]{color:#a35c00!important}' +
+    '.p-code,.p-code span,.p-code-label{color:#6b7468!important}' +
+    '.button-wrapper .chevron-after{color:' + G + '!important}.link-icon,.link-icon span,.rs-who small,.vote-time{color:#5b6b5d!important}' +
+    '#content .vote-time{color:#5b6b5d!important}' +
+    /* splátková kalkulačka Cofidis: místo křiklavě zeleného obdélníku obrysové tlačítko v našem vzhledu */
+    '.cofidis-wrap .btn-cofidis{background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-pill)!important;color:' + G + '!important;text-transform:none!important;font-weight:700!important;font-size:14px!important;padding:10px 18px!important;box-shadow:none!important;min-height:0!important}' +
+    '.cofidis-wrap .btn-cofidis:hover{background:#f4f9ee!important}.cofidis-wrap .btn-cofidis *{color:inherit!important}' +
+    /* „Zeptat se“ → výrazné „Poradit se s výběrem“ (formulář dotazu Shoptetu, ESHOP BOOSTER: poradenství přímo u produktu) */
+    '.link-icons .link-icon.chat.rs-ask{display:inline-flex!important;align-items:center;gap:8px;background:' + G + '!important;color:#fff!important;border-radius:var(--rs-pill);padding:9px 16px!important;font-weight:700;text-decoration:none!important;margin:4px 0}' +
+    '.link-icons .link-icon.chat.rs-ask::before{display:none!important}.link-icons .link-icon.chat.rs-ask span{color:#fff!important}.link-icons .link-icon.chat.rs-ask:hover{background:' + L + '!important}' +
+    /* popisy služeb (liquid glass): světle zelené štítky a šedé poznámky → čitelné odstíny; velké zelené zvýraznění o tón tmavší */
+    '#description .hi-eyebrow,#description .tech-eyebrow,#description .trust-kicker,#description .rs-svc-k{color:#4a7a1f!important}' +
+    '#description .hi-headline em,#description .hi-headline .hl,#description h2[style*="86bb41" i],#description .inner>h2{color:#5f9a2a!important}' +
+    '#description .price-vat,#description .price-tier,#description .hi-note,#description .brands-label,#description .pricing-sub{color:#5e655c!important}' +
+    '.rs-ver,.rs-svc-k{color:#3c6e1f!important}.rsr__badges small,.rsr__kick,.rsr__since{color:#4f6b44!important}.rsr__tile em,.rsr__tile b{color:#56634f!important}.rss-pr i{color:#3f7322!important}' +
     /* lišta výhod usps() – kategorie a produkty bez widget-prodej */
     '.rs-usps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 20px}' +
     '.rs-usps a{display:flex;align-items:center;gap:10px;padding:10px 12px;background:#fff;border:1px solid ' + LINE + ';border-radius:var(--rs-r-sm);box-shadow:var(--rs-shadow);text-decoration:none!important;color:var(--rs-text)!important;transition:transform var(--rs-ease),box-shadow var(--rs-ease)}' +
@@ -130,7 +146,7 @@
     '.products-top-wrapper{margin:6px 0 18px!important}.products-top-header{font-size:20px!important;color:' + G + '!important;margin:0 0 10px!important}' +
     '.products-top .product .p{background:#fff;border:1px solid ' + LINE + '!important;border-radius:14px!important;padding:12px 14px!important;box-shadow:var(--rs-shadow);height:100%}.products-top .product .name{font-size:14px!important;font-weight:700;color:' + G + '!important}' +
     /* produktové karty: kód nenápadně, sleva červeně (Michael 17. 10.) */
-    '.products-block .p-code{font-size:10.5px!important;color:#a3ab9f!important;opacity:.8;font-weight:400!important}' +
+    '.products-block .p-code{font-size:10.5px!important;color:#6b7468!important;opacity:.8;font-weight:400!important}' +
     '.flag.flag-discount,.flag.flag-action{background-color:#e2231a!important}' +
     /* tlačítka pod výpisem: Načíst další, Nahoru, stránkování */
     '.listingControls .loadMore__button,.listingControls .btn{text-transform:none!important;letter-spacing:0!important}.listingControls .loadMore__button{border:0!important;background:' + G + '!important;color:#fff!important;border-radius:var(--rs-pill)!important;padding:12px 26px!important;font-weight:700!important;box-shadow:var(--rs-btn-shadow);transition:transform var(--rs-ease)}.listingControls .loadMore__button:hover{transform:var(--rs-lift)}' +
@@ -164,7 +180,7 @@
     '.next-step-forward .order-button-text,.btn-conversion .order-button-text{text-transform:none!important;letter-spacing:0!important}' +
     '.ordering-process .next-step-finish,.ordering-process .btn-conversion{background:' + G + '!important;border:0!important;border-radius:var(--rs-pill)!important;color:#fff!important}' +
     '.co-box h4,.co-box .h4,.ordering-process .co-box label,.ordering-process .co-box label *,.ordering-process .radio-wrapper *{text-transform:none!important;letter-spacing:0!important}' +
-    '.type-detail .p-code,.type-detail .p-detail-info .p-code{font-size:11px!important;color:#a3ab9f!important;font-weight:400!important}.type-detail .p-code span{font-weight:400!important}' +
+    '.type-detail .p-code,.type-detail .p-detail-info .p-code{font-size:11px!important;color:#6b7468!important;font-weight:400!important}.type-detail .p-code span{font-weight:400!important}' +
     /* --- 18. 10.: jednotné najetí v menu (dřív se míchalo bílé pozadí + stín + světle zelené + zvýrazněný sloupec) --- */
     '#navigation .menu-level-1>li>a,#header .menu-helper>span,#navigation .rs-mega>li>a,#header .menu-helper a{transition:background-color .15s,color .15s!important;transform:none!important}' +
     '#navigation .menu-level-1>li:hover>a,#navigation .menu-level-1>li.exp>a,#navigation .menu-level-1>li>a:focus,#header .menu-helper:hover>span{background:#eef6e6!important;color:' + G + '!important;box-shadow:none!important;transform:none!important}' +
@@ -881,11 +897,17 @@
     tag(); var o = new MutationObserver(function () { clearTimeout(o.t); o.t = setTimeout(tag, 150); }); o.observe(document.body, { childList: true, subtree: true });
   }
 
-  function run() { css(); topbar(); try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  /* dostupnost: Shoptet barví štítky světlými barvami z administrace (kontrast pod 4,5:1) → tmavší odstín stejné barvy */
+  function availColors() {
+    var MAP = { 'rgb(0, 153, 1)': '#1d7a22', 'rgb(119, 187, 65)': '#2f6f1a', 'rgb(248, 161, 2)': '#a35c00' };
+    [].forEach.call(document.querySelectorAll('.availability-label, .availability span, .availability-amount'), function (e) { if (e.dataset.rsAv) return; var c = getComputedStyle(e).color; if (MAP[c]) { e.style.setProperty('color', MAP[c], 'important'); e.dataset.rsAv = 1; } });
+  }
+
+  function run() { css(); topbar(); try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.textContent = '💬 Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
-  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} soldOutLast(); try { cartRelated(); } catch (e) {} try { checkoutNotes(); } catch (e) {} }, 120); });
+  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} soldOutLast(); try { cartRelated(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { availColors(); } catch (e) {} }, 120); });
   function watch() { var c = document.getElementById('content') || document.body; mo.observe(c, { childList: true, subtree: true }); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch); else watch();
 })();
