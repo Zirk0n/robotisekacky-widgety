@@ -37,7 +37,7 @@
 .rs-btn--sm{min-height:36px;padding:0 16px;font-size:14px}
 .rs-btn--block{display:flex;width:100%}
 .rs-card{background:var(--rs-card-bg);border:1px solid var(--rs-card-bd);border-radius:var(--rs-card-radius);box-shadow:var(--rs-card-shadow);padding:20px}
-.rs-note{background:var(--rs-note-bg);border:1px solid var(--rs-note-bd);border-left-width:4px;border-radius:var(--rs-r-sm);color:var(--rs-note-fg);padding:14px 18px}
+.rs-note{background:var(--rs-note-bg);border:1px solid var(--rs-note-bd);border-radius:var(--rs-r-sm);color:var(--rs-note-fg);padding:14px 18px}
 .rs-badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:var(--rs-pill);font-size:12px;font-weight:800;background:var(--rs-badge-new-bg);color:var(--rs-badge-new-fg)}
 .rs-badge--sale{background:var(--rs-badge-sale-bg);color:var(--rs-badge-sale-fg)}
 .rs-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--rs-pill);border:1px solid var(--rs-line);background:#fff;color:var(--rs-g)!important;font-weight:700;font-size:14px;text-decoration:none!important}
