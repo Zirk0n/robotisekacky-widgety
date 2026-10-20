@@ -24,3 +24,6 @@
 @media (max-width:640px){.rs-poradime__in{flex-direction:column;text-align:center;padding:18px}.rs-poradime__cta{width:100%}.rs-poradime__btn{width:100%}}
 /* Patička: Instagram skrytý (14. 10. 2026) – zobrazoval příspěvky z roku 2023 vč. prošlého slevového kódu. Zapnout až s aktuálním obsahem. */
 .custom-footer__instagram{display:none!important}
+
+/* Kořenové písmo 16 px (20. 10. 2026): dřív ho nastavovalo MIME CSS; po jeho odpojení spadlo na 10 px a popisy služeb a šablon v rem byly 8–10 px. Šablona Shoptetu používá px, takže jinde se nic nemění. */
+html{font-size:16px}
