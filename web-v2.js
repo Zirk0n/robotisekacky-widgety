@@ -107,6 +107,15 @@
     /* informační lišta Shoptetu dole (site-msg) v našem vzhledu */
     '.site-msg.information{background:rgba(255,255,255,.96)!important;border:1px solid ' + LINE + '!important;border-radius:16px!important;box-shadow:0 16px 36px rgba(27,63,32,.16)!important;color:var(--rs-text)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}' +
     '.site-msg.information .text a{color:' + G + '!important;text-decoration:none!important;font-size:15px!important}.site-msg.information .text a:hover{color:' + L + '!important}.site-msg.information .close{opacity:.6}' +
+    /* upoutávka pop-upu Leadhub („Chcete občas tipy…“): nahoru pod hlavičku, menší, v našem vzhledu (Michael 20. 10.); třídu rs-lh přidává leadhubTeaser() */
+    'html body .rs-lh{top:calc(var(--rs-hb,130px) + 12px)!important;bottom:auto!important;right:24px!important;left:auto!important;transform:none!important;width:auto!important;max-width:380px!important;min-height:0!important;display:flex!important;align-items:center!important;gap:6px!important;padding:6px 6px 6px 16px!important;background:rgba(255,255,255,.97)!important;color:' + G + '!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-pill)!important;box-shadow:0 10px 28px rgba(27,63,32,.16)!important;font-family:inherit!important;font-size:13px!important;line-height:1.3!important;font-weight:600!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);z-index:90!important;transition:top .2s ease}' +
+    'html body .rs-lh>span{position:static!important;display:inline-flex!important;align-items:center!important;height:auto!important;min-height:0!important;margin:0!important;border:0!important;background:none!important;color:inherit!important;font:inherit!important;padding:4px 0!important;width:auto!important;flex:0 0 auto!important;cursor:pointer}' +
+    'html body .rs-lh>span:first-child{flex:1 1 auto!important;cursor:default;white-space:normal}' +
+    'html body .rs-lh>span:nth-child(2){background:' + G + '!important;color:#fff!important;border-radius:var(--rs-pill)!important;padding:7px 14px!important;font-weight:700!important}html body .rs-lh>span:nth-child(2):hover{background:' + L + '!important}' +
+    'html body .rs-lh>span:nth-child(3),html body .rs-lh>span:nth-child(3)>span{opacity:1!important;color:#5b6b5d!important}html body .rs-lh>span:nth-child(3){padding:7px 10px!important;font-weight:600!important}html body .rs-lh>span:nth-child(3):hover{color:' + G + '!important}' +
+    '@media(max-width:767px){html body .rs-lh{top:calc(var(--rs-hb,60px) + 8px)!important;right:12px!important;left:12px!important;width:auto!important;max-width:none!important;transform:none!important;margin:0!important;font-size:13px!important;padding:5px 5px 5px 14px!important}' +
+    /* mobil: informační lišta dole nesmí zajet pod bublinu chatu vpravo */
+    'html body .site-msg.information{max-width:calc(100vw - 122px)!important;right:auto!important}}' +
     /* blok Shoptetu „Nejprodávanější“ nad výpisem – malé karty */
     '.products-top-wrapper{margin:6px 0 18px!important}.products-top-header{font-size:20px!important;color:' + G + '!important;margin:0 0 10px!important}' +
     '.products-top .product .p{background:#fff;border:1px solid ' + LINE + '!important;border-radius:14px!important;padding:12px 14px!important;box-shadow:var(--rs-shadow);height:100%}.products-top .product .name{font-size:14px!important;font-weight:700;color:' + G + '!important}' +
@@ -828,7 +837,16 @@
     ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: q }); document.head.appendChild(ld);
   }
 
-  function run() { css(); topbar(); sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  /* Leadhub vkládá upoutávku pop-upu dynamicky (třídy s hashem, inline styly) → označit ji třídou rs-lh a držet pod hlavičkou */
+  function leadhubTeaser() {
+    var root = document.documentElement, h = document.getElementById('header');
+    var pos = function () { var b = h ? h.getBoundingClientRect().bottom : 0, tb = document.querySelector('.rs-topbar'); if (tb && tb.offsetHeight) b = Math.max(b, tb.getBoundingClientRect().bottom); root.style.setProperty('--rs-hb', Math.max(8, Math.round(b)) + 'px'); };
+    pos(); window.addEventListener('scroll', pos, { passive: true }); window.addEventListener('resize', pos);
+    var tag = function () { [].forEach.call(document.querySelectorAll('.LEAD_GENERATION:not(.rs-lh)'), function (el) { if (/tipy|e-mailem/i.test(el.textContent || '') && el.children.length <= 4 && !el.querySelector('input')) el.classList.add('rs-lh'); }); };
+    tag(); var o = new MutationObserver(function () { clearTimeout(o.t); o.t = setTimeout(tag, 150); }); o.observe(document.body, { childList: true, subtree: true });
+  }
+
+  function run() { css(); topbar(); try { leadhubTeaser(); } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
