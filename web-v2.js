@@ -276,7 +276,7 @@
     '.rs-pg-table{width:100%;border-collapse:collapse;font-size:15.5px}.rs-pg-table th{background:#f2f7ec;color:' + G + ';text-align:left;padding:12px 16px;font-weight:800}.rs-pg-table td{padding:12px 16px;border-top:1px solid ' + LINE + '}.rs-pg-free{color:#2f7d1e;font-weight:800}' +
     '.rs-pg-list{margin:0;padding:0 0 0 2px;list-style:none}.rs-pg-list li{position:relative;padding:6px 0 6px 28px}.rs-pg-list li::before{content:"";position:absolute;left:4px;top:13px;width:12px;height:7px;border:solid ' + L + ';border-width:0 0 3px 3px;transform:rotate(-45deg)}' +
     '.rs-pg-toc{display:flex;flex-wrap:wrap;gap:8px;padding:16px 18px;border:1px solid ' + LINE + ';border-radius:18px;background:#f6faf1;margin:0 0 24px}.rs-pg-toc strong{width:100%;color:' + G + '}.rs-pg .rs-pg-toc a{padding:7px 14px;border-radius:999px;background:#fff;border:1px solid ' + LINE + ';text-decoration:none!important;font-size:14px}' +
-    '.rs-pg-story{padding:24px 26px;border-left:4px solid ' + L + ';border-radius:0 20px 20px 0;background:#f6faf1}.rs-pg-story p{max-width:820px}.rs-pg-sign{font-weight:800;color:' + G + ';margin:6px 0 0!important}' +
+    '.rs-pg-story{padding:24px 26px;border:1px solid ' + LINE + ';border-radius:20px;background:linear-gradient(180deg,#fff,#f6faf1);box-shadow:var(--rs-shadow)}.rs-pg-story p{max-width:820px}.rs-pg-sign{font-weight:800;color:' + G + ';margin:6px 0 0!important}' +
     '.rs-pg-faq details{border-top:1px solid ' + LINE + '}.rs-pg-faq details:first-of-type{border-top:0}.rs-pg-faq summary{list-style:none;cursor:pointer;position:relative;padding:14px 50px 14px 0;font-weight:800;color:' + G + ';font-size:16.5px}.rs-pg-faq summary::-webkit-details-marker{display:none}' +
     '.rs-pg-faq summary::before{content:"";position:absolute;right:0;top:50%;width:32px;height:32px;margin-top:-16px;border-radius:50%;background:#f2f7ec;border:1px solid ' + LINE + '}.rs-pg-faq summary::after{content:"";position:absolute;right:12px;top:50%;width:8px;height:8px;border:solid ' + G + ';border-width:0 2px 2px 0;transform:translateY(-70%) rotate(45deg);transition:transform .2s}' +
     '.rs-pg-faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}.rs-pg-faq details p{margin:0 0 14px;padding-right:40px}' +
@@ -285,7 +285,7 @@
     '@media(max-width:991px){.rs-pg-hero{grid-template-columns:1fr;padding:22px}.rs-pg-hero-f--sm{justify-self:start;max-width:220px}.rs-pg-grid,.rs-pg-steps{grid-template-columns:1fr 1fr}.rs-pg-gal{grid-template-columns:repeat(3,1fr)}.rs-pg-hero h2{font-size:27px}}' +
     '@media(max-width:560px){.rs-pg-grid,.rs-pg-steps,.rs-pg-firma-g{grid-template-columns:1fr}.rs-pg-gal{grid-template-columns:repeat(2,1fr)}.rs-pg-btn{flex:1 1 100%;justify-content:center}}' +
     /* archivní kategorie: odkaz na servis i pro starší roboty (místo zařazení služeb do archivu) */
-    '.rs-arch-svc{margin:0 0 18px;padding:14px 18px;border:1px solid ' + LINE + ';border-left:4px solid ' + L + ';border-radius:16px;background:#f6faf1;color:#2b3328;font-size:15.5px;line-height:1.55}.rs-arch-svc strong{color:' + G + '}.rs-arch-svc a{color:' + G + '!important;font-weight:700;text-decoration:underline;text-decoration-color:' + L + ';text-underline-offset:3px}' +
+    '.rs-arch-svc{margin:0 0 18px;padding:14px 18px;border:1px solid ' + LINE + ';border-radius:16px;background:#f6faf1;color:#2b3328;font-size:15.5px;line-height:1.55}.rs-arch-svc strong{color:' + G + '}.rs-arch-svc a{color:' + G + '!important;font-weight:700;text-decoration:underline;text-decoration-color:' + L + ';text-underline-offset:3px}' +
     /* okna Shoptetu (colorbox: „Přidáno do košíku“, hlídací pes, dotaz…) a hlavní tlačítko v našem vzhledu (18. 10.) */
     '#cboxOverlay{background:rgba(20,40,22,.45)!important;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}' +
     '#colorbox,#cboxWrapper,#cboxContent,#cboxLoadedContent{border-radius:24px!important}#cboxContent,#cboxLoadedContent{overflow:hidden;background:#fff!important}#colorbox{box-shadow:0 30px 70px rgba(20,40,22,.28)!important}' +
@@ -506,7 +506,18 @@
     '#navigation .rs-mega>li.rs-mega__foot{display:flex!important;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 12px;margin-top:4px!important;padding:10px 12px!important;border-radius:12px;background:#e9f3dd!important;color:#3d4a3d;font-size:13.5px}' +
     '#navigation .rs-mega>li.rs-mega__foot a{display:inline!important;padding:0!important;min-height:0!important;border:0!important;background:none!important;color:' + G + '!important;font-weight:800!important}' +
     '#navigation .rs-mega>li.rs-mega__guide>a{display:block!important;padding:10px 12px!important;background:#fff!important;border:1px solid ' + LINE + '!important;border-radius:12px!important}}';
-  function css() { if (document.getElementById('rs-web2-css')) return; var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB; document.head.appendChild(s); }
+  /* box „Naposledy prohlížené“ nad patičkou – zelená verze boxu náhrad u nedostupného modelu (widget-prodej .rs-alt), bez bočního pruhu */
+  var CSS_REC =
+    '.rs-recent{padding:8px 16px 34px}.rs-recent__in{max-width:1080px;margin:0 auto;padding:22px 24px;border-radius:var(--rs-r);border:1px solid var(--rs-line);background:linear-gradient(135deg,#f7faf5,#eef6e6);box-shadow:var(--rs-shadow)}' +
+    '.rs-recent__h{margin:0 0 4px!important;color:var(--rs-g)!important;font-size:1.3rem!important;font-weight:800!important;line-height:1.3}' +
+    '.rs-recent__sub{margin:0 0 14px!important;color:var(--rs-muted);font-size:15px}.rs-recent__sub a{color:var(--rs-g)!important;font-weight:700;text-decoration:none}' +
+    '.rs-recent__g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}' +
+    '.rs-recent__c{display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:16px;background:#fff;border:1px solid var(--rs-line);text-decoration:none!important;color:var(--rs-text)!important;box-shadow:0 6px 16px rgba(27,63,32,.06);transition:transform var(--rs-ease),box-shadow var(--rs-ease)}' +
+    '.rs-recent__c:hover{transform:var(--rs-lift);box-shadow:var(--rs-shadow-hover)}' +
+    '.rs-recent__c img{width:100%;height:150px;object-fit:contain;display:block}.rs-recent__t{display:flex;flex-direction:column;gap:6px}' +
+    '.rs-recent__n{font-weight:800;font-size:15px;line-height:1.3;color:var(--rs-g)}.rs-recent__go{font-size:13.5px;font-weight:700;color:#3f7f1f}' +
+    '@media(max-width:700px){.rs-recent__in{padding:18px 16px}.rs-recent__g{grid-template-columns:1fr;gap:10px}.rs-recent__c{flex-direction:row;align-items:center;padding:10px 12px}.rs-recent__c img{width:84px;height:84px;flex:none}}';
+  function css() { if (document.getElementById('rs-web2-css')) return; var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB + CSS_REC; document.head.appendChild(s); }
 
   function topbar() {
     var h = document.getElementById('header'); if (!h || document.querySelector('.rs-topbar')) return;
@@ -927,7 +938,75 @@
     [].forEach.call(document.querySelectorAll('.availability-label, .availability span, .availability-amount'), function (e) { if (e.dataset.rsAv) return; var c = getComputedStyle(e).color; if (MAP[c]) { e.style.setProperty('color', MAP[c], 'important'); e.dataset.rsAv = 1; } });
   }
 
-  function run() { css(); topbar(); try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.textContent = '💬 Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  /* ===== Naposledy prohlížené produkty (Michael 20. 10. 2026) =====
+     Produkt: uloží se název, obrázek a adresa (jen se souhlasem s personalizačními cookies, jen v prohlížeči návštěvníka).
+     Statické stránky, Hodnocení, blog: nad patičkou box „Vraťte se k produktu…“ (název + obrázek, bez ceny).
+     Článek bez historie: nejprodávanější modely SKLADEM podle tématu článku (značka + typ robota). Jinde bez historie nic. */
+  var REC_KEY = 'rs_recent_v1';
+  var REC_MAP = {
+    sekacka: { _: '/roboticke-bezdratove-sekacky/', mova: '/mova/', dreame: '/dreame/', gardena: '/gardena-bezdratova/', mammotion: '/bezdratova-sekacka-luba/', luba: '/bezdratova-sekacka-luba/', yuka: '/bezdratova-sekacka-luba/', roborock: '/roborock-2/', segway: '/segway-navimow/', navimow: '/segway-navimow/', ecovacs: '/ecovacs/', goat: '/ecovacs/' },
+    vysavac: { _: '/roboticke-vysavace/', ecovacs: '/ecovacs-2/', deebot: '/ecovacs-2/', roborock: '/roborock/', dreame: '/dreame-2/', irobot: '/irobot/', roomba: '/irobot/', hobot: '/hobot/' },
+    bazen: { _: '/bazenove-vysavace/', ecovacs: '/ecovacs-4/', ultramarine: '/ecovacs-4/', aiper: '/aiper/', scuba: '/aiper/', mammotion: '/mammotion-2/', spino: '/mammotion-2/' }
+  };
+  var REC_BRAND = { mova: 'MOVA', dreame: 'Dreame', gardena: 'Gardena', mammotion: 'Mammotion', luba: 'Mammotion', yuka: 'Mammotion', roborock: 'Roborock', segway: 'Segway Navimow', navimow: 'Segway Navimow', ecovacs: 'Ecovacs', goat: 'Ecovacs', deebot: 'Ecovacs', irobot: 'iRobot', roomba: 'iRobot', hobot: 'Hobot', ultramarine: 'Ecovacs', aiper: 'Aiper', scuba: 'Aiper', spino: 'Mammotion' };
+  var REC_TYPE = { sekacka: 'robotické sekačky', vysavac: 'robotické vysavače', bazen: 'bazénové vysavače' };
+  function recConsent() { try { var c = window.shoptet && shoptet.config; if (c && !c.cookiesConsentIsActive) return true; return !!(shoptet.consent && shoptet.consent.isAccepted((c && c.cookiesConsentOptPersonalisation) || 'personalisation')); } catch (e) { return false; } }
+  function recRead() { try { return JSON.parse(localStorage.getItem(REC_KEY) || '[]') || []; } catch (e) { return []; } }
+  function recSave() {
+    var b = document.body; if (!b.classList.contains('type-detail') || !recConsent()) return;
+    var h = document.querySelector('h1'); if (!h) return; var hc = h.cloneNode(true); [].forEach.call(hc.querySelectorAll('.product-appendix'), function (x) { x.remove(); });
+    var n = hc.textContent.replace(/\s+/g, ' ').trim().split(' + ')[0]; var og = document.querySelector('meta[property="og:image"]');
+    if (!n || /zprovozn|instalace|servis|obhlídk|předveden|oprava|poukaz/i.test(n)) return;
+    var it = { u: location.pathname, n: n, img: og ? og.content : '', t: Date.now() };
+    var list = recRead().filter(function (x) { return x && x.u !== it.u; }); list.unshift(it);
+    try { localStorage.setItem(REC_KEY, JSON.stringify(list.slice(0, 6))); } catch (e) {}
+  }
+  function recTopic() {
+    var h1 = ((document.querySelector('h1') || {}).textContent || '').toLowerCase();
+    var art = document.querySelector('.content .text, #content .text, .content-inner, #content'); var tx = ((art && art.innerText) || '').toLowerCase().slice(0, 20000);
+    function cnt(re) { return ((h1.match(re) || []).length * 5) + (tx.match(re) || []).length; }
+    var sc = { sekacka: cnt(/sekačk|sekack|trávník|goat|luba|navimow|sekání/g), bazen: cnt(/bazén|ultramarine|scuba|spino|beatbot/g), vysavac: cnt(/robotick\S* vysavač|vytírá|deebot|mop|saros|qrevo|roomba/g) };
+    var type = Object.keys(sc).sort(function (a, b) { return sc[b] - sc[a]; })[0]; if (sc[type] < 3) return null;
+    var best = null, bs = 0; Object.keys(REC_MAP[type]).forEach(function (k) { if (k === '_') return; var s = cnt(new RegExp(k, 'g')); if (s > bs) { bs = s; best = k; } });
+    return { type: type, url: REC_MAP[type][best || '_'], brand: best ? REC_BRAND[best] : '' };
+  }
+  function recBox(title, sub, items, cta, kind) {
+    var f = document.getElementById('footer'); if (!f || document.querySelector('.rs-recent')) return;
+    var s = document.createElement('section'); s.className = 'rs-recent'; s.setAttribute('aria-label', title);
+    s.innerHTML = '<div class="rs-recent__in"><h2 class="rs-recent__h"></h2><p class="rs-recent__sub"></p><div class="rs-recent__g"></div></div>';
+    s.querySelector('.rs-recent__h').textContent = title; s.querySelector('.rs-recent__sub').innerHTML = sub;
+    var g = s.querySelector('.rs-recent__g');
+    items.forEach(function (x) { var a = document.createElement('a'); a.className = 'rs-recent__c'; a.href = x.u; a.innerHTML = (x.img ? '<img alt="" loading="lazy">' : '') + '<span class="rs-recent__t"><span class="rs-recent__n"></span><span class="rs-recent__go"></span></span>'; if (x.img) a.querySelector('img').src = x.img; a.querySelector('.rs-recent__n').textContent = x.n; a.querySelector('.rs-recent__go').textContent = cta; a.addEventListener('click', function () { try { (window.dataLayer = window.dataLayer || []).push({ event: 'rs_recent_click', rs_recent_type: kind }); } catch (e) {} }); g.appendChild(a); });
+    f.parentNode.insertBefore(s, f);
+    /* jiné widgety (recenze, Leadhub) se vkládají před patičku později → box posunout zpět na úplný konec obsahu */
+    var last = function () { if (s.nextElementSibling !== f && f.parentNode) f.parentNode.insertBefore(s, f); };
+    [800, 2500, 5000].forEach(function (t) { setTimeout(last, t); }); window.addEventListener('load', function () { setTimeout(last, 300); });
+  }
+  function recentViewed() {
+    recSave();
+    var b = document.body.classList; if (!(b.contains('type-page') || b.contains('type-post') || b.contains('type-posts-listing') || b.contains('in-hodnoceni-obchodu'))) return;
+    var SUB = 'Nejste si jistí výběrem? Zavolejte <a href="tel:+420792325839">792 325 839</a> – poradíme.';
+    var list = recConsent() ? recRead().filter(function (x) { return x && x.u && x.u !== location.pathname; }).slice(0, 3) : [];
+    if (list.length) { recBox(list.length > 1 ? 'Vraťte se k produktům, které jste si prohlíželi' : 'Vraťte se k produktu, který jste si prohlíželi', SUB, list, 'Zpět na produkt →', 'recent'); return; }
+    if (!b.contains('type-post')) return;
+    var tp = recTopic(); if (!tp) return;
+    function pick(url) { return fetch(url + '?order=bestseller').then(function (r) { return r.text(); }).then(function (h) {
+      var d = new DOMParser().parseFromString(h, 'text/html'), seen = {}, out = [], box = d.getElementById('products'); if (!box) return out;
+      [].forEach.call(box.querySelectorAll('.product'), function (c) {
+        if (out.length >= 3) return; var a = c.querySelector('a.name') || c.querySelector('a[href]'); if (!a) return; var u = a.getAttribute('href'); if (!u || seen[u]) return; seen[u] = 1;
+        var n = ((c.querySelector('[data-testid="productCardName"], .name') || {}).textContent || '').replace(/\s+/g, ' ').trim(); var av = ((c.querySelector('.availability') || {}).textContent || '').trim();
+        var pr = parseInt(((c.querySelector('.price-final') || {}).textContent || '').replace(/[^\d]/g, ''), 10) || 0;
+        if (!n || !/^Skladem/i.test(av) || pr < 4000 || /příslušenství|náhradní|nůž|nož|cívka|sada|sáčk|filtr|kartáč|válec|baterie|garáž|zprovozn|instalace|servis|předveden/i.test(n)) return;
+        var im = c.querySelector('img'); out.push({ u: u, n: n.split(' + ')[0], img: im ? (im.getAttribute('data-src') || im.getAttribute('src')) : '' });
+      });
+      return out; }); }
+    /* značka nemá nic skladem → nejprodávanější skladem z celého typu (bez značky v nadpisu) */
+    var def = REC_MAP[tp.type]._;
+    pick(tp.url).then(function (out) { if (out.length || tp.url === def) return { out: out, brand: tp.brand }; return pick(def).then(function (o) { return { out: o, brand: '' }; }); })
+      .then(function (r) { if (r.out.length) recBox('Nejoblíbenější ' + REC_TYPE[tp.type] + (r.brand ? ' ' + r.brand : '') + ' skladem', SUB, r.out, 'Zobrazit detail →', 'topic'); }).catch(function () {});
+  }
+
+  function run() { css(); topbar(); try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.textContent = '💬 Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
