@@ -1,4 +1,85 @@
 /* robotisekacky.cz – globální drobnosti pro celý web (načítá se z HTML kódu Záhlaví). Spravuje Firma/playbooky/webove-stranky. */
+/* ===== DESIGN TOKENY + TLAČÍTKA – JEDINÉ MÍSTO PRO VZHLED CELÉHO WEBU (21. 10. 2026) =====
+   Zdroj: Firma/nastroje/web/tokeny-a-tlacitka.css → vkládá se do web-global.css (repo widgetů, @main, po změně purge).
+   Změna barvy, zaoblení, stínu nebo hoveru tlačítek = změna proměnné níže. Nic jiného se nepřepisuje.
+   Varianty: primary (tmavě zelená), accent (světle zelená), outline (bílé s rámečkem), glass (průsvitné tmavé na fotkách/skle),
+   light (bílé na tmavém pozadí). Nová tlačítka: class="rs-btn rs-btn--primary" (+ rs-btn--sm). Staré třídy jsou aliasy níže. */
+:root{
+  /* barvy */
+  --rs-g:#1b3f20;--rs-l:#86BB41;--rs-line:#e6f0db;--rs-soft:#f2f7ec;--rs-soft2:#eef6e6;--rs-text:#2b3328;--rs-muted:#5a6b56;
+  /* tvary, stíny, pohyb */
+  --rs-r:20px;--rs-r-sm:14px;--rs-pill:999px;
+  --rs-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 8px 22px rgba(47,74,42,.08);
+  --rs-shadow-hover:0 1px 0 rgba(255,255,255,.9) inset,0 16px 36px rgba(47,74,42,.18);
+  --rs-lift:translateY(-4px);--rs-ease:.2s ease;
+  /* tlačítka – společné */
+  --rs-btn-radius:var(--rs-pill);
+  --rs-btn-fw:700;
+  --rs-btn-ls:0;
+  --rs-btn-shadow:0 10px 22px rgba(27,63,32,.2);
+  --rs-btn-shadow-hover:0 14px 28px rgba(27,63,32,.26);
+  --rs-btn-lift:translateY(-2px);
+  --rs-btn-h:46px;--rs-btn-px:22px;--rs-btn-fs:15px;
+  /* tlačítka – varianty */
+  --rs-btn-primary-bg:var(--rs-g);--rs-btn-primary-fg:#fff;--rs-btn-primary-bg-hover:#2a5a31;
+  --rs-btn-accent-bg:var(--rs-l);--rs-btn-accent-fg:#fff;--rs-btn-accent-bg-hover:#74b035;
+  --rs-btn-outline-bg:#fff;--rs-btn-outline-fg:var(--rs-g);--rs-btn-outline-bd:var(--rs-g);--rs-btn-outline-bg-hover:var(--rs-soft2);
+  --rs-btn-glass-bg:rgba(27,63,32,.82);--rs-btn-glass-fg:#fff;--rs-btn-glass-bd:rgba(255,255,255,.5);--rs-btn-glass-bg-hover:rgba(27,63,32,.95);
+  --rs-btn-light-bg:rgba(255,255,255,.92);--rs-btn-light-fg:var(--rs-g);--rs-btn-light-bg-hover:#fff;
+  /* karty a štítky (pro nové bloky) */
+  --rs-card-bg:#fff;--rs-card-bd:var(--rs-line);--rs-card-radius:var(--rs-r);--rs-card-shadow:var(--rs-shadow);
+  --rs-note-bg:#fffbeb;--rs-note-bd:#f59e0b;--rs-note-fg:#78350f;
+  --rs-badge-sale-bg:#fde8e7;--rs-badge-sale-fg:#c4170f;--rs-badge-new-bg:var(--rs-soft);--rs-badge-new-fg:var(--rs-g);
+}
+
+/* --- nové třídy pro nové bloky --- */
+.rs-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:var(--rs-btn-h);padding:0 var(--rs-btn-px);font-size:var(--rs-btn-fs);line-height:1.2;text-decoration:none!important;cursor:pointer;white-space:nowrap;border:0}
+.rs-btn--sm{min-height:36px;padding:0 16px;font-size:14px}
+.rs-btn--block{display:flex;width:100%}
+.rs-card{background:var(--rs-card-bg);border:1px solid var(--rs-card-bd);border-radius:var(--rs-card-radius);box-shadow:var(--rs-card-shadow);padding:20px}
+.rs-note{background:var(--rs-note-bg);border:1px solid var(--rs-note-bd);border-left-width:4px;border-radius:var(--rs-r-sm);color:var(--rs-note-fg);padding:14px 18px}
+.rs-badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:var(--rs-pill);font-size:12px;font-weight:800;background:var(--rs-badge-new-bg);color:var(--rs-badge-new-fg)}
+.rs-badge--sale{background:var(--rs-badge-sale-bg);color:var(--rs-badge-sale-fg)}
+.rs-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--rs-pill);border:1px solid var(--rs-line);background:#fff;color:var(--rs-g)!important;font-weight:700;font-size:14px;text-decoration:none!important}
+
+/* --- 1) společný tvar všech tlačítek (zaoblení, písmo, stín, animace) --- */
+html:root body :is(.rs-btn,.cta,.price-cta,.trust-cta,.rsw-cta,.rsw .rsw-cta,.tips-cta .cta,.trust-tiles .trust-cta,.st-btn,.rs-content[data-rs-content] a.st-btn,.rs-svc-btn,.rs-pg-btn,.rs-pg-form .btn,.rs-pg-form button[type=submit],.rsh-cta a,.rsr__btn,.rsr__cta a,.rs-hodn .add-comment .btn,.rs-poradime__btn,.rs-foot__btn,#footer .rs-foot__btn--p,.rk-btn,.rk-formbtn,html body .rs-wrap .rs-scroll-btn,.rsw-article .rsw-cta,.rsw-article .rsw-more,.products-block .btn-cart,.products-block .p-tools .btn,.type-detail .p-to-cart-block .add-to-cart-button,.btn.btn-conversion,a.btn-conversion,button.btn-conversion,.next-step .btn-conversion,.next-step-forward,.ordering-process .next-step-finish,.ordering-process .login-button,.listingControls .loadMore__button,#filters .parametric-slider-submit-btn){
+  border-radius:var(--rs-btn-radius)!important;font-weight:var(--rs-btn-fw)!important;letter-spacing:var(--rs-btn-ls);text-decoration:none!important;
+  transition:transform var(--rs-ease),box-shadow var(--rs-ease),background-color var(--rs-ease),color var(--rs-ease),border-color var(--rs-ease)!important}
+html:root body :is(.rs-btn,.cta,.price-cta,.trust-cta,.rsw-cta,.rsw .rsw-cta,.tips-cta .cta,.trust-tiles .trust-cta,.st-btn,.rs-content[data-rs-content] a.st-btn,.rs-svc-btn,.rs-pg-btn,.rs-pg-form .btn,.rs-pg-form button[type=submit],.rsh-cta a,.rsr__btn,.rsr__cta a,.rs-hodn .add-comment .btn,.rs-poradime__btn,.rs-foot__btn,#footer .rs-foot__btn--p,.rk-btn,.rk-formbtn,html body .rs-wrap .rs-scroll-btn,.rsw-article .rsw-cta,.rsw-article .rsw-more,.products-block .btn-cart,.products-block .p-tools .btn,.type-detail .p-to-cart-block .add-to-cart-button,.btn.btn-conversion,a.btn-conversion,button.btn-conversion,.next-step .btn-conversion,.next-step-forward,.ordering-process .next-step-finish,.ordering-process .login-button,.listingControls .loadMore__button,#filters .parametric-slider-submit-btn):hover{
+  transform:var(--rs-btn-lift)!important;box-shadow:var(--rs-btn-shadow-hover)!important}
+
+/* --- 2) primary – plné tmavě zelené --- */
+html:root body :is(.rs-btn--primary,.rs-poradime__btn:not(.rs-poradime__btn--sec),.st-btn--pri,.rs-content[data-rs-content] a.st-btn--pri,.rs-svc-btn,.rs-pg-btn:not(.rs-pg-btn--o):not(.rs-pg-btn--w):not(.rs-pg-btn--wo),.rs-pg-form .btn,.rs-pg-form button[type=submit],.rsh-cta .pri,.rsr__cta a.pri,.rk-formbtn--dark,html body .rs-wrap .rs-scroll-btn,.products-block .btn-cart,.products-block .p-tools .btn:not([href]),.type-detail .p-to-cart-block .add-to-cart-button,.btn.btn-conversion,a.btn-conversion,button.btn-conversion,.next-step .btn-conversion,.next-step-forward,.ordering-process .next-step-finish,.listingControls .loadMore__button,#filters .parametric-slider-submit-btn){
+  background:var(--rs-btn-primary-bg)!important;color:var(--rs-btn-primary-fg)!important;border:0!important;box-shadow:var(--rs-btn-shadow)!important}
+html:root body :is(.rs-btn--primary,.rs-poradime__btn:not(.rs-poradime__btn--sec),.st-btn--pri,.rs-content[data-rs-content] a.st-btn--pri,.rs-svc-btn,.rs-pg-btn:not(.rs-pg-btn--o):not(.rs-pg-btn--w):not(.rs-pg-btn--wo),.rs-pg-form .btn,.rs-pg-form button[type=submit],.rsh-cta .pri,.rsr__cta a.pri,.rk-formbtn--dark,html body .rs-wrap .rs-scroll-btn,.products-block .btn-cart,.products-block .p-tools .btn:not([href]),.type-detail .p-to-cart-block .add-to-cart-button,.btn.btn-conversion,a.btn-conversion,button.btn-conversion,.next-step .btn-conversion,.next-step-forward,.ordering-process .next-step-finish,.listingControls .loadMore__button,#filters .parametric-slider-submit-btn):hover{
+  background:var(--rs-btn-primary-bg-hover)!important;color:var(--rs-btn-primary-fg)!important}
+
+/* --- 3) accent – plné světle zelené (telefon ve službách, reklamace) --- */
+html:root body :is(.rs-btn--accent,.cta--green,.price-cta--phone,.trust-cta--phone,.rsw-cta--phone,.rk-btn--green,.rk-formbtn--green){
+  background:var(--rs-btn-accent-bg)!important;color:var(--rs-btn-accent-fg)!important;border:0!important;box-shadow:var(--rs-btn-shadow)!important}
+html:root body :is(.rs-btn--accent,.cta--green,.price-cta--phone,.trust-cta--phone,.rsw-cta--phone,.rk-btn--green,.rk-formbtn--green):hover{
+  background:var(--rs-btn-accent-bg-hover)!important;color:var(--rs-btn-accent-fg)!important}
+
+/* --- 4) outline – bílé s tmavým rámečkem --- */
+html:root body :is(.rs-btn--outline,.rs-poradime__btn--sec,.rs-pg-btn--o,.rsh-cta .sec,.rsr__btn,.rsr__cta a:not(.pri),.st-btn:not(.st-btn--pri),.rs-content[data-rs-content] a.st-btn:not(.st-btn--pri),.price-cta--email,.rs-hodn .add-comment .btn,.products-block .p-tools .btn[href],.ordering-process .login-button){
+  background:var(--rs-btn-outline-bg)!important;color:var(--rs-btn-outline-fg)!important;border:2px solid var(--rs-btn-outline-bd)!important;box-shadow:none!important}
+html:root body :is(.rs-btn--outline,.rs-poradime__btn--sec,.rs-pg-btn--o,.rsh-cta .sec,.rsr__btn,.rsr__cta a:not(.pri),.st-btn:not(.st-btn--pri),.rs-content[data-rs-content] a.st-btn:not(.st-btn--pri),.price-cta--email,.rs-hodn .add-comment .btn,.products-block .p-tools .btn[href],.ordering-process .login-button):hover{
+  background:var(--rs-btn-outline-bg-hover)!important;color:var(--rs-btn-outline-fg)!important}
+
+/* --- 5) glass – průsvitné tmavé (na fotkách a skleněných panelech) --- */
+html:root body :is(.rs-btn--glass,.cta--dark,.tips-cta .cta.cta--dark,.trust-cta--email,.rsw-cta--email,.rsw .rsw-cta:not(.rsw-cta--phone),.trust-tiles .trust-cta:not(.trust-cta--phone),.rsw-article .rsw-cta,.rsw-article .rsw-more){
+  background:var(--rs-btn-glass-bg)!important;color:var(--rs-btn-glass-fg)!important;border:1px solid var(--rs-btn-glass-bd)!important;box-shadow:var(--rs-btn-shadow)!important}
+html:root body :is(.rs-btn--glass,.cta--dark,.tips-cta .cta.cta--dark,.trust-cta--email,.rsw-cta--email,.rsw .rsw-cta:not(.rsw-cta--phone),.trust-tiles .trust-cta:not(.trust-cta--phone),.rsw-article .rsw-cta,.rsw-article .rsw-more):hover{
+  background:var(--rs-btn-glass-bg-hover)!important;color:var(--rs-btn-glass-fg)!important}
+
+/* --- 6) light – bílé na tmavém pozadí --- */
+html:root body :is(.rs-btn--light,.cta--light,.tips-cta .cta.cta--light,.rs-pg-btn--w,#footer .rs-foot__btn--p){
+  background:var(--rs-btn-light-bg)!important;color:var(--rs-btn-light-fg)!important;border:1px solid rgba(255,255,255,.7)!important}
+html:root body :is(.rs-btn--light,.cta--light,.tips-cta .cta.cta--light,.rs-pg-btn--w,#footer .rs-foot__btn--p):hover{
+  background:var(--rs-btn-light-bg-hover)!important;color:var(--rs-btn-light-fg)!important}
+/* ===== konec tokenů a tlačítek ===== */
+
 /* Šipky galerie produktu (doplněk Šipky, J. Turský): tmavě zelený kruh, bílá šipka – stejně jako karusely v popisu */
 :root{--color-detail-product-arrows-BG:rgba(27,63,32,.78);--color-detail-product-arrows-BG-hover:#1b3f20;--color-detail-product-arrows-icon:#fff;--color-detail-product-arrows-icon-hover:#86BB41;--detail-product-arrows-border-radius:100%}
 .p-image .carousel-control--product{width:50px!important;height:50px!important;border-radius:50%!important;background:rgba(27,63,32,.82)!important;box-shadow:0 14px 28px rgba(0,0,0,.18)!important;display:grid!important;place-items:center;top:50%!important;transform:translateY(-50%);margin:0!important;transition:background .2s}
