@@ -13,21 +13,21 @@ var CFG={
   svcUrl:'/zprovozneni-robotickeho-vysavace/',
   advisorS:'Michael Boháček, majitel – poradím s výběrem a robota vám můžu i nastavit u vás doma.',
   install:['Zprovozníme vám ho u vás doma','Wi-Fi, aplikace, mapa i plán úklidu · od 3 490 Kč · Praha a Středočeský kraj bez příplatku'],
-  usp:[['🏠','Pomůžeme se zprovozněním – na dálku i u vás',1],['💬','Poradíme osobně i po nákupu'],['↩︎','Vrácení do 14 dnů bez dohadů'],['⭐','Ověřeno zákazníky – Heureka 5,0']],
+  usp:[['🏠','Pomůžeme se zprovozněním – na dálku i u vás',1],['💬','Poradíme osobně i po nákupu',0,'/kontakty/'],['↩︎','Vrácení do 14 dnů bez dohadů',0,'/reklamace-a-vraceni-zbozi/'],['⭐','Ověřeno zákazníky – Heureka 5,0',0,'/hodnoceni-obchodu/']],
   skip:/zprovozn|instalac|servis|kartáč|filtr|mop |sáček|kapalin|nádob|garáž|modul|anténa|kabel/i
  },
  sekacka:{
   svcUrl:'/instalace-sekacek/',
   advisorS:'Michael Boháček, majitel – poradím podle vaší zahrady a sekačku vám můžeme i nainstalovat.',
   install:['Nainstalujeme vám ji na zahradě','Mapa, hranice, zakázané zóny i plán sekání · bezdrátové od 9 499 Kč · po celé ČR'],
-  usp:[['🛠️','Instalace a nastavení po celé ČR',1],['💬','Poradíme podle vaší zahrady'],['↩︎','Vrácení do 14 dnů bez dohadů'],['⭐','Ověřeno zákazníky – Heureka 5,0']],
+  usp:[['🛠️','Instalace a nastavení po celé ČR',1],['💬','Poradíme podle vaší zahrady',0,'/kontakty/'],['↩︎','Vrácení do 14 dnů bez dohadů',0,'/reklamace-a-vraceni-zbozi/'],['⭐','Ověřeno zákazníky – Heureka 5,0',0,'/hodnoceni-obchodu/']],
   skip:/instalac|obhlídk|servis|nůž|nože|čepel|garáž|domeček|kabel|drát|kolík|anténa|modul|kol[oa] |baterie/i
  },
  bazen:{
   svcUrl:'/predvedeni-bazenovych-vysavacu/',
   advisorS:'Michael Boháček, majitel – poradím podle tvaru, povrchu a schodů vašeho bazénu.',
   install:['Nevíte, jestli zvládne váš bazén? Pošlete fotku','Poradíme s výběrem · vybrané modely předvedeme přímo u vás (Praha a Středočeský kraj)'],
-  usp:[['🏊','Poradíme podle vašeho bazénu',1],['💬','Pomoc i po nákupu'],['↩︎','Vrácení do 14 dnů bez dohadů'],['⭐','Ověřeno zákazníky – Heureka 5,0']],
+  usp:[['🏊','Poradíme podle vašeho bazénu',1],['💬','Pomoc i po nákupu',0,'/kontakty/'],['↩︎','Vrácení do 14 dnů bez dohadů',0,'/reklamace-a-vraceni-zbozi/'],['⭐','Ověřeno zákazníky – Heureka 5,0',0,'/hodnoceni-obchodu/']],
   skip:/předveden|servis|filtr|kartáč|vozík|kabel|nabíječ|plovák|baterie/i
  }
 };
@@ -52,8 +52,9 @@ var i=0,box=a.querySelector('.rq');function show(){box.querySelector('q').textCo
 var red=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,hov=false;a.addEventListener('mouseenter',function(){hov=true});a.addEventListener('mouseleave',function(){hov=false});
 if(!red)setInterval(function(){if(hov||document.hidden)return;box.classList.add('fade');setTimeout(function(){i=(i+1)%Q.length;show();box.classList.remove('fade')},350)},6500)}
 var adv=document.querySelector('.rs-advisor');
-if(adv&&!has('.rs-usp')){var u=document.createElement('div');u.className='rs-usp';C.usp.forEach(function(x){var d=document.createElement('div');var ic=document.createElement('i');ic.textContent=x[0];d.appendChild(ic);if(x[2]){var l=document.createElement('a');l.textContent=x[1];svcLink(l);d.appendChild(l)}else d.appendChild(document.createTextNode(x[1]));u.appendChild(d)});adv.insertAdjacentElement('afterend',u)}
-var tries=0;(function upd(){var n=cnt();if(n){document.querySelectorAll('.rs-cnt').forEach(function(x){x.textContent=n})}if(tries++<24)setTimeout(upd,500)})();
+if(adv&&!has('.rs-usp')){var u=document.createElement('div');u.className='rs-usp';C.usp.forEach(function(x){var d=document.createElement('div');var ic=document.createElement('i');ic.textContent=x[0];d.appendChild(ic);if(x[2]||x[3]){var l=document.createElement('a');l.textContent=x[1];if(x[2])svcLink(l);else l.href=x[3];d.appendChild(l)}else d.appendChild(document.createTextNode(x[1]));u.appendChild(d)});adv.insertAdjacentElement('afterend',u)}
+var RC=0;try{fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function(r){return r.json()}).then(function(j){RC=(j&&j.celkem)||0}).catch(function(){})}catch(e){}
+var tries=0;(function upd(){var n=Math.max(cnt()||0,RC)?Math.max(cnt()||0,RC)+'+':null;if(n){document.querySelectorAll('.rs-cnt').forEach(function(x){x.textContent=n})}if(tries++<24)setTimeout(upd,500)})();
 },50));
 
 /* 2b) oprava v1 šablony: TIPY_HTML (<ul>) byl obalený v <ol> → rozbitý seznam */
