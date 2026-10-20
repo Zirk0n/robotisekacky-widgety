@@ -409,7 +409,7 @@
     '.type-detail .p-to-cart-block .quantity{border-radius:999px!important;overflow:hidden;border:1px solid ' + LINE + '!important}' +
     '.type-detail .p-to-cart-block .quantity input,.type-detail .p-to-cart-block .quantity button{border:0!important;background:#fff!important;color:' + G + '!important;font-weight:700}' +
     '.type-detail .p-final-price-wrapper .price-final,.type-detail .p-final-price-wrapper .price-final strong{color:' + G + '!important;font-weight:800!important}' +
-    '.type-detail .price-save{display:inline-block!important;width:auto!important;background:#fde8e7;color:#c4170f!important;border-radius:999px;padding:2px 10px;font-weight:700}' + /* 20. 10.: stejně červeně jako kolečko slevy na fotce */
+    '.type-detail .price-save{display:inline-block!important;width:auto!important;align-self:flex-start!important;justify-self:start!important;max-width:max-content!important;background:#fde8e7;color:#c4170f!important;border-radius:999px;padding:2px 10px;font-weight:700}' + /* 20. 10.: stejně červeně jako kolečko slevy na fotce */
     /* --- 4) kategorie --- */
     '.type-category .category-title,.type-category h1,.type-detail h1,.type-page h1,.type-article h1,.type-posts-listing h1{color:' + G + '!important;font-weight:800!important}' +
     '.type-category .rs-cat-intro h2,.type-category .category-perex h2,.type-category .category-perex h3{color:' + G + '!important}' +
