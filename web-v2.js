@@ -549,7 +549,17 @@
     '.rs-pg-sign img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:0 0 72px;border:3px solid var(--rs-l)}' +
     '.rs-pg-sign p{margin:0!important}.rs-pg-sign b{display:block;color:var(--rs-g);font-size:17px}.rs-pg-sign span{display:block;margin-top:2px;color:var(--rs-muted);font-size:15px;font-weight:400;line-height:1.5}' +
     '@media(max-width:600px){.rs-pg-sign{align-items:flex-start;gap:12px;padding:16px}.rs-pg-sign img{width:56px;height:56px;flex-basis:56px}}';
-  function css() { if (document.getElementById('rs-web2-css')) return; /* vkládat i když jsou styly v hlavičce (web-global.css): pořadí kaskády – doplňky Shoptetu (sticky header, dlaždice) načítají CSS až v <body> a jinak by naše pravidla přebily */ var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB + CSS_REC + CSS_TB + CSS_UI; document.head.appendChild(s); }
+  /* vyhledávání (26. 10. 2026): pole přes celou šířku okna (max 760 px), zaoblené, zelené zvýraznění, větší písmo; našeptávač tmavší text (senioři) */
+  var CSS_SEARCH = '.search-window .search-form{max-width:760px;margin:0 auto!important;justify-content:center}' +
+    '.search-window .search-form fieldset{display:flex!important;align-items:center;gap:10px;width:100%!important;position:relative}' +
+    '.search-window .search-form .search-input{flex:1 1 auto!important;width:auto!important;min-width:0!important;height:58px!important;border:2px solid var(--rs-line)!important;border-radius:var(--rs-pill)!important;padding:0 24px!important;font-size:18px!important;background:#fff!important;box-shadow:var(--rs-shadow)!important;outline:none!important}' +
+    '.search-window .search-form .search-input:focus{border-color:var(--rs-l)!important;box-shadow:0 0 0 4px rgba(134,187,65,.22)!important}' +
+    '.search-window .search-form .btn-arrow-right{flex:0 0 58px!important;width:58px!important;height:58px!important;min-width:0!important;border-radius:50%!important;margin:0!important}' +
+    '.search-window .name,.search-window .p .name,.search-window h3.name{text-transform:none!important}' +
+    '@media(max-width:600px){.search-window .search-form .search-input{height:52px!important;font-size:17px!important;padding:0 18px!important}.search-window .search-form .btn-arrow-right{flex-basis:52px!important;width:52px!important;height:52px!important}}' +
+    '.search-window .search-whisperer{border-radius:16px!important;border:1px solid var(--rs-line)!important;box-shadow:var(--rs-shadow-hover)!important;overflow:hidden}' +
+    '.search-window .search-whisperer a{color:var(--rs-g)!important;font-size:15px!important}';
+  function css() { if (document.getElementById('rs-web2-css')) return; /* vkládat i když jsou styly v hlavičce (web-global.css): pořadí kaskády – doplňky Shoptetu (sticky header, dlaždice) načítají CSS až v <body> a jinak by naše pravidla přebily */ var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB + CSS_REC + CSS_TB + CSS_UI + CSS_SEARCH; document.head.appendChild(s); }
 
   function topbar() {
     var h = document.getElementById('header'); if (!h || document.querySelector('.rs-topbar')) return;
