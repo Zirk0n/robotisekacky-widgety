@@ -524,7 +524,27 @@
     '@media(min-width:992px){html:not(.rs-tb-on) #header{margin-top:40px;animation:rsTbOff 0s 4s forwards}}' +
     '@media(min-width:768px) and (max-width:991px){html:not(.rs-tb-on) #header{margin-top:38px;animation:rsTbOff 0s 4s forwards}}' +
     '@media(max-width:767px){html:not(.rs-tb-on) #header+*{margin-top:57px;animation:rsTbOff 0s 4s forwards}}';
-  function css() { if (document.getElementById('rs-web2-css')) return; /* vkládat i když jsou styly v hlavičce (web-global.css): pořadí kaskády – doplňky Shoptetu (sticky header, dlaždice) načítají CSS až v <body> a jinak by naše pravidla přebily */ var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB + CSS_REC + CSS_TB; document.head.appendChild(s); }
+  /* 26. 10. 2026: štítek slevy jako pilulka (místo velkého červeného kolečka – přeškrtnutá cena je u ceny), štítky v detailu
+     jako pilulky, patička „Proč u nás“, Doprava: podpis majitele a rozcestník „Vše o nákupu“ */
+  var CSS_UI =
+    '.flags-extra{right:10px!important;bottom:10px!important}' +
+    '.flags-extra .flag.flag-discount{width:auto!important;height:auto!important;min-width:0!important;min-height:0!important;border-radius:999px!important;padding:6px 13px!important;background:#d92d20!important;box-shadow:0 8px 18px rgba(196,23,15,.22)!important;flex-direction:row!important;align-items:center!important;justify-content:center!important}' +
+    '.flags-extra .flag.flag-discount::before,.flags-extra .flag.flag-discount::after{display:none!important}' +
+    '.flags-extra .flag-discount .price-standard{display:none!important}' +
+    '.flags-extra .flag-discount .price-save{background:none!important;color:#fff!important;font-size:14px!important;font-weight:800!important;line-height:1.1!important;padding:0!important;margin:0!important;border-radius:0!important;box-shadow:none!important;max-width:none!important}' +
+    '.type-detail .p-image .flags-extra .flag.flag-discount{padding:8px 16px!important}.type-detail .p-image .flags-extra .flag-discount .price-save{font-size:17px!important}' +
+    '.type-detail .p-image .flags-default .flag{border-radius:999px!important;padding:4px 12px!important;font-weight:700!important;font-size:12px!important;margin:0 0 5px!important;box-shadow:0 4px 10px rgba(0,0,0,.08)!important}' +
+    '.type-detail .p-image .flags-default .flag::before,.type-detail .p-image .flags-default .flag::after{display:none!important}' +
+    '.rs-foot__why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:0 0 30px}' +
+    '.rs-foot__w{display:flex;flex-direction:column;gap:6px;padding:18px 18px 16px;border-radius:var(--rs-r);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.85)!important;text-decoration:none!important;transition:background var(--rs-ease),transform var(--rs-ease)}' +
+    '.rs-foot__w:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}' +
+    '.rs-foot__w b{color:#fff;font-size:17px;font-weight:800;line-height:1.25}.rs-foot__w span{font-size:14.5px;line-height:1.5}.rs-foot__w i{font-style:normal;margin-top:auto;padding-top:4px;color:#b8e08a;font-weight:700;font-size:14px}' +
+    '@media(max-width:991px){.rs-foot__why{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.rs-foot__why{grid-template-columns:1fr;gap:10px}}' +
+    '.rs-pg-hub{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 0}' +
+    '.rs-pg-sign{display:flex;align-items:center;gap:16px;margin:8px 0 0;padding:18px 20px;border-radius:var(--rs-r);border:1px solid var(--rs-line);background:linear-gradient(135deg,#fff,#f6faf1);box-shadow:var(--rs-shadow)}' +
+    '.rs-pg-sign img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:0 0 72px;border:3px solid var(--rs-l)}' +
+    '.rs-pg-sign p{margin:0!important}.rs-pg-sign b{display:block;color:var(--rs-g);font-size:17px}.rs-pg-sign span{color:var(--rs-muted);font-size:15px}';
+  function css() { if (document.getElementById('rs-web2-css')) return; /* vkládat i když jsou styly v hlavičce (web-global.css): pořadí kaskády – doplňky Shoptetu (sticky header, dlaždice) načítají CSS až v <body> a jinak by naše pravidla přebily */ var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB + CSS_REC + CSS_TB + CSS_UI; document.head.appendChild(s); }
 
   function topbar() {
     var h = document.getElementById('header'); if (!h || document.querySelector('.rs-topbar')) return;
@@ -631,6 +651,13 @@
     box.innerHTML = (isHome ? '' :
       '<div class="rs-foot__help"><img src="' + FOTO + '" alt="Michael Boháček" loading="lazy" width="72" height="72"><div><b>Potřebujete poradit s výběrem?</b><p>Zavolejte nebo napište – poradíme podle vaší zahrady, bytu nebo bazénu. Michael Boháček, majitel</p></div>' +
       '<div class="rs-foot__btns"><a class="rs-foot__btn rs-foot__btn--p" href="tel:' + TEL + '">' + ICON.tel + TELT + '</a><a class="rs-foot__btn rs-foot__btn--s" href="mailto:' + MAIL + '">' + ICON.mail + 'Napsat e-mail</a></div></div>') +
+      /* „Proč u nás“ – čtyři důvody s proklikem na vysvětlení (Višňák: x-training.cz „Čtyřikrát proč“; 26. 10. 2026) */
+      '<div class="rs-foot__why" aria-label="Proč nakoupit u nás">' +
+      '<a class="rs-foot__w" href="/instalace-sekacek/"><b>Instalujeme sami</b><span>Robota přivezeme, nainstalujeme a ukážeme vám, jak ho ovládat.</span><i>Jak instalace probíhá →</i></a>' +
+      '<a class="rs-foot__w" href="/o-nas/"><b>Poradí vám technik</b><span>Na telefonu je Michael, který roboty sám instaluje a opravuje.</span><i>Kdo jsme →</i></a>' +
+      '<a class="rs-foot__w" href="/jak-vybrat-robotickou-sekacku/"><b>Vybereme podle zahrady</b><span>Pošlete fotku a řekneme, který robot se k vám hodí – i když to bude levnější model.</span><i>Jak vybrat robota →</i></a>' +
+      '<a class="rs-foot__w" href="/zimni-servis-a-cisteni-robota/"><b>Postaráme se i po nákupu</b><span>Zimní servis, nové nože, oprava drátu i pomoc s aplikací.</span><i>Servis a údržba →</i></a>' +
+      '</div>' +
       '<div class="rs-foot__cols">' +
       '<div><a class="rs-foot__logo" href="/">' + (logo ? '<img src="' + esc(logo) + '" alt="Robotí Sekačky" loading="lazy">' : '') + '</a>' +
       '<p class="rs-foot__about">Robotické sekačky, robotické vysavače a bazénové vysavače s instalací, zprovozněním a servisem. Roboty známe, sami je instalujeme a poradíme.</p>' +
