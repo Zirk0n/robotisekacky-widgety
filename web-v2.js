@@ -543,7 +543,8 @@
     '.rs-pg-hub{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 0}' +
     '.rs-pg-sign{display:flex;align-items:center;gap:16px;margin:8px 0 0;padding:18px 20px;border-radius:var(--rs-r);border:1px solid var(--rs-line);background:linear-gradient(135deg,#fff,#f6faf1);box-shadow:var(--rs-shadow)}' +
     '.rs-pg-sign img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:0 0 72px;border:3px solid var(--rs-l)}' +
-    '.rs-pg-sign p{margin:0!important}.rs-pg-sign b{display:block;color:var(--rs-g);font-size:17px}.rs-pg-sign span{color:var(--rs-muted);font-size:15px}';
+    '.rs-pg-sign p{margin:0!important}.rs-pg-sign b{display:block;color:var(--rs-g);font-size:17px}.rs-pg-sign span{display:block;margin-top:2px;color:var(--rs-muted);font-size:15px;font-weight:400;line-height:1.5}' +
+    '@media(max-width:600px){.rs-pg-sign{align-items:flex-start;gap:12px;padding:16px}.rs-pg-sign img{width:56px;height:56px;flex-basis:56px}}';
   function css() { if (document.getElementById('rs-web2-css')) return; /* vkládat i když jsou styly v hlavičce (web-global.css): pořadí kaskády – doplňky Shoptetu (sticky header, dlaždice) načítají CSS až v <body> a jinak by naše pravidla přebily */ var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB + CSS_REC + CSS_TB + CSS_UI; document.head.appendChild(s); }
 
   function topbar() {
