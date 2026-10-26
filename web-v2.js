@@ -530,7 +530,11 @@
     '.flags-extra{right:10px!important;bottom:10px!important}' +
     '.flags-extra .flag.flag-discount{width:auto!important;height:auto!important;min-width:0!important;min-height:0!important;border-radius:999px!important;padding:6px 13px!important;background:#d92d20!important;box-shadow:0 8px 18px rgba(196,23,15,.22)!important;flex-direction:row!important;align-items:center!important;justify-content:center!important}' +
     '.flags-extra .flag.flag-discount::before,.flags-extra .flag.flag-discount::after{display:none!important}' +
-    '.flags-extra .flag-discount .price-standard{display:none!important}' +
+    '.flags-extra .flag-discount .price-standard{display:inline-block!important;margin:0 8px 0 0!important;padding:0 8px 0 0!important;border-right:1px solid rgba(255,255,255,.45)!important;background:none!important;color:rgba(255,255,255,.88)!important;font-size:12.5px!important;font-weight:600!important;line-height:1.1!important;white-space:nowrap}' +
+    '.flags-extra .flag-discount .price-standard span{text-decoration:line-through!important;color:inherit!important;font-size:inherit!important}' +
+    '.type-detail .p-image .flags-extra .flag-discount .price-standard{font-size:14px!important}' +
+    '.flags-extra .flag.flag-discount,.flags-extra .flag.flag-discount *{text-transform:none!important;white-space:nowrap!important;letter-spacing:0!important}' +
+    '@media(max-width:767px){.products-block .flags-extra{right:6px!important;bottom:6px!important}.products-block .flags-extra .flag.flag-discount{padding:4px 9px!important}.products-block .flags-extra .flag-discount .price-standard{font-size:11px!important;margin-right:5px!important;padding-right:5px!important}.products-block .flags-extra .flag-discount .price-save{font-size:12px!important}}' +
     '.flags-extra .flag-discount .price-save{background:none!important;color:#fff!important;font-size:14px!important;font-weight:800!important;line-height:1.1!important;padding:0!important;margin:0!important;border-radius:0!important;box-shadow:none!important;max-width:none!important}' +
     '.type-detail .p-image .flags-extra .flag.flag-discount{padding:8px 16px!important}.type-detail .p-image .flags-extra .flag-discount .price-save{font-size:17px!important}' +
     '.type-detail .p-image .flags-default .flag{border-radius:999px!important;padding:4px 12px!important;font-weight:700!important;font-size:12px!important;margin:0 0 5px!important;box-shadow:0 4px 10px rgba(0,0,0,.08)!important}' +
