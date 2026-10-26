@@ -222,7 +222,7 @@
   function uvod() {
     var w = document.querySelector('.welcome-wrapper .welcome');
     if (!w || w.classList.contains('rsw')) return;
-    if (!getComputedStyle(document.documentElement).getPropertyValue('--rs-head-css').trim()) { var st = document.createElement('style'); st.id = 'rsw-css'; st.textContent = WCSS; document.head.appendChild(st); }
+    var st = document.createElement('style'); st.id = 'rsw-css'; st.textContent = WCSS; document.head.appendChild(st);
     var t = el('div', 'rsw-t'); while (w.firstChild) t.appendChild(w.firstChild);
     var svc = function (href) { for (var i = 0; i < SVC.length; i++) if (SVC[i][4] === href) return SVC[i][0]; return REAL[2][0]; };
     var pick = [[REAL[0][0], 'Instalace sekačky'], [svc('/zprovozneni-robotickeho-vysavace/'), 'Zprovoznění vysavače'], [svc('/predvedeni-bazenovych-vysavacu/'), 'Předvedení u bazénu']];
@@ -238,7 +238,7 @@
     try { uvod(); } catch (e) {}
     var host = document.querySelector('.index-content-wrapper');
     if (!host || document.querySelector('.rsv')) return;
-    if (!getComputedStyle(document.documentElement).getPropertyValue('--rs-head-css').trim()) { var st = document.createElement('style'); st.id = 'rsh-css'; st.textContent = CSS; document.head.appendChild(st); }
+    var st = document.createElement('style'); st.id = 'rsh-css'; st.textContent = CSS; document.head.appendChild(st);
     host.insertBefore(situace(), host.firstChild);
     var blog = host.querySelector('.homepage-blog-wrapper');
     var s = sluzby(), r = realizace();

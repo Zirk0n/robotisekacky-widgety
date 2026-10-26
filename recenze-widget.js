@@ -68,7 +68,7 @@
     o = o || {};
     if (!d || !d.recenze || d.recenze.length < 3) return;
     box.setAttribute('data-rsr', '1');
-    if (!document.getElementById('rsr-css') && !getComputedStyle(document.documentElement).getPropertyValue('--rs-head-css').trim()) { var st = document.createElement('style'); st.id = 'rsr-css'; st.textContent = CSS; document.head.appendChild(st); }
+    if (!document.getElementById('rsr-css')) { var st = document.createElement('style'); st.id = 'rsr-css'; st.textContent = CSS; document.head.appendChild(st); }
     var prumer = String(d.prumer || '5.0').replace('.', ',');
     var cards = d.recenze.map(function (r) {
       var ini = r.jmeno.split(' ').map(function (p) { return p[0]; }).join('').slice(0, 2).toUpperCase();

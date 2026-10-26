@@ -524,7 +524,7 @@
     '@media(min-width:992px){html:not(.rs-tb-on) #header{margin-top:40px;animation:rsTbOff 0s 4s forwards}}' +
     '@media(min-width:768px) and (max-width:991px){html:not(.rs-tb-on) #header{margin-top:38px;animation:rsTbOff 0s 4s forwards}}' +
     '@media(max-width:767px){html:not(.rs-tb-on) #header+*{margin-top:57px;animation:rsTbOff 0s 4s forwards}}';
-  function css() { if (document.getElementById('rs-web2-css') || getComputedStyle(document.documentElement).getPropertyValue('--rs-head-css').trim()) return; var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB + CSS_REC + CSS_TB; document.head.appendChild(s); }
+  function css() { if (document.getElementById('rs-web2-css')) return; /* vkládat i když jsou styly v hlavičce (web-global.css): pořadí kaskády – doplňky Shoptetu (sticky header, dlaždice) načítají CSS až v <body> a jinak by naše pravidla přebily */ var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB + CSS_REC + CSS_TB; document.head.appendChild(s); }
 
   function topbar() {
     var h = document.getElementById('header'); if (!h || document.querySelector('.rs-topbar')) return;
