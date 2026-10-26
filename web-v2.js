@@ -517,7 +517,14 @@
     '.rs-recent__c img{width:100%;height:150px;object-fit:contain;display:block}.rs-recent__t{display:flex;flex-direction:column;gap:6px}' +
     '.rs-recent__n{font-weight:800;font-size:15px;line-height:1.3;color:var(--rs-g)}.rs-recent__go{font-size:13.5px;font-weight:700;color:#3f7f1f}' +
     '@media(max-width:700px){.rs-recent__in{padding:18px 16px}.rs-recent__g{grid-template-columns:1fr;gap:10px}.rs-recent__c{flex-direction:row;align-items:center;padding:10px 12px}.rs-recent__c img{width:84px;height:84px;flex:none}}';
-  function css() { if (document.getElementById('rs-web2-css')) return; var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB + CSS_REC; document.head.appendChild(s); }
+  /* rezerva místa pro horní lištu (26. 10. 2026): lišta se vkládá skriptem až po vykreslení → obsah poskočil dolů.
+     Než lišta vznikne, drží místo okraj hlavičky; topbar() pak přidá html.rs-tb-on. Pojistka: po 4 s se rezerva sama zruší. */
+  var CSS_TB =
+    '@keyframes rsTbOff{to{margin-top:0}}' +
+    '@media(min-width:992px){html:not(.rs-tb-on) #header{margin-top:40px;animation:rsTbOff 0s 4s forwards}}' +
+    '@media(min-width:768px) and (max-width:991px){html:not(.rs-tb-on) #header{margin-top:38px;animation:rsTbOff 0s 4s forwards}}' +
+    '@media(max-width:767px){html:not(.rs-tb-on) #header+*{margin-top:57px;animation:rsTbOff 0s 4s forwards}}';
+  function css() { if (document.getElementById('rs-web2-css') || getComputedStyle(document.documentElement).getPropertyValue('--rs-head-css').trim()) return; var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB + CSS_REC + CSS_TB; document.head.appendChild(s); }
 
   function topbar() {
     var h = document.getElementById('header'); if (!h || document.querySelector('.rs-topbar')) return;
@@ -535,6 +542,7 @@
       var fix = function () { var m = parseFloat(d.style.marginTop) || 0; var top = d.getBoundingClientRect().top + window.pageYOffset - m; var need = Math.max(0, h.getBoundingClientRect().bottom + (window.pageYOffset ? 0 : 0) - (top - window.pageYOffset)); if (window.pageYOffset < 5) d.style.marginTop = need + 'px'; };
       fix(); setTimeout(fix, 600); window.addEventListener('load', function () { fix(); setTimeout(fix, 1200); });
     } else h.parentNode.insertBefore(d, h);
+    document.documentElement.classList.add('rs-tb-on');
   }
 
   /* filtry: na desktopu rozbalit, na mobilu nechat sbalené */
