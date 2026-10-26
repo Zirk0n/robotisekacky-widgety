@@ -558,7 +558,7 @@
     '.search-window .name,.search-window .p .name,.search-window h3.name{text-transform:none!important}' +
     '@media(max-width:600px){.search-window .search-form .search-input{height:52px!important;font-size:17px!important;padding:0 18px!important}.search-window .search-form .btn-arrow-right{flex-basis:52px!important;width:52px!important;height:52px!important}}' +
     '.search-window .search-whisperer{border-radius:16px!important;border:1px solid var(--rs-line)!important;box-shadow:var(--rs-shadow-hover)!important;overflow:hidden}' +
-    '.search-window .search-whisperer a{color:var(--rs-g)!important;font-size:15px!important}';
+    '.search-window .search-whisperer a,.search-window .search-whisperer .p-name{color:var(--rs-g)!important;font-size:15px!important}';
   function css() { if (document.getElementById('rs-web2-css')) return; /* vkládat i když jsou styly v hlavičce (web-global.css): pořadí kaskády – doplňky Shoptetu (sticky header, dlaždice) načítají CSS až v <body> a jinak by naše pravidla přebily */ var s = document.createElement('style'); s.id = 'rs-web2-css'; s.textContent = CSS + CSS_MOB + CSS_REC + CSS_TB + CSS_UI + CSS_SEARCH; document.head.appendChild(s); }
 
   function topbar() {
