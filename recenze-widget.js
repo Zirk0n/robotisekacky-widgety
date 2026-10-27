@@ -22,7 +22,7 @@
     '.rsr__q::before{content:"„";color:var(--rs-l,#86BB41);font-weight:800;font-size:22px;line-height:0;margin-right:2px}' +
     '.rsr__meta{margin-top:auto;display:flex;align-items:center;gap:10px;color:#5a6b56;font-size:13.5px}' +
     '.rsr__ini{width:34px;height:34px;border-radius:50%;background:var(--rs-soft2,#eef6e6);color:var(--rs-g,#1b3f20);display:grid;place-items:center;font-weight:800;font-size:13px;flex:0 0 34px}' +
-    '.rsr__meta b{color:var(--rs-g,#1b3f20)}' +
+    '.rsr__meta b{color:var(--rs-g,#1b3f20)}.rsr__meta b+.rsr__ver{display:block;margin-top:3px}.rsr__ver{display:inline-block;padding:2px 9px;border-radius:999px;background:var(--rs-soft2,#eef6e6);color:#2f6b1f;font-size:12px;font-weight:700;letter-spacing:0}' +
     '.rsr__arrow{position:absolute;top:44%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:0;background:rgba(27,63,32,.85);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 12px 24px rgba(0,0,0,.18);z-index:2}' +
     '.rsr__arrow:hover{background:var(--rs-g,#1b3f20)}.rsr__arrow--l{left:6px}.rsr__arrow--r{right:6px}' +
     '.rsr__foot{text-align:center;margin-top:6px}' +
@@ -59,7 +59,7 @@
     '.rs-hodn .votes-wrap{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.rs-hodn .vote-wrap{background:#fff!important;border:1px solid var(--rs-line,#e6f0db)!important;border-radius:18px!important;box-shadow:0 8px 20px rgba(27,63,32,.06)!important;padding:16px 18px!important;margin:0!important;width:auto!important}' +
     'body.rs-hodn #ratingsList.rs-short-hidden>.vote-wrap.rs-short{display:none!important}.rs-hodn .rsr__more{grid-column:1/-1;justify-self:center;margin:6px 0;padding:10px 22px;border-radius:999px;border:2px solid var(--rs-g,#1b3f20);background:#fff;color:var(--rs-g,#1b3f20);font-weight:800;cursor:pointer}' +
     '.rs-hodn .vote-wrap.rs-hl{border:1px solid rgba(134,187,65,.55)!important;box-shadow:0 10px 24px rgba(27,63,32,.08)!important}.rs-hodn .vote-wrap.rs-dim{opacity:.75}.rs-hodn .vote-name{color:var(--rs-g,#1b3f20)!important;font-weight:800!important;font-size:16px!important}' +
-    '.rs-hodn .vote-initials{background:var(--rs-soft2,#eef6e6)!important;color:var(--rs-g,#1b3f20)!important;font-weight:800}.rs-hodn .vote-content{color:#2b3328!important;font-size:14.5px!important;line-height:1.55}.rs-hodn .vote-time,.rs-hodn .vote-delimeter{color:#7a8a72!important}' +
+    '.rs-hodn .vote-initials{background:var(--rs-soft2,#eef6e6)!important;color:var(--rs-g,#1b3f20)!important;font-weight:800}.rs-hodn .vote-content{color:#2b3328!important;font-size:14.5px!important;line-height:1.55}.rs-hodn .vote-time,.rs-hodn .vote-delimeter{display:none!important}' +
     '.rs-hodn .listingControls .pagination__currentPage{background:var(--rs-g,#1b3f20)!important;color:#fff!important;border-radius:999px!important}.rs-hodn .listingControls .btn,.rs-hodn .listingControls .pagination__link{border-radius:999px!important;border:1px solid var(--rs-line,#e6f0db)!important;background:#fff!important;color:var(--rs-g,#1b3f20)!important;text-transform:none!important}' +
     '@media (max-width:991px){.rsr__tiles{grid-template-columns:1fr 1fr}.rs-hodn .votes-wrap{grid-template-columns:1fr 1fr}.rs-hodn .rate-wrap{grid-template-columns:1fr}}' +
     '@media (max-width:640px){.rsr__tiles,.rs-hodn .votes-wrap{grid-template-columns:1fr}.rsr__st{border-left:0;padding-left:0}.rsr__stats{gap:16px 22px;padding:18px}.rsr__owner{grid-template-columns:1fr;padding:16px}.rsr__owner img{width:100%;max-width:240px;margin:0 auto}}';
@@ -74,7 +74,7 @@
       var ini = r.jmeno.split(' ').map(function (p) { return p[0]; }).join('').slice(0, 2).toUpperCase();
       return '<article class="rsr__card">' + (o.badge ? '<span class="rsr__badge">Doporučená recenze</span>' : '') + '<span class="rsr__stars" aria-label="5 z 5 hvězdiček">★★★★★</span>' +
         '<p class="rsr__q">' + esc(r.text) + '</p>' +
-        '<div class="rsr__meta"><span class="rsr__ini" aria-hidden="true">' + esc(ini) + '</span><span><b>' + esc(r.jmeno) + '</b>' + (r.datum ? ' · ' + esc(r.datum) : '') + '</span></div></article>';
+        '<div class="rsr__meta"><span class="rsr__ini" aria-hidden="true">' + esc(ini) + '</span><span><b>' + esc(r.jmeno) + '</b><span class="rsr__ver">✓ Ověřená recenze</span></span></div></article>'; /* bez data (staré datum snižuje důvěru); všechna hodnocení jsou ověřená – Michael 27. 10. */
     }).join('');
     box.innerHTML = '<section class="rsr" aria-label="Hodnocení zákazníků">' +
       '<div class="rsr__head"><h2 class="rsr__h">' + (o.title || 'Co o nás píšou zákazníci') + '</h2>' +

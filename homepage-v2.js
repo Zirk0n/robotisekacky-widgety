@@ -144,6 +144,10 @@
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html) e.innerHTML = html; return e; }
   function situace() {
     var m = new Date().getMonth() + 1, def = (m >= 3 && m <= 8) ? 'sekacka' : 'vysavac';
+    /* v2 (27. 10. 2026): sdílená komponenta z web-v2.js – vlastní ikony, víc potřeb najednou, počet robotů. Starý kód níže je záloha. */
+    if (typeof window.rsNeedsBlock === 'function') { var nb = window.rsNeedsBlock(def, { tabs: true }); nb.classList.add('rsh'); return nb; }
+    /* web-v2.js se může načíst až po tomto skriptu → starý blok vyměnit, jakmile je komponenta k dispozici */
+    var tries = 0; (function up() { if (typeof window.rsNeedsBlock === 'function') { var old = document.querySelector('section.rsv'); if (old) { var n2 = window.rsNeedsBlock(def, { tabs: true }); n2.classList.add('rsh'); old.parentNode.replaceChild(n2, old); } return; } if (++tries < 60) setTimeout(up, 100); })();
     var sec = el('section', 'rsh rsv', '<h2>S čím vám poradíme?</h2><p class="rsh-sub">Vyberte, co řešíte – ukážeme vám rovnou roboty, kteří se na to hodí.</p>' +
       '<div class="rsv-tabs" role="tablist">' + Object.keys(SIT).map(function (k) { return '<button type="button" role="tab" class="rsv-tab" data-k="' + k + '">' + SIT[k].label + '</button>'; }).join('') + '</div>' +
       '<div class="rsv-g"></div><div class="rsv-p" id="rsv-p" role="region" aria-live="polite"></div>');
