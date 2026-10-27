@@ -11,7 +11,7 @@
   window.__rsHome2 = 1;
   var U = 'https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/documents/upload/';
   var H = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/img/hp/';
-  var TEL = '+420792325839', TELT = '792 325 839', MAIL = 'info@robotisekacky.cz';
+  var TEL = '+420792325839', TELT = '+420 792 325 839', MAIL = 'info@robotisekacky.cz';
   /* Výběr podle situace – 3 záložky. Odkazy vedou rovnou do vyfiltrované kategorie (pv<id parametru>=<id hodnot>).
      ID parametrů a hodnot: playbook bannery-a-homepage.md, sekce „Výběr podle situace“. Při změně hodnot filtrů ověřit. */
   var SIT = {
