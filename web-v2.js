@@ -648,6 +648,17 @@
     /* lišta porovnání nesmí zakrýt bublinu chatu; promo zpráva Shoptetu dole se při porovnávání schová */
     'html body .rs-cmpbar{right:84px}html.rs-cmp-bar body .site-msg.information{display:none!important}}' +
     '.rsn__more,.rs-fold__btn{display:none}.rsn--all .rsn__more{display:none!important}.rs-cmp-t{min-width:136px;justify-content:center}' +
+    '.rs-paybox{margin:6px 0 26px;padding:18px;border:1px solid #e3eddb;border-radius:18px;background:#fff;box-shadow:0 10px 24px rgba(27,63,32,.06)}' +
+    '.rs-paybox__logos{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:0 2px 14px;margin-bottom:14px;border-bottom:1px solid #eef3ea}.rs-paybox__logos img{height:24px;width:auto;display:block}.rs-paybox__logos img.mc{height:28px}' +
+    '.rs-paybox__g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0!important;padding:0!important;list-style:none}' +
+    '.rs-paybox__g li{display:flex;align-items:center;gap:12px;margin:0!important;padding:12px!important;border-radius:14px;background:#f6faf1}.rs-paybox__g li::before{display:none!important}' +
+    '.rs-paybox__ic{flex:0 0 40px;width:40px;height:40px;border-radius:12px;background:#fff;border:1px solid #dfe9d6;display:grid;place-items:center}.rs-paybox__ic svg{width:22px;height:22px;fill:none;stroke:#1b3f20;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}' +
+    '.rs-paybox__g b{display:block;color:#1b3f20;font-size:15.5px;line-height:1.3}.rs-paybox__g small{display:block;color:#5a6b56;font-size:14px;line-height:1.35}' +
+    '.rs-paybox__f{margin:14px 2px 0!important;font-size:15px;color:#33402f}@media(max-width:560px){.rs-paybox__g{grid-template-columns:1fr}}' +
+    '.rs-stars{color:#f5b301!important;letter-spacing:1px;font-size:1em;line-height:1;white-space:nowrap}' +
+    '.rs-heu-meta{display:flex!important;align-items:center;flex-wrap:wrap;gap:3px 6px;margin-top:2px;font-size:12.5px;font-weight:600;color:#4f5f51;line-height:1.2}.rs-heu-meta b{color:#1b3f20}' +
+    '.rs-heu-ic{background:#fff!important;border:1px solid #f1e3a8!important;overflow:hidden;padding:2px!important}.rs-heu-ic img.rs-heu-seal{width:100%!important;height:100%!important;object-fit:contain;display:block;max-width:none!important}' +
+    '.rs-usps a.rs-heu-item small{display:block}@media(max-width:480px){.rs-usps a.rs-heu-item small{display:none}}' +
     '.rs-pg-ic.rs-pg-ic--heu{background:#fff!important;border:1px solid #f1e3a8;display:grid;place-items:center}.rs-pg-ic--heu img{width:40px;height:40px;display:block}' +
     '.rs-pg-rating{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:4px 0 8px!important;font-size:15px;color:#3d4a3d}.rs-pg-rating__n{font-size:20px;color:#1b3f20}.rs-pg-rating__s{color:#f5b301;letter-spacing:1px;font-size:16px}.rs-pg-rating b[data-rs-review-count]{color:#1b3f20}' +
     /* 31. 10. 22:00 (Michael, iPhone): Robotické sekačky (706) v menu dvakrát → nadřazenou schovat (příslušenství je v mega nabídce bezdrátových) */
@@ -1208,7 +1219,7 @@
       bazen: ['pool', 'Poradíme podle bazénu', 'Vybrané modely předvedeme v Praze a okolí', '/predvedeni-bazenovych-vysavacu/'],
       obecne: ['wrench', 'Instalace a servis', 'Roboty nainstalujeme, zprovozníme i opravíme', '/instalace-sekacek/'] }[seg];
     var items = [svc, ['chat', 'Poradí vám Michael', 'Majitel, který roboty sám instaluje a opravuje', '/o-nas/'],
-      ['star', 'Heureka 5,0', '<span data-rs-usp-cnt>400+</span> ověřených hodnocení zákazníků', '/hodnoceni-obchodu/'],
+      ['star', 'Heureka 5,0', 'Certifikát Ověřeno zákazníky', '/hodnoceni-obchodu/'],
       ['truck', 'Doprava zdarma od 3\u00a0000\u00a0Kč', 'S instalací robota přivezeme sami', '/doprava/']];
     var d = document.createElement('div'); d.className = 'rs-usps rs-usps--' + seg; d.setAttribute('aria-label', 'Proč nakoupit u nás');
     d.innerHTML = items.map(function (x) { return '<a href="' + x[3] + '"><i aria-hidden="true" class="rs-ico"><svg viewBox="0 0 24 24">' + (NI[x[0]] || '') + '</svg></i><span><b>' + x[1] + '</b><small>' + x[2] + '</small></span></a>'; }).join('');
@@ -1616,7 +1627,9 @@
     return /Sací výkon/.test(t) ? 'vysavac' : /Typ bazénu/.test(t) ? 'bazen' : /Maximální svah|Navigace|Velikost trávníku/.test(t) ? 'sekacka' : null;
   }
   function cmpAll() { try { return JSON.parse(localStorage.getItem(CMP_KEY) || '[]') || []; } catch (e) { return []; } }
-  function cmpSame(x) { return !CMP_K || !x.k || x.k === CMP_K; }
+  /* položky uložené před 31. 10. nemají druh → odhad podle názvu (jinak se v sekačkách ukazovaly vysavače) */
+  function cmpGuess(x) { var s = ((x.n || '') + ' ' + (x.u || '')).toLowerCase(); return /aiper|scuba|spino|ultramarine|bazén|bazen|beatbot|wybot/.test(s) ? 'bazen' : /luba|yuka|navimow|sekač|sekac|goat|mova|husqvarna|gardena|automower/.test(s) ? 'sekacka' : /deebot|roborock|dreame|vysav|roomba|qrevo|saros|hobot|ecovacs/.test(s) ? 'vysavac' : null; }
+  function cmpSame(x) { var k = x.k || cmpGuess(x); return !CMP_K || !k || k === CMP_K; }
   function cmpRead() { return cmpAll().filter(cmpSame); }
   function cmpWrite(l) { var other = cmpAll().filter(function (x) { return !cmpSame(x); }); try { localStorage.setItem(CMP_KEY, JSON.stringify(other.concat(l.slice(0, CMP_MAX)))); } catch (e) {} cmpBar(); cmpMarks(); }
   function cmpToggle(it) { var l = cmpRead(), i = -1; l.forEach(function (x, j) { if (x.u === it.u) i = j; }); if (i >= 0) l.splice(i, 1); else { if (l.length >= CMP_MAX) { alertCmp(); return; } it.k = CMP_K; l.push(it); } cmpWrite(l); }
@@ -1728,6 +1741,40 @@
     if (s.textContent !== n + ' ' + w) s.textContent = n + ' ' + w;
   }
 
+  /* 31. 10. 22:06 (Michael): „všude, kde se mluví o hodnocení nebo Heurece, má být 5 hvězdiček, počet hodnocení a certifikát“.
+     Najde texty „Heureka 5,0“ (lišta výhod v kategoriích, widget-prodej v detailu…) → ikona = zlatá pečeť Ověřeno zákazníky,
+     pod text hvězdičky a počet hodnocení z recenze.json. V pásku výhod Shoptetu (titulka) obrysová hvězdička → ★★★★★. */
+  function heuEnhance() {
+    var root = document.getElementById('content') || document.body, tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), n, hits = [];
+    while ((n = tw.nextNode())) { if (/Heureka\s*5,0/.test(n.nodeValue) && n.parentElement && !n.parentElement.closest('[data-rs-heu], .rsr, .rsr2, script, style, .heureka-header-seal')) hits.push(n); }
+    hits.forEach(function (t) {
+      var el = t.parentElement, item = el.closest('a, li') || el.parentElement; if (!item || item.dataset.rsHeu) return; item.dataset.rsHeu = 1; item.classList.add('rs-heu-item');
+      var ic = item.querySelector('i, .rs-ico, .rs-ei, [class*="__ic"], [class*="-ic"]'); if (ic && !ic.contains(t)) { ic.classList.add('rs-heu-ic'); ic.innerHTML = '<img class="rs-heu-seal" src="' + HEU_LOGO + '" alt="Ověřeno zákazníky – Heureka">'; }
+      var m = document.createElement('span'); m.className = 'rs-heu-meta'; m.innerHTML = '<span class="rs-stars" aria-label="5 z 5 hvězdiček">★★★★★</span><span><b data-rs-review-count>400+</b> hodnocení</span>';
+      el.insertAdjacentElement('afterend', m);
+    });
+    [].forEach.call(document.querySelectorAll('.benefitBanner__item'), function (it) {
+      if (it.dataset.rsHeuB || !/hodnocen|recenz/i.test(it.textContent)) return; var st = it.querySelector('.rs-ei'); if (!st && !/[☆⭐]/.test(it.textContent)) return; it.dataset.rsHeuB = 1;
+      var s = document.createElement('span'); s.className = 'rs-stars'; s.setAttribute('aria-label', '5 z 5 hvězdiček'); s.textContent = '★★★★★';
+      if (st) st.replaceWith(s); else { var w = document.createTreeWalker(it, NodeFilter.SHOW_TEXT), x; while ((x = w.nextNode())) { if (/[☆⭐]/.test(x.nodeValue)) { var parts = x.nodeValue.split(/[☆⭐]️?/); x.nodeValue = parts[0]; x.parentNode.insertBefore(s, x.nextSibling); if (parts[1]) s.insertAdjacentText('afterend', parts[1]); break; } } }
+    });
+    try { trustTile(); } catch (e) {}
+  }
+  /* 31. 10. 22:03 (Michael): Doprava – „Jak můžete zaplatit“ byl jen odstavec → loga (Visa, Mastercard, Apple Pay, Google Pay)
+     a 4 dlaždice. Fakta beze změny proti původnímu textu stránky; podrobnosti dál na /platby/. */
+  function payBlock() {
+    if (location.pathname !== '/doprava/' || document.querySelector('.rs-paybox')) return;
+    var h = [].filter.call(document.querySelectorAll('#content h2'), function (x) { return /Jak můžete zaplatit/i.test(x.textContent); })[0]; if (!h) return;
+    var p = h.nextElementSibling; if (!p || p.tagName !== 'P' || !/Apple Pay/.test(p.textContent)) return;
+    var it = function (ic, t, s) { return '<li><span class="rs-paybox__ic" aria-hidden="true"><svg viewBox="0 0 24 24">' + ic + '</svg></span><span><b>' + t + '</b><small>' + s + '</small></span></li>'; };
+    var IC = { card: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/>', qr: '<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 18h2v2h-2zM14 18h2"/>', split: '<path d="M4 7h16M4 12h10M4 17h6"/><path d="m17 14 3 3-3 3"/>', third: '<circle cx="12" cy="12" r="8"/><path d="M12 4v8l7 4"/>' };
+    var b = document.createElement('div'); b.className = 'rs-paybox';
+    b.innerHTML = '<div class="rs-paybox__logos"><img src="' + PAY + 'mceclip2.png" alt="Visa" loading="lazy"><img class="mc" src="' + PAY + 'mceclip1.png" alt="Mastercard" loading="lazy"><img src="' + PAY + 'mceclip5.png" alt="Apple Pay" loading="lazy"><img src="' + PAY + 'mceclip6.png" alt="Google Pay" loading="lazy"></div>' +
+      '<ul class="rs-paybox__g">' + it(IC.card, 'Kartou nebo mobilem', 'Visa, Mastercard, Apple Pay, Google Pay') + it(IC.qr, 'Převodem s QR kódem', 'nebo online převodem z vaší banky') +
+      it(IC.split, 'Na splátky', 'Cofidis, ESSOX, Home Credit') + it(IC.third, 'Na třetiny', 'se Skip Pay') + '</ul>' +
+      '<p class="rs-paybox__f">Všechny platby jsou <b>bez poplatku</b>. Podrobnosti najdete na stránce <a href="/platby/">Platby</a>.</p>';
+    p.style.display = 'none'; p.insertAdjacentElement('afterend', b);
+  }
   /* 31. 10. 22:00 (Michael): dlaždice „Ověřeno zákazníky“ (O nás a další statické stránky) – logo Heureky a aktuální
      počet hodnocení z recenze.json (stejný zdroj jako widget recenzí); prvky [data-rs-review-count] se plní kdekoli */
   var HEU_LOGO = 'https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/banners/logo-overeno--gold.svg?69c559fe';
@@ -1768,7 +1815,7 @@
     b.addEventListener('click', function () { var o = p.classList.toggle('rs-fold--open'); b.setAttribute('aria-expanded', o); b.textContent = o ? 'Sbalit popis ↑' : 'Číst celý popis ↓'; if (!o) window.scrollTo({ top: Math.max(0, p.getBoundingClientRect().top + window.pageYOffset - 140), behavior: 'instant' }); });
   }
 
-  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} }, 0); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */

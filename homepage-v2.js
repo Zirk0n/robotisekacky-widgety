@@ -96,13 +96,16 @@
     '.rsr2-f img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}.rsr2-f:hover img{transform:scale(1.05)}' +
     '.rsr2-f figcaption{position:absolute;left:10px;bottom:10px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-size:13px;color:var(--rs-g,#1b3f20);font-weight:700;line-height:1.2}' +
     '.rsr2-f figcaption small{display:block;font-weight:500;color:#5a6b56}' +
-    /* pohyblivý pás realizací */
-    '.rsr2-m{overflow:hidden;margin:0 -16px;padding:4px 0 10px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}' +
-    '.rsr2-track{display:flex;gap:12px;width:max-content;animation:rsr2run 110s linear infinite}.rsr2-m:hover .rsr2-track{animation-play-state:paused}' +
-    '@keyframes rsr2run{from{transform:translateX(0)}to{transform:translateX(-50%)}}' +
-    '.rsr2-m .rsr2-f{flex:0 0 auto;height:260px;aspect-ratio:auto;width:auto}.rsr2-m .rsr2-f img{height:100%;width:auto;max-width:420px;min-width:195px;object-fit:cover}' +
-    '@media(prefers-reduced-motion:reduce){.rsr2-track{animation:none}.rsr2-m{overflow-x:auto}}' +
-    '@media(max-width:560px){.rsr2-m .rsr2-f{height:200px}.rsr2-m .rsr2-f img{max-width:300px;min-width:150px}.rsr2-track{animation-duration:80s}}' +
+    /* realizace v3 (31. 10.): mřížka karet s popisem; desktop 8 karet, mobil 4, zbytek za tlačítkem */
+    '.rsr3-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}' +
+    '.rsr3-c{margin:0;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--rs-line,#e6f0db);box-shadow:0 8px 20px rgba(27,63,32,.07)}' +
+    '.rsr3-i{display:block;aspect-ratio:4/3;overflow:hidden;background:var(--rs-soft2,#eef6e6)}.rsr3-i img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}.rsr3-c:hover .rsr3-i img{transform:scale(1.04)}' +
+    '.rsr3-c figcaption{display:flex;flex-direction:column;gap:2px;padding:10px 12px 12px}.rsr3-c b{color:var(--rs-g,#1b3f20);font-size:15px;line-height:1.25}.rsr3-w{color:#5a6b56;font-size:13px;line-height:1.3}.rsr3-s{color:#33402f;font-size:14px;line-height:1.35;margin-top:4px}' +
+    '.rsr3:not(.rsr3--all) .rsr3-c:nth-child(n+9){display:none}' +
+    '.rsr3-more{display:flex;margin:14px auto 0;padding:11px 22px;border:1.5px solid var(--rs-g,#1b3f20);border-radius:999px;background:#fff;color:var(--rs-g,#1b3f20);font:inherit;font-weight:700;cursor:pointer}' +
+    '.rsr3-cta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 16px;margin:16px 0 0!important;font-size:15px;color:#33402f}.rsr3-cta a{color:var(--rs-g,#1b3f20)!important;font-weight:700;text-decoration:underline!important;text-underline-offset:3px}' +
+    '@media(max-width:991px){.rsr3-g{grid-template-columns:repeat(3,minmax(0,1fr))}.rsr3:not(.rsr3--all) .rsr3-c:nth-child(n+7){display:none}}' +
+    '@media(max-width:560px){.rsr3-g{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.rsr3-c{border-radius:14px}.rsr3-c figcaption{padding:8px 9px 10px}.rsr3-c b{font-size:13.5px}.rsr3-w{font-size:12px}.rsr3-s{font-size:13px}.rsr3:not(.rsr3--all) .rsr3-c:nth-child(n+5){display:none}.rsr3-cta{flex-direction:column;gap:6px}}' +
     '.rsr2-more{text-align:center;margin-top:16px}.rsr2-more a{color:var(--rs-g,#1b3f20);font-weight:700}' +
     /* majitel */
     '.rso{padding:28px 16px 68px;margin-bottom:-28px!important;background:linear-gradient(180deg,#f7faf5,var(--rs-soft2,#eef6e6));border-top:1px solid var(--rs-line,#e6f0db)}.in-index #footer{margin-top:0!important;position:relative;z-index:1}' +
@@ -195,18 +198,35 @@
     return el('section', 'rsh rss', '<h2>Služby, které u velkých obchodů nedostanete</h2><p class="rsh-sub">Robota vám nejen prodáme – přijedeme, nastavíme ho a postaráme se o něj i po nákupu.</p><div class="rss-g">' +
       SVC.map(function (s) { return '<a class="rss-c" href="' + s[4] + '"><img src="' + s[0] + '" alt="' + s[1] + '" loading="lazy"><span class="rss-b"><b>' + s[1] + '</b><span>' + s[2] + '</span><span class="rss-pr">' + s[3] + '<i>Více →</i></span></span></a>'; }).join('') + '</div>');
   }
-  // realizace jako pohyblivý pás (Michael 18. 10. 2026: rozmanité fotky z různých let, pak případně vyměníme)
-  // MIX = fotky z knihovny Fotky 2023–2025 (bez EXIF), rok podle data pořízení
-  var MIXY = ['2024', '2024', '2023', '2023', '2025', '2025', '2025', '2025', '2025', '2023', '2023', '2023', '2025', '2024', '2024', '2024'];
-  var MIX = MIXY.map(function (y, i) { return [J + 'realizace-mix-' + (i < 9 ? '0' : '') + (i + 1) + '.webp', 'Instalace sekačky', y]; })
-    .concat([[J + 'realizace-2026-luba-02.webp', 'Mammotion LUBA', '2026'], [J + 'realizace-2026-luba-mini-03.webp', 'Mammotion LUBA mini', '2026'], [J + 'realizace-2026-luba-06.webp', 'Mammotion LUBA', '2026']]);
+  // 31. 10. 2026 (Michael: staré fotky, málo užitku, optimalizovat pro mobil): místo pohyblivého pásu mřížka karet
+  // s letošními fotkami z Fotek (bez EXIF/GPS) a u každé „co jsme řešili“; mobil 2 sloupce, 4 karty + „Zobrazit další“.
+  // Místa jsou jen na úroveň okresu/kraje (soukromí zákazníků). Model a místo upravit, když Michael upřesní.
+  var R3 = [
+    [J + 'realizace-2026-10-palisada.webp', 'Mammotion LUBA', 'Středočeský kraj · říjen 2026', 'Sečení těsně podél palisády'],
+    [J + 'realizace-2026-05-plot.webp', 'Mammotion LUBA', 'Praha · květen 2026', 'Úzký pruh podél plotu a obrubníku'],
+    [H + 'aiper-scuba-s1-teplice.webp', 'Aiper Scuba S1', 'Teplice', 'Bazénový vysavač u zákazníka'],
+    [J + 'realizace-2026-04-zidka.webp', 'Mammotion LUBA', 'okolí Kroměříže · duben 2026', 'Kolem vyvýšeného záhonu se zídkou'],
+    [H + 'dreame-roller.webp', 'Robotický vysavač Dreame', 'u zákazníka doma', 'Zprovoznění: Wi-Fi, mapa bytu, plán úklidu'],
+    [J + 'realizace-2026-04-zahony.webp', 'Mammotion LUBA', 'Praha-západ · duben 2026', 'Mezi pěstebními truhlíky'],
+    [H + 'img-5724.webp', 'Mammotion LUBA 2', 'Kladno', 'Instalace bezdrátové sekačky'],
+    [J + 'realizace-2026-10-garaz.webp', 'Mammotion LUBA + garáž', 'Středočeský kraj · říjen 2026', 'Nabíjecí stanice s garáží u terasy'],
+    [H + 'spino-e1-praha.webp', 'Mammotion Spino E1', 'Praha', 'Bazénový vysavač bez kabelu'],
+    [H + 'ecovacs.webp', 'Robotický vysavač Ecovacs', 'u zákazníka doma', 'Zprovoznění a nastavení aplikace'],
+    [J + 'realizace-2026-04-stromy.webp', 'Mammotion LUBA', 'Středočeský kraj · duben 2026', 'Zahrada se stromy a záhony'],
+    [J + 'realizace-2026-luba-01.webp', 'Mammotion LUBA', 'instalace 2026', 'Bezdrátová sekačka bez obvodového drátu'],
+    [J + 'realizace-2026-luba-mini-05.webp', 'Mammotion LUBA mini', 'instalace 2026', 'Bezdrátová sekačka pro menší zahradu'],
+    [J + 'realizace-2026-04-ker.webp', 'Mammotion LUBA', 'Praha-západ · duben 2026', 'Objíždí keře a záhony']
+  ];
   function realizace() {
-    var all = [], a = REAL.slice(), b = MIX.slice();
-    while (a.length || b.length) { if (a.length) all.push(a.shift()); if (b.length) all.push(b.shift()); if (b.length) all.push(b.shift()); }
-    var fig = function (r, dup) { return '<figure class="rsr2-f"' + (dup ? ' aria-hidden="true"' : '') + '><img src="' + r[0] + '" alt="' + (dup ? '' : r[1] + ' – ' + r[2]) + '" loading="lazy"><figcaption>' + r[1] + '<small>' + r[2] + '</small></figcaption></figure>'; };
-    return el('section', 'rsh rsr2', '<h2>Naše realizace</h2><p class="rsh-sub">Skutečné zahrady, byty a bazény našich zákazníků – od roku 2023 po celé České republice.</p>' +
-      '<div class="rsr2-m"><div class="rsr2-track">' + all.map(function (r) { return fig(r); }).join('') + all.map(function (r) { return fig(r, 1); }).join('') + '</div></div>' +
-      '<p class="rsr2-more"><a href="/instalace-sekacek/">Více o instalacích a servisu →</a></p>');
+    var subj = encodeURIComponent('Fotky zahrady – prosím o doporučení sekačky');
+    var card = function (r) { return '<figure class="rsr3-c"><span class="rsr3-i"><img src="' + r[0] + '" alt="' + r[1] + ' – ' + r[3] + '" loading="lazy" width="800" height="600"></span>' +
+      '<figcaption><b>' + r[1] + '</b><span class="rsr3-w">' + r[2] + '</span><span class="rsr3-s">' + r[3] + '</span></figcaption></figure>'; };
+    var sec = el('section', 'rsh rsr3', '<h2>Naše realizace</h2><p class="rsh-sub">Skutečné instalace a zprovoznění u našich zákazníků. U každé píšeme, co jsme na místě řešili.</p>' +
+      '<div class="rsr3-g">' + R3.map(card).join('') + '</div>' +
+      '<button type="button" class="rsr3-more">Zobrazit další realizace</button>' +
+      '<p class="rsr3-cta"><span>Máte podobnou zahradu?</span> <a href="mailto:' + MAIL + '?subject=' + subj + '">Pošlete fotky, poradím vám</a><a href="/instalace-sekacek/">Instalace sekaček od 7 999 Kč →</a></p>');
+    sec.querySelector('.rsr3-more').addEventListener('click', function () { sec.classList.add('rsr3--all'); this.remove(); });
+    return sec;
   }
   var RSO_IC = { tel: '<path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>', mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>', cam: '<path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>' };
   function rsoIc(k) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + RSO_IC[k] + '</svg>'; }
