@@ -638,7 +638,7 @@
     'html body .rs-car,html body .rss-g,html body .rsr2-m{scroll-padding-left:20px;scroll-padding-right:20px}' +
     /* mobil: rozcestník potřeb v kategorii kompaktně – 4 možnosti v řádcích, zbytek pod tlačítkem */
     'html body .rsn--cat .rsn__c{flex-direction:row;align-items:center;gap:9px;min-height:58px;padding:8px 32px 8px 8px;font-size:14px}html body .rsn--cat .rsn__c svg{width:22px;height:22px;flex:0 0 22px;padding:6px;border-radius:10px}html body .rsn--cat .rsn__c i{top:50%;right:9px;transform:translateY(-50%);width:18px;height:18px}' +
-    'html body .rsn--cat:not(.rsn--all) .rsn__c:nth-child(n+5){display:none}html body .rsn--cat .rsn__head p{font-size:14.5px!important}' +
+    'html body .rsn--cat .rsn__head p{font-size:14.5px!important}' +
     '.rsn__more{display:flex!important;width:100%;justify-content:center;align-items:center;margin:8px 0 4px;padding:10px 14px;border:1.5px dashed #cfdcc4;border-radius:14px;background:#fff;color:#1b3f20;font-weight:700;font-size:14.5px;font-family:inherit;cursor:pointer}' +
     /* mobil: dlouhý popis kategorie sbalený na úvod + tlačítko */
     '.category-perex.rs-fold:not(.rs-fold--open){max-height:230px;overflow:hidden;position:relative}.category-perex.rs-fold:not(.rs-fold--open)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(rgba(255,255,255,0),#fff);pointer-events:none}' +
@@ -655,6 +655,8 @@
     '.rs-paybox__ic{flex:0 0 40px;width:40px;height:40px;border-radius:12px;background:#fff;border:1px solid #dfe9d6;display:grid;place-items:center}.rs-paybox__ic svg{width:22px;height:22px;fill:none;stroke:#1b3f20;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}' +
     '.rs-paybox__g b{display:block;color:#1b3f20;font-size:15.5px;line-height:1.3}.rs-paybox__g small{display:block;color:#5a6b56;font-size:14px;line-height:1.35}' +
     '.rs-paybox__f{margin:14px 2px 0!important;font-size:15px;color:#33402f}@media(max-width:560px){.rs-paybox__g{grid-template-columns:1fr}}' +
+    '.rs-fx-btn{display:none}@media(max-width:991px){html body #filters:not(.rs-fx-all) .rs-fx{display:none!important}' +
+    'html body #filters .rs-fx-btn{display:flex;width:100%;justify-content:center;align-items:center;margin:10px 0 6px;padding:11px 14px;border:1.5px solid #1b3f20;border-radius:999px;background:#fff;color:#1b3f20;font:inherit;font-weight:700;font-size:15px;cursor:pointer}}' +
     '.rs-stars{color:#f5b301!important;letter-spacing:1px;font-size:1em;line-height:1;white-space:nowrap}' +
     '.rs-heu-meta{display:flex!important;align-items:center;flex-wrap:wrap;gap:3px 6px;margin-top:2px;font-size:12.5px;font-weight:600;color:#4f5f51;line-height:1.2}.rs-heu-meta b{color:#1b3f20}' +
     '.rs-heu-ic{background:#fff!important;border:1px solid #f1e3a8!important;overflow:hidden;padding:2px!important}.rs-heu-ic img.rs-heu-seal{width:100%!important;height:100%!important;object-fit:contain;display:block;max-width:none!important}' +
@@ -803,6 +805,21 @@
     setTimeout(filtersOpen, 600);
   }
 
+  /* 31. 10. 22:20 (Michael): na telefonu po „Otevřít filtr“ jen pár filtrů – posuvníky (rs-has-range), cena a Skladem
+     zůstávají rozbalené, ostatní parametry a značky pod tlačítkem „Zobrazit všechny filtry“. Když je v schovaném filtru
+     něco zaškrtnuté, zobrazí se rovnou všechny. Desktop beze změny. Zápis do DOM jen při chybějícím tlačítku (žádná smyčka observeru). */
+  function filtersMobile() {
+    var f = document.getElementById('filters'); if (!f) return;
+    var extra = [].filter.call(f.querySelectorAll('.filter-section-parametric, .filter-section-manufacturer'), function (s) { return !s.classList.contains('rs-has-range'); });
+    if (extra.length < 2) return;
+    extra.forEach(function (s) { s.classList.add('rs-fx'); });
+    if (extra.some(function (s) { return s.querySelector('input:checked'); })) f.classList.add('rs-fx-all');
+    if (f.querySelector('.rs-fx-btn')) return;
+    var lbl = function () { return f.classList.contains('rs-fx-all') ? 'Méně filtrů ↑' : 'Zobrazit všechny filtry (' + extra.length + ') ↓'; };
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'rs-fx-btn'; b.textContent = lbl();
+    b.addEventListener('click', function () { f.classList.toggle('rs-fx-all'); b.textContent = lbl(); });
+    var cnt = f.querySelector('.filter-section-count'); if (cnt && cnt.parentNode) cnt.parentNode.insertBefore(b, cnt); else f.appendChild(b);
+  }
   /* posuvník pro parametr s číselnými hodnotami (≥ 4 hodnoty) */
   var NUM = /^\d+(?:[.,]\d+)?$/;
   function unitOf(title) { var m = title.match(/\sv\s(.+)$/); return m ? m[1].replace('m2', 'm²') : ''; }
@@ -1423,8 +1440,7 @@
     sec.innerHTML = '<div class="rsn__head"><h2>' + (opt.title || 'S čím vám poradíme?') + '</h2><p>' + (links ? 'Klikněte na to, co potřebujete – ukážeme vhodné <span class="rsn__what"></span>. Další požadavky si přidáte v kategorii.' : 'Zaškrtněte všechno, co u vás platí – ukážeme ' + '<span class="rsn__what"></span>, které to zvládnou najednou.') + '</p></div>' +
       (opt.tabs ? '<div class="rsn__tabs" role="tablist">' + types.map(function (k) { return '<button type="button" role="tab" data-k="' + k + '">' + NEEDS[k].label + '</button>'; }).join('') + '</div>' : '') +
       '<div class="rsn__g"></div>' +
-      /* 31. 10. (Michael): na mobilu v kategorii jen 4 možnosti, zbytek pod tlačítkem (rozcestník zabíral celou obrazovku) */
-      (opt.compact && NEEDS[cur].items.length > 4 ? '<button type="button" class="rsn__more">Zobrazit všechny možnosti (' + NEEDS[cur].items.length + ') ↓</button>' : '') +
+      /* 31. 10. 22:20 (Michael): dlaždice potřeb mají být vidět všechny – schovávají se jen parametrické filtry (filtersMobile) */
       '<div class="rsn__res" aria-live="polite"></div>';
     var grid = sec.querySelector('.rsn__g'), res = sec.querySelector('.rsn__res');
     /* živý režim v kategorii (Michael 27. 10.): klik = hned vyfiltrovat výpis; výběr se čte zpět z URL */
@@ -1751,7 +1767,7 @@
       var el = t.parentElement, item = el.closest('a, li') || el.parentElement; if (!item || item.dataset.rsHeu) return; item.dataset.rsHeu = 1; item.classList.add('rs-heu-item');
       var ic = item.querySelector('i, .rs-ico, .rs-ei, [class*="__ic"], [class*="-ic"]'); if (ic && !ic.contains(t)) { ic.classList.add('rs-heu-ic'); ic.innerHTML = '<img class="rs-heu-seal" src="' + HEU_LOGO + '" alt="Ověřeno zákazníky – Heureka">'; }
       var m = document.createElement('span'); m.className = 'rs-heu-meta'; m.innerHTML = '<span class="rs-stars" aria-label="5 z 5 hvězdiček">★★★★★</span><span><b data-rs-review-count>400+</b> hodnocení</span>';
-      el.insertAdjacentElement('afterend', m);
+      if (el === item) item.appendChild(m); else el.insertAdjacentElement('afterend', m);
     });
     [].forEach.call(document.querySelectorAll('.benefitBanner__item'), function (it) {
       if (it.dataset.rsHeuB || !/hodnocen|recenz/i.test(it.textContent)) return; var st = it.querySelector('.rs-ei'); if (!st && !/[☆⭐]/.test(it.textContent)) return; it.dataset.rsHeuB = 1;
@@ -1815,11 +1831,11 @@
     b.addEventListener('click', function () { var o = p.classList.toggle('rs-fold--open'); b.setAttribute('aria-expanded', o); b.textContent = o ? 'Sbalit popis ↑' : 'Číst celý popis ↓'; if (!o) window.scrollTo({ top: Math.max(0, p.getBoundingClientRect().top + window.pageYOffset - 140), behavior: 'instant' }); });
   }
 
-  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
-  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { cardPrices(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { compare(); } catch (e) {} soldOutLast(); try { cartRelated(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { availColors(); } catch (e) {} }, 120); });
+  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { cardPrices(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { compare(); } catch (e) {} soldOutLast(); try { cartRelated(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { availColors(); } catch (e) {} }, 120); });
   function watch() { var c = document.getElementById('content') || document.body; mo.observe(c, { childList: true, subtree: true }); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch); else watch();
 })();
