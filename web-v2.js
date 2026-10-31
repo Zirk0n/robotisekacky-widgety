@@ -587,6 +587,10 @@
     'body.ordering-process:not(.in-kosik) #navigation,body.ordering-process:not(.in-kosik) .rs-topbar,body.ordering-process:not(.in-kosik) .rs-hs,body.ordering-process:not(.in-kosik) #formSearchForm,' +
     'body.ordering-process:not(.in-kosik) .navigation-buttons .toggle-window[data-target=search],body.ordering-process:not(.in-kosik) .rs-hs-lupa,body.ordering-process .rs-lh,.navigation-window-visible .rs-lh{display:none!important}' +
     /* 31. 10. mobilní hlavička = jedna lišta: bílý kontaktní pruh skrytý (zůstává jen jako mezera pod fixní hlavičkou), kontakt = tlačítko s fotkou */
+    '.rs-mtop{display:none}@media(max-width:991px){html body #header .rs-mtop{display:flex;justify-content:space-between;align-items:center;gap:10px;background:' + G + ';padding:6px 14px;font-size:13px;line-height:1.2}' +
+    'html body #header .rs-mtop a{display:inline-flex;align-items:center;gap:6px;color:#fff!important;text-decoration:none!important;white-space:nowrap}html body #header .rs-mtop b{font-weight:700}html body #header .rs-mtop a span{opacity:.85;font-weight:600}' +
+    'html body #header .rs-mtop svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 14px}' +
+    'html body #header.rs-scrolled .rs-mtop{display:none}}@media(max-width:400px){html body #header .rs-mtop .rs-mtop__m span{display:none}}' +
     '.rs-mcall{display:none}@media(max-width:991px){html body .rs-topbar{background:transparent!important;border:0!important;padding:0!important;min-height:0!important}html body .rs-topbar .rs-topbar__in{display:none!important}' +
     '#header .navigation-buttons .rs-mcall{display:inline-flex;position:relative;align-items:center;justify-content:center;width:42px;height:42px;margin:0 2px;flex:0 0 42px}' +
     '.rs-mcall img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #86BB41;display:block}' +
@@ -1025,6 +1029,13 @@
       var mc = document.createElement('a'); mc.className = 'rs-mcall'; mc.href = 'tel:' + TEL; mc.setAttribute('aria-label', 'Zavolat Michaelovi ' + TELT + ' (' + HOURS + ')');
       mc.innerHTML = '<img src="' + FOTO + '" alt="" width="36" height="36"><span class="rs-mcall__ic">' + ICON.tel + '</span>';
       var cart = nb.querySelector('[data-target=cart]'); nb.insertBefore(mc, cart || null);
+    }
+    /* 31. 10. večer (Michael): nad mobilní hlavičku zelená kontaktní lišta jako na počítači; při scrollu se schová */
+    var hh = document.getElementById('header');
+    if (hh && !hh.querySelector('.rs-mtop')) {
+      var mt = document.createElement('div'); mt.className = 'rs-mtop';
+      mt.innerHTML = '<a href="tel:' + TEL + '">' + ICON.tel + '<b>' + TELT + '</b><span>' + HOURS + '</span></a><a href="mailto:' + MAIL + '" class="rs-mtop__m">' + ICON.mail + '<span>' + MAIL + '</span></a>';
+      hh.insertBefore(mt, hh.firstChild);
     }
     var nin = nav && (nav.querySelector('.navigation-in') || nav);
     if (nin && !nin.dataset.rsMob) {
