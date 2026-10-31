@@ -1410,7 +1410,7 @@
     var after = top.querySelector('.rs-usps') || top.querySelector('h1'); var b = needsBlock(type, { live: true, compact: true, base: brand ? path : '', title: brand ? brand + ': vyberte podle toho, co potřebujete' :'Vyberte podle toho, co potřebujete' });
     b.id = 'rsn'; after.parentNode.insertBefore(b, after.nextSibling);
     /* blok vzniká až skriptem → prohlížeč na #rsn sám nesjede; po prokliku z titulky/menu ho dorolovat */
-    if (location.hash === '#rsn') { var go = function () { b.scrollIntoView({ block: 'start' }); }; setTimeout(go, 250); window.addEventListener('load', function () { setTimeout(go, 300); }); }
+    if (location.hash === '#rsn') { var go = function () { var hd = document.getElementById('header'), off = hd && getComputedStyle(hd).position === 'fixed' ? hd.getBoundingClientRect().bottom : 0; window.scrollTo({ top: Math.max(0, b.getBoundingClientRect().top + window.pageYOffset - off - 12), behavior: 'instant' }); }; setTimeout(go, 300); setTimeout(go, 1500); }
     var sub = top.querySelector('ul.subcategories'); if (sub) { sub.classList.add('rs-sub-compact'); var lab = document.createElement('p'); lab.className = 'rs-sub-label'; lab.textContent = brand ? 'Další v této kategorii:' : 'Nebo podle značky:'; sub.parentNode.insertBefore(lab, sub); b.parentNode.insertBefore(lab, b.nextSibling); b.parentNode.insertBefore(sub, lab.nextSibling); }
   }
 
