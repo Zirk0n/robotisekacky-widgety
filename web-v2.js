@@ -624,6 +624,7 @@
     '.rsn__head h2{margin:0 0 6px!important;font-size:30px!important;font-weight:800;color:#1b3f20!important}.rsn--cat .rsn__head h2{font-size:24px!important}.rsn__head p{margin:0 0 16px!important;color:#4a5a47;font-size:16px}' +
     '.rsn__tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}.rsn__tabs button{border:1.5px solid #cfdcc4;background:#fff;border-radius:999px;padding:9px 18px;font-weight:700;font-size:15px;color:#1b3f20;cursor:pointer;font-family:inherit}.rsn__tabs button[aria-selected=true]{background:#1b3f20;border-color:#1b3f20;color:#fff}' +
     '.rsn__g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.rsn--cat .rsn__g{grid-template-columns:repeat(6,minmax(0,1fr))}' +
+    'a.rsn__c--link{text-decoration:none!important}a.rsn__c--link:hover{border-color:#86BB41;transform:translateY(-1px)}.rsn__arr{position:absolute;top:50%;right:14px;transform:translateY(-50%);color:#1b3f20;font-size:18px;font-weight:800}' +
     '.rsn__c{position:relative;display:flex;align-items:center;gap:12px;min-height:64px;padding:12px 40px 12px 14px;border:1.5px solid #dfe9d6;border-radius:18px;background:#fff;color:#1b3f20;font-weight:700;font-size:15.5px;line-height:1.25;text-align:left;cursor:pointer;font-family:inherit;box-shadow:0 6px 16px rgba(27,63,32,.05);transition:border-color .15s,background .15s,transform .15s}' +
     '.rsn--cat .rsn__c{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 14px 14px;min-height:108px;font-size:14.5px}' +
     '.rsn__c:hover{border-color:#86BB41;transform:translateY(-1px)}.rsn__c svg{width:30px;height:30px;flex:0 0 30px;fill:none;stroke:#1b3f20;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;padding:7px;box-sizing:content-box;border-radius:12px;background:#eef6e6}' +
@@ -1335,7 +1336,10 @@
     opt = opt || {}; if (opt.base) NBASE = opt.base;
     var sec = document.createElement('section'); sec.className = 'rsn' + (opt.compact ? ' rsn--cat' : ''); sec.setAttribute('aria-label', 'Výběr podle toho, co potřebujete');
     var types = opt.tabs ? Object.keys(NEEDS) : [type], cur = type || types[0], sel = [];
-    sec.innerHTML = '<div class="rsn__head"><h2>' + (opt.title || 'S čím vám poradíme?') + '</h2><p>Zaškrtněte všechno, co u vás platí – ukážeme ' + '<span class="rsn__what"></span>, které to zvládnou najednou.</p></div>' +
+    /* 31. 10. (Michael): na titulní straně bez zaškrtávání – dlaždice rovnou prokliknou do kategorie s filtrem,
+       další potřeby si zákazník zaškrtne až v kategorii (živý rozcestník #rsn) */
+    var links = !!opt.tabs && !opt.live;
+    sec.innerHTML = '<div class="rsn__head"><h2>' + (opt.title || 'S čím vám poradíme?') + '</h2><p>' + (links ? 'Klikněte na to, co potřebujete – ukážeme vhodné <span class="rsn__what"></span>. Další požadavky si přidáte v kategorii.' : 'Zaškrtněte všechno, co u vás platí – ukážeme ' + '<span class="rsn__what"></span>, které to zvládnou najednou.') + '</p></div>' +
       (opt.tabs ? '<div class="rsn__tabs" role="tablist">' + types.map(function (k) { return '<button type="button" role="tab" data-k="' + k + '">' + NEEDS[k].label + '</button>'; }).join('') + '</div>' : '') +
       '<div class="rsn__g"></div><div class="rsn__res" aria-live="polite"></div>';
     var grid = sec.querySelector('.rsn__g'), res = sec.querySelector('.rsn__res');
@@ -1347,6 +1351,10 @@
     function draw() {
       sec.querySelector('.rsn__what').textContent = NEEDS[cur].what;
       [].forEach.call(sec.querySelectorAll('.rsn__tabs button'), function (b) { b.setAttribute('aria-selected', b.dataset.k === cur ? 'true' : 'false'); });
+      if (links) { grid.innerHTML = NEEDS[cur].items.map(function (n, ix) {
+          var u = Object.keys(n.p).length ? needsUrl(cur, [ix]) + '#rsn' : (n.a ? n.a[0] : NEEDS[cur].base);
+          return '<a class="rsn__c rsn__c--link" href="' + u + '"><svg viewBox="0 0 24 24" aria-hidden="true">' + NI[n.i] + '</svg><span>' + n.t + '</span><b class="rsn__arr" aria-hidden="true">→</b></a>'; }).join('');
+        res.innerHTML = ''; return; }
       grid.innerHTML = NEEDS[cur].items.map(function (n, ix) { var on = sel.indexOf(ix) >= 0;
         return '<button type="button" class="rsn__c" aria-pressed="' + on + '" data-i="' + ix + '"><svg viewBox="0 0 24 24" aria-hidden="true">' + NI[n.i] + '</svg><span>' + n.t + '</span><i aria-hidden="true"></i></button>'; }).join('');
       result();
@@ -1375,7 +1383,7 @@
     }
     sec.addEventListener('click', function (e) {
       var t = e.target.closest && e.target.closest('.rsn__tabs button'); if (t) { cur = t.dataset.k; sel = []; draw(); return; }
-      var c = e.target.closest && e.target.closest('.rsn__c'); if (!c) return;
+      var c = e.target.closest && e.target.closest('.rsn__c'); if (!c || links) return;
       var ix = +c.dataset.i, k = sel.indexOf(ix), grp = NEEDS[cur].items[ix].g;
       if (k >= 0) sel.splice(k, 1); else { if (grp) sel = sel.filter(function (j) { return NEEDS[cur].items[j].g !== grp; }); sel.push(ix); }
       if (opt.live && Object.keys(NEEDS[cur].items[ix].p).length) { c.classList.add('rsn__c--load'); location.href = needsUrl(cur, sel.filter(function (j) { return Object.keys(NEEDS[cur].items[j].p).length; })) + '#rsn'; return; }
