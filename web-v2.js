@@ -574,6 +574,18 @@
     'html body #navigation .menu-level-1{flex-wrap:nowrap!important;white-space:nowrap}' +
     /* 31. 10.: Shoptet dává .navigation-in šířku 9999em → stránka byla 160 000 px široká (riziko „obsah mimo layout“ u Google) */
     'html body #navigation .navigation-in{width:auto!important}html body #header .navigation-wrapper{overflow-x:clip;overflow-y:visible}' +
+    /* 31. 10. audit Kvasnička: písmo min. 13 px (štítky na mobilu 12 px = práh Lighthouse, aby se vešly do 1 řádku), bez „Abecedně“,
+       objednávka (krok 2+) bez menu/hledání/horní lišty, upsell v košíku na mobilu nebyl zmáčknutý do 36 px, slevový kód schovaný za odkaz */
+    'html body .products-block .flags .flag,html body .product .image .flags-default .flag{font-size:12px!important}' +
+    '@media(min-width:768px){html body .products-block .flags .flag,html body .product .image .flags-default .flag{font-size:13px!important}}' +
+    'html body .rsr__ver,html body .rs-ver,html body .products-block .flags-extra .flag-discount .price-save,html body .listSorting__control,html body .listSorting__controls button,' +
+    'html body .rsr2-f figcaption small,html body .rsw-m figcaption,html body .rs-hc small,html body .rs-topbar__claim,html body .p-code-label,html body .p-code,html body .rsz-tag,html body .type-detail .p-image .flags-default .flag{font-size:13px!important}' +
+    'html body .rsr2-f figcaption{font-size:14px!important}' +
+    'html body #listSortingControl-name{display:none!important}' +
+    'body.ordering-process:not(.in-kosik) #navigation,body.ordering-process:not(.in-kosik) .rs-topbar,body.ordering-process:not(.in-kosik) .rs-hs,body.ordering-process:not(.in-kosik) #formSearchForm,' +
+    'body.ordering-process:not(.in-kosik) .navigation-buttons .toggle-window[data-target=search],body.ordering-process:not(.in-kosik) .rs-hs-lupa,body.ordering-process .rs-lh,html.rs-pv1 .rs-lh{display:none!important}' +
+    '@media(max-width:767px){html body .cart-table tr.rs-rel{display:block!important;width:100%!important}html body .cart-table tr.rs-rel>td{max-width:none!important;width:100%!important;display:block!important;box-sizing:border-box}}' +
+    '.rs-coupon-link{background:none;border:0;padding:0;color:' + G + ';text-decoration:underline;font-weight:600;cursor:pointer;font-size:14px}' +
     // statické stránky s prázdným levým panelem → obsah na celou šířku (O nás, Kontakty…)
     'body.rs-nosb .sidebar-left{display:none!important}body.rs-nosb .content-wrapper-in>#content{width:100%!important;max-width:1180px!important;margin-left:auto!important;margin-right:auto!important;float:none!important;flex:1 1 100%!important}' +
     '#rsn,#products{scroll-margin-top:calc(var(--rs-hb,140px) + 12px)}' +
@@ -1544,6 +1556,18 @@
     var best = document.getElementById('homepageProducts1'), nov = document.getElementById('homepageProducts2');
     if (best && nov && best.parentNode === nov.parentNode && (nov.compareDocumentPosition(best) & Node.DOCUMENT_POSITION_FOLLOWING)) nov.parentNode.insertBefore(best, nov);
   }
+  /* 31. 10. (checklist Kvasnička HP15/D13): lišta Leadhub „tipy e-mailem“ ne hned na první stránce návštěvy (html.rs-pv1)
+     a nikdy v košíku/objednávce; slevový kód v košíku schovaný za odkaz (O2) */
+  function calmCheckout() {
+    try { var k = 'rs_pv', n = +(sessionStorage.getItem(k) || 0) + 1; sessionStorage.setItem(k, n); if (n < 2) document.documentElement.classList.add('rs-pv1'); } catch (e) {}
+    if (!document.body.classList.contains('in-kosik')) return;
+    var inp = document.querySelector('input[name=discountCouponCode]'); if (!inp || inp.value) return;
+    var f = inp.closest('form'); if (!f || f.dataset.rsCp) return; f.dataset.rsCp = 1;
+    if (document.querySelector('.discount-coupon .remove, [class*=coupon] .remove-item, .applied-coupon')) return;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'rs-coupon-link'; b.textContent = 'Mám slevový kód';
+    f.style.display = 'none'; f.parentNode.insertBefore(b, f);
+    b.addEventListener('click', function () { f.style.display = ''; b.remove(); inp.focus(); });
+  }
   /* počet položek nahoře ve výpisu (EB: zákazník hned vidí, jestli má filtrovat) */
   function listCount() {
     if (!document.body.classList.contains('type-category')) return;
@@ -1554,7 +1578,7 @@
     s.textContent = n + ' ' + w;
   }
 
-  function run() { css(); try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  function run() { css(); try { calmCheckout(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
