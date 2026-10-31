@@ -59,6 +59,7 @@
     [J + 'realizace-2026-luba-04.webp', 'Mammotion LUBA', 'instalace 2026']
   ];
   var FOTO = H + 'michael-bohacek-profil-2026.webp';
+  var HOURS = '10–20 h'; /* stejné jako HOURS ve web-v2.js – při změně upravit v obou */
   var CSS = '' +
     '.rsh{max-width:1180px;margin:0 auto;padding:30px 16px;font-family:inherit}' +
     '.rsh h2{margin:0 0 6px!important;text-align:center;font-size:30px!important;line-height:1.2;font-weight:800;color:var(--rs-g,#1b3f20)}' +
@@ -105,19 +106,24 @@
     '.rsr2-more{text-align:center;margin-top:16px}.rsr2-more a{color:var(--rs-g,#1b3f20);font-weight:700}' +
     /* majitel */
     '.rso{padding:28px 16px 68px;margin-bottom:-28px!important;background:linear-gradient(180deg,#f7faf5,var(--rs-soft2,#eef6e6));border-top:1px solid var(--rs-line,#e6f0db)}.in-index #footer{margin-top:0!important;position:relative;z-index:1}' +
-    '.rso-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:24px;flex-wrap:wrap;background:#fff;border:1px solid var(--rs-line,#e6f0db);border-radius:20px;padding:20px 24px;box-shadow:0 14px 30px rgba(27,63,32,.08)}' +
-    '.rso-in img{width:104px;height:104px;border-radius:50%;object-fit:cover;flex:0 0 104px;border:3px solid var(--rs-l,#86BB41)}' +
-    '.rso-t{flex:1 1 320px;min-width:0}.rso-t p{margin:0!important}.rso-h{font-size:22px;font-weight:800;color:var(--rs-g,#1b3f20);line-height:1.25;margin-bottom:4px!important}' +
-    '.rso-p{color:#33402f;font-size:16px;line-height:1.5;margin-bottom:6px!important}.rso-n{color:#5a6b56;font-size:14px}' +
-    '.rso-c{display:flex;flex-direction:column;gap:8px}.rso-c a{display:inline-flex;justify-content:center;padding:12px 20px;border-radius:999px;font-weight:700;text-decoration:none!important;white-space:nowrap}' +
-    '.rso-c .pri{background:var(--rs-g,#1b3f20);color:#fff!important}.rso-c .pri:hover{background:var(--rs-l,#86BB41)}.rso-c .sec{border:2px solid var(--rs-g,#1b3f20);color:var(--rs-g,#1b3f20)!important;background:#fff}' +
+    /* 31. 10. (Michael: box šel vylepšit, na mobilu velká prázdná mezera – flex-basis 320px textu ve sloupci) */
+    '.rso-in{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:18px 26px;background:#fff;border:1px solid var(--rs-line,#e6f0db);border-radius:20px;padding:22px 26px;box-shadow:0 14px 30px rgba(27,63,32,.08)}' +
+    '.rso-in>img{width:104px;height:104px;border-radius:50%;object-fit:cover;border:3px solid var(--rs-l,#86BB41)}' +
+    '.rso-t{min-width:0}.rso-t p{margin:0!important}.rso-h{font-size:22px;font-weight:800;color:var(--rs-g,#1b3f20);line-height:1.25;margin-bottom:2px!important}' +
+    '.rso-n{color:#5a6b56;font-size:14px;margin-bottom:8px!important}.rso-n strong{color:var(--rs-g,#1b3f20)}' +
+    '.rso-p{color:#33402f;font-size:16px;line-height:1.5;margin-bottom:10px!important}' +
+    '.rso-l{display:flex;flex-wrap:wrap;gap:6px;margin:0!important;padding:0!important;list-style:none}.rso-l li{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;background:var(--rs-soft2,#eef6e6);color:var(--rs-g,#1b3f20);font-size:13.5px;font-weight:700;margin:0!important}.rso-l li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--rs-l,#86BB41)}' +
+    '.rso-c{display:flex;flex-direction:column;gap:8px;min-width:230px}.rso-c a{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:700;text-decoration:none!important;white-space:nowrap}' +
+    '.rso-c svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 18px}' +
+    '.rso-c .pri{background:var(--rs-g,#1b3f20);color:#fff!important}.rso-c .pri:hover{background:#2c5a32}.rso-c .sec{border:2px solid var(--rs-g,#1b3f20);color:var(--rs-g,#1b3f20)!important;background:#fff}.rso-c .sec:hover{background:var(--rs-soft2,#eef6e6)}' +
+    '.rso-c .ter{padding:6px 10px;color:var(--rs-g,#1b3f20)!important;font-size:14.5px;text-decoration:underline!important;text-underline-offset:3px;white-space:normal;text-align:center}' +
     /* výhody jako karty */
     /* výhody (benefitBanner) jsou od 16. 10. 2026 v celoplošném web-v2.js – stejné na titulce, v kategoriích i na produktech */
     '@media(max-width:991px){.rsv-g{grid-template-columns:repeat(3,minmax(0,1fr))}.rss-g{grid-template-columns:repeat(2,minmax(0,1fr))}.rsr2-g{grid-template-columns:repeat(2,minmax(0,1fr))}}' +
     '@media(max-width:560px){.rsh h2{font-size:24px!important}.rsv-g{grid-template-columns:repeat(2,minmax(0,1fr))}.rsv-t{min-height:96px;font-size:14px}' +
     '.rss-g{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:6px;scrollbar-width:none}.rss-g::-webkit-scrollbar{display:none}.rss-c{flex:0 0 82%;scroll-snap-align:start}' +
     '.rsr2-g{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.rsr2-g::-webkit-scrollbar{display:none}.rsr2-f{flex:0 0 78%;scroll-snap-align:start}' +
-    '.rso-in{flex-direction:column;text-align:center;padding:18px}.rso-c{width:100%}}';
+    '.rso-in{grid-template-columns:64px minmax(0,1fr);gap:12px 14px;padding:18px 16px}.rso-in>img{width:64px;height:64px;border-width:2px}.rso-t{display:contents}.rso-h{grid-column:2;align-self:end;font-size:19px}.rso-n{grid-column:2;align-self:start;margin:0!important;font-size:13.5px}.rso-p,.rso-l{grid-column:1/-1}.rso-p{font-size:15.5px;margin:2px 0 0!important}.rso-c{grid-column:1/-1;min-width:0}.rso-c a{white-space:normal}}';
   /* ===== jednotný design homepage (15. 10. 2026) – stejný jazyk jako šablony v2 ===== */
   CSS += '' +
     '.in-index .homepage-group-title{color:var(--rs-g,#1b3f20)!important;font-size:30px!important;font-weight:800!important;text-align:center!important;margin:38px 0 20px!important;line-height:1.2}' +
@@ -202,10 +208,17 @@
       '<div class="rsr2-m"><div class="rsr2-track">' + all.map(function (r) { return fig(r); }).join('') + all.map(function (r) { return fig(r, 1); }).join('') + '</div></div>' +
       '<p class="rsr2-more"><a href="/instalace-sekacek/">Více o instalacích a servisu →</a></p>');
   }
+  var RSO_IC = { tel: '<path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>', mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>', cam: '<path d="M4 8h3l2-2h6l2 2h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>' };
+  function rsoIc(k) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + RSO_IC[k] + '</svg>'; }
   function majitel() {
+    /* 31. 10. (Michael): konkrétnější nabídka (fotky zahrady), důvody důvěry, ikony místo emoji; na mobilu fotka vedle nadpisu */
+    var subj = encodeURIComponent('Prosím o doporučení robota (posílám fotky)');
     return el('section', 'rso', '<div class="rso-in"><img src="' + FOTO + '" alt="Michael Boháček, majitel Robotí Sekačky" loading="lazy" width="104" height="104">' +
-      '<div class="rso-t"><p class="rso-h">Potřebujete poradit s výběrem?</p><p class="rso-p">Zavolejte mi nebo napište. Poradím vám podle vaší domácnosti, zahrady nebo bazénu.</p><p class="rso-n"><strong>Michael Boháček</strong> · majitel Robotisekacky.cz</p></div>' +
-      '<div class="rso-c"><a class="pri" href="tel:' + TEL + '">📞 ' + TELT + '</a><a class="sec" href="mailto:' + MAIL + '">✉️ ' + MAIL + '</a></div></div>');
+      '<div class="rso-t"><p class="rso-h">Potřebujete poradit s výběrem?</p><p class="rso-n"><strong>Michael Boháček</strong> · majitel, telefon beru já · volejte ' + HOURS + '</p>' +
+      '<p class="rso-p">Poradím podle vašeho bytu, zahrady nebo bazénu – a když vám stačí levnější model, řeknu vám to. Pošlete mi pár fotek a doporučím konkrétního robota.</p>' +
+      '<ul class="rso-l"><li>Bez call centra</li><li>Instalace a nastavení u vás</li><li>300+ realizací</li></ul></div>' +
+      '<div class="rso-c"><a class="pri" href="tel:' + TEL + '">' + rsoIc('tel') + 'Zavolat ' + TELT + '</a><a class="sec" href="mailto:' + MAIL + '">' + rsoIc('mail') + 'Napsat e-mail</a>' +
+      '<a class="ter" href="mailto:' + MAIL + '?subject=' + subj + '">Poslat fotky zahrady nebo bytu</a></div></div>');
   }
   // uvítací text (17. 10. 2026): dvousloupcová karta – vlevo mozaika fotek služeb (instalace sekačky – skutečná realizace, vysavač a bazén – fotky ze stránek služeb) (vysavač, sekačka, bazén),
   // vpravo text z adminu (Shoptet → úvodní text) beze změny; poslední odstavec „Nevíte si rady?“ → tlačítka telefon/e-mail
