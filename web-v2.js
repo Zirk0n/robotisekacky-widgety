@@ -585,7 +585,17 @@
     'html body .rs-topbar small,html body .rs-topbar__m small,html body .p-code span{font-size:13px!important}' +
     'html body #listSortingControl-name{display:none!important}' +
     'body.ordering-process:not(.in-kosik) #navigation,body.ordering-process:not(.in-kosik) .rs-topbar,body.ordering-process:not(.in-kosik) .rs-hs,body.ordering-process:not(.in-kosik) #formSearchForm,' +
-    'body.ordering-process:not(.in-kosik) .navigation-buttons .toggle-window[data-target=search],body.ordering-process:not(.in-kosik) .rs-hs-lupa,body.ordering-process .rs-lh,html.rs-pv1 .rs-lh{display:none!important}' +
+    'body.ordering-process:not(.in-kosik) .navigation-buttons .toggle-window[data-target=search],body.ordering-process:not(.in-kosik) .rs-hs-lupa,body.ordering-process .rs-lh,.navigation-window-visible .rs-lh{display:none!important}' +
+    /* 31. 10. mobilní hlavička = jedna lišta: bílý kontaktní pruh skrytý (zůstává jen jako mezera pod fixní hlavičkou), kontakt = tlačítko s fotkou */
+    '.rs-mcall{display:none}@media(max-width:991px){html body .rs-topbar{background:transparent!important;border:0!important;padding:0!important;min-height:0!important}html body .rs-topbar .rs-topbar__in{display:none!important}' +
+    '#header .navigation-buttons .rs-mcall{display:inline-flex;position:relative;align-items:center;justify-content:center;width:42px;height:42px;margin:0 2px;flex:0 0 42px}' +
+    '.rs-mcall img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #86BB41;display:block}' +
+    '.rs-mcall__ic{position:absolute;right:-1px;bottom:-1px;width:18px;height:18px;border-radius:50%;background:' + G + ';display:grid;place-items:center;border:2px solid #fff}' +
+    '.rs-mcall__ic svg{width:10px;height:10px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}' +
+    '#navigation .rs-navcontact{margin:12px 14px!important}#navigation .rs-navcontact b small{margin-left:auto;font-size:13px;font-weight:600;color:#5f6d5c}' +
+    '#navigation .menu-level-1>li.rs-mnav-h{border:0!important;padding:18px 20px 6px!important;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e655c;list-style:none}' +
+    '#navigation .menu-level-1>li.rs-mnav-sec>a{font-weight:600!important;font-size:15px!important;color:#3d4a3d!important}' +
+    '.rs-mnav-info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 14px 90px}.rs-mnav-info a{display:block;padding:10px 12px;border:1px solid ' + LINE + ';border-radius:12px;background:#fff;color:' + G + '!important;font-weight:700;font-size:14px;text-decoration:none!important}}' +
     '@media(max-width:767px){html body .cart-table tr.rs-rel{display:block!important;width:100%!important}html body .cart-table tr.rs-rel>td{max-width:none!important;width:100%!important;display:block!important;box-sizing:border-box}}' +
     '.rs-coupon-link{background:none;border:0;padding:0;color:' + G + ';text-decoration:underline;font-weight:600;cursor:pointer;font-size:14px}' +
     // statické stránky s prázdným levým panelem → obsah na celou šířku (O nás, Kontakty…)
@@ -1006,6 +1016,25 @@
       var c = document.createElement('div'); c.className = 'rs-navcontact';
       c.innerHTML = '<b><img src="' + FOTO + '" alt="Michael Boháček" width="36" height="36" class="rs-navcontact__foto">Poradíme s výběrem</b><a href="tel:' + TEL + '">' + ICON.tel + TELT + '</a><a href="mailto:' + MAIL + '">' + ICON.mail + MAIL + '</a><a href="/kontakty/">Kontakty →</a>';
       (nav.querySelector('.navigation-in') || nav).appendChild(c);
+    }
+    /* 31. 10. (Michael: „menu na telefonu je nekonzistentní, ať je to jedna lišta“): kontakt je v hlavičce jako tlačítko
+       s fotkou (bílý pruh pod hlavičkou zmizel), v otevřeném menu nahoře stejný kontakt jako v hlavičce na počítači,
+       hlavní kategorie stejně jako na počítači, ostatní sortiment zvlášť, dole informační stránky jako v liště na počítači */
+    var nb = document.querySelector('#header .navigation-buttons');
+    if (nb && !nb.querySelector('.rs-mcall')) {
+      var mc = document.createElement('a'); mc.className = 'rs-mcall'; mc.href = 'tel:' + TEL; mc.setAttribute('aria-label', 'Zavolat Michaelovi ' + TELT + ' (' + HOURS + ')');
+      mc.innerHTML = '<img src="' + FOTO + '" alt="" width="36" height="36"><span class="rs-mcall__ic">' + ICON.tel + '</span>';
+      var cart = nb.querySelector('[data-target=cart]'); nb.insertBefore(mc, cart || null);
+    }
+    var nin = nav && (nav.querySelector('.navigation-in') || nav);
+    if (nin && !nin.dataset.rsMob) {
+      nin.dataset.rsMob = 1;
+      var cc = nin.querySelector('.rs-navcontact'); if (cc) { cc.querySelector('b').insertAdjacentHTML('beforeend', '<small>' + HOURS + '</small>'); nin.insertBefore(cc, nin.firstChild); }
+      var lis = [].slice.call(nin.querySelectorAll('.menu-level-1>li'));
+      if (lis.length > 5) { lis.slice(5).forEach(function (li) { li.classList.add('rs-mnav-sec'); }); var hd = document.createElement('li'); hd.className = 'rs-mnav-h'; hd.textContent = 'Další sortiment'; lis[5].parentNode.insertBefore(hd, lis[5]); }
+      var inf = document.createElement('div'); inf.className = 'rs-mnav-info';
+      inf.innerHTML = '<a href="/o-nas/">O nás</a><a href="/hodnoceni-obchodu/">Hodnocení obchodu</a><a href="/doprava/">Doprava a platba</a><a href="/instalace-sekacek/">Instalace a servis</a><a href="/reklamace-a-vraceni-zbozi/">Reklamace</a><a href="/kontakty/">Kontakty</a>';
+      nin.appendChild(inf);
     }
     var h = document.getElementById('header');
     if (h && !h.dataset.rsScroll) { h.dataset.rsScroll = 1; var on = function () { h.classList.toggle('rs-scrolled', window.scrollY > 40); }; window.addEventListener('scroll', on, { passive: true }); on(); }
@@ -1560,8 +1589,13 @@
   }
   /* 31. 10. (checklist Kvasnička HP15/D13): lišta Leadhub „tipy e-mailem“ ne hned na první stránce návštěvy (html.rs-pv1)
      a nikdy v košíku/objednávce; slevový kód v košíku schovaný za odkaz (O2) */
+  /* 31. 10. (Michael): v patičce roky na trhu „© 2023–2026“ místo jen aktuálního roku (checklist Kvasnička F8) */
+  function copyrightYears() {
+    var c = document.querySelector('.footer-bottom .copyright'); if (!c || c.dataset.rsY) return; c.dataset.rsY = 1;
+    var y = new Date().getFullYear(); c.innerHTML = c.innerHTML.replace(/Copyright\s+\d{4}/, '© 2023–' + y);
+  }
   function calmCheckout() {
-    try { var k = 'rs_pv', n = +(sessionStorage.getItem(k) || 0) + 1; sessionStorage.setItem(k, n); if (n < 2) document.documentElement.classList.add('rs-pv1'); } catch (e) {}
+    /* 31. 10. večer Michael: načasování lišty Leadhub vrátit (zobrazuje se zase hned) – zůstává jen skrytí v košíku/objednávce a v otevřeném menu */
     if (!document.body.classList.contains('in-kosik')) return;
     var inp = document.querySelector('input[name=discountCouponCode]'); if (!inp || inp.value) return;
     var f = inp.closest('form'); if (!f || f.dataset.rsCp) return; f.dataset.rsCp = 1;
@@ -1580,7 +1614,7 @@
     s.textContent = n + ' ' + w;
   }
 
-  function run() { css(); try { calmCheckout(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  function run() { css(); try { calmCheckout(); } catch (e) {} try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
