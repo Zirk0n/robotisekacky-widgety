@@ -597,10 +597,10 @@
     '.rs-mtop{display:none}@media(max-width:991px){html body #header .rs-mtop{display:flex;justify-content:space-between;align-items:center;gap:10px;background:' + G + ';padding:6px 14px;font-size:13px;line-height:1.2}' +
     'html body #header .rs-mtop a{display:inline-flex;align-items:center;gap:6px;color:#fff!important;text-decoration:none!important;white-space:nowrap}html body #header .rs-mtop b{font-weight:700}html body #header .rs-mtop a span{opacity:.85;font-weight:600}' +
     'html body #header .rs-mtop svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 14px}' +
-    'html body #header .rs-mtop{flex-wrap:wrap;row-gap:4px;column-gap:12px;justify-content:center}html body #header .rs-mtop .rs-mtop__k{padding:2px 10px;border:1px solid rgba(255,255,255,.55);border-radius:999px;font-weight:700}' +
+    'html body #header .rs-mtop{flex-wrap:wrap;row-gap:4px;column-gap:12px;justify-content:center}html body #header .rs-mtop .rs-mtop__k{padding:2px 10px;border:1px solid rgba(255,255,255,.55);border-radius:999px;font-weight:700}html body #header .rs-mtop__nav{display:flex;flex:0 0 100%;justify-content:center;gap:6px;flex-wrap:wrap}html body #header .rs-mtop__nav a{padding:2px 9px;border-radius:999px;background:rgba(255,255,255,.12);font-weight:600}html body #header .rs-mtop__m{position:relative;z-index:2}' +
     'html body #header.rs-scrolled .rs-mtop{display:none}}@media(max-width:420px){html body #header .rs-mtop{font-size:12.5px;padding:5px 10px}}' +
-    '.rs-mcall{display:none}@media(max-width:991px){html body .rs-topbar{background:transparent!important;border:0!important;padding:0!important;min-height:0!important}html body .rs-topbar .rs-topbar__in{display:none!important}' +
-    '#header .navigation-buttons .rs-mcall{display:inline-flex;position:relative;align-items:center;justify-content:center;width:42px;height:42px;margin:0 2px;flex:0 0 42px}' +
+    '.rs-mcall{display:none!important}@media(min-width:992px){html body #navigation .rs-mnav-info,html body #navigation .rs-mnav-h,html body #navigation .rs-navcontact{display:none!important}}@media(max-width:991px){html body .rs-topbar{background:transparent!important;border:0!important;padding:0!important;min-height:0!important}html body .rs-topbar .rs-topbar__in{display:none!important}' +
+    'html body #header .navigation-buttons .rs-mcall{display:inline-flex!important;position:relative;align-items:center;justify-content:center;width:42px;height:42px;margin:0 2px;flex:0 0 42px}' +
     '.rs-mcall img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #86BB41;display:block}' +
     '.rs-mcall__ic{position:absolute;right:-1px;bottom:-1px;width:18px;height:18px;border-radius:50%;background:' + G + ';display:grid;place-items:center;border:2px solid #fff}' +
     '.rs-mcall__ic svg{width:10px;height:10px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}' +
@@ -1043,7 +1043,7 @@
     var hh = document.getElementById('header');
     if (hh && !hh.querySelector('.rs-mtop')) {
       var mt = document.createElement('div'); mt.className = 'rs-mtop';
-      mt.innerHTML = '<a href="tel:' + TEL + '">' + ICON.tel + '<b>' + TELT + '</b><span>' + HOURS + '</span></a><a href="mailto:' + MAIL + '" class="rs-mtop__m">' + ICON.mail + '<b>' + MAIL + '</b></a><a href="/kontakty/" class="rs-mtop__k">Kontakty</a>';
+      mt.innerHTML = '<a href="tel:' + TEL + '">' + ICON.tel + '<b>' + TELT + '</b><span>' + HOURS + '</span></a><a href="mailto:' + MAIL + '" class="rs-mtop__m">' + ICON.mail + '<b>' + MAIL + '</b></a><nav class="rs-mtop__nav" aria-label="Informace"><a href="/o-nas/">O nás</a><a href="/hodnoceni-obchodu/">Hodnocení</a><a href="/doprava/">Doprava</a><a href="/kontakty/" class="rs-mtop__k">Kontakty</a></nav>';
       hh.insertBefore(mt, hh.firstChild);
     }
     var nin = nav && (nav.querySelector('.navigation-in') || nav);
@@ -1055,6 +1055,8 @@
       var inf = document.createElement('div'); inf.className = 'rs-mnav-info';
       inf.innerHTML = '<a href="/o-nas/">O nás</a><a href="/hodnoceni-obchodu/">Hodnocení obchodu</a><a href="/doprava/">Doprava a platba</a><a href="/instalace-sekacek/">Instalace a servis</a><a href="/reklamace-a-vraceni-zbozi/">Reklamace</a><a href="/kontakty/">Kontakty</a>';
       nin.appendChild(inf);
+      /* na počítači jsou vložené prvky skryté, ale Shoptet už menu rozdělil → přepočítat „Více“ */
+      setTimeout(function () { try { shoptet.menu.splitMenu(); } catch (e) {} }, 50);
     }
     var h = document.getElementById('header');
     if (h && !h.dataset.rsScroll) { h.dataset.rsScroll = 1; var on = function () { h.classList.toggle('rs-scrolled', window.scrollY > 40); }; window.addEventListener('scroll', on, { passive: true }); on(); }
