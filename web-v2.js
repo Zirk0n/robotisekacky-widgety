@@ -588,6 +588,12 @@
     'body.ordering-process:not(.in-kosik) #navigation,body.ordering-process:not(.in-kosik) .rs-topbar,body.ordering-process:not(.in-kosik) .rs-hs,body.ordering-process:not(.in-kosik) #formSearchForm,' +
     'body.ordering-process:not(.in-kosik) .navigation-buttons .toggle-window[data-target=search],body.ordering-process:not(.in-kosik) .rs-hs-lupa,body.ordering-process .rs-lh,.navigation-window-visible .rs-lh{display:none!important}' +
     /* 31. 10. mobilní hlavička = jedna lišta: bílý kontaktní pruh skrytý (zůstává jen jako mezera pod fixní hlavičkou), kontakt = tlačítko s fotkou */
+    /* 31. 10. (Michael: „odskoky pozadí, zelené obdélníky – chceme příjemně prolínající design“): na mobilu
+       .index-content-wrapper ořezával (overflow-x:hidden) stíny karet a celošířkové pozadí → tvrdé hrany 20 px od kraje.
+       Ořez zrušen (celou stránku ořezává #content-wrapper) a vodorovné posuvníky jdou od kraje ke kraji obrazovky. */
+    '@media(max-width:767px){html body .index-content-wrapper{overflow:visible!important}' +
+    'html body .rsr__track,html body .rs-car,html body .rss-g,html body .rsr2-m{margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;padding-left:calc(50vw - 50%)!important;padding-right:calc(50vw - 50%)!important;scroll-padding-left:calc(50vw - 50%);box-sizing:content-box!important;width:auto!important;max-width:none!important}' +
+    'html body .rsr__track,html body .rss-g{padding-bottom:22px!important;margin-bottom:-12px!important}}' +
     '.rs-mtop{display:none}@media(max-width:991px){html body #header .rs-mtop{display:flex;justify-content:space-between;align-items:center;gap:10px;background:' + G + ';padding:6px 14px;font-size:13px;line-height:1.2}' +
     'html body #header .rs-mtop a{display:inline-flex;align-items:center;gap:6px;color:#fff!important;text-decoration:none!important;white-space:nowrap}html body #header .rs-mtop b{font-weight:700}html body #header .rs-mtop a span{opacity:.85;font-weight:600}' +
     'html body #header .rs-mtop svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 14px}' +
