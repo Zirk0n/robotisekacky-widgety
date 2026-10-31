@@ -581,6 +581,8 @@
     'html body .rsr__ver,html body .rs-ver,html body .products-block .flags-extra .flag-discount .price-save,html body .listSorting__control,html body .listSorting__controls button,' +
     'html body .rsr2-f figcaption small,html body .rsw-m figcaption,html body .rs-hc small,html body .rs-topbar__claim,html body .p-code-label,html body .p-code,html body .rsz-tag,html body .type-detail .p-image .flags-default .flag{font-size:13px!important}' +
     'html body .rsr2-f figcaption{font-size:14px!important}' +
+    '@media(max-width:767px){html body .product .image .flags-default{flex-wrap:nowrap!important;gap:3px!important}html body .product .image .flags-default .flag{padding:2px 7px!important;letter-spacing:-.1px}}' +
+    'html body .rs-topbar small,html body .rs-topbar__m small,html body .p-code span{font-size:13px!important}' +
     'html body #listSortingControl-name{display:none!important}' +
     'body.ordering-process:not(.in-kosik) #navigation,body.ordering-process:not(.in-kosik) .rs-topbar,body.ordering-process:not(.in-kosik) .rs-hs,body.ordering-process:not(.in-kosik) #formSearchForm,' +
     'body.ordering-process:not(.in-kosik) .navigation-buttons .toggle-window[data-target=search],body.ordering-process:not(.in-kosik) .rs-hs-lupa,body.ordering-process .rs-lh,html.rs-pv1 .rs-lh{display:none!important}' +
