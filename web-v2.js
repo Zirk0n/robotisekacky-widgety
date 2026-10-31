@@ -644,7 +644,9 @@
     '.category-perex.rs-fold:not(.rs-fold--open){max-height:230px;overflow:hidden;position:relative}.category-perex.rs-fold:not(.rs-fold--open)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(rgba(255,255,255,0),#fff);pointer-events:none}' +
     '.rs-fold__btn{display:flex!important;align-items:center;justify-content:center;width:100%;margin:6px 0 18px;padding:11px 16px;border:1.5px solid #cfdcc4;border-radius:999px;background:#fff;color:#1b3f20;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer}' +
     /* porovnání: stejná šířka tlačítka v obou stavech (neposkakuje) a odstup od spodku dlaždice */
-    '#products .product .p-bottom .rs-cmp-t{margin:10px auto 12px}}' +
+    '#products .product .p-bottom .rs-cmp-t{margin:10px auto 12px}' +
+    /* lišta porovnání nesmí zakrýt bublinu chatu; promo zpráva Shoptetu dole se při porovnávání schová */
+    'html body .rs-cmpbar{right:84px}html.rs-cmp-bar body .site-msg.information{display:none!important}}' +
     '.rsn__more,.rs-fold__btn{display:none}.rsn--all .rsn__more{display:none!important}.rs-cmp-t{min-width:136px;justify-content:center}' +
     '.rsn__sub{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 12px}.rsn__sub span{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#6b7468}.rsn__sub a{padding:7px 14px;border-radius:999px;border:1.5px solid #cfdcc4;background:#fff;color:#1b3f20!important;font-weight:700;font-size:14px;text-decoration:none!important}.rsn__sub a:hover{border-color:#86BB41;background:#f4f9ee}' +
     '.rsn__reset{color:#6b7468!important;font-weight:600;text-decoration:underline!important}.rsn__c--load{opacity:.6;pointer-events:none}.rsn__c--load i{border-color:#86BB41!important}' +
@@ -1004,6 +1006,14 @@
         var w = document.createElement('span'); w.className = 'rs-mega__img';
         if (!src) return; w.innerHTML = '<img src="' + src + '" alt="" loading="lazy">';
         a.insertBefore(w, a.firstChild);
+      });
+      /* 31. 10.: v širší mega nabídce se dlouhé názvy značek lámaly do 4 řádků – „Mammotion bezdrátové robotické sekačky“ → „Mammotion“ (plný název v title) */
+      [].forEach.call(ul.querySelectorAll(':scope>li>a'), function (a) {
+        if (a.dataset.rsShort) return; a.dataset.rsShort = 1;
+        var full = (a.textContent || '').replace(/\s+/g, ' ').trim(), sh = full.replace(/\s+(bezdrátové|robotické)(\s+(robotické|bezdrátové))?(\s+(sekačky|vysavače))?$/i, '');
+        if (!sh || sh === full || sh.length < 3) return;
+        var tw = document.createTreeWalker(a, NodeFilter.SHOW_TEXT), n;
+        while ((n = tw.nextNode())) { if (n.textContent.replace(/\s+/g, ' ').trim() === full) { n.textContent = sh; a.title = full; break; } }
       });
       var top = li.querySelector(':scope>a');
       /* rychlé odkazy „Podle potřeby“ do filtrů (Michael 17. 10. 2026) – ID hodnot viz playbooky/webove-stranky/bannery-a-homepage.md */
@@ -1593,11 +1603,12 @@
   }
   function cmpBar() {
     var l = cmpRead(), bar = document.querySelector('.rs-cmpbar');
+    document.documentElement.classList.toggle('rs-cmp-bar', !!l.length);
     if (!l.length) { if (bar) bar.remove(); return; }
     if (!bar) { bar = document.createElement('div'); bar.className = 'rs-cmpbar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'Porovnání produktů'); document.body.appendChild(bar);
       bar.addEventListener('click', function (e) { var x = e.target.closest('[data-rm]'); if (x) { var ll = cmpRead().filter(function (i) { return i.u !== x.dataset.rm; }); cmpWrite(ll); return; } if (e.target.closest('.rs-cmpbar__go')) cmpOpen(); if (e.target.closest('.rs-cmpbar__clr')) cmpWrite([]); }); }
     var html = '<div class="rs-cmpbar__in"><b>Porovnání</b><div class="rs-cmpbar__l">' + l.map(function (x) { return '<span class="rs-cmpbar__i" title="' + x.n.replace(/"/g, '') + '">' + (x.img ? '<img src="' + x.img + '" alt="">' : '') + '<button type="button" data-rm="' + x.u + '" aria-label="Odebrat z porovnání">×</button></span>'; }).join('') +
-      '</div><span class="rs-cmpbar__msg">Porovnat lze nejvýš ' + CMP_MAX + ' produkty</span><button type="button" class="rs-cmpbar__go rs-btn rs-btn--primary"' + (l.length < 2 ? ' disabled' : '') + '>' + (l.length < 2 ? 'Přidejte ještě 1 produkt' : 'Porovnat (' + l.length + ')') + '</button><button type="button" class="rs-cmpbar__clr">Zrušit</button></div>';
+      '</div><span class="rs-cmpbar__msg">Porovnat lze nejvýš ' + CMP_MAX + ' produkty</span><button type="button" class="rs-cmpbar__go rs-btn rs-btn--primary"' + (l.length < 2 ? ' disabled' : '') + '>' + (l.length < 2 ? 'Přidejte 2. produkt' : 'Porovnat (' + l.length + ')') + '</button><button type="button" class="rs-cmpbar__clr">Zrušit</button></div>';
     /* překreslit jen při změně – opakované innerHTML znovu načítalo obrázky a lišta blikala */
     if (bar.__h !== html) { bar.__h = html; bar.innerHTML = html; }
   }
@@ -1629,7 +1640,7 @@
     });
   }
   function compare() {
-    if (!cmpEligible()) { var ob = document.querySelector('.rs-cmpbar'); if (ob) ob.remove(); return; }
+    if (!cmpEligible()) { var ob = document.querySelector('.rs-cmpbar'); if (ob) ob.remove(); document.documentElement.classList.remove('rs-cmp-bar'); return; }
     CMP_K = cmpKind(); cmpBar();
     var mk = function (it) { var b = document.createElement('button'); b.type = 'button'; b.className = 'rs-cmp-t'; b.dataset.u = it.u; b.innerHTML = '<i aria-hidden="true"></i><span>Porovnat</span>'; b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); cmpToggle(it); }); return b; };
     if (document.body.classList.contains('type-detail')) {
@@ -1643,7 +1654,7 @@
         var ne = c.querySelector('[data-testid="productCardName"], .name'); if (!ne) return; ne = ne.cloneNode(true); [].forEach.call(ne.querySelectorAll('.product-appendix'), function (x) { x.remove(); });
         var nm = (ne.textContent || '').replace(/\s+/g, ' ').trim().split(' + ')[0];
         if (/příslušenství|náhradní|nože|kartáč|filtr|sáček|mopovací|hadřík|podložka|baterie |garáž|domeček|instalace|zprovozn|servis|inhibitor|čisticí/i.test(nm)) return;
-        var im = c.querySelector('img'); var t = c.querySelector('.p-bottom') || c; t.appendChild(mk({ u: a.getAttribute('href'), n: nm, img: im ? (im.getAttribute('data-src') || im.getAttribute('src')) : '' }));
+        var im = c.querySelector('img'); var t = c.querySelector('.p-bottom') || c; t.appendChild(mk({ u: a.getAttribute('href'), n: nm, img: im ? (im.getAttribute('data-src') || im.getAttribute('src') || '').trim() : '' }));
       });
     }
     cmpMarks();
