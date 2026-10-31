@@ -572,6 +572,8 @@
     '#navigation .rs-mega>li.rs-mega__brands{grid-column:1/-1;padding:0!important}' +
     // menu: položky se nezalamují do druhého řádku (Zavlažování „spadlo“ pod menu) – co se nevejde, schová Shoptet do Více
     'html body #navigation .menu-level-1{flex-wrap:nowrap!important;white-space:nowrap}' +
+    /* 31. 10.: Shoptet dává .navigation-in šířku 9999em → stránka byla 160 000 px široká (riziko „obsah mimo layout“ u Google) */
+    'html body #navigation .navigation-in{width:auto!important}html body #header .navigation-wrapper{overflow-x:clip;overflow-y:visible}' +
     // statické stránky s prázdným levým panelem → obsah na celou šířku (O nás, Kontakty…)
     'body.rs-nosb .sidebar-left{display:none!important}body.rs-nosb .content-wrapper-in>#content{width:100%!important;max-width:1180px!important;margin-left:auto!important;margin-right:auto!important;float:none!important;flex:1 1 100%!important}' +
     '#rsn,#products{scroll-margin-top:calc(var(--rs-hb,140px) + 12px)}' +
