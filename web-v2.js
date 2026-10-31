@@ -810,6 +810,8 @@
      něco zaškrtnuté, zobrazí se rovnou všechny. Desktop beze změny. Zápis do DOM jen při chybějícím tlačítku (žádná smyčka observeru). */
   function filtersMobile() {
     var f = document.getElementById('filters'); if (!f) return;
+    /* posuvníky (vč. ceny) na mobilu rovnou rozbalené – sekce jsou jinak sbalené akordeony (třída filter-open) */
+    if (window.matchMedia('(max-width: 767px)').matches) [].forEach.call(f.querySelectorAll('.rs-has-range, .slider-wrapper'), function (s) { if (!s.dataset.rsAutoOpen) { s.dataset.rsAutoOpen = 1; s.classList.add('filter-open'); } });
     var extra = [].filter.call(f.querySelectorAll('.filter-section-parametric, .filter-section-manufacturer'), function (s) { return !s.classList.contains('rs-has-range'); });
     if (extra.length < 2) return;
     extra.forEach(function (s) { s.classList.add('rs-fx'); });
