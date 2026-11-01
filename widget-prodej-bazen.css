@@ -14,9 +14,9 @@
 .rs-advisor .l a{color:#0C4A6E!important;font-weight:700;text-decoration:none!important;border-bottom:1px solid #7DD3FC}
 .rs-advisor .l a:hover{border-bottom-color:#0C4A6E}
 @media(max-width:600px){.rs-advisor{max-width:none}.rs-advisor .ph{width:68px;height:68px}}
-.rs-rating{display:flex;flex-direction:column;gap:6px;margin:6px 0 16px;padding:10px 14px;border:1px solid #BAE6FD;border-radius:14px;background:#F8FCFF;max-width:560px;text-decoration:none!important}
-.rs-rating .top{display:flex;align-items:center;gap:8px;font-size:14px;color:#0C4A6E}
-.rs-rating .top b{font-size:15px}
+.rs-rating{display:grid;grid-template-columns:56px minmax(0,1fr);align-items:center;gap:4px 12px;margin:6px 0 16px;padding:12px 14px;border:1px solid #BAE6FD;border-radius:16px;background:#F3FAFF;box-shadow:0 6px 16px rgba(12,74,110,.08);max-width:560px;text-decoration:none!important}.rs-rating .rs-seal-hk{width:56px;height:56px;display:block;max-width:none}.rs-rating .rs-rb{display:flex;flex-direction:column;gap:4px;min-width:0}.rs-rating .top .rs-stars{font-size:18px;letter-spacing:1px;color:#f5b301}
+.rs-rating .top{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:14.5px;color:#0C4A6E}
+.rs-rating .top b{font-size:18px;line-height:1}
 .rs-stars{color:#f5b301;letter-spacing:1px}
 .rs-rating q{font-style:italic;color:#1E3A4C;font-size:14px;line-height:1.45;quotes:"„" "“"}
 .rs-rating .who{font-weight:700;font-style:normal;color:#0C4A6E;font-size:13px;white-space:nowrap}
