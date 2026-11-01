@@ -663,6 +663,8 @@
     '.rs-usps a.rs-heu-item small{display:block}@media(max-width:480px){.rs-usps a.rs-heu-item small{display:none}}' +
     '.rs-pg-ic.rs-pg-ic--heu{background:#fff!important;border:1px solid #f1e3a8;display:grid;place-items:center}.rs-pg-ic--heu img{width:40px;height:40px;display:block}' +
     '.rs-pg-rating{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;margin:4px 0 8px!important;font-size:15px;color:#3d4a3d}.rs-pg-rating__n{font-size:20px;color:#1b3f20}.rs-pg-rating__s{color:#f5b301;letter-spacing:1px;font-size:16px}.rs-pg-rating b[data-rs-review-count]{color:#1b3f20}' +
+    /* 1. 11.: detail na mobilu – pilulka „5,0 z 424+ hodnocení obchodu“ u recenzí přetékala vpravo (316 px v 300 px) → na úzkém displeji plyne jako text */
+    '@media(max-width:480px){html body .rs-rev-sum{display:block!important;border-radius:16px!important;padding:8px 12px!important;max-width:100%;box-sizing:border-box;line-height:1.7}html body .rs-rev-sum img{display:inline-block!important;vertical-align:middle;margin-right:6px}html body .rs-rev-sum strong{vertical-align:middle}}' +
     /* 31. 10. 22:00 (Michael, iPhone): Robotické sekačky (706) v menu dvakrát → nadřazenou schovat (příslušenství je v mega nabídce bezdrátových) */
     'html body #navigation .menu-level-1>li.menu-item-706,html body #header .menu-helper li.menu-item-706{display:none!important}' +
     /* mobilní menu: šlo posunout do strany (dlouhé texty a dlaždice širší než panel) + dlaždice splývaly s pozadím */
@@ -1804,6 +1806,10 @@
       r.innerHTML = '<b class="rs-pg-rating__n" data-rs-review-avg>5,0</b><span class="rs-pg-rating__s" aria-hidden="true">★★★★★</span><span><b data-rs-review-count>400+</b> ověřených hodnocení na Heurece</span>';
       h.insertAdjacentElement('afterend', r);
     });
+    /* 1. 11.: detail produktu – šablona popisu má napevno „z 250 hodnocení na Heurece“ (#heurekaCount, #heurekaCountModal,
+       <strong>250</strong>), zatímco lišta výhod a recenze ukazují 424+ → stejný živý počet ze stejného zdroje */
+    [].forEach.call(document.querySelectorAll('#heurekaCount, #heurekaCountModal'), function (e) { if (!e.hasAttribute('data-rs-review-count')) e.setAttribute('data-rs-review-count', ''); });
+    [].forEach.call(document.querySelectorAll('p strong'), function (s) { if (!s.hasAttribute('data-rs-review-count') && /^\s*\d{2,4}\s*$/.test(s.textContent) && s.parentElement && /hodnocení na Heurece/.test(s.parentElement.textContent)) s.setAttribute('data-rs-review-count', ''); });
     var cnt = [].filter.call(document.querySelectorAll('[data-rs-review-count]:not([data-rs-done]), [data-rs-review-avg]:not([data-rs-done])'), function () { return true; });
     if (!cnt.length) return; cnt.forEach(function (e) { e.dataset.rsDone = 1; });
     try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (x) { return x.json(); }).then(function (d) {
