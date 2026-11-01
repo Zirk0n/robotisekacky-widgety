@@ -78,3 +78,8 @@ safe(function(){document.querySelectorAll('.rs-rev figcaption').forEach(function
 (function(){function strip(){document.querySelectorAll('[alt*="POPISEK"],[data-alt*="POPISEK"],[title*="POPISEK"],[alt*="(HERO)"],[data-alt*="(HERO)"],[title*="(HERO)"]').forEach(function(e){['alt','data-alt','title'].forEach(function(a){var v=e.getAttribute(a);if(v&&/POPISEK|\(HERO\)/.test(v))e.setAttribute(a,v.replace(/\s*\((POPISEK|HERO)\)/g,'').trim())})})}
 function go(){try{strip()}catch(e){}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();window.addEventListener('load',go);[1500,4000].forEach(function(t){setTimeout(go,t)});
 document.addEventListener('click',go,true);})();
+
+/* 1. 11. 2026: první „otázka“ v rotujícím úvodu FAQ (FAQ_Q1 z automatizace) nemá v seznamu odpověď → úvod začne poslední skutečnou otázkou
+   (rotace pak plynule pokračuje od první), takže se neukazuje otázka bez odpovědi. */
+(function(){function fix(){var el=document.getElementById('faq');if(!el)return;var A=el.querySelector('#rotA');if(!A||A.dataset.rsFix)return;var q=[].map.call(el.querySelectorAll('.faq-question'),function(x){return x.textContent.trim()}).filter(Boolean);if(!q.length)return;A.dataset.rsFix=1;if(q.indexOf(A.textContent.trim())<0)A.textContent=q[q.length-1]}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fix);else fix();})();
