@@ -416,6 +416,16 @@
     '.rs-buy-meta__dl{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:0 5px}.rs-buy-meta .delivery-time-label{font-weight:400!important;margin:0!important}.rs-buy-meta .delivery-time{display:inline!important;font-weight:700!important;margin:0!important}.rs-buy-meta .delivery-time span{font-weight:700}' +
     '.rs-buy-meta .shipping-options{font-size:13px!important;color:#5d6b5d!important;text-decoration:underline!important;margin:0!important}' +
     '.type-detail .p-basic-info-block.rs-basic-low{display:flex!important;flex-wrap:wrap;gap:2px 14px;margin:10px 0 0!important;padding:0!important;border:0!important;background:none!important;font-size:13px!important;color:#6b776b!important}.type-detail .p-basic-info-block.rs-basic-low .block{margin:0!important;padding:0!important;font-size:13px!important;width:auto!important;flex:0 0 auto;float:none!important}' +
+    /* 1. 11. stránky služeb (svcPage, shopRatingTop, cleanVariants, svcHours) */
+    'html.rs-svc .rs-buy-meta .availability-label,html.rs-svc .rs-buy-meta__dl,html.rs-svc .p-basic-info-block.rs-basic-low,html.rs-svc #product-detail-form .add-to-cart .quantity{display:none!important}' +
+    '.rs-svc-term{display:inline-flex;align-items:center;gap:7px;font-weight:700;color:#1d7a22}.rs-svc-term::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;flex:0 0 8px}' +
+    'html.rs-svc .p-variants-block tr.variant-list,html.rs-svc .p-variants-block tr.surcharge-list{display:block!important;margin:0 0 14px!important}html.rs-svc .p-variants-block tr.variant-list>th,html.rs-svc .p-variants-block tr.variant-list>td,html.rs-svc .p-variants-block tr.surcharge-list>th,html.rs-svc .p-variants-block tr.surcharge-list>td{display:block!important;width:100%!important;padding:0!important;text-align:left!important;border:0!important}' +
+    'html.rs-svc .p-variants-block tr>th label{display:block;margin:0 0 8px!important;font-size:15px!important;font-weight:800!important;text-transform:none!important;letter-spacing:0!important;color:#1b3f20!important}' +
+    'html.rs-svc .shkRadioSelectList__item{display:flex!important;align-items:center;justify-content:space-between;gap:12px}.rs-v-n{min-width:0;line-height:1.35}.rs-v-n b{color:#1b3f20;margin-right:4px}.rs-v-p{flex:0 0 auto;font-weight:800;color:#1b3f20;white-space:nowrap}' +
+    '.rs-shoprate{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px 8px;padding:5px 14px 5px 5px;margin:0 0 10px;border:1px solid #e3eed8;border-radius:999px;background:#fff;color:#3d4a3d!important;font-size:14px;text-decoration:none!important;box-shadow:0 4px 12px rgba(27,63,32,.06)}.rs-shoprate img{width:34px;height:34px;display:block}.rs-shoprate .rs-stars{color:#f5b301;letter-spacing:1px;font-size:16px}.rs-shoprate b{color:#1b3f20}.rs-shoprate:hover{border-color:#cfe3bd}' +
+    '.rs-hours{display:inline-block;margin:0 0 0 10px;font-size:13px;font-weight:600;color:#5d6b5d;white-space:nowrap;vertical-align:middle}#description p.rs-hours--row{display:block;margin:8px 0 0!important;font-size:13.5px;text-align:inherit;white-space:normal}' +
+    '#description .rs-svc-real{margin:28px 0;padding:26px 24px}#description .rs-svc-real__h{margin:0 0 4px!important}#description .rs-svc-real__p{margin:0 0 16px!important;font-size:15px;color:#4a5a4a}#description .rs-svc-real .rsr3-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}#description .rs-svc-real figure{margin:0}' +
+    '@media(max-width:900px){#description .rs-svc-real .rsr3-g{grid-template-columns:repeat(3,minmax(0,1fr))}#description .rs-svc-real .rsr3-c:nth-child(n+7){display:none}}@media(max-width:600px){#description .rs-svc-real{padding:20px 14px}#description .rs-svc-real .rsr3-g{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#description .rs-svc-real .rsr3-c:nth-child(n+5){display:none}}' +
     /* vysvětlení „Dvě kalkulačky splátek“ bylo na desktopu dvakrát (v nákupním boxu i pod ním) */
     '.type-detail .p-data-wrapper:has(.p-to-cart-block .rs-spl)>details.rs-spl{display:none!important}' +
     /* 1. 11. odpoledne (Michael): na mobilu hodnocení obchodu a krátký popis zůstávají hned pod galerií (běžné pořadí) –
@@ -1612,6 +1622,8 @@
   function reviewDates() {
     [].forEach.call(document.querySelectorAll('.rs-review-author'), function (e) { var t = e.textContent, n = t.replace(/\s*[·•|-]\s*\d{1,2}\.\s?\d{1,2}\.\s?\d{4}\s*$/, ''); if (n !== t) e.textContent = n;
       if (!e.querySelector('.rs-ver')) { var v = document.createElement('span'); v.className = 'rs-ver'; v.textContent = '✓ Ověřená recenze'; e.appendChild(v); } });
+    /* 1. 11.: reference v popisech služeb (.test-author „Jan Marek · 17. 5. 2026“) – také bez data (pravidlo EB auditu) */
+    [].forEach.call(document.querySelectorAll('#description .test-author'), function (e) { [].forEach.call(e.childNodes, function (n) { if (n.nodeType === 3) { var t = n.nodeValue, x = t.replace(/\s*[·•|–-]\s*\d{1,2}\.\s?\d{1,2}\.\s?\d{4}\s*/, ' '); if (x !== t) n.nodeValue = x.replace(/\s+$/, ''); } }); });
   }
 
   /* Emoji ve vlastních i nativních prvcích → vlastní ikony (Michael 27. 10.: emoji jsou AI stopa, nesedí ke značce).
@@ -1839,7 +1851,11 @@
     var cnt = [].filter.call(document.querySelectorAll('[data-rs-review-count]:not([data-rs-done]), [data-rs-review-avg]:not([data-rs-done])'), function () { return true; });
     if (!cnt.length) return; cnt.forEach(function (e) { e.dataset.rsDone = 1; });
     try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (x) { return x.json(); }).then(function (d) {
-      if (!d || !d.celkem) return; cnt.forEach(function (e) { if (e.hasAttribute('data-rs-review-avg')) e.textContent = String(d.prumer || '5.0').replace('.', ','); else e.textContent = d.celkem; });
+      if (!d || !d.celkem) return;
+      /* 1. 11.: recenze.json se aktualizuje týdně, Shoptet ukazuje v liště výhod živý počet z Heureky → brát vyšší z obou (jinde 424, tady 421) */
+      var live = 0; [].forEach.call(document.querySelectorAll('.benefitBanner__data, .rs-cnt'), function (e) { var m = (e.textContent || '').match(/(\d{3,4})/); if (m && +m[1] > live && +m[1] < 10000) live = +m[1]; });
+      var n = Math.max(+d.celkem || 0, live);
+      cnt.forEach(function (e) { if (e.hasAttribute('data-rs-review-avg')) e.textContent = String(d.prumer || '5.0').replace('.', ','); else e.textContent = n; });
     }).catch(function () {}); } catch (e) {}
   }
   /* 1. 11. (Michael): „Skladem“ zabíral v detailu samostatný blok → dostupnost + „Můžeme doručit do“ v jednom řádku pod cenou,
@@ -1873,21 +1889,106 @@
     /* nedostupné zboží: velké Do košíku v liště by tlačilo k objednávce něčeho, co nemáme (stránka nabízí náhrady) */
     var av0 = f.querySelector('.availability-label'); if (av0 && /nedostup|vyprod|ukonč/i.test(av0.textContent)) return;
     var bar = document.createElement('div'); bar.className = 'rs-sb'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'Rychlý nákup');
-    bar.innerHTML = '<img class="rs-sb__img" alt="" width="44" height="44"><span class="rs-sb__t"><b class="rs-sb__p"></b><span class="rs-sb__a"></span></span><button type="button" class="rs-sb__btn"><svg viewBox="0 0 24 24" aria-hidden="true">' + CART_IC + '</svg>Do košíku</button>';
+    var svc = isSvc();
+    bar.innerHTML = '<img class="rs-sb__img" alt="" width="44" height="44"><span class="rs-sb__t"><b class="rs-sb__p"></b><span class="rs-sb__a"></span></span><button type="button" class="rs-sb__btn"><svg viewBox="0 0 24 24" aria-hidden="true">' + CART_IC + '</svg>Do košíku</button>'; /* stejný popisek jako tlačítko v nákupním boxu (i u služeb) */
     var img = document.querySelector('.p-image-wrapper img'), im = bar.querySelector('.rs-sb__img'); if (img) im.src = img.currentSrc || img.src; else im.remove();
     var fill = function () {
       var p = f.querySelector('.price-final-holder') || f.querySelector('.price-final'), a = f.querySelector('.availability-label'), pe = bar.querySelector('.rs-sb__p'), ae = bar.querySelector('.rs-sb__a');
       var pt = p ? p.textContent.trim().replace(/\s+/g, ' ') : ''; if (pe.textContent !== pt) pe.textContent = pt;
-      var at = a ? a.textContent.trim().replace(/\s+/g, ' ') : ''; if (ae.textContent !== at) { ae.textContent = at; ae.style.color = a ? getComputedStyle(a).color : ''; }
+      var at = svc ? 'Termín po domluvě' : (a ? a.textContent.trim().replace(/\s+/g, ' ') : ''); if (ae.textContent !== at) { ae.textContent = at; ae.style.color = svc ? '#1d7a22' : (a ? getComputedStyle(a).color : ''); }
     };
     bar.querySelector('.rs-sb__btn').addEventListener('click', function () {
-      var need = [].some.call(f.querySelectorAll('select'), function (s) { return s.offsetParent && !s.value; });
+      /* select bývá skrytý doplňkem (shkRadioSelect → karty), proto rozhoduje povinnost, ne viditelnost */
+      var need = [].some.call(f.querySelectorAll('select'), function (s) { return (s.required || s.name === 'priceId' || s.offsetParent) && !s.value; }) || document.body.classList.contains('disabled-add-to-cart');
       var rad = f.querySelectorAll('.p-variants-block input[type=radio]'); if (rad.length && ![].some.call(rad, function (r) { return r.checked; })) need = rad[0];
-      if (need || btn.disabled) { ((need && need.closest && need.closest('.p-variants-block')) || w).scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+      if (need || btn.disabled) { ((need && need.closest && need.closest('.p-variants-block')) || f.querySelector('.p-variants-block') || w).scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
       btn.click();
     });
     document.body.appendChild(bar);
     new IntersectionObserver(function (es) { var show = !es[es.length - 1].isIntersecting; fill(); bar.classList.toggle('on', show); document.documentElement.classList.toggle('rs-sb-on', show); }).observe(w);
+  }
+  /* 1. 11. odpoledne (Michael: „stránky služeb pozvedni na vyšší úroveň podle nových pravidel“) – společná vrstva pro
+     všechny produkty-služby (instalace, zprovoznění, předvedení, servis, obhlídka, oprava):
+     – místo „Skladem · Můžeme doručit do: Zvolte variantu“ (u služby nedává smysl) řádek „Termín domluvíme po objednávce“;
+     – zóny dojezdu jako čitelné karty „Zóna A Praha, … | 7 999 Kč“ (bez „Zóna A - Skladem“), popisek nad nimi;
+     – v plovoucí bublině „Objednat“ a „Termín po domluvě“; nevybraná zóna → posun k výběru. */
+  var SVC_RX = /^(Instalace|Zprovoznění|Předvedení|Zimní servis|Servis|Obhlídka|Oprava|Uskladnění|Pomoc s)/i;
+  function isSvc() {
+    if (!document.body.classList.contains('type-detail')) return false;
+    var h = document.querySelector('.p-detail-inner-header h1'), c = [].map.call(document.querySelectorAll('.breadcrumbs a, [class*="breadcrumb"] a'), function (a) { return a.textContent; }).join(' ');
+    return /Instalace a servis/i.test(c) || !!(h && SVC_RX.test(h.textContent.trim()));
+  }
+  function svcPage() {
+    if (window.__rsSvc || !isSvc()) return; window.__rsSvc = 1;
+    document.documentElement.classList.add('rs-svc');
+    var f = document.getElementById('product-detail-form'); if (!f) return;
+    var m = f.querySelector('.rs-buy-meta');
+    if (m && !m.querySelector('.rs-svc-term')) { var t = document.createElement('span'); t.className = 'rs-svc-term'; t.textContent = 'Termín domluvíme po objednávce telefonicky'; m.insertBefore(t, m.firstChild); }
+    var lab = f.querySelector('tr.variant-list th label'); if (lab && /^\s*Varianta\s*$/i.test(lab.textContent)) lab.textContent = 'Vyberte oblast (podle dojezdu)';
+    cleanVariants();
+  }
+  function cleanVariants() {
+    if (!document.documentElement.classList.contains('rs-svc')) return;
+    var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    [].forEach.call(document.querySelectorAll('.p-variants-block .shkRadioSelectList__item'), function (li) {
+      if (li.dataset.rsV) return; var t = li.textContent.replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
+      if (/Prodej ukončen/i.test(t)) { li.dataset.rsV = 1; li.style.display = 'none'; return; }
+      /* příplatkové parametry (balíček, dojezd): „Praha + Středočeský kraj (bez příplatku) +0 Kč“ → název | „v ceně“ / „+500 Kč“ */
+      var sp = t.match(/^(.*?)\s*\+\s*([\d\s]+)\s*Kč$/);
+      if (sp) { li.dataset.rsV = 1; var amt = sp[2].replace(/\s/g, ''); var pt = +amt ? '+' + sp[2].trim() + ' Kč' : 'v ceně';
+        li.innerHTML = '<span class="rs-v-n">' + esc(sp[1].replace(/\s*\(bez příplatku\)/i, '')) + '</span><span class="rs-v-p">' + esc(pt) + '</span>'; li.setAttribute('aria-label', sp[1] + ', ' + pt); return; }
+      var mm = t.match(/^(.*?)\s*:\s*.*?-\s*[^()]*\(([^)]*Kč)\)\s*$/); if (!mm) return; li.dataset.rsV = 1;
+      var z = mm[1].match(/^(Zóna\s+\S+)\s*\((.*)\)$/);
+      li.innerHTML = '<span class="rs-v-n">' + (z ? '<b>' + esc(z[1]) + '</b> ' + esc(z[2]) : '<b>' + esc(mm[1]) + '</b>') + '</span><span class="rs-v-p">' + esc(mm[2]) + '</span>';
+      li.setAttribute('aria-label', (z ? z[1] + ' ' + z[2] : mm[1]) + ', ' + mm[2]);
+    });
+  }
+  /* „☆☆☆☆☆ Neohodnoceno · Podrobnosti hodnocení“ nahoře (služby, příslušenství bez recenzí) → hodnocení obchodu s pečetí
+     Heureky, hvězdami a živým počtem (pravidlo: kde se mluví o hodnocení, vždy 5 hvězd, počet a certifikát). Robotům
+     s widget-prodej zůstává jejich rámeček u ceny – tam se prázdné hvězdy jen schovají. */
+  function shopRatingTop() {
+    var sw = document.querySelector('.p-detail-inner-header .stars-wrapper'); if (!sw || sw.dataset.rsShop || !/Neohodnoceno/.test(sw.textContent)) return;
+    sw.dataset.rsShop = 1; sw.style.display = 'none'; if (document.querySelector('.rs-rating')) return;
+    var a = document.createElement('a'); a.className = 'rs-shoprate'; a.href = '/hodnoceni-obchodu/';
+    a.innerHTML = '<img src="' + HEU_LOGO + '" alt="Ověřeno zákazníky – Heureka" width="34" height="34"><span class="rs-stars" aria-hidden="true">★★★★★</span><b data-rs-review-avg>5,0</b><span><b data-rs-review-count>400</b>+ hodnocení obchodu</span>';
+    sw.insertAdjacentElement('afterend', a);
+    try { trustTile(); } catch (e) {}
+  }
+  /* „Z našich realizací“ na stránkách služeb – skutečné fotky od zákazníků (EB: fotky z realizací, Kvasnička D8/D9).
+     Data = výběr z R3 v homepage-v2.js (při přidání fotek upravit obojí); styl karet .rsr3-* je ve web-global.css. */
+  var RJ = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/img/realizace/', RH = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/img/hp/';
+  var REAL = {
+    sekacka: [[RJ + 'realizace-2026-10-palisada.webp', 'Mammotion LUBA', 'Středočeský kraj', 'Sečení těsně podél palisády'], [RJ + 'realizace-2026-05-plot.webp', 'Mammotion LUBA', 'Praha', 'Úzký pruh podél plotu a obrubníku'],
+      [RJ + 'realizace-2026-04-sterk.webp', 'Mammotion LUBA', 'okolí Kroměříže', 'Sečení podél štěrkového chodníku'], [RJ + 'realizace-2026-05-pergola.webp', 'Mammotion LUBA', 'Praha', 'Kolem sloupu pergoly a mladých stromků'],
+      [RJ + 'realizace-2026-10-garaz.webp', 'Mammotion LUBA + garáž', 'Středočeský kraj', 'Nabíjecí stanice s garáží u terasy'], [RJ + 'realizace-2026-04-zahony.webp', 'Mammotion LUBA', 'Praha-západ', 'Mezi pěstebními truhlíky'],
+      [RJ + 'realizace-2026-jezirko.webp', 'Mammotion LUBA', 'zahrada s jezírkem', 'Až k okraji jezírka a kolem sauny'], [RJ + 'realizace-2026-04-ker.webp', 'Mammotion LUBA', 'Praha-západ', 'Objíždí keře a záhony']],
+    vysavac: [[RH + 'dreame-roller.webp', 'Robotický vysavač Dreame', 'u zákazníka doma', 'Zprovoznění: Wi-Fi, mapa bytu, plán úklidu'], [RH + 'ecovacs.webp', 'Robotický vysavač Ecovacs', 'u zákazníka doma', 'Zprovoznění a nastavení aplikace']],
+    bazen: [[RH + 'aiper-scuba-s1-teplice.webp', 'Aiper Scuba S1', 'Teplice', 'Bazénový vysavač u zákazníka'], [RH + 'spino-e1-praha.webp', 'Mammotion Spino E1', 'Praha', 'Bazénový vysavač bez kabelu']]
+  };
+  function svcRealizace() {
+    if (!document.documentElement.classList.contains('rs-svc') || document.querySelector('.rs-svc-real')) return;
+    var wrap = document.querySelector('#description .wrap'); if (!wrap) return;
+    var h = ((document.querySelector('.p-detail-inner-header h1') || {}).textContent || '').toLowerCase();
+    var kind = /vysavač|vysavac/.test(h) && !/bazén|scuba|aiper/.test(h) ? 'vysavac' : /bazén|scuba|aiper|spino/.test(h) ? 'bazen' : 'sekacka';
+    var L = REAL[kind]; if (!L || !L.length) return;
+    var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var sec = document.createElement('section'); sec.className = 'rs-svc-real card-glass';
+    sec.innerHTML = '<h2 class="rs-svc-real__h">Z našich realizací</h2><p class="rs-svc-real__p">Skutečné fotky od zákazníků – žádné ilustrační obrázky.</p><div class="rsr3-g">' +
+      L.slice(0, 8).map(function (r) { return '<figure class="rsr3-c"><span class="rsr3-i"><img src="' + r[0] + '" alt="' + esc(r[1] + ' – ' + r[3]) + '" loading="lazy" width="800" height="600"></span><figcaption><b>' + esc(r[1]) + '</b><span class="rsr3-w">' + esc(r[2]) + '</span><span class="rsr3-s">' + esc(r[3]) + '</span></figcaption></figure>'; }).join('') + '</div>';
+    var faq = wrap.querySelector('.faq'); var anchor = faq ? (faq.closest('section, .card-glass') || faq) : null; while (anchor && anchor.parentElement !== wrap) anchor = anchor.parentElement;
+    if (anchor) wrap.insertBefore(sec, anchor); else wrap.appendChild(sec);
+  }
+  /* telefon v popisu služeb bez pracovní doby → „volejte 10–20 h“ (EB audit: kontaktní doba u telefonu);
+     odkaz „Poradit se s výběrem“ (pro roboty) u služby → „Zeptat se na termín nebo cenu“ */
+  function svcHours() {
+    if (!document.documentElement.classList.contains('rs-svc')) return;
+    var ask = document.querySelector('.type-detail .link-icon.chat.rs-ask'); if (ask && !ask.dataset.rsSvcAsk) { ask.dataset.rsSvcAsk = 1; var sp = ask.querySelector('span'); if (sp) { var ic = sp.querySelector('.rs-ei'); sp.textContent = 'Zeptat se na termín nebo cenu'; if (ic) sp.insertBefore(ic, sp.firstChild); } ask.title = 'Napište dotaz k termínu nebo ceně – odpoví vám Michael'; }
+    [].forEach.call(document.querySelectorAll('#description a[href^="tel:"]'), function (a) {
+      if (a.dataset.rsH) return; a.dataset.rsH = 1; var box = a.parentElement; if (!box || /10\s*[–-]\s*20/.test(box.textContent) || (box.nextElementSibling && box.nextElementSibling.classList.contains('rs-hours'))) return;
+      /* řada tlačítek (Zavolat + Napsat e-mail) → hodiny jako řádek pod ní; samostatný odkaz → hned za něj */
+      if (box.querySelectorAll('a').length >= 2) { var p = document.createElement('p'); p.className = 'rs-hours rs-hours--row'; p.textContent = 'Telefon beru 10–20 h'; box.insertAdjacentElement('afterend', p); }
+      else { var s = document.createElement('span'); s.className = 'rs-hours'; s.textContent = 'volejte 10–20 h'; a.insertAdjacentElement('afterend', s); }
+    });
   }
   /* 1. 11. (Michael): záložky bez ☰ – Shoptet (responsive-nav) přesouvá záložky, které se nevejdou, do skrytého seznamu
      pod hamburger → vrátit je do řádku, který se posouvá do strany. Observer zapisuje, jen když ve skrytém seznamu něco je. */
@@ -1924,11 +2025,11 @@
     b.addEventListener('click', function () { var o = p.classList.toggle('rs-fold--open'); b.setAttribute('aria-expanded', o); b.textContent = o ? 'Sbalit popis ↑' : 'Číst celý popis ↓'; if (!o) window.scrollTo({ top: Math.max(0, p.getBoundingClientRect().top + window.pageYOffset - 140), behavior: 'instant' }); });
   }
 
-  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { buyBox(); } catch (e) {} try { tabsScroll(); } catch (e) {} try { stickyBuy(); } catch (e) {} try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { buyBox(); } catch (e) {} try { svcPage(); } catch (e) {} try { tabsScroll(); } catch (e) {} try { stickyBuy(); } catch (e) {} [700, 2000, 4500].forEach(function (t) { setTimeout(function () { try { shopRatingTop(); } catch (e) {} try { cleanVariants(); } catch (e) {} try { svcHours(); } catch (e) {} try { svcRealizace(); } catch (e) {} try { reviewDates(); } catch (e) {} }, t); }); try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
-  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { cardPrices(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { compare(); } catch (e) {} soldOutLast(); try { cartRelated(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { availColors(); } catch (e) {} }, 120); });
+  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { cardPrices(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { compare(); } catch (e) {} soldOutLast(); try { cartRelated(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { availColors(); } catch (e) {} try { cleanVariants(); } catch (e) {} }, 120); });
   function watch() { var c = document.getElementById('content') || document.body; mo.observe(c, { childList: true, subtree: true }); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch); else watch();
 })();
