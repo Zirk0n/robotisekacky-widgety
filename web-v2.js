@@ -246,6 +246,8 @@
     '.rs-akce-odpocet b{display:inline-flex;flex-direction:column;align-items:center;min-width:58px;padding:7px 10px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);font-size:22px;line-height:1.05;font-variant-numeric:tabular-nums}' +
     '.rs-akce-odpocet b small{font-size:11px;font-weight:600;opacity:.8;margin-top:2px}' +
     '.rs-akce-intro{color:#3d4a3d;font-size:15.5px;line-height:1.55;margin:0;max-width:900px}' +
+    /* položka „Akce“ v hlavním menu červeně (jako u EB e-shopů – akce má být vidět) */
+    '.menu-level-1>li>a[href$="/akce/"],.menu-level-1>li>a[href$="/akce/"] b{color:#c4170f!important}' +
     '@media(max-width:767px){.rs-akce-kampan{padding:20px 18px;border-radius:18px}html body .rs-akce .rs-akce-kampan h2{font-size:23px}html body .rs-akce .rs-akce-kampan p{font-size:15.5px}.rs-akce-odpocet{gap:6px}.rs-akce-odpocet__t{flex-basis:100%;margin:0 0 2px}.rs-akce-odpocet b{flex:1 1 0;min-width:0;font-size:19px;padding:6px 4px}}' +
     /* --- statické stránky rs-pg-* (O nás, Kontakty; 18. 10.) – obsah v Shoptetu bez inline stylů, vzhled odsud --- */
     '.rs-pg{color:#2b3328;line-height:1.62;font-size:16.5px}.rs-pg h2{color:' + G + ';font-weight:800;line-height:1.2;margin:0 0 14px}.rs-pg h3{color:' + G + ';font-weight:800;font-size:18px;margin:0 0 6px}' +
@@ -1575,6 +1577,7 @@
     var path = location.pathname, type = null, brand = ''; Object.keys(NEEDS).forEach(function (k) { if (path === NEEDS[k].base) type = k; });
     /* podkategorie značek – filtry v nich zapnuty 27. 10. 2026 (nastroje/web/filtr-kategorie.mjs); bazénové značky filtry nemají */
     if (!type && NEEDS_BRANDS[path]) { type = NEEDS_BRANDS[path]; var h1 = document.querySelector('h1'); brand = h1 ? h1.textContent.replace(/\s+/g, ' ').trim() : ''; }
+    if (!type && path === '/akce/') return akceNeeds();
     if (!type) return;
     var top = document.querySelector('.category-top'); if (!top) return;
     var after = top.querySelector('.rs-usps') || top.querySelector('h1'); var b = needsBlock(type, { live: true, compact: true, base: brand ? path : '', title: brand ? brand + ': vyberte podle toho, co potřebujete' :'Vyberte podle toho, co potřebujete' });
@@ -1582,6 +1585,20 @@
     /* blok vzniká až skriptem → prohlížeč na #rsn sám nesjede; po prokliku z titulky/menu ho dorolovat */
     if (location.hash === '#rsn') { var go = function () { var hd = document.getElementById('header'), off = hd && getComputedStyle(hd).position === 'fixed' ? hd.getBoundingClientRect().bottom : 0; window.scrollTo({ top: Math.max(0, b.getBoundingClientRect().top + window.pageYOffset - off - 12), behavior: 'instant' }); }; setTimeout(go, 300); setTimeout(go, 1500); }
     var sub = top.querySelector('ul.subcategories'); if (sub) { sub.classList.add('rs-sub-compact'); var lab = document.createElement('p'); lab.className = 'rs-sub-label'; lab.textContent = brand ? 'Další v této kategorii:' : 'Nebo podle značky:'; sub.parentNode.insertBefore(lab, sub); b.parentNode.insertBefore(lab, b.nextSibling); b.parentNode.insertBefore(sub, lab.nextSibling); }
+  }
+
+  /* 1. 11. (Michael): rozcestník potřeb i na akční stránce /akce/ – záložky typů (vysavač / sekačka / bazénový) a stejné
+     potřeby jako v kategoriích („Chci, aby i vytíral“ → /akce/?pv201=516…). Kategorie 1102 má zapnuté parametrické filtry
+     186, 201, 228, 180, 195, 183, 40, 28, 913, 346, 907, 64 (nastroje/web/filtr-kategorie.mjs). Blok stojí pod kampaní. */
+  function akceNeeds() {
+    var top = document.querySelector('.category-top'); if (!top) return;
+    var q = location.search, best = 'vysavac', bs = 0;
+    Object.keys(NEEDS).forEach(function (k) { var s = 0; NEEDS[k].items.forEach(function (n) { var ks = Object.keys(n.p); if (ks.length && ks.every(function (pk) { return q.indexOf('pv' + pk + '=') >= 0; })) s++; }); if (s > bs) { bs = s; best = k; } });
+    var b = needsBlock(best, { live: true, compact: true, tabs: true, base: '/akce/', title: 'Vyberte z akce podle toho, co potřebujete' });
+    b.id = 'rsn';
+    var anchor = top.querySelector('.rs-akce') || document.querySelector('.rs-akce') || top.querySelector('.rs-usps') || top.querySelector('h1');
+    anchor.parentNode.insertBefore(b, anchor.nextSibling);
+    if (location.hash === '#rsn') { var go = function () { var hd = document.getElementById('header'), off = hd && getComputedStyle(hd).position === 'fixed' ? hd.getBoundingClientRect().bottom : 0; window.scrollTo({ top: Math.max(0, b.getBoundingClientRect().top + window.pageYOffset - off - 12), behavior: 'instant' }); }; setTimeout(go, 300); setTimeout(go, 1500); }
   }
 
   /* Hledání trvale v hlavičce (EB audit 27. 10., Michael: vždy viditelné, při scrollu dolů se schová do lupy, běžící nápověda).
