@@ -42,15 +42,11 @@
     document.addEventListener('visibilitychange',function(){if(document.hidden)pause();else play();});
     window.addEventListener('resize',function(){pause();renderDots();updateDots();play();});
     renderDots();updateDots();play();
-    function setText(sel,val){var el=box.querySelector(sel);if(el&&val)el.textContent=val;}
-    fetch('/hodnoceni-obchodu/',{credentials:'same-origin'}).then(function(r){return r.text();}).then(function(html){
-      var doc=new DOMParser().parseFromString(html,'text/html');
-      var countText=(doc.querySelector('.stars-label')||{}).textContent||'';
-      var avgText=(doc.querySelector('.rate-average')||{}).textContent||'';
-      var cm=countText.match(/(\d+)/); var am=avgText.match(/(\d+[,.]?\d*)/);
-      if(cm)setText('.rs-cat-review-count',cm[1]+'+');
-      if(am)setText('.rs-cat-rating-val',am[1].replace('.',','));
-    }).catch(function(){});
+    /* 1. 11.: počet a průměr hodnocení už nestahujeme zvlášť z /hodnoceni-obchodu/ – jediný zdroj je recenze.json
+       přes rsReviewCount() ve web-v2.js; prvky jen označíme */
+    var rc=box.querySelector('.rs-cat-review-count');if(rc)rc.setAttribute('data-rs-review-count','');
+    var ra=box.querySelector('.rs-cat-rating-val');if(ra)ra.setAttribute('data-rs-review-avg','');
+    if(window.rsReviewCount)try{window.rsReviewCount();}catch(e){}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initCategoryEnhancements);else initCategoryEnhancements();
 })();
