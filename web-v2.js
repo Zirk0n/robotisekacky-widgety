@@ -367,7 +367,13 @@
     '.menu-helper .menu-level-1>li>a{border-radius:10px;padding:9px 12px!important;color:' + G + '!important;font-weight:700}' +
     '.menu-helper .menu-level-1>li>a:hover{background:#f2f7ec}}' +
     /* drobečková navigace – světlý pruh místo tmavého */
-    '.breadcrumbs{background:#f2f7ec!important;box-shadow:none!important;clip-path:none!important;border-radius:999px;margin:12px 0 4px!important;padding-left:18px!important;padding-right:18px!important;width:auto!important}.breadcrumbs::before,.breadcrumbs::after{display:none!important}' +
+    /* 1. 11.: pilulka odsazená od okrajů a zarovnaná s obsahem (dřív šla od kraje okna a zaoblený roh odhaloval bílý „čtvereček“);
+       mezera nad ní je padding bílého obalu, ne margin (ten propadl ven a ukazoval jiný odstín pozadí body) */
+    '@media(min-width:992px){#content-wrapper:has(>.breadcrumbs){padding-top:12px}}' +
+    '.breadcrumbs{background:#f2f7ec!important;box-shadow:none!important;clip-path:none!important;border-radius:999px;margin:0 auto 4px!important;padding-left:18px!important;padding-right:18px!important;width:auto!important;box-sizing:border-box}.breadcrumbs::before,.breadcrumbs::after{display:none!important}' +
+    /* detail produktu má obal na celou šířku okna (container_resetted) → pilulku zúžit na šířku obsahu (padding 20 px, max 1418 px) */
+    '.container_resetted>.breadcrumbs{width:calc(100% - 40px)!important;max-width:1418px}' +
+    '@media(max-width:767px){.container_resetted>.breadcrumbs{width:calc(100% - 24px)!important}}' +
     '.breadcrumbs,.breadcrumbs a,.breadcrumbs span{color:' + G + '!important}.breadcrumbs a{font-weight:600}' +
     /* mobilní menu */
     '@media(max-width:991px){.navigation-window-visible #navigation{background:#fff}' +
@@ -944,7 +950,7 @@
       '<div class="rs-foot__cols">' +
       '<div><a class="rs-foot__logo" href="/">' + (logo ? '<img src="' + esc(logo) + '" alt="Robotí Sekačky" loading="lazy">' : '') + '</a>' +
       '<p class="rs-foot__about">Robotické sekačky, robotické vysavače a bazénové vysavače s instalací, zprovozněním a servisem. Roboty známe, sami je instalujeme a poradíme.</p>' +
-      '<a class="rs-foot__heu" href="/hodnoceni-obchodu/"><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/banners/logo-overeno--gold.svg?69c559fe" alt="Ověřeno zákazníky – Heureka" width="58" height="58" loading="lazy"><span><b class="rs-foot__stars">★★★★★ <i>5,0 z 5</i></b><span class="rs-foot__cnt">400+ ověřených hodnocení</span></span></a>' +
+      '<a class="rs-foot__heu" href="/hodnoceni-obchodu/"><img src="https://cdn.myshoptet.com/usr/www.robotisekacky.cz/user/banners/logo-overeno--gold.svg?69c559fe" alt="Ověřeno zákazníky – Heureka" width="58" height="58" loading="lazy"><span><b class="rs-foot__stars">★★★★★ <i>5,0 z 5</i></b><span class="rs-foot__cnt">400 ověřených hodnocení</span></span></a>' +
       '<div class="rs-foot__socs">' + socs + '</div></div>' +
       '<div><p class="rs-foot__h">Naše služby</p><ul>' +
       '<li><a href="/instalace-sekacek/">Instalace robotických sekaček</a></li>' +
@@ -1022,7 +1028,7 @@
       buildDots(); render(); restart();
     });
     var cnt = [].filter.call(document.querySelectorAll('[data-rs-review-count]'), function (e) { return !e.dataset.rsDone; });
-    if (cnt.length) { cnt.forEach(function (e) { e.dataset.rsDone = 1; }); try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).then(function (d) { if (d && d.celkem) cnt.forEach(function (e) { e.textContent = d.celkem + '+'; }); }).catch(function () {}); } catch (e) {} }
+    if (cnt.length) { cnt.forEach(function (e) { e.dataset.rsDone = 1; }); try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).then(function (d) { if (d && d.celkem) cnt.forEach(function (e) { e.textContent = String(d.celkem); }); }).catch(function () {}); } catch (e) {} }
   }
   // košík (18. 10., Michael: zvýšit upsell, ale nezabrat celou obrazovku): související produkty se rozbalí samy
   // jako jeden vodorovný pás karet; nedostupné na konec. Jen při max. 3 položkách v košíku.
@@ -1073,7 +1079,7 @@
   }
   function sealRating() {
     var a = document.querySelector('#header .heureka-header-seal'); if (!a || a.querySelector('.rs-seal')) return;
-    var t = document.createElement('span'); t.className = 'rs-seal'; t.innerHTML = '<b>5,0 <i>★★★★★</i></b><span>400+ hodnocení</span>'; a.appendChild(t); try { window.dispatchEvent(new Event('resize')); } catch (e) {}
+    var t = document.createElement('span'); t.className = 'rs-seal'; t.innerHTML = '<b>5,0 <i>★★★★★</i></b><span>400 hodnocení</span>'; a.appendChild(t); try { window.dispatchEvent(new Event('resize')); } catch (e) {}
     try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).then(function (d) {
       if (d && d.celkem) { t.querySelector('span').textContent = d.celkem + ' hodnocení'; if (d.prumer) t.querySelector('b').firstChild.nodeValue = String(d.prumer).replace('.', ',') + ' '; }
     }).catch(function () {}); } catch (e) {}
@@ -1293,7 +1299,7 @@
       }, 1500);
       return; }
     if (ok) fill();
-    function fill() { try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).then(function (j) { if (j && j.celkem) [].forEach.call(document.querySelectorAll('[data-rs-usp-cnt]'), function (e) { e.textContent = j.celkem + '+'; }); }).catch(function () {}); } catch (e) {} }
+    function fill() { try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).then(function (j) { if (j && j.celkem) [].forEach.call(document.querySelectorAll('[data-rs-usp-cnt]'), function (e) { e.textContent = String(j.celkem); }); }).catch(function () {}); } catch (e) {} }
   }
 
   /* Leadhub vkládá upoutávku pop-upu dynamicky (třídy s hashem, inline styly) → označit ji třídou rs-lh a držet pod hlavičkou */
@@ -1808,7 +1814,7 @@
     hits.forEach(function (t) {
       var el = t.parentElement, item = el.closest('a, li') || el.parentElement; if (!item || item.dataset.rsHeu) return; item.dataset.rsHeu = 1; item.classList.add('rs-heu-item');
       var ic = item.querySelector('i, .rs-ico, .rs-ei, [class*="__ic"], [class*="-ic"]'); if (ic && !ic.contains(t)) { ic.classList.add('rs-heu-ic'); ic.innerHTML = '<img class="rs-heu-seal" src="' + HEU_LOGO + '" alt="Ověřeno zákazníky – Heureka">'; }
-      var m = document.createElement('span'); m.className = 'rs-heu-meta'; m.innerHTML = '<span class="rs-stars" aria-label="5 z 5 hvězdiček">★★★★★</span><span><b data-rs-review-count>400+</b> hodnocení</span>';
+      var m = document.createElement('span'); m.className = 'rs-heu-meta'; m.innerHTML = '<span class="rs-stars" aria-label="5 z 5 hvězdiček">★★★★★</span><span><b data-rs-review-count>400</b> hodnocení</span>';
       if (el === item) item.appendChild(m); else el.insertAdjacentElement('afterend', m);
     });
     [].forEach.call(document.querySelectorAll('.benefitBanner__item'), function (it) {
@@ -1841,23 +1847,42 @@
       if (c.dataset.rsTrust) return; var h = c.querySelector('h3, h2'); if (!h || !/Ověřeno zákazníky/i.test(h.textContent)) return; c.dataset.rsTrust = 1;
       var ic = c.querySelector('.rs-pg-ic'); if (ic) { ic.classList.add('rs-pg-ic--heu'); ic.innerHTML = '<img src="' + HEU_LOGO + '" alt="" width="40" height="40">'; }
       var r = document.createElement('p'); r.className = 'rs-pg-rating';
-      r.innerHTML = '<b class="rs-pg-rating__n" data-rs-review-avg>5,0</b><span class="rs-pg-rating__s" aria-hidden="true">★★★★★</span><span><b data-rs-review-count>400+</b> ověřených hodnocení na Heurece</span>';
+      r.innerHTML = '<b class="rs-pg-rating__n" data-rs-review-avg>5,0</b><span class="rs-pg-rating__s" aria-hidden="true">★★★★★</span><span><b data-rs-review-count>400</b> ověřených hodnocení na Heurece</span>';
       h.insertAdjacentElement('afterend', r);
     });
-    /* 1. 11.: detail produktu – šablona popisu má napevno „z 250 hodnocení na Heurece“ (#heurekaCount, #heurekaCountModal,
-       <strong>250</strong>), zatímco lišta výhod a recenze ukazují 424+ → stejný živý počet ze stejného zdroje */
-    [].forEach.call(document.querySelectorAll('#heurekaCount, #heurekaCountModal'), function (e) { if (!e.hasAttribute('data-rs-review-count')) e.setAttribute('data-rs-review-count', ''); });
-    [].forEach.call(document.querySelectorAll('p strong'), function (s) { if (!s.hasAttribute('data-rs-review-count') && /^\s*\d{2,4}\s*$/.test(s.textContent) && s.parentElement && /hodnocení na Heurece/.test(s.parentElement.textContent)) s.setAttribute('data-rs-review-count', ''); });
-    var cnt = [].filter.call(document.querySelectorAll('[data-rs-review-count]:not([data-rs-done]), [data-rs-review-avg]:not([data-rs-done])'), function () { return true; });
-    if (!cnt.length) return; cnt.forEach(function (e) { e.dataset.rsDone = 1; });
-    try { fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (x) { return x.json(); }).then(function (d) {
-      if (!d || !d.celkem) return;
-      /* 1. 11.: recenze.json se aktualizuje týdně, Shoptet ukazuje v liště výhod živý počet z Heureky → brát vyšší z obou (jinde 424, tady 421) */
-      var live = 0; [].forEach.call(document.querySelectorAll('.benefitBanner__data, .rs-cnt'), function (e) { var m = (e.textContent || '').match(/(\d{3,4})/); if (m && +m[1] > live && +m[1] < 10000) live = +m[1]; });
-      var n = Math.max(+d.celkem || 0, live);
-      cnt.forEach(function (e) { if (e.hasAttribute('data-rs-review-avg')) e.textContent = String(d.prumer || '5.0').replace('.', ','); else e.textContent = n; });
-    }).catch(function () {}); } catch (e) {}
+    rsReviewCount();
   }
+  /* 1. 11. (Michael: „hodnocení se má opisovat z jednoho místa“) – JEDINÝ zdroj počtu a průměru hodnocení obchodu na
+     celém webu = recenze.json (GitHub Action ho týdně stahuje ze stránky Hodnocení obchodu). Načte se jednou za stránku
+     (rcData) a rsReviewCount() ho propíše do VŠECH míst: [data-rs-review-count], .rs-cnt (widget-prodej), #heurekaCount*
+     (šablony popisů – služby měly napevno 421, roboti 250), patička, hlavička, lišta výhod Shoptetu (pevný text v adminu),
+     tlačítko „Přečíst všechna hodnocení (N)“, statistiky widgetu recenzí. Zapisuje jen při změně (bez smyček observerů);
+     Od 1. 11. večer všude přesné číslo bez „+“. Když recenze.json nejde načíst, nic se nemění (zůstane text ze šablony).
+     Pravidlo: nikde jinde počet hodnocení nestahovat ani nepočítat (cat-modre-v1.js dřív parsoval /hodnoceni-obchodu/). */
+  var RC_URL = 'https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json', RC_PROM = null;
+  function rcData() { if (!RC_PROM) { try { RC_PROM = fetch(RC_URL).then(function (r) { return r.json(); }).catch(function () { return null; }); } catch (e) { RC_PROM = Promise.resolve(null); } } return RC_PROM; }
+  function rsReviewCount() {
+    [].forEach.call(document.querySelectorAll('[id^="heurekaCount"]'), function (e) { if (!e.hasAttribute('data-rs-review-count')) e.setAttribute('data-rs-review-count', ''); });
+    [].forEach.call(document.querySelectorAll('p strong'), function (s) { if (!s.hasAttribute('data-rs-review-count') && /^\s*\d{2,4}\s*$/.test(s.textContent) && s.parentElement && /hodnocení na Heurece/.test(s.parentElement.textContent)) s.setAttribute('data-rs-review-count', ''); });
+    rcData().then(function (d) {
+      var n = d && +d.celkem; if (!n) return; var avg = d.prumer ? String(d.prumer).replace('.', ',') : '5,0';
+      /* přesné číslo bez „+“ (jinde bylo „424+“, jinde „424“ – na jedné stránce to působilo nejednotně) */
+      var setNum = function (e) { var t = String(n); if (e.textContent !== t) e.textContent = t; var s = e.nextSibling; if (s && s.nodeType === 3 && /^\+/.test(s.nodeValue)) s.nodeValue = s.nodeValue.replace(/^\+/, ''); };
+      [].forEach.call(document.querySelectorAll('[data-rs-review-count], .rs-cnt, [data-rs-usp-cnt], .rs-cat-review-count'), setNum);
+      [].forEach.call(document.querySelectorAll('[data-rs-review-avg], .rs-cat-rating-val'), function (e) { if (e.textContent !== avg) e.textContent = avg; });
+      /* číslo uvnitř textu: „424 ověřených hodnocení“, „(424)“, „z 424 hodnocení na Heurece“, „424 hodnocení“ */
+      var RX = /\b\d{3,4}\+?(?=\s*(?:ověřen|hodnocen|recenz|\)))/g;
+      var fixTxt = function (box) { var tw = document.createTreeWalker(box, NodeFilter.SHOW_TEXT), t; while ((t = tw.nextNode())) { var v = t.nodeValue, x = v.replace(RX, String(n)); if (x !== v) t.nodeValue = x; } };
+      [].forEach.call(document.querySelectorAll('.rs-foot__cnt, .rsr__btn, .benefitBanner__data, #header .rs-seal, .rs-heu-meta, .rs-usps a'), fixTxt);
+      /* tučné „424+ ověřených hodnocení …“ v textech stránek (Kontakty) – jen krátké prvky začínající číslem */
+      [].forEach.call(document.querySelectorAll('#content strong, #content b'), function (s) { if (s.textContent.length < 90 && /^\s*\d{3,4}\+?\s*(?:ověřen|hodnocen|recenz)/.test(s.textContent)) fixTxt(s); });
+      /* statistiky widgetu recenzí: <b>424+</b><span>Hodnocení</span> – jen tam, kde popisek říká hodnocení/recenze (ne „300+ realizací“) */
+      [].forEach.call(document.querySelectorAll('.rsr__st b, .rsr__ostats b'), function (b) { var l = b.nextElementSibling || b.parentElement; if (/^\s*\d{3,4}\+?\s*$/.test(b.textContent) && l && /hodnocen|recenz/i.test(l.textContent.replace(b.textContent, ''))) setNum(b); });
+      /* widget-prodej si sám každých 500 ms (12 s) dopisuje „N+“ do .rs-cnt – po jeho doběhnutí srovnat ještě jednou */
+      if (!window.__rsRcLate) { window.__rsRcLate = 1; setTimeout(function () { [].forEach.call(document.querySelectorAll('.rs-cnt'), setNum); }, 13000); }
+    });
+  }
+  window.rsReviewCount = rsReviewCount; /* pro samostatné skripty (cat-modre-v1.js) – ať nepočítají vlastní číslo */
   /* 1. 11. (Michael): „Skladem“ zabíral v detailu samostatný blok → dostupnost + „Můžeme doručit do“ v jednom řádku pod cenou,
      kód a značka drobně pod nákupní box. Uzly Shoptetu se jen přesouvají uvnitř formuláře (varianty je dál aktualizují). */
   function buyBox() {
@@ -1950,7 +1975,7 @@
     var sw = document.querySelector('.p-detail-inner-header .stars-wrapper'); if (!sw || sw.dataset.rsShop || !/Neohodnoceno/.test(sw.textContent)) return;
     sw.dataset.rsShop = 1; sw.style.display = 'none'; if (document.querySelector('.rs-rating')) return;
     var a = document.createElement('a'); a.className = 'rs-shoprate'; a.href = '/hodnoceni-obchodu/';
-    a.innerHTML = '<img src="' + HEU_LOGO + '" alt="Ověřeno zákazníky – Heureka" width="34" height="34"><span class="rs-stars" aria-hidden="true">★★★★★</span><b data-rs-review-avg>5,0</b><span><b data-rs-review-count>400</b>+ hodnocení obchodu</span>';
+    a.innerHTML = '<img src="' + HEU_LOGO + '" alt="Ověřeno zákazníky – Heureka" width="34" height="34"><span class="rs-stars" aria-hidden="true">★★★★★</span><b data-rs-review-avg>5,0</b><span><b data-rs-review-count>400</b> hodnocení obchodu</span>';
     sw.insertAdjacentElement('afterend', a);
     try { trustTile(); } catch (e) {}
   }
@@ -2025,7 +2050,7 @@
     b.addEventListener('click', function () { var o = p.classList.toggle('rs-fold--open'); b.setAttribute('aria-expanded', o); b.textContent = o ? 'Sbalit popis ↑' : 'Číst celý popis ↓'; if (!o) window.scrollTo({ top: Math.max(0, p.getBoundingClientRect().top + window.pageYOffset - 140), behavior: 'instant' }); });
   }
 
-  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { buyBox(); } catch (e) {} try { svcPage(); } catch (e) {} try { tabsScroll(); } catch (e) {} try { stickyBuy(); } catch (e) {} [700, 2000, 4500].forEach(function (t) { setTimeout(function () { try { shopRatingTop(); } catch (e) {} try { cleanVariants(); } catch (e) {} try { svcHours(); } catch (e) {} try { svcRealizace(); } catch (e) {} try { reviewDates(); } catch (e) {} }, t); }); try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { buyBox(); } catch (e) {} try { svcPage(); } catch (e) {} try { tabsScroll(); } catch (e) {} try { stickyBuy(); } catch (e) {} try { rsReviewCount(); } catch (e) {} [700, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { rsReviewCount(); } catch (e) {} try { shopRatingTop(); } catch (e) {} try { cleanVariants(); } catch (e) {} try { svcHours(); } catch (e) {} try { svcRealizace(); } catch (e) {} try { reviewDates(); } catch (e) {} }, t); }); try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
