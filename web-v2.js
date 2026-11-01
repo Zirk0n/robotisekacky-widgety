@@ -397,12 +397,36 @@
     '@media(max-width:560px){.benefitBanner{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;overflow:visible!important;padding:0!important}.benefitBanner__item{display:flex!important;align-items:center;gap:12px;padding:12px 14px!important;border-radius:14px!important}.benefitBanner__item:hover{transform:none}.benefitBanner__link{display:flex!important;align-items:center!important;gap:14px!important;width:100%}.benefitBanner__picture,.benefitBanner__item img{flex:0 0 42px!important;width:42px!important;max-width:42px!important;height:auto!important;margin:0!important}.benefitBanner__content{padding:0!important;margin:0!important;text-align:left!important}.benefitBanner__title{font-size:15px!important;line-height:1.25!important;margin:0 0 2px!important}.benefitBanner__data,.benefitBanner__data p{font-size:13.5px!important;line-height:1.4!important;margin:0!important}}' +
     '.benefitBanner__item{background:#fff;border:1px solid #e6f0db;border-radius:18px;box-shadow:0 8px 20px rgba(27,63,32,.06);padding:16px!important;transition:transform .2s,box-shadow .2s}' +
     '.benefitBanner__title{color:#1b3f20!important}' +
-    '.p-detail-tabs{border:0!important;display:flex!important;flex-wrap:wrap;gap:8px;margin-bottom:18px!important}' +
-    '.p-detail-tabs .shp-tab{border:0!important;margin:0!important;background:none!important}' +
-    '.p-detail-tabs .shp-tab-link{display:inline-block;border:1px solid ' + LINE + '!important;border-radius:999px!important;background:#fff!important;color:' + G + '!important;font-weight:700!important;padding:10px 18px!important;text-transform:none!important}' +
-    '.p-detail-tabs .shp-tab-link:hover{background:#f2f7ec!important}' +
-    '.p-detail-tabs .shp-tab.active .shp-tab-link{background:' + G + '!important;border-color:' + G + '!important;color:#fff!important}' +
+    /* 1. 11. (Michael): záložky subtilněji – textové s podtržením místo pilulek; žádné ☰ menu (Shoptet tam schovával
+       Související, Videa, Hodnocení, Diskuzi…), co se nevejde, posouvá se do strany (tabsScroll) */
+    '.p-detail-tabs{border:0!important;box-shadow:none!important;display:flex!important;flex-wrap:nowrap!important;gap:2px;margin:0!important;padding:0!important;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;max-width:100%}.p-detail-tabs::-webkit-scrollbar{display:none}' +
+    '.p-detail-tabs .shp-tab{border:0!important;margin:0!important;background:none!important;flex:0 0 auto!important;float:none!important}' +
+    '.p-detail-tabs .shp-tab-link{display:inline-block;border:0!important;border-bottom:2px solid transparent!important;border-radius:0!important;background:none!important;color:#5d6b5d!important;font-weight:600!important;font-size:15px!important;line-height:1.3!important;padding:10px 12px 9px!important;text-transform:none!important;white-space:nowrap;box-shadow:none!important}' +
+    '.p-detail-tabs .shp-tab-link:hover{background:none!important;color:' + G + '!important}' +
+    '.p-detail-tabs .shp-tab.active .shp-tab-link{background:none!important;color:' + G + '!important;border-bottom-color:' + G + '!important;font-weight:700!important}' +
     '.p-detail-tabs .shp-tab::before,.p-detail-tabs .shp-tab::after,.p-detail-tabs::after{display:none!important}' +
+    '.p-detail-tabs-wrapper .navigation-btn,.p-detail-tabs-wrapper .hidden-links{display:none!important}.p-detail-tabs-wrapper .shp-tabs-holder{width:100%!important;max-width:100%!important;overflow:visible!important;border-bottom:1px solid #e3eed8!important;margin-bottom:18px!important}' +
+    '.type-detail .p-to-cart-block>*{order:3}.type-detail .p-to-cart-block>.p-final-price-wrapper{order:1}.type-detail .p-to-cart-block>.rs-buy-meta{order:2}' +
+    '.p-detail-tabs.rs-tabs-more{-webkit-mask-image:linear-gradient(90deg,#000 80%,transparent);mask-image:linear-gradient(90deg,#000 80%,transparent)}' +
+    /* 1. 11. (Michael + vzor deNatura): dostupnost a doručení v jednom řádku pod cenou (blok „Skladem“ zbytečně zabíral místo),
+       kód a značka drobně pod nákupním boxem; na mobilu nákupní box hned pod nadpisem, hodnocení obchodu hned pod ním */
+    '.rs-buy-meta{display:flex;flex-wrap:wrap;align-items:center;gap:2px 10px;flex:0 0 100%;width:100%;margin:2px 0 8px;font-size:14.5px;line-height:1.45;color:#3d4a3d}' +
+    '.rs-buy-meta .availability-label{font-weight:700!important;display:inline-flex!important;align-items:center;gap:6px;margin:0!important;padding:0!important;background:none!important;border:0!important}.rs-buy-meta .availability-label::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;flex:0 0 8px}' +
+    '.rs-buy-meta .availability-label .show-tooltip{border:0!important;text-decoration:none!important;color:inherit!important}' +
+    '.rs-buy-meta__dl{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:0 5px}.rs-buy-meta .delivery-time-label{font-weight:400!important;margin:0!important}.rs-buy-meta .delivery-time{display:inline!important;font-weight:700!important;margin:0!important}.rs-buy-meta .delivery-time span{font-weight:700}' +
+    '.rs-buy-meta .shipping-options{font-size:13px!important;color:#5d6b5d!important;text-decoration:underline!important;margin:0!important}' +
+    '.type-detail .p-basic-info-block.rs-basic-low{display:flex!important;flex-wrap:wrap;gap:2px 14px;margin:10px 0 0!important;padding:0!important;border:0!important;background:none!important;font-size:13px!important;color:#6b776b!important}.type-detail .p-basic-info-block.rs-basic-low .block{margin:0!important;padding:0!important;font-size:13px!important;width:auto!important;flex:0 0 auto;float:none!important}' +
+    /* vysvětlení „Dvě kalkulačky splátek“ bylo na desktopu dvakrát (v nákupním boxu i pod ním) */
+    '.type-detail .p-data-wrapper:has(.p-to-cart-block .rs-spl)>details.rs-spl{display:none!important}' +
+    '@media(max-width:767px){.type-detail .p-data-wrapper{display:flex!important;flex-direction:column}.type-detail .p-data-wrapper>*{order:5}.type-detail .p-data-wrapper>.p-detail-inner-header{order:1}.type-detail .p-data-wrapper>#product-detail-form{order:2}.type-detail .p-data-wrapper>.rs-rating{order:3}.type-detail .p-data-wrapper>.p-short-description{order:4}.type-detail .p-data-wrapper>.p-detail-inner-header h1{margin-bottom:6px!important}}' +
+    /* plovoucí lišta Do košíku (stickyBuy): jen mobil, objeví se, když nákupní tlačítko není na obrazovce; vpravo místo pro chat */
+    '.rs-sb{display:none}' +
+    '@media(max-width:767px){.rs-sb{display:flex;align-items:center;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:900;padding:8px 96px calc(8px + env(safe-area-inset-bottom)) 12px;background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid #e3eed8;box-shadow:0 -8px 24px rgba(27,63,32,.10);transform:translateY(110%);transition:transform .25s ease;pointer-events:none}' +
+    '.rs-sb.on{transform:none;pointer-events:auto}html.rs-cmp-bar .rs-sb{display:none}' +
+    '.rs-sb__img{width:44px;height:44px;object-fit:contain;border-radius:8px;background:#fff;border:1px solid #eef3e8;flex:0 0 44px}@media(max-width:420px){.rs-sb__img{display:none}}' +
+    '.rs-sb__t{display:flex;flex-direction:column;min-width:0;flex:1 1 auto;line-height:1.2}.rs-sb__p{font-size:17px;font-weight:800;color:#1b3f20;white-space:nowrap}.rs-sb__a{font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}' +
+    '.rs-sb__btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;border:0;border-radius:999px;background:' + G + ';color:#fff;font-weight:800;font-size:15px;padding:12px 16px;box-shadow:0 8px 18px rgba(27,63,32,.22);cursor:pointer;font-family:inherit}.rs-sb__btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
+    'html.rs-sb-on #fab{bottom:calc(78px + env(safe-area-inset-bottom))!important}html.rs-sb-on body.type-detail{padding-bottom:72px}}' +
     '.type-detail .p-to-cart-block .add-to-cart-button,.type-detail .p-to-cart-block .btn-conversion{background:' + G + '!important;border-color:' + G + '!important;color:#fff!important;border-radius:999px!important;font-weight:800!important;text-transform:none!important;letter-spacing:0!important;padding-left:26px!important;padding-right:26px!important;box-shadow:0 10px 22px rgba(27,63,32,.18)}' +
     '.type-detail .p-to-cart-block .add-to-cart-button:hover{background:' + L + '!important;border-color:' + L + '!important}' +
     '.type-detail .p-to-cart-block .quantity{border-radius:999px!important;overflow:hidden;border:1px solid ' + LINE + '!important}' +
@@ -1816,6 +1840,65 @@
       if (!d || !d.celkem) return; cnt.forEach(function (e) { if (e.hasAttribute('data-rs-review-avg')) e.textContent = String(d.prumer || '5.0').replace('.', ','); else e.textContent = d.celkem; });
     }).catch(function () {}); } catch (e) {}
   }
+  /* 1. 11. (Michael): „Skladem“ zabíral v detailu samostatný blok → dostupnost + „Můžeme doručit do“ v jednom řádku pod cenou,
+     kód a značka drobně pod nákupní box. Uzly Shoptetu se jen přesouvají uvnitř formuláře (varianty je dál aktualizují). */
+  function buyBox() {
+    var f = document.getElementById('product-detail-form'); if (!f || f.dataset.rsBuy) return;
+    var cart = f.querySelector('.p-to-cart-block'), price = cart && cart.querySelector('.p-final-price-wrapper'); if (!price) return;
+    f.dataset.rsBuy = 1;
+    var m = document.createElement('div'); m.className = 'rs-buy-meta';
+    var av = f.querySelector('.p-basic-info-block .availability-label'); if (av) m.appendChild(av);
+    var dt = f.querySelector('.delivery-time'), lab = f.querySelector('.delivery-time-label'), so = f.querySelector('.shipping-options');
+    if (dt || so) { /* u nedostupného zboží chybí datum, zůstává jen odkaz Možnosti doručení */
+      var dl = document.createElement('span'); dl.className = 'rs-buy-meta__dl'; var row = (dt || so).closest('tr');
+      if (lab && dt) dl.appendChild(lab); if (dt) dl.appendChild(dt); if (so) dl.appendChild(so); m.appendChild(dl);
+      if (row && !row.textContent.trim() && !row.querySelector('select, input, button')) row.style.display = 'none';
+      var vb = f.querySelector('.p-variants-block'); if (vb && !vb.textContent.trim() && !vb.querySelector('select, input:not([type=hidden]), button')) vb.style.display = 'none';
+    }
+    if (!m.children.length) return;
+    price.insertAdjacentElement('afterend', m);
+    var bi = f.querySelector('.p-basic-info-block');
+    if (bi) { [].forEach.call(bi.querySelectorAll('.block'), function (b) { if (!b.textContent.trim()) b.style.display = 'none'; }); bi.classList.add('rs-basic-low'); var dw = f.closest('.p-data-wrapper'); if (dw) dw.appendChild(bi); else cart.insertAdjacentElement('afterend', bi); }
+  }
+  /* 1. 11. (Michael, vzor deNatura): na mobilu lišta s cenou a Do košíku dole, kdykoli skutečné tlačítko není na obrazovce
+     (nahoře nad ním i po odscrollování). Klik = klik na tlačítko Shoptetu (množství, varianty, AJAX košík beze změny);
+     nevybraná varianta → posun k formuláři. Vpravo místo pro chat, telefon (#fab) se posune nad lištu. */
+  var CART_IC = '<path d="M3 4h2l2.4 10.2a1.5 1.5 0 0 0 1.5 1.1h8.6a1.5 1.5 0 0 0 1.4-1l2-6.3H6.2"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/>';
+  function stickyBuy() {
+    if (!document.body.classList.contains('type-detail') || document.querySelector('.rs-sb') || !window.IntersectionObserver) return;
+    var f = document.getElementById('product-detail-form'), w = f && f.querySelector('.p-add-to-cart-wrapper'), btn = w && w.querySelector('.add-to-cart-button');
+    if (!btn || btn.disabled) return;
+    /* nedostupné zboží: velké Do košíku v liště by tlačilo k objednávce něčeho, co nemáme (stránka nabízí náhrady) */
+    var av0 = f.querySelector('.availability-label'); if (av0 && /nedostup|vyprod|ukonč/i.test(av0.textContent)) return;
+    var bar = document.createElement('div'); bar.className = 'rs-sb'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'Rychlý nákup');
+    bar.innerHTML = '<img class="rs-sb__img" alt="" width="44" height="44"><span class="rs-sb__t"><b class="rs-sb__p"></b><span class="rs-sb__a"></span></span><button type="button" class="rs-sb__btn"><svg viewBox="0 0 24 24" aria-hidden="true">' + CART_IC + '</svg>Do košíku</button>';
+    var img = document.querySelector('.p-image-wrapper img'), im = bar.querySelector('.rs-sb__img'); if (img) im.src = img.currentSrc || img.src; else im.remove();
+    var fill = function () {
+      var p = f.querySelector('.price-final-holder') || f.querySelector('.price-final'), a = f.querySelector('.availability-label'), pe = bar.querySelector('.rs-sb__p'), ae = bar.querySelector('.rs-sb__a');
+      var pt = p ? p.textContent.trim().replace(/\s+/g, ' ') : ''; if (pe.textContent !== pt) pe.textContent = pt;
+      var at = a ? a.textContent.trim().replace(/\s+/g, ' ') : ''; if (ae.textContent !== at) { ae.textContent = at; ae.style.color = a ? getComputedStyle(a).color : ''; }
+    };
+    bar.querySelector('.rs-sb__btn').addEventListener('click', function () {
+      var need = [].some.call(f.querySelectorAll('select'), function (s) { return s.offsetParent && !s.value; });
+      var rad = f.querySelectorAll('.p-variants-block input[type=radio]'); if (rad.length && ![].some.call(rad, function (r) { return r.checked; })) need = rad[0];
+      if (need || btn.disabled) { ((need && need.closest && need.closest('.p-variants-block')) || w).scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+      btn.click();
+    });
+    document.body.appendChild(bar);
+    new IntersectionObserver(function (es) { var show = !es[es.length - 1].isIntersecting; fill(); bar.classList.toggle('on', show); document.documentElement.classList.toggle('rs-sb-on', show); }).observe(w);
+  }
+  /* 1. 11. (Michael): záložky bez ☰ – Shoptet (responsive-nav) přesouvá záložky, které se nevejdou, do skrytého seznamu
+     pod hamburger → vrátit je do řádku, který se posouvá do strany. Observer zapisuje, jen když ve skrytém seznamu něco je. */
+  function tabsScroll() {
+    var ul = document.getElementById('p-detail-tabs'); if (!ul || ul.dataset.rsTabs) return; ul.dataset.rsTabs = 1;
+    var row = ul.closest('.responsive-nav') || ul.parentNode;
+    var more = function () { var m = ul.scrollWidth - ul.clientWidth - ul.scrollLeft > 6; if (ul.classList.contains('rs-tabs-more') !== m) ul.classList.toggle('rs-tabs-more', m); };
+    var back = function () { var hid = row.querySelector('.hidden-links'); if (!hid || !hid.children.length) return; [].slice.call(hid.children).forEach(function (li) { li.style.display = ''; ul.appendChild(li); }); more(); };
+    back();
+    var hid = row.querySelector('.hidden-links'); if (hid && window.MutationObserver) new MutationObserver(back).observe(hid, { childList: true });
+    ul.addEventListener('scroll', more, { passive: true }); window.addEventListener('resize', more); setTimeout(more, 600);
+    ul.addEventListener('click', function (e) { var li = e.target.closest && e.target.closest('.shp-tab'); if (li) setTimeout(function () { var l = li.offsetLeft - ul.offsetLeft, r = l + li.offsetWidth; if (l < ul.scrollLeft || r > ul.scrollLeft + ul.clientWidth) ul.scrollTo({ left: Math.max(0, l - 24), behavior: 'smooth' }); }, 50); });
+  }
   /* 31. 10. (Michael): mega nabídka na desktopu širší (do boku místo do výšky) – posunout ji doleva, aby se vešla do šířky hlavičky */
   function megaPos() {
     if (window.__rsMegaPos) return; window.__rsMegaPos = 1;
@@ -1839,7 +1922,7 @@
     b.addEventListener('click', function () { var o = p.classList.toggle('rs-fold--open'); b.setAttribute('aria-expanded', o); b.textContent = o ? 'Sbalit popis ↑' : 'Číst celý popis ↓'; if (!o) window.scrollTo({ top: Math.max(0, p.getBoundingClientRect().top + window.pageYOffset - 140), behavior: 'instant' }); });
   }
 
-  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { buyBox(); } catch (e) {} try { tabsScroll(); } catch (e) {} try { stickyBuy(); } catch (e) {} try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
