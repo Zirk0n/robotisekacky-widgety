@@ -146,6 +146,14 @@
     /* blok Shoptetu „Nejprodávanější“ nad výpisem – malé karty */
     '.products-top-wrapper{margin:6px 0 18px!important}.products-top-header{font-size:20px!important;color:' + G + '!important;margin:0 0 10px!important}' +
     '.products-top .product .p{background:#fff;border:1px solid ' + LINE + '!important;border-radius:14px!important;padding:12px 14px!important;box-shadow:var(--rs-shadow);height:100%}.products-top .product .name{font-size:14px!important;font-weight:700;color:' + G + '!important}' +
+    /* 1. 11. (Michael): šablona Step v „Nejprodávanější“ fotku nevykreslí → topImgs() ji doplní; fotka vlevo, text vpravo */
+    '.products-top .product .p.rs-has-img{display:grid!important;grid-template-columns:78px minmax(0,1fr);column-gap:12px;align-items:center}' +
+    '.products-top .product .p.rs-has-img>.rs-top-img{grid-row:1/span 2;display:block;width:78px;height:78px;border-radius:10px;overflow:hidden;background:#fff}' +
+    '.products-top .product .p.rs-has-img>.rs-top-img img{width:100%;height:100%;object-fit:contain;display:block}' +
+    '.products-top .product .p.rs-has-img>.p-in,.products-top .product .p.rs-has-img>.p-bottom{grid-column:2;min-width:0}' +
+    'html body .products-top .product .p.rs-has-img>.p-in{width:auto!important;max-width:none!important;padding-left:0!important}' +
+    'html body .products-top .product .p.rs-has-img .p-in-in{padding-right:0!important}' +
+    '@media(max-width:767px){.products-top .product .p.rs-has-img{grid-template-columns:64px minmax(0,1fr)}.products-top .product .p.rs-has-img>.rs-top-img{width:64px;height:64px}}' +
     /* produktové karty: kód nenápadně, sleva červeně (Michael 17. 10.) */
     '.products-block .p-code{font-size:10.5px!important;color:#6b7468!important;opacity:.8;font-weight:400!important}' +
     '.flag.flag-discount,.flag.flag-action{background-color:#e2231a!important}' +
@@ -1419,6 +1427,35 @@
     });
   }
 
+  /* 1. 11. (Michael): blok „Nejprodávanější“ (Shoptet, šablona Step) je bez fotek – doplnit je.
+     Zdroj fotky v pořadí: stejný produkt ve výpisu na stránce (už načtená) → mapa data/obrazky.json v repu widgetů
+     (z feedu pro Heureku, denně GitHub Action obrazky.yml) → og:image z detailu produktu (jen u viditelných, max 3).
+     Obrázky mají loading=lazy, takže skryté položky („Zobrazit více produktů“) se načtou až po rozbalení. */
+  var IMG_URL = 'https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/obrazky.json', IMG_PROM = null;
+  function imgMap() { if (!IMG_PROM) { try { IMG_PROM = fetch(IMG_URL).then(function (r) { return r.json(); }).then(function (d) { return (d && d.obrazky) || {}; }).catch(function () { return {}; }); } catch (e) { IMG_PROM = Promise.resolve({}); } } return IMG_PROM; }
+  function topImgs() {
+    var items = [].filter.call(document.querySelectorAll('.products-top .product'), function (pr) { return !pr.hasAttribute('data-rs-img'); });
+    if (!items.length) return;
+    items.forEach(function (pr) { pr.setAttribute('data-rs-img', ''); });
+    var put = function (pr, src) {
+      var p = pr.querySelector('.p'), a = pr.querySelector('a.name'); if (!p || !a || !src || p.querySelector('.rs-top-img')) return;
+      var l = document.createElement('a'); l.className = 'rs-top-img'; l.href = a.getAttribute('href'); l.setAttribute('tabindex', '-1'); l.setAttribute('aria-hidden', 'true');
+      var im = document.createElement('img'); im.loading = 'lazy'; im.decoding = 'async'; im.alt = ''; im.src = src; im.onerror = function () { l.remove(); p.classList.remove('rs-has-img'); };
+      l.appendChild(im); p.insertBefore(l, p.firstChild); p.classList.add('rs-has-img');
+    };
+    imgMap().then(function (map) {
+      var og = 0;
+      items.forEach(function (pr) {
+        var a = pr.querySelector('a.name'); if (!a) return; var h = a.getAttribute('href');
+        var same = document.querySelector('.products-block:not(.products-top) a.image[href="' + h + '"] img, #products a.image[href="' + h + '"] img');
+        var s = same && (same.getAttribute('data-src') || same.getAttribute('src'));
+        if (s && !/^data:/.test(s)) return put(pr, s.trim());
+        if (map[h]) return put(pr, map[h]);
+        if (og < 3 && pr.offsetWidth) { og++; fetch(h).then(function (r) { return r.text(); }).then(function (t) { var m = t.match(/property="og:image" content="([^"]+)"/); if (m) put(pr, m[1].replace(/&amp;/g, '&')); }).catch(function () {}); }
+      });
+    });
+  }
+
   /* Karta ve výpisu: přeškrtnutá původní cena přímo u aktuální ceny (EB audit 27. 10.); ve štítku na obrázku pak jen „−18 %“. */
   function cardPrices() {
     [].forEach.call(document.querySelectorAll('.product'), function (c) {
@@ -2120,11 +2157,11 @@
     b.addEventListener('click', function () { var o = p.classList.toggle('rs-fold--open'); b.setAttribute('aria-expanded', o); b.textContent = o ? 'Sbalit popis ↑' : 'Číst celý popis ↓'; if (!o) window.scrollTo({ top: Math.max(0, p.getBoundingClientRect().top + window.pageYOffset - 140), behavior: 'instant' }); });
   }
 
-  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { buyBox(); } catch (e) {} try { svcPage(); } catch (e) {} try { tabsScroll(); } catch (e) {} try { stickyBuy(); } catch (e) {} try { rsReviewCount(); } catch (e) {} [700, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { rsReviewCount(); } catch (e) {} try { shopRatingTop(); } catch (e) {} try { cleanVariants(); } catch (e) {} try { svcHours(); } catch (e) {} try { svcRealizace(); } catch (e) {} try { reviewDates(); } catch (e) {} }, t); }); try { akceKampan(); } catch (e) {} try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { appTyp(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  function run() { css(); try { calmCheckout(); } catch (e) {} try { megaPos(); } catch (e) {} try { buyBox(); } catch (e) {} try { svcPage(); } catch (e) {} try { tabsScroll(); } catch (e) {} try { stickyBuy(); } catch (e) {} try { rsReviewCount(); } catch (e) {} [700, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { rsReviewCount(); } catch (e) {} try { shopRatingTop(); } catch (e) {} try { cleanVariants(); } catch (e) {} try { svcHours(); } catch (e) {} try { svcRealizace(); } catch (e) {} try { reviewDates(); } catch (e) {} }, t); }); try { akceKampan(); } catch (e) {} try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { appTyp(); } catch (e) {} try { topImgs(); } catch (e) {} try { catNeeds(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
-  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { cardPrices(); } catch (e) {} try { appTyp(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { compare(); } catch (e) {} soldOutLast(); try { cartRelated(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { availColors(); } catch (e) {} try { cleanVariants(); } catch (e) {} }, 120); });
+  var mo = new MutationObserver(function () { clearTimeout(mo.t); mo.t = setTimeout(function () { filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { cardPrices(); } catch (e) {} try { appTyp(); } catch (e) {} try { topImgs(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { compare(); } catch (e) {} soldOutLast(); try { cartRelated(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { availColors(); } catch (e) {} try { cleanVariants(); } catch (e) {} }, 120); });
   function watch() { var c = document.getElementById('content') || document.body; mo.observe(c, { childList: true, subtree: true }); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch); else watch();
 })();
