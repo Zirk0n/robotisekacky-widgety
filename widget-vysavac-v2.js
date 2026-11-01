@@ -73,8 +73,8 @@ safe(function(){document.querySelectorAll('.rs-rev figcaption').forEach(function
 
 }
 
-/* 1. 11. 2026 (Michael): interní značka „(POPISEK)“ v ALT fotek s bublinou (potřebuje ji automatizace) se zákazníkům nezobrazuje –
+/* 1. 11. 2026 (Michael): interní značky „(POPISEK)“ a „(HERO)“ v ALT fotek s bublinou (potřebuje ji automatizace) se zákazníkům nezobrazuje –
    odstraní se z alt / data-alt / title (popisek v lightboxu galerie, čtečky obrazovky). V Shoptetu ALT zůstává beze změny. */
-(function(){function strip(){document.querySelectorAll('[alt*="POPISEK"],[data-alt*="POPISEK"],[title*="POPISEK"]').forEach(function(e){['alt','data-alt','title'].forEach(function(a){var v=e.getAttribute(a);if(v&&v.indexOf('POPISEK')>=0)e.setAttribute(a,v.replace(/\s*\(POPISEK\)/g,'').trim())})})}
+(function(){function strip(){document.querySelectorAll('[alt*="POPISEK"],[data-alt*="POPISEK"],[title*="POPISEK"],[alt*="(HERO)"],[data-alt*="(HERO)"],[title*="(HERO)"]').forEach(function(e){['alt','data-alt','title'].forEach(function(a){var v=e.getAttribute(a);if(v&&/POPISEK|\(HERO\)/.test(v))e.setAttribute(a,v.replace(/\s*\((POPISEK|HERO)\)/g,'').trim())})})}
 function go(){try{strip()}catch(e){}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();window.addEventListener('load',go);[1500,4000].forEach(function(t){setTimeout(go,t)});
 document.addEventListener('click',go,true);})();
