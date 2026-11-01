@@ -741,6 +741,8 @@
     '.rsn.rsh .rsn__head,.rsn.rsh .rsn__hint{text-align:center}.rsn.rsh .rsn__tabs{justify-content:center}' +
     '.rsn{max-width:1180px;margin:0 auto;padding:28px 16px;box-sizing:border-box}.rsn--cat{padding:22px 0 8px;max-width:none}' +
     '.rsn__head h2{margin:0 0 6px!important;font-size:30px!important;font-weight:800;color:#1b3f20!important}.rsn--cat .rsn__head h2{font-size:24px!important}.rsn__head p{margin:0 0 16px!important;color:#4a5a47;font-size:16px}' +
+    /* záložky typů v kategorii (zatím /akce/): na mobilu jedna posuvná řada místo tří pilulek pod sebou */
+    '@media(max-width:767px){.rsn--cat .rsn__tabs{flex-wrap:nowrap!important;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.rsn--cat .rsn__tabs::-webkit-scrollbar{display:none}.rsn--cat .rsn__tabs button{flex:0 0 auto;padding:7px 14px!important;font-size:14px!important;white-space:nowrap}}' +
     '.rsn__tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}.rsn__tabs button{border:1.5px solid #cfdcc4;background:#fff;border-radius:999px;padding:9px 18px;font-weight:700;font-size:15px;color:#1b3f20;cursor:pointer;font-family:inherit}.rsn__tabs button[aria-selected=true]{background:#1b3f20;border-color:#1b3f20;color:#fff}' +
     '.rsn__g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.rsn--cat .rsn__g{grid-template-columns:repeat(6,minmax(0,1fr))}' +
     'a.rsn__c--link{text-decoration:none!important}a.rsn__c--link:hover{border-color:#86BB41;transform:translateY(-1px)}.rsn__arr{position:absolute;top:50%;right:14px;transform:translateY(-50%);color:#1b3f20;font-size:18px;font-weight:800}' +
