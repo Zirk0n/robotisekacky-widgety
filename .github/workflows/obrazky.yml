@@ -1,0 +1,22 @@
+name: Mapa fotek produktů pro web
+on:
+  schedule:
+    - cron: '20 3 * * *'   # každý den 3:20 UTC (nové produkty a fotky)
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  obrazky:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/obrazky-sber.mjs data/obrazky.json
+      - name: Commit, pokud se mapa změnila
+        run: |
+          git config user.name "obrazky-bot"
+          git config user.email "obrazky-bot@users.noreply.github.com"
+          git add data/obrazky.json
+          git diff --cached --quiet || (git commit -m "Obrázky: denní aktualizace mapy fotek" && git push)
