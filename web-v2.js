@@ -1452,7 +1452,7 @@
       var t = ap.firstChild; if (!t || t.nodeType !== 3) return;
       var m = t.nodeValue.match(APP_TYP); if (!m) return;
       var s = document.createElement('span'); s.className = 'rs-app-typ'; s.textContent = m[2] + m[3];
-      t.nodeValue = m[4]; ap.insertBefore(document.createTextNode(m[1]), t); ap.insertBefore(s, t);
+      t.nodeValue = m[4].charAt(0).toUpperCase() + m[4].slice(1); ap.insertBefore(document.createTextNode(m[1]), t); ap.insertBefore(s, t);
     });
   }
 
