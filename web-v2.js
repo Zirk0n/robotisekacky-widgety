@@ -1706,12 +1706,23 @@
       pr = document.getElementById('products'); if (pr) pr.classList.remove('rs-loading');
       /* líně načítané obrázky Shoptetu (data-src) – po výměně výpisu je nikdo nespustí; a dát Shoptetu vědět o novém obsahu (košík, porovnání) */
       if (pr) [].forEach.call(pr.querySelectorAll('img[data-src]'), function (im) { var s = im.getAttribute('src') || ''; if (!s || /^data:|blank\.gif|placeholder/.test(s)) im.src = im.getAttribute('data-src').trim(); im.classList.remove('lazy', 'lazyload'); im.style.opacity = ''; });
-      try { document.dispatchEvent(new Event('ShoptetDOMPageContentLoaded')); } catch (e) {}
+      /* 8. 11.: NEvolat ShoptetDOMPageContentLoaded – Shoptet při něm znovu inicializuje vše a zdvojuje posluchače
+         (+75 při každém výběru, k tomu XHR navíc); po několika desítkách kliků stránka zamrzla („Stránka nereaguje“). */
       [cardPrices, appTyp, soldOutLast, listCount, availColors, sliders, filtersExtra, filtersOpen, revTile].forEach(function (f) { try { f(); } catch (e) {} });
     }, function (e) { if (pr) pr.classList.remove('rs-loading'); throw e; });
   }
   /* 7. 11. (Michael): recenze v kategorii jako dlaždice místo 5. produktu (2. řada) – pečeť, 5,0, počet a střídající se
      texty recenzí z data/recenze.json (stejný zdroj jako hodnocení jinde). Velký karusel recenzí v popisu kategorie se skryje (CSS). */
+  /* 8. 11. (Michael): v některých šířkách se dlaždice „zvláštně vyplnila“ – ve 2 sloupcích (768–1279 px) měla 66 %
+     a citace se lámala po slovech. Šířka teď podle skutečného počtu sloupců výpisu. */
+  function revTileSize() {
+    var t = document.querySelector('#products > .rs-revtile'); if (!t) return;
+    var pr = t.parentNode, c = pr.querySelector(':scope>.product:not(.rs-revtile)'); if (!c) return;
+    var pw = pr.getBoundingClientRect().width, cw = c.getBoundingClientRect().width; if (!pw || !cw) return;
+    var cols = Math.max(1, Math.round(pw / cw)), span = cols >= 3 ? 2 : cols, pct = (span / cols * 100).toFixed(3) + '%', tw = pw * span / cols;
+    ['flex', 'max-width', 'width'].forEach(function (k) { t.style.setProperty(k, k === 'flex' ? '0 0 ' + pct : pct, 'important'); });
+    t.classList.toggle('rs-revtile--row', tw >= 520); t.classList.toggle('rs-revtile--narrow', tw >= 520 && tw < 760); t.classList.toggle('rs-revtile--mini', tw < 520);
+  }
   var REV_DATA = null;
   function revData() { if (!REV_DATA) { try { REV_DATA = fetch('https://raw.githubusercontent.com/Zirk0n/robotisekacky-widgety/main/data/recenze.json').then(function (r) { return r.json(); }).catch(function () { return null; }); } catch (e) { REV_DATA = Promise.resolve(null); } } return REV_DATA; }
   function revTile() {
@@ -1722,7 +1733,8 @@
     var t = document.createElement('div'); t.className = 'product rs-revtile';
     t.innerHTML = '<a class="p rs-revtile__in" href="/hodnoceni-obchodu/"><span class="rs-revtile__l"><span class="rs-revtile__top"><img src="' + HEU_LOGO + '" alt="Ověřeno zákazníky – Heureka" width="64" height="64"><span><b class="rs-revtile__avg" data-rs-review-avg>5,0</b><span class="rs-stars" aria-hidden="true">★★★★★</span></span></span>' +
       '<span class="rs-revtile__cnt"><b data-rs-review-count>424</b> ověřených hodnocení obchodu</span></span><span class="rs-revtile__r"><span class="rs-revtile__q" aria-live="polite"></span><span class="rs-revtile__more">Přečíst hodnocení →</span></span></a>';
-    pr.insertBefore(t, items[4]);
+    pr.insertBefore(t, items[4]); revTileSize();
+    if (!window.rsRevRz) { window.rsRevRz = 1; var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(revTileSize, 150); }); }
     revData().then(function (d) {
       if (!d || !d.recenze) return; var q = t.querySelector('.rs-revtile__q');
       t.querySelector('[data-rs-review-count]').textContent = d.celkem || 424; if (d.prumer) t.querySelector('[data-rs-review-avg]').textContent = String(d.prumer).replace('.', ',');
@@ -1769,16 +1781,27 @@
        plovoucí bublina, kroky košíku). Zelená zůstává značce a ostatním tlačítkům, červená slevám. #C9560A: kontrast s bílým
        písmem 4,4 : 1 (tučné písmo tlačítek). */
     'html body .products-block .btn-cart,html body .type-detail .p-to-cart-block .add-to-cart-button,html body .type-detail .p-to-cart-block .btn-conversion,html body .rs-sb__btn,html body .next-step .btn-conversion,html body .next-step-forward,html body .ordering-process .btn-conversion,html body .ordering-process .next-step-finish,html body .btn.btn-conversion,html body a.btn-conversion,html body button.btn-conversion{--rs-btn-primary-bg:linear-gradient(180deg,#D8620F 0%,#C2510A 100%);--rs-btn-primary-bg-hover:#B04A08;--rs-btn-primary-fg:#fff;--rs-btn-shadow:0 10px 22px rgba(201,86,10,.28);--rs-g:#C9560A;--rs-l:#B04A08;background:#C9560A!important;background-image:linear-gradient(180deg,#D8620F 0%,#C2510A 100%)!important;border-color:#C2510A!important;color:#fff!important;box-shadow:0 10px 22px rgba(201,86,10,.28)!important}' +
-    'html body .products-block .btn-cart:hover,html body .type-detail .p-to-cart-block .add-to-cart-button:hover,html body .rs-sb__btn:hover,html body .next-step .btn-conversion:hover,html body .next-step-forward:hover,html body .btn.btn-conversion:hover,html body a.btn-conversion:hover,html body button.btn-conversion:hover{background:#B04A08!important;background-image:none!important;border-color:#B04A08!important}' +
+    'html body .products-block .btn-cart:hover,html body .type-detail .p-to-cart-block .add-to-cart-button:hover,html body .rs-sb__btn:hover,html body .next-step .btn-conversion:hover,html body .next-step-forward:hover,html body .btn.btn-conversion:hover,html body a.btn-conversion:hover,html body button.btn-conversion:hover{background-image:linear-gradient(180deg,#C2510A 0%,#A84607 100%)!important;border-color:#A84607!important}' +
+    /* 8. 11.: hover bez bliknutí – dřív se při najetí vypnul gradient a barva pozadí se 0,2 s přelévala z průhledné;
+       teď se jen vymění gradient za tmavší a animuje se pouze stín/posun */
+    'html body .products-block .btn-cart,html body .type-detail .p-to-cart-block .add-to-cart-button,html body .rs-sb__btn,html body .next-step .btn-conversion,html body .next-step-forward,html body .btn.btn-conversion,html body a.btn-conversion,html body button.btn-conversion{background-color:#C9560A!important;transition:transform .2s,box-shadow .2s!important}' +
+    /* 8. 11.: „Porovnat“ nesmí sedět na spodní hraně karty – cena + tlačítka zarovnané dole, pod nimi vždy odstup */
+    'html body #products .product .p-in{flex:1 1 auto;display:flex;flex-direction:column}html body #products .product .p-bottom{margin-top:auto;padding-bottom:14px!important}html body #products .product .p-bottom .rs-cmp-t{margin-bottom:0!important}' +
     /* recenzní dlaždice */
     '.rs-revtile .rs-revtile__in{display:flex!important;flex-direction:column;gap:10px;height:100%;min-height:360px;padding:26px 22px!important;text-decoration:none!important;color:#1f2a1f;}html body .products-block .product.rs-revtile .p.rs-revtile__in{background:linear-gradient(150deg,#eef6e4 0%,#dcedc9 100%)!important;border-color:#cfe3bd!important}' +
     '.rs-revtile__l,.rs-revtile__r{display:flex;flex-direction:column;gap:10px}.rs-revtile__top{display:flex;align-items:center;gap:14px}.rs-revtile__top img{width:64px;height:64px}.rs-revtile__avg{display:block;font-size:40px;line-height:1;font-weight:900;color:#1b3f20}.rs-revtile .rs-stars{color:#f5b301;font-size:20px;letter-spacing:2px}' +
     '.rs-revtile__cnt{font-size:14.5px;color:#3d4a3d}.rs-revtile__cnt b{color:#1b3f20}' +
     '.rs-revtile__q{flex:1 1 auto;font-size:15.5px;line-height:1.5;font-style:italic;color:#2b3328;opacity:0;transition:opacity .25s}.rs-revtile__q.on{opacity:1}.rs-revtile__q b{display:block;margin-top:6px;font-style:normal;font-size:14px;color:#1b3f20}' +
     '.rs-revtile__more{font-weight:800;color:#1b3f20;font-size:14.5px}' +
-    '@media(min-width:768px){html body #products .rs-revtile{flex:0 0 66.666%!important;max-width:66.666%!important;width:66.666%!important}.rs-revtile .rs-revtile__in{flex-direction:row!important;align-items:center;gap:32px;padding:28px 34px!important}.rs-revtile__l{flex:0 0 190px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding-right:28px;border-right:1px solid rgba(27,63,32,.12)}.rs-revtile__l .rs-revtile__top{flex-direction:column;gap:8px}.rs-revtile__l .rs-revtile__top img{width:92px;height:92px}.rs-revtile__r{flex:1 1 auto;display:flex;flex-direction:column;gap:14px}.rs-revtile__q{font-size:18px;line-height:1.55}}' +
-    /* mobil: dlaždice přes celou šířku (ve 2 sloupcích by se nevešla), menší výška */
-    '@media(max-width:767px){html body #products .rs-revtile{flex:0 0 100%!important;max-width:100%!important;width:100%!important}.rs-revtile .rs-revtile__in{min-height:0;padding:18px!important}.rs-revtile__avg{font-size:32px}.rs-revtile__q{font-size:15px}}';
+    /* 8. 11.: šířku a rozložení určuje revTileSize() podle skutečného počtu sloupců (1280+ = 3 sloupce → dlaždice přes 2;
+       768–1279 a mobil = 2 sloupce → přes celou šířku). Třídy: --row (vedle sebe, šířka ≥ 520 px), --narrow (< 760 px),
+       --mini (pod sebou, kompaktní – mobil; pevná výška citace, aby obsah pod ní při střídání neposkakoval).
+       Media query jen jako záloha, než JS doběhne. */
+    '@media(min-width:768px){html body #products .rs-revtile{flex:0 0 66.666%!important;max-width:66.666%!important;width:66.666%!important}}' +
+    '@media(max-width:767px){html body #products .rs-revtile{flex:0 0 100%!important;max-width:100%!important;width:100%!important}}' +
+    '.rs-revtile--row .rs-revtile__in{flex-direction:row!important;align-items:center;gap:32px;min-height:0;padding:28px 34px!important}.rs-revtile--row .rs-revtile__l{flex:0 0 190px;align-items:center;text-align:center;padding-right:28px;border-right:1px solid rgba(27,63,32,.12)}.rs-revtile--row .rs-revtile__top{flex-direction:column;gap:8px}.rs-revtile--row .rs-revtile__top img{width:92px;height:92px}.rs-revtile--row .rs-revtile__r{flex:1 1 auto;gap:14px}.rs-revtile--row .rs-revtile__q{flex:0 0 auto;font-size:18px;line-height:1.55}' +
+    '.rs-revtile--narrow .rs-revtile__in{gap:22px;padding:22px 24px!important}.rs-revtile--narrow .rs-revtile__l{flex-basis:150px;padding-right:20px}.rs-revtile--narrow .rs-revtile__top img{width:76px;height:76px}.rs-revtile--narrow .rs-revtile__q{font-size:16px}' +
+    '.rs-revtile--mini .rs-revtile__in{min-height:0!important;padding:16px 18px!important;gap:10px}.rs-revtile--mini .rs-revtile__l{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}.rs-revtile--mini .rs-revtile__top{gap:10px}.rs-revtile--mini .rs-revtile__top img{width:48px;height:48px}.rs-revtile--mini .rs-revtile__avg{font-size:28px}.rs-revtile--mini .rs-stars{font-size:15px}.rs-revtile--mini .rs-revtile__cnt{font-size:13px;line-height:1.3;text-align:right;max-width:130px}.rs-revtile--mini .rs-revtile__q{flex:0 0 auto;height:8.9em;overflow:hidden;font-size:14.5px;line-height:1.45}.rs-revtile--mini .rs-revtile__more{font-size:14px}';
   /* 1. 11. (Michael): rozcestník potřeb i na akční stránce /akce/ – záložky typů (vysavač / sekačka / bazénový) a stejné
      potřeby jako v kategoriích („Chci, aby i vytíral“ → /akce/?pv201=516…). Kategorie 1102 má zapnuté parametrické filtry
      186, 201, 228, 180, 195, 183, 40, 28, 913, 346, 907, 64 (nastroje/web/filtr-kategorie.mjs). Blok stojí pod kampaní. */
@@ -1944,7 +1967,7 @@
   }
   function cmpMarks() {
     var l = cmpRead().map(function (x) { return x.u; });
-    [].forEach.call(document.querySelectorAll('.rs-cmp-t'), function (t) { var on = l.indexOf(t.dataset.u) >= 0, s = t.querySelector('span'), tx = on ? 'V porovnání' : 'Porovnat'; t.classList.toggle('on', on); t.setAttribute('aria-pressed', on); if (s.textContent !== tx) s.textContent = tx; });
+    [].forEach.call(document.querySelectorAll('.rs-cmp-t'), function (t) { var on = l.indexOf(t.dataset.u) >= 0, s = t.querySelector('span'), tx = on ? 'V porovnání' : 'Porovnat'; t.classList.toggle('on', on); if (t.getAttribute('aria-pressed') !== String(on)) t.setAttribute('aria-pressed', on); if (s.textContent !== tx) s.textContent = tx; });
   }
   function cmpBar() {
     var l = cmpRead(), bar = document.querySelector('.rs-cmpbar');
