@@ -644,6 +644,7 @@
     'html body.type-detail .container--bannersBenefit{display:none!important}html body.type-detail a.link-icon.print,html body.type-detail a.link-icon.watchdog{display:none!important}' +
     'html body.type-detail .p-short-description ul{list-style:none!important;padding-left:0!important}html body.type-detail .p-short-description li{position:relative}html body.type-detail .p-short-description li .rs-ei{color:#2f7d1f;margin-right:8px}html body.type-detail .p-short-description li .rs-ei svg{width:1.15em;height:1.15em;stroke-width:2.6}' +
     'html body.type-detail .p-to-cart-block{background:#f5faf0!important;border:1.5px solid #cfe2bf!important;border-radius:20px!important;padding:16px 18px!important;box-shadow:0 10px 24px rgba(27,63,32,.08)!important;margin:6px 0 14px!important}' +
+    'html.rs-pool body.type-detail .p-to-cart-block{background:#eef8fd!important;border-color:#bfe3f5!important;box-shadow:0 10px 24px rgba(7,89,133,.10)!important}html.rs-pool body.type-detail .p-final-price-wrapper .price-final,html.rs-pool body.type-detail .p-final-price-wrapper .price-final strong{color:#075985!important}' +
     'html body.type-detail .p-to-cart-block .price-final,html body.type-detail .p-to-cart-block .price-final strong{font-size:30px!important;font-weight:800!important;color:#1b3f20!important}' +
     'html body.type-detail .p-to-cart-block .add-to-cart-button{min-height:54px!important;font-size:17px!important}' +
     // Splátky (Michael 27. 10.: obě kalkulačky nechat, sladit vzhled, skryté info o rozdílu) – splatkyInfo()
@@ -670,7 +671,9 @@
     // menu: položky se nezalamují do druhého řádku (Zavlažování „spadlo“ pod menu) – co se nevejde, schová Shoptet do Více
     'html body #navigation .menu-level-1{flex-wrap:nowrap!important;white-space:nowrap}' +
     /* 31. 10.: Shoptet dává .navigation-in šířku 9999em → stránka byla 160 000 px široká (riziko „obsah mimo layout“ u Google) */
-    'html body #navigation .navigation-in{width:auto!important}html body #header .navigation-wrapper{overflow-x:clip;overflow-y:visible}' +
+    /* 8. 11.: overflow-x:clip na .navigation-wrapper v Safari ořezával i svisle → panel „Naposledy jste si prohlížel“ pod
+       vyhledáváním byl useknutý pod hlavičkou. Ořez přesunut na body (svislý ořez tam nevadí, sticky hlavička funguje). */
+    'html body #navigation .navigation-in{width:auto!important}html body{overflow-x:clip}' +
     /* 31. 10. audit Kvasnička: písmo min. 13 px (štítky na mobilu 12 px = práh Lighthouse, aby se vešly do 1 řádku), bez „Abecedně“,
        objednávka (krok 2+) bez menu/hledání/horní lišty, upsell v košíku na mobilu nebyl zmáčknutý do 36 px, slevový kód schovaný za odkaz */
     'html body .products-block .flags .flag,html body .product .image .flags-default .flag{font-size:12px!important}' +
@@ -1333,6 +1336,8 @@
     var crumbs = [].map.call(document.querySelectorAll('.breadcrumbs a, [class*="breadcrumb"] a'), function (a) { return (a.getAttribute('href') || '') + ' ' + a.textContent; }).join(' ') + ' ' + location.pathname;
     if (/instalace|predveden|zprovozn|servis|darkov/i.test(location.pathname)) return;
     var seg = /bazen/i.test(crumbs) ? 'bazen' : /vysava/i.test(crumbs) ? 'vysavac' : /sekac/i.test(crumbs) ? 'sekacka' : 'obecne';
+    /* 8. 11. (Michael): bazénové produkty – nákupní box modře jako zbytek bazénové stránky */
+    if (isDet && seg === 'bazen') document.documentElement.classList.add('rs-pool');
     var svc = { vysavac: ['house', 'Zprovozníme u vás doma', 'Wi-Fi, mapu a plán úklidu nastavíme za vás', '/zprovozneni-robotickeho-vysavace/'],
       sekacka: ['wrench', 'Instalace po celé ČR', 'Mapu, hranice i plán sekání nastavíme za vás', '/instalace-sekacek/'],
       bazen: ['pool', 'Poradíme podle bazénu', 'Vybrané modely předvedeme v Praze a okolí', '/predvedeni-bazenovych-vysavacu/'],
@@ -1782,6 +1787,11 @@
        písmem 4,4 : 1 (tučné písmo tlačítek). */
     'html body .products-block .btn-cart,html body .type-detail .p-to-cart-block .add-to-cart-button,html body .type-detail .p-to-cart-block .btn-conversion,html body .rs-sb__btn,html body .next-step .btn-conversion,html body .next-step-forward,html body .ordering-process .btn-conversion,html body .ordering-process .next-step-finish,html body .btn.btn-conversion,html body a.btn-conversion,html body button.btn-conversion{--rs-btn-primary-bg:linear-gradient(180deg,#D8620F 0%,#C2510A 100%);--rs-btn-primary-bg-hover:#B04A08;--rs-btn-primary-fg:#fff;--rs-btn-shadow:0 10px 22px rgba(201,86,10,.28);--rs-g:#C9560A;--rs-l:#B04A08;background:#C9560A!important;background-image:linear-gradient(180deg,#D8620F 0%,#C2510A 100%)!important;border-color:#C2510A!important;color:#fff!important;box-shadow:0 10px 22px rgba(201,86,10,.28)!important}' +
     'html body .products-block .btn-cart:hover,html body .type-detail .p-to-cart-block .add-to-cart-button:hover,html body .rs-sb__btn:hover,html body .next-step .btn-conversion:hover,html body .next-step-forward:hover,html body .btn.btn-conversion:hover,html body a.btn-conversion:hover,html body button.btn-conversion:hover{background-image:linear-gradient(180deg,#C2510A 0%,#A84607 100%)!important;border-color:#A84607!important}' +
+    /* 8. 11. (Michael: „oranžová na stejných tlačítkách jako deNatura“): ve výpisu a karuselech Do košíku jen OBRYS oranžovou,
+       plné až po najetí – mřížka karet nekřičí; plné zůstává v detailu, v plovoucí bublině a v košíku. (Odznak počtu v hlavičce zatím ne – .cart-count je celé tlačítko.) */
+    'html body .products-block .product .btn-cart:not(#rsx){background:#fff!important;background-image:none!important;color:#B04A08!important;border:2px solid #C9560A!important;box-shadow:none!important}' +
+    'html body .products-block .product .btn-cart:not(#rsx) *{color:inherit!important}' +
+    'html body .products-block .product .btn-cart:not(#rsx):hover,html body .products-block .product .btn-cart:not(#rsx):focus-visible{background:#C9560A!important;background-image:linear-gradient(180deg,#D8620F 0%,#C2510A 100%)!important;color:#fff!important;box-shadow:0 8px 18px rgba(201,86,10,.25)!important}' +
     /* 8. 11.: hover bez bliknutí – dřív se při najetí vypnul gradient a barva pozadí se 0,2 s přelévala z průhledné;
        teď se jen vymění gradient za tmavší a animuje se pouze stín/posun */
     'html body .products-block .btn-cart,html body .type-detail .p-to-cart-block .add-to-cart-button,html body .rs-sb__btn,html body .next-step .btn-conversion,html body .next-step-forward,html body .btn.btn-conversion,html body a.btn-conversion,html body button.btn-conversion{background-color:#C9560A!important;transition:transform .2s,box-shadow .2s!important}' +
