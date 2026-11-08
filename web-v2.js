@@ -311,7 +311,7 @@
     '.rs-pg .rs-pg-tile:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(27,63,32,.2)}.rs-pg-tile:hover img{transform:scale(1.04)}' +
     '.rs-pg-faqsec{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:28px;align-items:start;scroll-margin-top:110px}.rs-pg-faqsec>figure{margin:0;position:sticky;top:110px}.rs-pg-faqsec>figure img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;display:block;margin:0;box-shadow:0 14px 30px rgba(27,63,32,.14)}' +
     '.rs-pg-faqsec>figure figcaption{font-size:13.5px;color:#5d6b5d;margin-top:8px;line-height:1.4}.rs-pg-faqsec h2{margin-top:0}.rs-pg-faqsec .rs-pg-faq{background:#fff;border:1px solid ' + LINE + ';border-radius:20px;padding:4px 22px}' +
-    '@media(max-width:991px){.rs-pg-tiles{grid-template-columns:1fr 1fr}.rs-pg-faqsec{grid-template-columns:1fr;gap:14px}.rs-pg-faqsec>figure{position:static}.rs-pg-faqsec>figure img{aspect-ratio:3/2;object-position:50% 22%}.rs-pg-faqsec>figure img.rs-pos-b{object-position:50% 80%}}' +
+    '@media(max-width:991px){.rs-pg-tiles{grid-template-columns:1fr 1fr}.rs-pg-faqsec{grid-template-columns:1fr;gap:14px}.rs-pg-faqsec>figure{position:static}.rs-pg-faqsec>figure img{aspect-ratio:3/2;object-position:50% 22%}.rs-pg-faqsec>figure img.rs-pos-b{object-position:50% 58%}}' +
     '@media(max-width:560px){.rs-pg-tiles{gap:10px}.rs-pg-tile span{left:12px;bottom:10px;font-size:15px}.rs-pg-tile small{font-size:12px}.rs-pg-faqsec .rs-pg-faq{padding:2px 14px}.rs-pg-faq details p{padding-right:0}}' +
     '.rs-pg-small{font-size:13.5px;color:#6b7a69}.rs-pg-form{padding:24px;border:1px solid ' + LINE + ';border-radius:22px;background:#fff}' +
     '.rs-pg-firma{padding:22px 24px;border-radius:20px;background:#f6faf1;border:1px solid ' + LINE + '}.rs-pg-firma-g{display:grid;grid-template-columns:1fr 1fr;gap:16px}.rs-pg-firma p{margin:0}' +
@@ -996,12 +996,14 @@
     var f = document.getElementById('footer'); if (!f || f.querySelector('.rs-foot')) return;
     var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
     var arts = [].map.call(f.querySelectorAll('.custom-footer__articles a'), function (a) { return [a.textContent.trim(), a.getAttribute('href')]; });
-    var poradime = /jak-vybrat|blog|kontakty|hodnoceni/;
+    var poradime = /jak-vybrat|blog|kontakty|hodnoceni|caste-dotazy/;
     var nakup = arts.filter(function (x) { return !poradime.test(x[1]); });
     var rady = arts.filter(function (x) { return poradime.test(x[1]); });
     /* nové informační stránky (18. 10.), pokud je Shoptet v patičce ještě nemá */
     [['Doprava', '/doprava/'], ['O nás', '/o-nas/']].forEach(function (x) { if (!arts.some(function (a) { return a[1].indexOf(x[1]) > -1; })) nakup.unshift(x); });
-    var li = function (x) { return '<li><a href="' + esc(x[1]) + '">' + esc(x[0]) + '</a></li>'; };
+    /* stránka Časté dotazy (8. 11.) – do „Poradíme vám“ jako první */
+    if (!arts.some(function (a) { return a[1].indexOf('/caste-dotazy/') > -1; })) rady.unshift(['Časté dotazy', '/caste-dotazy/']);
+    var li =function (x) { return '<li><a href="' + esc(x[1]) + '">' + esc(x[0]) + '</a></li>'; };
     var socs = [].map.call(f.querySelectorAll('.custom-footer__contact a[href*="facebook"],.custom-footer__contact a[href*="instagram"],.custom-footer__contact a[href*="youtube"]'), function (a) {
       var k = /facebook/.test(a.href) ? 'facebook' : /instagram/.test(a.href) ? 'instagram' : 'youtube';
       return '<a class="rs-foot__soc" href="' + esc(a.href) + '" target="_blank" rel="noopener" aria-label="' + k + '">' + SOC[k] + '</a>';
