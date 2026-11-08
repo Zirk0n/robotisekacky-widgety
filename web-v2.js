@@ -1333,15 +1333,52 @@
     });
   }
 
-  /* strukturovaná data FAQPage z bloků „Časté otázky“ na našich stránkách (.rs-pg-faq details) */
+  /* STRUKTUROVANÁ DATA (8. 11. 2026, pravidla: playbooky/webove-stranky/strukturovana-data.md)
+     Shoptet sám dává: Product+Offer+shipping (microdata), BreadcrumbList, WebSite+SearchAction, Article, Organization (minimální).
+     My doplňujeme: FAQPage ze všech typů FAQ bloků, VideoObject k YouTube videím, rozšířenou Organization (OnlineStore)
+     s adresou, kontaktem a pravidly vrácení (platí pro všechny produkty). Nic nevymýšlet – jen údaje viditelné na webu. */
+  function ldAdd(id, obj) { if (document.getElementById(id)) return; var s = document.createElement('script'); s.type = 'application/ld+json'; s.id = id; s.textContent = JSON.stringify(obj); document.head.appendChild(s); }
+  /* platné JSON-LD daného typu už na stránce je? (rozbité – např. useknutý popis – se nepočítá) */
+  function ldHas(type) { return [].some.call(document.querySelectorAll('script[type="application/ld+json"]'), function (x) { if (x.textContent.indexOf(type) < 0) return false; try { JSON.parse(x.textContent); return true; } catch (e) { return false; } }); }
   function faqSchema() {
-    var items = document.querySelectorAll('.rs-pg-faq details'); if (!items.length || document.getElementById('rs-faq-ld')) return;
-    if ([].some.call(document.querySelectorAll('script[type="application/ld+json"]'), function (x) { return /FAQPage/.test(x.textContent); })) return;
-    var q = [].map.call(items, function (d) { var s = d.querySelector('summary'); var a = d.cloneNode(true); var ss = a.querySelector('summary'); if (ss) ss.remove();
-      return { '@type': 'Question', name: (s ? s.textContent : '').trim(), acceptedAnswer: { '@type': 'Answer', text: a.textContent.trim() } }; }).filter(function (x) { return x.name && x.acceptedAnswer.text; });
+    if (document.getElementById('rs-faq-ld') || ldHas('FAQPage')) return;
+    var txt = function (el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }, q = [];
+    /* naše stránky a průvodci (details/summary) + FAQ v textech kategorií */
+    [].forEach.call(document.querySelectorAll('.rs-pg-faq details, .rs-cat-faq details, .rs-faq details'), function (d) { var a = d.cloneNode(true), s = a.querySelector('summary'); var n = txt(s); if (s) s.remove(); q.push([n, txt(a)]); });
+    /* FAQ v popisu produktu a služeb (šablona v2: .faq-item > .faq-question + .faq-answer) */
+    [].forEach.call(document.querySelectorAll('.faq-item'), function (d) { q.push([txt(d.querySelector('.faq-question')), txt(d.querySelector('.faq-answer'))]); });
+    var seen = {}; q = q.filter(function (x) { if (!x[0] || !x[1] || seen[x[0]]) return false; seen[x[0]] = 1; return true; });
     if (!q.length) return;
-    var ld = document.createElement('script'); ld.type = 'application/ld+json'; ld.id = 'rs-faq-ld';
-    ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: q }); document.head.appendChild(ld);
+    ldAdd('rs-faq-ld', { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: q.map(function (x) { return { '@type': 'Question', name: x[0], acceptedAnswer: { '@type': 'Answer', text: x[1] } }; }) });
+  }
+  /* VideoObject k vloženým YouTube videím; metadata (název, datum nahrání, délka) z videa.json na CDN – stahuje se jen na stránkách s videem.
+     Datum nahrání Google vyžaduje, proto video bez metadat přeskočíme. Aktualizace: nastroje/web/sd-videa.py */
+  function videoSchema() {
+    if (document.getElementById('rs-video-ld')) return;
+    var ids = [];
+    [].forEach.call(document.querySelectorAll('iframe[src*="youtube"], iframe[data-src*="youtube"]'), function (f) { var m = (f.getAttribute('src') || f.getAttribute('data-src') || '').match(/embed\/([A-Za-z0-9_-]{11})/); if (m && ids.indexOf(m[1]) < 0) ids.push(m[1]); });
+    if (!ids.length) return;
+    fetch('https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/sd/videa.json').then(function (r) { return r.json(); }).then(function (meta) {
+      var v = ids.map(function (id) { var x = meta[id]; if (!x || !x.up) return null;
+        return { '@type': 'VideoObject', name: x.name, description: x.desc || x.name, thumbnailUrl: ['https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'], uploadDate: x.up, duration: x.dur || undefined, embedUrl: 'https://www.youtube.com/embed/' + id, contentUrl: 'https://www.youtube.com/watch?v=' + id }; }).filter(Boolean);
+      if (v.length) ldAdd('rs-video-ld', { '@context': 'https://schema.org', '@graph': v });
+    }).catch(function () {});
+  }
+  /* obchod jako celek: údaje z obchodních podmínek a kontaktů (provozovatel, místo podnikání, IČO/DIČ, vrácení do 14 dnů na náklady zákazníka) */
+  function orgSchema() {
+    var logo = document.querySelector('img[src*="/user/logos/"]');
+    ldAdd('rs-org-ld', { '@context': 'https://schema.org', '@type': 'OnlineStore', '@id': 'https://www.robotisekacky.cz/#obchod',
+      name: 'Robotí Sekačky', alternateName: 'Robotisekacky.cz', url: 'https://www.robotisekacky.cz/',
+      logo: logo ? logo.src : undefined, image: FOTO,
+      description: 'Specializovaný e-shop s robotickými sekačkami, robotickými vysavači a bazénovými vysavači. Instalace, zprovoznění a servis u zákazníka.',
+      telephone: '+420792325839', email: 'info@robotisekacky.cz', vatID: 'CZ9801034705', taxID: '17981042', foundingDate: '2023',
+      legalName: 'Michael Boháček', address: { '@type': 'PostalAddress', streetAddress: 'Vysoké Studnice 74', postalCode: '588 21', addressLocality: 'Vysoké Studnice', addressCountry: 'CZ' },
+      founder: { '@type': 'Person', name: 'Michael Boháček', jobTitle: 'majitel, technik', image: FOTO, url: 'https://www.robotisekacky.cz/o-nas/' },
+      areaServed: { '@type': 'Country', name: 'Česká republika' },
+      contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', telephone: '+420792325839', email: 'info@robotisekacky.cz', availableLanguage: 'cs' },
+      sameAs: ['https://www.facebook.com/robotisekacky/', 'https://www.instagram.com/robotisekacky.cz/'],
+      hasMerchantReturnPolicy: { '@type': 'MerchantReturnPolicy', applicableCountry: 'CZ', returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow', merchantReturnDays: 14,
+        returnMethod: ['https://schema.org/ReturnByMail', 'https://schema.org/ReturnInStore'], returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility', merchantReturnLink: 'https://www.robotisekacky.cz/reklamace-a-vraceni-zbozi/' } });
   }
 
   /* lišta výhod (ESHOP BOOSTER: výhody na každé vstupní stránce, proklikávací) – kategorie + produkty bez widget-prodej (20. 10.) */
@@ -2360,7 +2397,7 @@
     b.addEventListener('click', function () { var o = p.classList.toggle('rs-fold--open'); b.setAttribute('aria-expanded', o); b.textContent = o ? 'Sbalit popis ↑' : 'Číst celý popis ↓'; if (!o) window.scrollTo({ top: Math.max(0, p.getBoundingClientRect().top + window.pageYOffset - 140), behavior: 'instant' }); });
   }
 
-  function run() { css(); try { calmCheckout(); } catch (e) {} try { noSide(); } catch (e) {} try { blogAll(); } catch (e) {} try { megaPos(); } catch (e) {} try { buyBox(); } catch (e) {} try { svcPage(); } catch (e) {} try { tabsScroll(); } catch (e) {} try { stickyBuy(); } catch (e) {} try { rsReviewCount(); } catch (e) {} [700, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { rsReviewCount(); } catch (e) {} try { shopRatingTop(); } catch (e) {} try { cleanVariants(); } catch (e) {} try { svcHours(); } catch (e) {} try { svcRealizace(); } catch (e) {} try { reviewDates(); } catch (e) {} }, t); }); try { akceKampan(); } catch (e) {} try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { appTyp(); } catch (e) {} try { topImgs(); } catch (e) {} try { catNeeds(); } catch (e) {} try { brandFold(); } catch (e) {} try { revTile(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
+  function run() { css(); try { calmCheckout(); } catch (e) {} try { noSide(); } catch (e) {} try { blogAll(); } catch (e) {} try { megaPos(); } catch (e) {} try { buyBox(); } catch (e) {} try { svcPage(); } catch (e) {} try { tabsScroll(); } catch (e) {} try { stickyBuy(); } catch (e) {} try { rsReviewCount(); } catch (e) {} [700, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { rsReviewCount(); } catch (e) {} try { shopRatingTop(); } catch (e) {} try { cleanVariants(); } catch (e) {} try { svcHours(); } catch (e) {} try { svcRealizace(); } catch (e) {} try { reviewDates(); } catch (e) {} }, t); }); try { akceKampan(); } catch (e) {} try { perexFold(); } catch (e) {} setTimeout(function () { try { trustTile(); } catch (e) {} try { payBlock(); } catch (e) {} }, 0); [600, 2000, 4500, 8000].forEach(function (t) { setTimeout(function () { try { heuEnhance(); } catch (e) {} }, t); }); try { copyrightYears(); } catch (e) {} try { headSearch(); } catch (e) {} try { deEmoji(); } catch (e) {} try { listCount(); } catch (e) {} try { hpOrder(); } catch (e) {} try { noSidebar(); } catch (e) {} [1500, 4000].forEach(function (t) { setTimeout(function () { try { deEmoji(); } catch (e) {} try { splatkyInfo(); } catch (e) {} }, t); }); try { splatkyInfo(); } catch (e) {} try { compare(); } catch (e) {} topbar(); try { cardPrices(); } catch (e) {} try { appTyp(); } catch (e) {} try { topImgs(); } catch (e) {} try { catNeeds(); } catch (e) {} try { brandFold(); } catch (e) {} try { revTile(); } catch (e) {} try { reviewDates(); } catch (e) {} try { recentViewed(); } catch (e) {} try { leadhubTeaser(); } catch (e) {} try { usps(); } catch (e) {} try { availColors(); } catch (e) {} try { [].forEach.call(document.querySelectorAll('img[src*="Sek%C3%A1%C4%8Dky"]'), function (im) { im.src = im.src.replace('Sek%C3%A1%C4%8Dky', 'Seka%C4%8Dky'); }); } catch (e) {} try { var ask = document.querySelector('.type-detail .link-icon.chat'); if (ask && !ask.classList.contains('rs-ask')) { ask.classList.add('rs-ask'); var sp = ask.querySelector('span'); if (sp) sp.innerHTML = '<span class="rs-ei" aria-hidden="true"><svg viewBox="0 0 24 24">' + NI.chat + '</svg></span>Poradit se s výběrem'; ask.title = 'Napište dotaz – odpoví vám Michael'; } } catch (e) {} sealRating(); megaMenu(); footer(); filtersOpen(); sliders(); try { filtersExtra(); } catch (e) {} try { filtersMobile(); } catch (e) {} try { paramTab(); } catch (e) {} try { homeBlocks(); } catch (e) {} try { faqSchema(); } catch (e) {} try { videoSchema(); } catch (e) {} try { orgSchema(); } catch (e) {} benefitCount(); topProducts(); soldOutLast(); try { cartRelated(); } catch (e) {} try { catBlocks(); } catch (e) {} try { checkoutNotes(); } catch (e) {} try { pageCss(); } catch (e) {} }
   window.addEventListener('load', function () { setTimeout(filtersOpen, 300); setTimeout(sealRating, 300); setTimeout(sealRating, 2500); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
   /* Shoptet po AJAXu filtrů přepisuje obsah → znovu */
