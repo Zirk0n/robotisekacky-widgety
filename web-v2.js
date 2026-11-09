@@ -306,7 +306,8 @@
     '@media(max-width:600px){.rs-pg-expert{flex-direction:column;gap:12px;padding:16px}.rs-pg-expert img{width:60px;height:60px;flex-basis:60px}}' +
     /* 9. 11. (Michael: „Bčko vypadá líp“): karta ve výpisu – oranžové tlačítko zůstává, zklidněné červené prvky:
        přeškrtnutá cena šedá, Skladem tučně se zelenou tečkou, štítek AKCE jen obrysem (−% pilulka zůstává červená) */
-    'html body .products-block .product .price-standard,html body .products-block .product .price-standard *{color:#7b867b!important;text-decoration-color:#9aa59a!important}' +
+    'html body .products-block .product .price-standard,html body .products-block .product .price-standard *,html body #products .product .prices .rs-was,html body #products .product .prices .rs-was s,html body .products-block .product .prices .rs-was,html body .products-block .product .prices .rs-was s{color:#7b867b!important;text-decoration-color:#9aa59a!important}' +
+    'html body #products .product .flags .flag.flag-action,html body .products-block .product .flags .flag.flag-action{background:#fff!important;color:#C9311B!important;border:1.5px solid #E4A196!important;box-shadow:none!important}' +
     /* barvu dostupnosti nechává Shoptet/availColors (zelená skladem, oranžová na objednávku) – jen tučně + tečka v barvě textu */
     'html body .products-block .product .availability,html body .products-block .product .availability *{font-weight:800!important}' +
     'html body .products-block .product .availability .availability-label::before,html body .products-block .product .availability>span:first-child::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:currentColor;margin-right:6px;vertical-align:1px}' +
