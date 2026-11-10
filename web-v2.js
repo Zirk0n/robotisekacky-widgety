@@ -2174,7 +2174,10 @@
   }
   /* statické stránky: prázdný levý panel Shoptetu posouval obsah doprava (O nás, Kontakty – Michael 30. 10.) */
   function noSidebar() {
-    var b = document.body, sb = document.querySelector('.sidebar-left'); if (!sb || !b.classList.contains('type-page')) return;
+    var b = document.body, sb = document.querySelector('.sidebar-left'); if (!sb) return;
+    /* 10. 11. (Michael): Hodnocení obchodu – panel je tam prázdný (obsah skrytý, formulář je v obsahu) → na celou šířku */
+    if (b.classList.contains('in-hodnoceni-obchodu')) { var vis = [].some.call(sb.querySelectorAll('*'), function (e) { return !e.children.length && e.offsetHeight > 0 && e.offsetWidth > 0 && (e.innerText || '').trim() && !/Postranní panel/.test(e.innerText); }); if (!vis) b.classList.add('rs-nosb'); return; }
+    if (!b.classList.contains('type-page')) return;
     if ((sb.innerText || '').replace(/\s+/g, '').length < 15 && !sb.querySelector('img, form, iframe')) b.classList.add('rs-nosb');
   }
   /* titulka: Nejprodávanější před Novinkami (EB: bestseller nese sociální důkaz) */
