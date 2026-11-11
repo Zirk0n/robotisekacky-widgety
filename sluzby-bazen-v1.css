@@ -289,3 +289,6 @@ body{margin:0;padding:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,A
 #description .rs-svc--bazen a:not(.cta):not(.price-cta):not(.btn){color:#0b7285}
 #description .rs-svc--bazen .hero .inner h2,#description .rs-svc--bazen .bottom .inner h2{color:#fff!important}
 #description .rs-svc--bazen .price-cta--email{background:#0c4a6e!important;border-color:#0c4a6e!important;color:#fff!important}
+
+/* tlačítka a odkazy webu (globální proměnné --rs-*) uvnitř modré služby do modra – web je má s !important zelené */
+.rs-svc--bazen{--rs-btn-accent-bg:#1098ad;--rs-btn-accent-bg-hover:#0b7285;--rs-btn-accent-fg:#fff;--rs-btn-primary-bg:#0c4a6e;--rs-btn-primary-bg-hover:#083a57;--rs-btn-primary-fg:#fff;--rs-g:#0c4a6e;--rs-l:#1098ad;--rs-line:#d8ecf2;--rs-soft:#eef8fb;--rs-soft2:#dff1f6}
