@@ -1107,7 +1107,7 @@
       if (document.querySelector('.rs-cat-review-track') && !document.getElementById('rs-cat-blue-css')) {
         var CB = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/cat-modre-v1';
         var lk = document.createElement('link'); lk.id = 'rs-cat-blue-css'; lk.rel = 'stylesheet'; lk.href = CB + '.css'; document.head.appendChild(lk);
-        if (!document.querySelector('.rs-cat-reviews--carousel[data-rs-js]')) { var sj = document.createElement('script'); sj.src = CB + '.js'; sj.defer = true; document.head.appendChild(sj); [].forEach.call(document.querySelectorAll('.rs-cat-reviews--carousel'), function (x) { x.setAttribute('data-rs-js', '1'); }); }
+        if (!document.querySelector('.rs-cat-reviews--carousel[data-rs-js]')) { var sj = document.createElement('script'); sj.src = CB + '.js'; sj.defer = true; if (/^https?:/.test(sj.src) && sj.src.indexOf(location.host) < 0) sj.crossOrigin = 'anonymous'; document.head.appendChild(sj); [].forEach.call(document.querySelectorAll('.rs-cat-reviews--carousel'), function (x) { x.setAttribute('data-rs-js', '1'); }); }
       }
       return;
     }
@@ -1445,7 +1445,7 @@
         if (/příslušenství|náhradní|nože|baterie|instalace|servis|zprovozn|předveden|obhlídk|oprava|dárkov|poukaz|zavlažov|reproduktor/i.test(cr)) return;
         window.__rsProdejType = seg === 'bazen' ? 'bazen' : seg === 'vysavac' ? 'vysavac' : seg === 'sekacka' ? 'sekacka' : '';
         if (!window.__rsProdejType) return;
-        var sc = document.createElement('script'); sc.src = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/widget-prodej.js'; sc.defer = true; document.head.appendChild(sc);
+        var sc = document.createElement('script'); sc.src = 'https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/widget-prodej.js'; sc.defer = true; sc.crossOrigin = 'anonymous'; document.head.appendChild(sc);
       }, 1500);
       return; }
     if (ok) fill();
