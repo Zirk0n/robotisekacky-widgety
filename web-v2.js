@@ -2047,7 +2047,7 @@
      Texty zákazníků v recenzích se nemění. */
   function deEmoji() {
     var RX = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{2604}\u{2607}-\u{262F}\u{2631}-\u{2712}\u{2716}-\u{276D}\u{2770}-\u{27BF}\u{2B50}️]/gu;
-    var MAP = { '🎁': 'gift', '☎': 'phone', '✉': 'mail2', '⭐': 'star', '💬': 'chat', '🏠': 'house', '🚚': 'truck', '✅': 'check', '🛠': 'wrench', '🔧': 'wrench', '📞': 'phone', '📱': 'phone', '🌿': 'sprout', '🌱': 'sprout', '🏊': 'pool', '🛡': 'shield', '💡': 'bulb', '👀': 'eye', '🗺': 'map', '📐': 'big', '🧭': 'compass', '🔁': 'cycle', '🔄': 'cycle', '♻': 'cycle', '🤝': 'chat', '⚙': 'wrench', '🔋': 'bulb', '📦': 'truck', '🏡': 'house', '❤': 'check', '👍': 'check' };
+    var MAP = { '🎁': 'gift', '🏆': 'star', '🥇': 'star', '🏅': 'star', '☎': 'phone', '✉': 'mail2', '⭐': 'star', '💬': 'chat', '🏠': 'house', '🚚': 'truck', '✅': 'check', '🛠': 'wrench', '🔧': 'wrench', '📞': 'phone', '📱': 'phone', '🌿': 'sprout', '🌱': 'sprout', '🏊': 'pool', '🛡': 'shield', '💡': 'bulb', '👀': 'eye', '🗺': 'map', '📐': 'big', '🧭': 'compass', '🔁': 'cycle', '🔄': 'cycle', '♻': 'cycle', '🤝': 'chat', '⚙': 'wrench', '🔋': 'bulb', '📦': 'truck', '🏡': 'house', '❤': 'check', '👍': 'check' };
     function swap(el) {
       if (!el || el.dataset.rsNoEmoji) return; el.dataset.rsNoEmoji = 1;
       [].slice.call(el.childNodes).forEach(function (n) {
@@ -2431,8 +2431,8 @@
     [].forEach.call(document.querySelectorAll('#description a[href^="tel:"]'), function (a) {
       if (a.dataset.rsH) return; a.dataset.rsH = 1; var box = a.parentElement; if (!box || /10\s*[–-]\s*20/.test(box.textContent) || (box.nextElementSibling && box.nextElementSibling.classList.contains('rs-hours'))) return;
       /* řada tlačítek (Zavolat + Napsat e-mail) → hodiny jako řádek pod ní; samostatný odkaz → hned za něj */
-      if (box.querySelectorAll('a').length >= 2) { var p = document.createElement('p'); p.className = 'rs-hours rs-hours--row'; p.textContent = 'Telefon beru 10–20 h'; box.insertAdjacentElement('afterend', p); }
-      else { var s = document.createElement('span'); s.className = 'rs-hours'; s.textContent = 'volejte 10–20 h'; a.insertAdjacentElement('afterend', s); }
+      if (box.querySelectorAll('a').length >= 2) { var p = document.createElement('p'); p.className = 'rs-hours rs-hours--row'; p.textContent = 'Telefon beru ' + HOURS; if (box.querySelector('.rs-hours')) return; if (box.parentElement && /grid|flex/.test(getComputedStyle(box.parentElement).display)) box.appendChild(p); else box.insertAdjacentElement('afterend', p); }
+      else { var s = document.createElement('span'); s.className = 'rs-hours'; s.textContent = 'volejte ' + HOURS; a.insertAdjacentElement('afterend', s); }
     });
   }
   /* 1. 11. (Michael): záložky bez ☰ – Shoptet (responsive-nav) přesouvá záložky, které se nevejdou, do skrytého seznamu
