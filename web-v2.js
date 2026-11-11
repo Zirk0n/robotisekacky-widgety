@@ -2405,8 +2405,13 @@
   var REAL = {
     sekacka: [[RJ + 'realizace-2026-10-palisada.webp', 'Mammotion LUBA', 'Středočeský kraj', 'Sečení těsně podél palisády'], [RJ + 'realizace-2026-05-plot.webp', 'Mammotion LUBA', 'Praha', 'Úzký pruh podél plotu a obrubníku'],
       [RJ + 'realizace-2026-04-sterk.webp', 'Mammotion LUBA', 'okolí Kroměříže', 'Sečení podél štěrkového chodníku'], [RJ + 'realizace-2026-05-pergola.webp', 'Mammotion LUBA', 'Praha', 'Kolem sloupu pergoly a mladých stromků'],
-      [RJ + 'realizace-2026-10-garaz.webp', 'Mammotion LUBA + garáž', 'Středočeský kraj', 'Nabíjecí stanice s garáží u terasy'], [RJ + 'realizace-2026-04-zahony.webp', 'Mammotion LUBA', 'Praha-západ', 'Mezi pěstebními truhlíky'],
+      [RJ + 'realizace-2026-luba-mini-03.webp', 'Mammotion LUBA mini', 'instalace u zákazníka', 'Bezdrátová sekačka na zahradě'], [RJ + 'realizace-2026-04-zahony.webp', 'Mammotion LUBA', 'Praha-západ', 'Mezi pěstebními truhlíky'],
       [RJ + 'realizace-2026-jezirko.webp', 'Mammotion LUBA', 'zahrada s jezírkem', 'Až k okraji jezírka a kolem sauny'], [RJ + 'realizace-2026-04-ker.webp', 'Mammotion LUBA', 'Praha-západ', 'Objíždí keře a záhony']],
+    /* drátové sekačky a pokládka kabelu (Michael 11. 11.: na stránce drátové instalace nemá být samá LUBA) */
+    dratova: [[RJ + 'realizace-dratova-01-zasekavani.webp', 'Zasekávání kabelu strojem', 'instalace u zákazníka', 'Obvodový kabel ukládáme do úzkého zářezu'], [RJ + 'realizace-dratova-02-gardena-novy-drat.webp', 'Gardena SILENO', 'instalace u zákazníka', 'Čerstvě zaseknutý obvodový kabel'],
+      [RJ + 'realizace-dratova-03-stroj-u-domu.webp', 'Kabel podél domu', 'instalace u zákazníka', 'Zasekávání kabelu podél domu'], [RJ + 'realizace-dratova-04-stanice.webp', 'Gardena SILENO', 'instalace u zákazníka', 'Umístění nabíjecí stanice'],
+      [RJ + 'realizace-dratova-05-gardena-plot.webp', 'Gardena SILENO', 'instalace u zákazníka', 'Sečení podél plotu a záhonu'], [RJ + 'realizace-dratova-06-sekacka-ve-stanici.webp', 'Drátová sekačka ve stanici', 'instalace u zákazníka', 'Stanice na okraji trávníku'],
+      [RJ + 'realizace-dratova-07-worx-stroj.webp', 'Worx Landroid', 'instalace u zákazníka', 'Pokládka kabelu strojem'], [RJ + 'realizace-dratova-08-gardena-travnik.webp', 'Gardena SILENO', 'instalace u zákazníka', 'Sekačka na trávníku po instalaci']],
     vysavac: [[RH + 'dreame-roller.webp', 'Robotický vysavač Dreame', 'u zákazníka doma', 'Zprovoznění: Wi-Fi, mapa bytu, plán úklidu'], [RH + 'ecovacs.webp', 'Robotický vysavač Ecovacs', 'u zákazníka doma', 'Zprovoznění a nastavení aplikace']],
     bazen: [[RH + 'aiper-scuba-s1-teplice.webp', 'Aiper Scuba S1', 'Teplice', 'Bazénový vysavač u zákazníka'], [RH + 'spino-e1-praha.webp', 'Mammotion Spino E1', 'Praha', 'Bazénový vysavač bez kabelu']]
   };
@@ -2414,8 +2419,8 @@
     if (!document.documentElement.classList.contains('rs-svc') || document.querySelector('.rs-svc-real')) return;
     var wrap = document.querySelector('#description .wrap'); if (!wrap) return;
     var h = ((document.querySelector('.p-detail-inner-header h1') || {}).textContent || '').toLowerCase();
-    var kind = /vysavač|vysavac/.test(h) && !/bazén|scuba|aiper/.test(h) ? 'vysavac' : /bazén|scuba|aiper|spino/.test(h) ? 'bazen' : 'sekacka';
-    var L = REAL[kind]; if (!L || !L.length) return;
+    var kind = /vysavač|vysavac/.test(h) && !/bazén|scuba|aiper/.test(h) ? 'vysavac' : /bazén|scuba|aiper|spino/.test(h) ? 'bazen' : (/drátov|obvodového drátu/.test(h) && !/bezdrát/.test(h)) ? 'dratova' : /konkurence/.test(h) ? 'mix' : 'sekacka';
+    var L = kind === 'mix' ? REAL.sekacka.slice(0, 4).concat(REAL.dratova.slice(0, 4)) : REAL[kind]; if (!L || !L.length) return;
     var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
     var sec = document.createElement('section'); sec.className = 'rs-svc-real card-glass';
     sec.innerHTML = '<h2 class="rs-svc-real__h">Z našich realizací</h2><p class="rs-svc-real__p">Skutečné fotky od zákazníků – žádné ilustrační obrázky.</p><div class="rsr3-g">' +
