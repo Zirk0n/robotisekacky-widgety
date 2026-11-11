@@ -178,7 +178,7 @@
     '.ordering-process input[name="consents[]"]+label{font-weight:700!important;color:' + G + '!important;font-size:15.5px!important}' +
     '.ordering-process .form-group:has(> input[name="consents[]"]):has(> input:checked){border-color:' + G + ';background:#eef6e6}' +
     '.ordering-process .form-group:has(> #consentszboziConsent),.ordering-process .form-group:has(> #consentsheurekaConsent),.ordering-process .form-group:has(> #consentsproductRatingRequestOptOut){opacity:.72;margin:2px 0!important}' +
-    '.ordering-process #consentszboziConsent+label,.ordering-process #consentsheurekaConsent+label,.ordering-process #consentsproductRatingRequestOptOut+label{font-size:12.5px!important;color:#6b7a69!important;font-weight:400!important}' +
+    '.ordering-process #consentszboziConsent+label,.ordering-process #consentsheurekaConsent+label,.ordering-process #consentsproductRatingRequestOptOut+label{font-size:13px!important;color:#6b7a69!important;font-weight:400!important}' +
     '.rs-optout-note{font-size:13px;color:#4f5d4c;margin:14px 0 4px;padding-left:2px}.rs-optout-note b{color:' + G + '}' +
     /* košík – dárek zdarma výrazněji */
     '.free-product-gifts-wrapper .free-product-gifts>li,.free-product-gifts>li{position:relative;border:2px solid #f2c94c!important;border-radius:16px!important;background:linear-gradient(135deg,#fffaf0,#fff3d6)!important;padding:14px 16px 14px 16px!important;box-shadow:0 10px 24px rgba(242,201,76,.25)}' +
@@ -252,7 +252,7 @@
     '.rs-akce-kicker{display:inline-block;margin:0 0 10px!important;padding:5px 13px;border-radius:999px;background:#d92d20;color:#fff!important;font-size:13px!important;font-weight:800;letter-spacing:.04em;text-transform:uppercase}' +
     '.rs-akce-termin{font-weight:700;color:#fff!important}.rs-akce-odpocet{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 0}.rs-akce-odpocet__t{font-weight:700;margin-right:4px}' +
     '.rs-akce-odpocet b{display:inline-flex;flex-direction:column;align-items:center;min-width:58px;padding:7px 10px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);font-size:22px;line-height:1.05;font-variant-numeric:tabular-nums}' +
-    '.rs-akce-odpocet b small{font-size:11px;font-weight:600;opacity:.8;margin-top:2px}' +
+    '.rs-akce-odpocet b small{font-size:13px;font-weight:600;opacity:.8;margin-top:2px}' +
     '.rs-akce-intro{color:#3d4a3d;font-size:15.5px;line-height:1.55;margin:0;max-width:900px}' +
     /* položka „Akce“ v hlavním menu červeně (jako u EB e-shopů – akce má být vidět) */
     '.menu-level-1>li>a[href$="/akce/"],.menu-level-1>li>a[href$="/akce/"] b{color:#c4170f!important}' +
@@ -302,7 +302,7 @@
     '.rs-pg-faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}.rs-pg-faq details p{margin:0 0 14px;padding-right:40px}' +
     /* 8. 11. (Michael: „rada odborníka je u nás fajn věc“): blok rady s fotkou – kategorie, průvodci, FAQ (bez svislé čáry) */
     '.rs-pg-expert{display:flex;gap:18px;align-items:flex-start;background:#f5faf0;border:1px solid #dce9cf;border-radius:20px;padding:20px 22px;margin:22px 0}.rs-pg-expert img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:0 0 72px;border:3px solid #86bb41;margin:0}' +
-    '.rs-pg-expert__k{font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#4d7a2a;margin:0 0 6px!important}.rs-pg-expert blockquote{margin:0 0 8px;padding:0;border:0;font-size:16.5px;line-height:1.55;color:#1f2a1f;font-style:normal}.rs-pg-expert cite{font-style:normal;font-size:14px;color:#5d6b5d}.rs-pg-expert cite b{color:#1b3f20}' +
+    '.rs-pg-expert__k{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#4d7a2a;margin:0 0 6px!important}.rs-pg-expert blockquote{margin:0 0 8px;padding:0;border:0;font-size:16.5px;line-height:1.55;color:#1f2a1f;font-style:normal}.rs-pg-expert cite{font-style:normal;font-size:14px;color:#5d6b5d}.rs-pg-expert cite b{color:#1b3f20}' +
     '@media(max-width:600px){.rs-pg-expert{flex-direction:column;gap:12px;padding:16px}.rs-pg-expert img{width:60px;height:60px;flex-basis:60px}}' +
     /* 9. 11. (Michael: „Bčko vypadá líp“): karta ve výpisu – oranžové tlačítko zůstává, zklidněné červené prvky:
        přeškrtnutá cena šedá, Skladem tučně se zelenou tečkou, štítek AKCE jen obrysem (−% pilulka zůstává červená) */
@@ -334,7 +334,7 @@
     '.rs-pg-faqsec{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:28px;align-items:start;scroll-margin-top:110px}.rs-pg-faqsec>figure{margin:0;position:sticky;top:110px}.rs-pg-faqsec>figure img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;display:block;margin:0;box-shadow:0 14px 30px rgba(27,63,32,.14)}' +
     '.rs-pg-faqsec>figure figcaption{font-size:13.5px;color:#5d6b5d;margin-top:8px;line-height:1.4}.rs-pg-faqsec h2{margin-top:0}.rs-pg-faqsec .rs-pg-faq{background:#fff;border:1px solid ' + LINE + ';border-radius:20px;padding:4px 22px}' +
     '@media(max-width:991px){.rs-pg-tiles{grid-template-columns:1fr 1fr}.rs-pg-faqsec{grid-template-columns:1fr;gap:14px}.rs-pg-faqsec>figure{position:static}.rs-pg-faqsec>figure img{aspect-ratio:3/2;object-position:50% 22%}.rs-pg-faqsec>figure img.rs-pos-b{object-position:50% 58%}}' +
-    '@media(max-width:560px){.rs-pg-tiles{gap:10px}.rs-pg-tile span{left:12px;bottom:10px;font-size:15px}.rs-pg-tile small{font-size:12px}.rs-pg-faqsec .rs-pg-faq{padding:2px 14px}.rs-pg-faq details p{padding-right:0}}' +
+    '@media(max-width:560px){.rs-pg-tiles{gap:10px}.rs-pg-tile span{left:12px;bottom:10px;font-size:15px}.rs-pg-tile small{font-size:13px}.rs-pg-faqsec .rs-pg-faq{padding:2px 14px}.rs-pg-faq details p{padding-right:0}}' +
     '.rs-pg-small{font-size:13.5px;color:#6b7a69}.rs-pg-form{padding:24px;border:1px solid ' + LINE + ';border-radius:22px;background:#fff}' +
     '.rs-pg-firma{padding:22px 24px;border-radius:20px;background:#f6faf1;border:1px solid ' + LINE + '}.rs-pg-firma-g{display:grid;grid-template-columns:1fr 1fr;gap:16px}.rs-pg-firma p{margin:0}' +
     '@media(max-width:991px){.rs-pg-hero{grid-template-columns:1fr;padding:22px}.rs-pg-hero-f--sm{justify-self:start;max-width:220px}.rs-pg-grid,.rs-pg-steps{grid-template-columns:1fr 1fr}.rs-pg-gal{grid-template-columns:repeat(3,1fr)}.rs-pg-hero h2{font-size:27px}}' +
@@ -360,11 +360,11 @@
     '.rs-rel-strip .cart-related-product{flex:0 0 250px;scroll-snap-align:start;display:grid!important;grid-template-columns:52px 1fr;grid-template-rows:auto auto;column-gap:10px;row-gap:6px;align-items:center;margin:0!important;padding:10px 12px!important;border:1px solid ' + LINE + '!important;border-radius:16px!important;background:#fff!important;box-shadow:0 6px 16px rgba(27,63,32,.06);float:none!important;width:auto!important}' +
     '.rs-rel-strip .cart-related-info{display:contents!important}' +
     '.rs-rel-strip .cart-related-img{grid-row:1/3;grid-column:1}.rs-rel-strip .cart-related-img img{width:52px!important;height:52px!important;object-fit:contain}' +
-    '.rs-rel-strip .cart-related-name{grid-column:2;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:12.5px!important;line-height:1.3;font-weight:700;color:' + G + '!important;white-space:normal!important}' +
+    '.rs-rel-strip .cart-related-name{grid-column:2;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13px!important;line-height:1.3;font-weight:700;color:' + G + '!important;white-space:normal!important}' +
     '.rs-rel-strip .cart-related-availability{display:none!important}' +
     '.rs-rel-strip .cart-related-button{grid-column:2;display:flex!important;align-items:center;justify-content:space-between;gap:8px;float:none!important;width:auto!important;padding:0!important;white-space:nowrap}' +
     '.rs-rel-strip .cart-related-button .price{font-size:13px!important;color:' + G + '!important;margin:0!important}' +
-    '.rs-rel-strip .cart-related-button .btn,.rs-rel-strip .cart-related-button button{padding:5px 12px!important;font-size:12px!important;text-transform:none!important;letter-spacing:0!important;border-radius:999px!important;min-height:0!important;line-height:1.2!important;background:' + G + '!important;color:#fff!important;border:0!important}' +
+    '.rs-rel-strip .cart-related-button .btn,.rs-rel-strip .cart-related-button button{padding:5px 12px!important;font-size:13px!important;text-transform:none!important;letter-spacing:0!important;border-radius:999px!important;min-height:0!important;line-height:1.2!important;background:' + G + '!important;color:#fff!important;border:0!important}' +
     '.rs-rel-strip .cart-related-button .btn::after,.rs-rel-strip .cart-related-button .btn::before,.rs-rel-strip .cart-related-button button::after,.rs-rel-strip .cart-related-button button::before{display:none!important}' +
     '.rs-rel-strip .rs-rel-na{opacity:.55}' +
     /* „Více“ jako přehledný panel (Michael 17. 10.): skupiny vedle sebe ve sloupcích místo dlouhého seznamu */
@@ -383,10 +383,10 @@
     '.rs-topbar svg{width:15px;height:15px;flex:0 0 15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
     '.rs-topbar .rs-topbar__kontakt{border:1px solid rgba(255,255,255,.45);border-radius:999px;padding:4px 12px}' +
     '.rs-topbar__who{display:inline-flex;align-items:center;gap:7px;opacity:.95;white-space:nowrap}.rs-topbar__who img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid var(--rs-l)}' +
-    '.rs-seal{display:none}@media(min-width:1600px){#header .heureka-header-seal{width:auto!important;flex:0 0 auto!important;gap:8px;padding-right:6px}.rs-seal{display:flex;flex-direction:column;line-height:1.15;font-size:12.5px;color:var(--rs-g);white-space:nowrap}.rs-seal b{font-size:14px}.rs-seal i{color:#f5b301;font-style:normal;letter-spacing:1px}}' +
+    '.rs-seal{display:none}@media(min-width:1600px){#header .heureka-header-seal{width:auto!important;flex:0 0 auto!important;gap:8px;padding-right:6px}.rs-seal{display:flex;flex-direction:column;line-height:1.15;font-size:13px;color:var(--rs-g);white-space:nowrap}.rs-seal b{font-size:14px}.rs-seal i{color:#f5b301;font-style:normal;letter-spacing:1px}}' +
     '@media(max-width:1199px){.rs-topbar__wt{display:none}.rs-topbar__who img{width:24px;height:24px}}' +
     '@media(max-width:991px){.rs-topbar__claim{display:none}.rs-topbar__in{justify-content:center;padding:6px 12px}.rs-topbar__links{gap:14px}}' +
-    '@media(max-width:420px){.rs-topbar{font-size:12.5px}.rs-topbar__links{gap:10px}.rs-topbar .rs-topbar__mail span{display:none}.rs-topbar .rs-topbar__kontakt{padding:3px 10px}}' +
+    '@media(max-width:420px){.rs-topbar{font-size:13px}.rs-topbar__links{gap:10px}.rs-topbar .rs-topbar__mail span{display:none}.rs-topbar .rs-topbar__kontakt{padding:3px 10px}}' +
     /* --- 2) hlavička a menu (liquid glass) --- */
     '#header{background:#fff!important;border-bottom:1px solid ' + LINE + ';transition:box-shadow .25s}' +
     '@media(min-width:992px){#header{background:rgba(255,255,255,.86)!important;-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px)}}' +
@@ -409,14 +409,14 @@
     '#navigation .rs-mega .rs-mega__img img{max-width:46px;max-height:30px;object-fit:contain}' +
     '#navigation .rs-mega>li.rs-mega__foot{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;padding:10px 12px;border-radius:14px;background:#f2f7ec;font-size:14px;color:#3d4a3d}' +
     '#navigation .rs-mega>li.rs-mega__quick{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:6px;padding:10px 4px 2px;border-top:1px solid ' + LINE + '}' +
-    '#navigation .rs-mega>li.rs-mega__quick b{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--rs-muted);margin-right:4px}' +
+    '#navigation .rs-mega>li.rs-mega__quick b{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--rs-muted);margin-right:4px}' +
     '#navigation .rs-mega>li.rs-mega__quick a{display:inline-flex!important;padding:6px 12px!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-pill)!important;background:#fff!important;font-size:13px!important;font-weight:700!important;color:' + G + '!important;line-height:1.2!important;transition:transform var(--rs-ease),box-shadow var(--rs-ease)}' +
     '#navigation .rs-mega>li.rs-mega__quick a:hover{transform:translateY(-2px);box-shadow:var(--rs-shadow-hover)}' +
     /* „Více“: skupiny jako nadpisy, rychlé odkazy i tady, kolečko neskroluje stránku pod menu */
     '.menu-helper .menu-level-1,.menu-helper>ul{overscroll-behavior:contain;padding-bottom:8px!important}.menu-helper .menu-level-1>li>a,.menu-helper .menu-level-1>li>a>b,.menu-helper>ul>li>a{font-weight:800!important;color:' + G + '!important;font-size:14.5px!important;padding-top:10px!important}' +
     '.menu-helper>ul>li>a .submenu-arrow,.menu-helper>ul>li>a::after,.menu-helper .menu-level-1>li>a::after{display:none!important}' +
     '.menu-helper .rs-mega__quick{display:flex!important;flex-wrap:wrap;gap:5px;padding:2px 10px 10px 20px!important;border:0!important;margin:0!important}.menu-helper .rs-mega__quick b{display:none}' +
-    '.menu-helper .rs-mega__quick a{padding:4px 10px!important;font-size:12px!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-pill)!important;background:#fff!important;color:' + G + '!important;font-weight:700!important;display:inline-flex!important}' +
+    '.menu-helper .rs-mega__quick a{padding:4px 10px!important;font-size:13px!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-pill)!important;background:#fff!important;color:' + G + '!important;font-weight:700!important;display:inline-flex!important}' +
     '#navigation .rs-mega>li.rs-mega__foot a{display:inline-flex!important;padding:0!important;background:none!important;font-weight:800;color:' + G + '!important}' +
     '.menu-helper .menu-level-1{border:1px solid ' + LINE + '!important;border-radius:18px!important;box-shadow:0 24px 48px rgba(27,63,32,.16)!important;padding:10px!important;background:#fff!important;margin-top:6px}' +
     '.menu-helper .menu-level-1>li>a{border-radius:10px;padding:9px 12px!important;color:' + G + '!important;font-weight:700}' +
@@ -425,11 +425,11 @@
     /* 1. 11.: pilulka odsazená od okrajů a zarovnaná s obsahem (dřív šla od kraje okna a zaoblený roh odhaloval bílý „čtvereček“);
        mezera nad ní je padding bílého obalu, ne margin (ten propadl ven a ukazoval jiný odstín pozadí body) */
     '@media(min-width:992px){#content-wrapper:has(>.breadcrumbs){padding-top:12px}}' +
-    '.breadcrumbs{background:#f2f7ec!important;box-shadow:none!important;clip-path:none!important;border-radius:999px;margin:0 auto 4px!important;padding-left:18px!important;padding-right:18px!important;width:auto!important;box-sizing:border-box}.breadcrumbs::before,.breadcrumbs::after{display:none!important}' +
+    '.breadcrumbs{background:#f4f5f3!important;box-shadow:none!important;clip-path:none!important;border-radius:999px;margin:0 auto 4px!important;padding-left:18px!important;padding-right:18px!important;width:auto!important;box-sizing:border-box}.breadcrumbs::before,.breadcrumbs::after{display:none!important}' +
     /* detail produktu má obal na celou šířku okna (container_resetted) → pilulku zúžit na šířku obsahu (padding 20 px, max 1418 px) */
     '.container_resetted>.breadcrumbs{width:calc(100% - 40px)!important;max-width:1418px}' +
     '@media(max-width:767px){.container_resetted>.breadcrumbs{width:calc(100% - 24px)!important}}' +
-    '.breadcrumbs,.breadcrumbs a,.breadcrumbs span{color:' + G + '!important}.breadcrumbs a{font-weight:600}' +
+    '.breadcrumbs,.breadcrumbs a,.breadcrumbs span{color:#5f6b60!important}.breadcrumbs a{font-weight:600}.breadcrumbs a:hover,.breadcrumbs a:hover span{color:' + G + '!important}' +
     /* mobilní menu */
     '@media(max-width:991px){.navigation-window-visible #navigation{background:#fff}' +
     '#navigation .menu-level-1>li{border-bottom:1px solid ' + LINE + '}' +
@@ -454,7 +454,7 @@
     '.products-block .btn-cart,.products-block .p-tools .btn{background:' + G + '!important;border-color:' + G + '!important;color:#fff!important;border-radius:999px!important;text-transform:none!important;font-weight:700!important;letter-spacing:0!important}' +
     '.products-block .btn-cart:hover,.products-block .p-tools .btn:hover{background:' + L + '!important;border-color:' + L + '!important}' +
     '.products-block .p-tools .btn[href]{background:#fff!important;color:' + G + '!important;border:2px solid ' + G + '!important}' +
-    '.products-block .flags .flag{border-radius:999px!important;padding:3px 10px!important;font-weight:700!important;font-size:11px!important;margin:0 0 4px!important;box-shadow:0 4px 10px rgba(0,0,0,.08)}' +
+    '.products-block .flags .flag{border-radius:999px!important;padding:3px 10px!important;font-weight:700!important;font-size:13px!important;margin:0 0 4px!important;box-shadow:0 4px 10px rgba(0,0,0,.08)}' +
     '.products-block .flags .flag::before,.products-block .flags .flag::after{display:none!important}' +
     '.products-block .flags-default{left:12px!important;top:12px!important}' +
     '@media(max-width:767px){.products-block{margin-left:-4px!important;margin-right:-4px!important;width:auto!important}.products-block .product{padding:4px!important}.products-block .product .p{border-radius:16px!important}}' +
@@ -499,12 +499,17 @@
     /* plovoucí bublina Do košíku (stickyBuy): jen mobil, vzdušná pilulka s odsazením od okrajů (Michael: ne celá lišta);
        objeví se, když nákupní tlačítko není na obrazovce; vpravo místo pro chat, telefon a hláška se posunou nad ni */
     '.rs-sb{display:none}' +
-    '@media(max-width:767px){.rs-sb{display:flex;align-items:center;gap:10px;position:fixed;left:12px;right:88px;bottom:calc(14px + env(safe-area-inset-bottom));max-width:340px;z-index:900;padding:6px 6px 6px 16px;border-radius:999px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid #e3eed8;box-shadow:0 10px 28px rgba(27,63,32,.18);opacity:0;transform:translateY(14px) scale(.98);transition:opacity .2s ease,transform .25s ease;pointer-events:none}' +
-    '.rs-sb.on{opacity:1;transform:none;pointer-events:auto}html.rs-cmp-bar .rs-sb{display:none}' +
+    /* 10. 11. (Michael): bublina i na počítači (uprostřed dole, jen na šířku obsahu), ukazuje slevu; na mobilu bez
+       telefonního tlačítka šablony (volání je v hlavičce) a bez spodního odsazení stránky (dělalo neprůhledný pruh za lištou Safari) */
+    '.rs-sb{display:flex;align-items:center;gap:10px;position:fixed;bottom:calc(14px + env(safe-area-inset-bottom));z-index:900;padding:6px 6px 6px 16px;border-radius:999px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid #e3eed8;box-shadow:0 10px 28px rgba(27,63,32,.18);opacity:0;transition:opacity .2s ease,transform .25s ease;pointer-events:none}' +
+    '.rs-sb.on{opacity:1;pointer-events:auto}html.rs-cmp-bar .rs-sb{display:none}' +
     '.rs-sb__img{display:none}' +
-    '.rs-sb__t{display:flex;flex-direction:column;min-width:0;flex:1 1 auto;line-height:1.15}.rs-sb__p{font-size:16px;font-weight:800;color:#1b3f20;white-space:nowrap}.rs-sb__a{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}' +
+    '.rs-sb__t{display:flex;flex-direction:column;min-width:0;flex:1 1 auto;line-height:1.15}.rs-sb__p{font-size:16px;font-weight:800;color:#1b3f20;white-space:nowrap}.rs-sb__a{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}' +
+    '.rs-sb__d{display:inline-block;margin-left:7px;padding:1px 7px;border-radius:999px;background:#d92d20;color:#fff;font-size:13px;font-weight:800;font-style:normal;vertical-align:1px}.rs-sb__d:empty{display:none}' +
     '.rs-sb__btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;border:0;border-radius:999px;background:' + G + ';color:#fff;font-weight:800;font-size:15px;padding:11px 16px;box-shadow:0 6px 14px rgba(27,63,32,.22);cursor:pointer;font-family:inherit}.rs-sb__btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
-    'html.rs-sb-on #fab{bottom:calc(76px + env(safe-area-inset-bottom))!important}html.rs-sb-on .site-msg.information{bottom:calc(76px + env(safe-area-inset-bottom))!important}html.rs-sb-on body.type-detail{padding-bottom:76px}}' +
+    '@media(max-width:767px){.rs-sb{left:12px;right:88px;max-width:340px;transform:translateY(14px) scale(.98)}.rs-sb.on{transform:none}#fab{display:none!important}.page-tint{display:none!important}html.rs-sb-on .site-msg.information{bottom:calc(76px + env(safe-area-inset-bottom))!important}}' +
+    '@media(min-width:768px){.rs-sb{left:50%;gap:14px;padding:7px 7px 7px 9px;transform:translate(-50%,14px)}.rs-sb.on{transform:translate(-50%,0)}.rs-sb__img{display:block;width:46px;height:46px;border-radius:50%;object-fit:contain;background:#fff;border:1px solid #e3eed8}.rs-sb__n{display:block;font-size:13px;font-weight:700;color:#3d4a3d;max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rs-sb__btn{padding:12px 22px}}' +
+    '@media(max-width:767px){.rs-sb__n{display:none}}' +
     '.type-detail .p-to-cart-block .add-to-cart-button,.type-detail .p-to-cart-block .btn-conversion{background:' + G + '!important;border-color:' + G + '!important;color:#fff!important;border-radius:999px!important;font-weight:800!important;text-transform:none!important;letter-spacing:0!important;padding-left:26px!important;padding-right:26px!important;box-shadow:0 10px 22px rgba(27,63,32,.18)}' +
     '.type-detail .p-to-cart-block .add-to-cart-button:hover{background:' + L + '!important;border-color:' + L + '!important}' +
     '.type-detail .p-to-cart-block .quantity{border-radius:999px!important;overflow:hidden;border:1px solid ' + LINE + '!important}' +
@@ -579,7 +584,7 @@
     '.rs-range input[type=range]::-webkit-slider-thumb{pointer-events:auto;-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid ' + G + ';box-shadow:0 3px 8px rgba(0,0,0,.18);cursor:pointer}' +
     '.rs-range input[type=range]::-moz-range-thumb{pointer-events:auto;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid ' + G + ';box-shadow:0 3px 8px rgba(0,0,0,.18);cursor:pointer}' +
     '.rs-range input[type=range]::-webkit-slider-runnable-track{background:none}.rs-range input[type=range]::-moz-range-track{background:none}' +
-    '.rs-range__hint{font-size:12.5px;color:#6b7a67;margin-top:2px}.rs-range__reset{background:none;border:0;padding:0;color:' + G + ';text-decoration:underline;font-size:12.5px;cursor:pointer;margin-left:6px}' +
+    '.rs-range__hint{font-size:13px;color:#6b7a67;margin-top:2px}.rs-range__reset{background:none;border:0;padding:0;color:' + G + ';text-decoration:underline;font-size:13px;cursor:pointer;margin-left:6px}' +
     '.rs-range-src{display:none!important}' +
     /* --- 5) patička (vlastní rozložení podle e-shopů ESHOP BOOSTER: 4 sloupce + pruh plateb) --- */
     '#footer{background:' + G + '!important;color:#e9f1e3;border-radius:28px 28px 0 0;margin-top:40px;overflow:hidden}' +
@@ -632,7 +637,7 @@
     '#navigation .rs-mega .rs-mega__img img{max-width:38px!important;max-height:24px!important;width:auto!important;height:auto!important;object-fit:contain}' +
     '#navigation .rs-mega>li.rs-mega__guide,#navigation .rs-mega>li.rs-mega__quick,#navigation .rs-mega>li.rs-mega__foot{grid-column:1/-1}' +
     '#navigation .rs-mega>li.rs-mega__quick{display:flex!important;flex-wrap:wrap;align-items:center;gap:6px;padding:6px 0 0!important}' +
-    '#navigation .rs-mega>li.rs-mega__quick b{width:100%;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#5e655c;margin:2px 0}' +
+    '#navigation .rs-mega>li.rs-mega__quick b{width:100%;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#5e655c;margin:2px 0}' +
     '#navigation .rs-mega>li.rs-mega__quick a{display:inline-flex!important;min-height:0!important;padding:7px 12px!important;border:1px solid ' + LINE + '!important;border-radius:var(--rs-pill)!important;background:#fff!important;color:' + G + '!important;font-size:13.5px!important;font-weight:700!important}' +
     '#navigation .rs-mega>li.rs-mega__foot{display:flex!important;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 12px;margin-top:4px!important;padding:10px 12px!important;border-radius:12px;background:#e9f3dd!important;color:#3d4a3d;font-size:13.5px}' +
     '#navigation .rs-mega>li.rs-mega__foot a{display:inline!important;padding:0!important;min-height:0!important;border:0!important;background:none!important;color:' + G + '!important;font-weight:800!important}' +
@@ -661,14 +666,14 @@
     '.flags-extra{right:10px!important;bottom:10px!important}' +
     '.flags-extra .flag.flag-discount{width:auto!important;height:auto!important;min-width:0!important;min-height:0!important;border-radius:999px!important;padding:6px 13px!important;background:#d92d20!important;box-shadow:0 8px 18px rgba(196,23,15,.22)!important;flex-direction:row!important;align-items:center!important;justify-content:center!important}' +
     '.flags-extra .flag.flag-discount::before,.flags-extra .flag.flag-discount::after{display:none!important}' +
-    '.flags-extra .flag-discount .price-standard{display:inline-block!important;margin:0 8px 0 0!important;padding:0 8px 0 0!important;border-right:1px solid rgba(255,255,255,.45)!important;background:none!important;color:rgba(255,255,255,.88)!important;font-size:12.5px!important;font-weight:600!important;line-height:1.1!important;white-space:nowrap}' +
+    '.flags-extra .flag-discount .price-standard{display:inline-block!important;margin:0 8px 0 0!important;padding:0 8px 0 0!important;border-right:1px solid rgba(255,255,255,.45)!important;background:none!important;color:rgba(255,255,255,.88)!important;font-size:13px!important;font-weight:600!important;line-height:1.1!important;white-space:nowrap}' +
     '.flags-extra .flag-discount .price-standard span{text-decoration:line-through!important;color:inherit!important;font-size:inherit!important}' +
     '.type-detail .p-image .flags-extra .flag-discount .price-standard{font-size:14px!important}' +
     '.flags-extra .flag.flag-discount,.flags-extra .flag.flag-discount *{text-transform:none!important;white-space:nowrap!important;letter-spacing:0!important}' +
-    '@media(max-width:767px){.products-block .flags-extra{right:6px!important;bottom:6px!important}.products-block .flags-extra .flag.flag-discount{padding:4px 9px!important}.products-block .flags-extra .flag-discount .price-standard{font-size:11px!important;margin-right:5px!important;padding-right:5px!important}.products-block .flags-extra .flag-discount .price-save{font-size:12px!important}}' +
+    '@media(max-width:767px){.products-block .flags-extra{right:6px!important;bottom:6px!important}.products-block .flags-extra .flag.flag-discount{padding:4px 9px!important}.products-block .flags-extra .flag-discount .price-standard{font-size:13px!important;margin-right:5px!important;padding-right:5px!important}.products-block .flags-extra .flag-discount .price-save{font-size:13px!important}}' +
     // Štítky v kartách výpisu na mobilu (Michael 26. 10.: zakrývaly obrázek): jeden řádek nahoře, menší, bez kapitálek;
     // „Akce“ se skryje, když karta má štítek slevy (−18 % říká totéž).
-    '@media(max-width:767px){html body .product .image .flags-default{top:6px!important;left:6px!important;right:6px!important;display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;gap:4px!important}html body .product .image .flags-default .flag{font-size:10px!important;padding:2px 7px!important;margin:0!important;text-transform:none!important;line-height:1.4!important;letter-spacing:0!important}html body .product:has(.flag-discount) .image .flag-action{display:none!important}html body .products-block .flags-extra{left:6px!important;right:auto!important}html body .products-block .flags-extra .flag.flag-discount{padding:3px 8px!important}}' +
+    '@media(max-width:767px){html body .product .image .flags-default{top:6px!important;left:6px!important;right:6px!important;display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;gap:4px!important}html body .product .image .flags-default .flag{font-size:13px!important;padding:2px 7px!important;margin:0!important;text-transform:none!important;line-height:1.4!important;letter-spacing:0!important}html body .product:has(.flag-discount) .image .flag-action{display:none!important}html body .products-block .flags-extra{left:6px!important;right:auto!important}html body .products-block .flags-extra .flag.flag-discount{padding:3px 8px!important}}' +
     // Přeškrtnutá cena u aktuální ceny v kartě (cardPrices), kód produktu ve výpisu skrytý (EB audit 27. 10.)
     // Michael 27. 10.: přeškrtnutou cenu zvýraznit (červená, tučnější, větší), pilulku −% vpravo
     'html body .product .prices .rs-was{display:block!important;font-size:16px!important;font-weight:700!important;color:#c8281e!important;line-height:1.2!important;margin:0 0 2px!important}html body .product .prices .rs-was s{text-decoration:line-through!important;text-decoration-thickness:2px!important;color:inherit!important}' +
@@ -699,7 +704,7 @@
     '.rs-pg-ic svg{display:block}.rs-pg-social{text-align:center;font-size:13.5px;color:#6b7468;margin:18px 0 0!important}.rs-pg-social a{color:#3f5a3c!important}' +
     '@media(max-width:767px){.rs-pg-grid.rs-pg-grid--2,.rs-pg-why .rs-pg-grid--4{grid-template-columns:1fr}}' +
     // mega menu: potřeby první (30. 10.)
-    '#navigation .rs-mega>li.rs-mega__needs{grid-column:1/-1;padding:4px 4px 10px!important;border-bottom:1px solid #e3eddb;margin-bottom:6px}#navigation .rs-mega>li.rs-mega__needs>b,#navigation .rs-mega>li.rs-mega__brands>b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#6b7468;margin:2px 6px 8px}' +
+    '#navigation .rs-mega>li.rs-mega__needs{grid-column:1/-1;padding:4px 4px 10px!important;border-bottom:1px solid #e3eddb;margin-bottom:6px}#navigation .rs-mega>li.rs-mega__needs>b,#navigation .rs-mega>li.rs-mega__brands>b{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#6b7468;margin:2px 6px 8px}' +
     '#navigation .rs-mega__needs>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}#navigation .rs-mega__needs a{display:flex!important;align-items:center;gap:10px;padding:7px 8px!important;border-radius:12px;color:#1b3f20!important;font-weight:700;font-size:14px;line-height:1.25;white-space:normal}#navigation .rs-mega__needs a:hover{background:#f2f7ec}' +
     '#navigation .rs-mega__ni{flex:0 0 34px;width:34px;height:34px;border-radius:10px;background:#eef6e6;display:grid;place-items:center}#navigation .rs-mega__ni svg{width:20px;height:20px;fill:none;stroke:#1b3f20;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}' +
     '#navigation .rs-mega>li.rs-mega__brands{grid-column:1/-1;padding:0!important}' +
@@ -711,7 +716,7 @@
     'html body #navigation .navigation-in{width:auto!important}html body{overflow-x:clip}' +
     /* 31. 10. audit Kvasnička: písmo min. 13 px (štítky na mobilu 12 px = práh Lighthouse, aby se vešly do 1 řádku), bez „Abecedně“,
        objednávka (krok 2+) bez menu/hledání/horní lišty, upsell v košíku na mobilu nebyl zmáčknutý do 36 px, slevový kód schovaný za odkaz */
-    'html body .products-block .flags .flag,html body .product .image .flags-default .flag{font-size:12px!important}' +
+    'html body .products-block .flags .flag,html body .product .image .flags-default .flag{font-size:13px!important}' +
     '@media(min-width:768px){html body .products-block .flags .flag,html body .product .image .flags-default .flag{font-size:13px!important}}' +
     'html body .rsr__ver,html body .rs-ver,html body .products-block .flags-extra .flag-discount .price-save,html body .listSorting__control,html body .listSorting__controls button,' +
     'html body .rsr2-f figcaption small,html body .rsw-m figcaption,html body .rs-hc small,html body .rs-topbar__claim,html body .p-code-label,html body .p-code,html body .rsz-tag,html body .type-detail .p-image .flags-default .flag{font-size:13px!important}' +
@@ -732,14 +737,14 @@
     'html body #header .rs-mtop a{display:inline-flex;align-items:center;gap:6px;color:#fff!important;text-decoration:none!important;white-space:nowrap}html body #header .rs-mtop b{font-weight:700}html body #header .rs-mtop a span{opacity:.85;font-weight:600}' +
     'html body #header .rs-mtop svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 14px}' +
     'html body #header .rs-mtop{flex-wrap:wrap;row-gap:4px;column-gap:12px;justify-content:center}html body #header .rs-mtop__nav{display:flex;flex:0 0 100%;justify-content:center;gap:6px;flex-wrap:wrap}html body #header .rs-mtop__nav a{padding:2px 9px;border-radius:999px;background:rgba(255,255,255,.12);font-weight:600}html body #header .rs-mtop__m{position:relative;z-index:2}' +
-    'html body #header.rs-scrolled .rs-mtop{display:none}}@media(max-width:420px){html body #header .rs-mtop{font-size:12.5px;padding:5px 10px}}' +
+    'html body #header.rs-scrolled .rs-mtop{display:none}}@media(max-width:420px){html body #header .rs-mtop{font-size:13px;padding:5px 10px}}' +
     'html body #header .navigation-buttons .rs-mcall{display:none!important}@media(min-width:992px){html body #navigation .rs-mnav-info,html body #navigation .rs-mnav-h,html body #navigation .rs-navcontact{display:none!important}}@media(max-width:991px){html body .rs-topbar{background:transparent!important;border:0!important;padding:0!important;min-height:0!important}html body .rs-topbar .rs-topbar__in{display:none!important}' +
     'html body #header .navigation-buttons .rs-mcall{display:inline-flex!important;position:relative;align-items:center;justify-content:center;width:42px;height:42px;margin:0 2px;flex:0 0 42px}' +
     '.rs-mcall img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #86BB41;display:block}' +
     '.rs-mcall__ic{position:absolute;right:-1px;bottom:-1px;width:18px;height:18px;border-radius:50%;background:' + G + ';display:grid;place-items:center;border:2px solid #fff}' +
     '.rs-mcall__ic svg{width:10px;height:10px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}' +
     '#navigation .rs-navcontact{margin:62px 14px 12px!important}#navigation .rs-navcontact b small{margin-left:auto;font-size:13px;font-weight:600;color:#5f6d5c}' +
-    '#navigation .menu-level-1>li.rs-mnav-h{border:0!important;padding:18px 20px 6px!important;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e655c;list-style:none}' +
+    '#navigation .menu-level-1>li.rs-mnav-h{border:0!important;padding:18px 20px 6px!important;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5e655c;list-style:none}' +
     '#navigation .menu-level-1>li.rs-mnav-sec>a{font-weight:600!important;font-size:15px!important;color:#3d4a3d!important}' +
     '.rs-mnav-info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 14px 90px}.rs-mnav-info a{display:block;padding:10px 12px;border:1px solid ' + LINE + ';border-radius:12px;background:#fff;color:' + G + '!important;font-weight:700;font-size:14px;text-decoration:none!important}}' +
     '@media(max-width:767px){html body .cart-table tr.rs-rel{display:block!important;width:100%!important}html body .cart-table tr.rs-rel>td{max-width:none!important;width:100%!important;display:block!important;box-sizing:border-box}}' +
@@ -754,7 +759,7 @@
     '.rs-cmpbar__go{padding:10px 18px!important;font-size:14.5px!important}.rs-cmpbar__go[disabled]{opacity:.55;cursor:default}.rs-cmpbar__clr{border:0;background:none;color:#6b7468;text-decoration:underline;cursor:pointer;font-family:inherit}.rs-cmpbar__msg{display:none;color:#a33;font-size:13px;font-weight:700}.rs-cmpbar--full .rs-cmpbar__msg{display:inline}' +
     'html.rs-cmp-open{overflow:hidden}.rs-cmpm{position:fixed;inset:0;z-index:99999;background:rgba(20,35,20,.45);display:flex;align-items:center;justify-content:center;padding:16px}.rs-cmpm__box{background:#fff;border-radius:22px;max-width:1100px;width:100%;max-height:92vh;display:flex;flex-direction:column;box-shadow:0 30px 70px rgba(0,0,0,.3)}' +
     '.rs-cmpm__h{display:flex;align-items:center;gap:16px;padding:16px 20px;border-bottom:1px solid #e3eddb}.rs-cmpm__h h2{margin:0!important;font-size:22px!important;color:#1b3f20!important;flex:1}.rs-cmpm__h label{font-size:14px;color:#3f5a3c;display:flex;gap:6px;align-items:center}.rs-cmpm__x{border:0;background:#eef6e6;width:36px;height:36px;border-radius:50%;font-size:22px;cursor:pointer;color:#1b3f20}' +
-    '.rs-cmpm__body{overflow:auto;padding:0 6px}.rs-cmpm__scroll{overflow:auto}.rs-cmpm__t{width:100%;border-collapse:collapse;font-size:14.5px}.rs-cmpm__t th,.rs-cmpm__t td{padding:9px 12px;border-bottom:1px solid #eef3ea;text-align:left;vertical-align:top}.rs-cmpm__t tbody th{color:#1b3f20;font-weight:700;width:220px;position:sticky;left:0;background:#fff}.rs-cmpm__t tbody th small{display:block;font-weight:500;color:#6b7468;font-size:12px}' +
+    '.rs-cmpm__body{overflow:auto;padding:0 6px}.rs-cmpm__scroll{overflow:auto}.rs-cmpm__t{width:100%;border-collapse:collapse;font-size:14.5px}.rs-cmpm__t th,.rs-cmpm__t td{padding:9px 12px;border-bottom:1px solid #eef3ea;text-align:left;vertical-align:top}.rs-cmpm__t tbody th{color:#1b3f20;font-weight:700;width:220px;position:sticky;left:0;background:#fff}.rs-cmpm__t tbody th small{display:block;font-weight:500;color:#6b7468;font-size:13px}' +
     '.rs-cmpm__t thead th{position:sticky;top:0;background:#fff;z-index:1;border-bottom:2px solid #dfe9d6}.rs-cmpm__t thead a{display:flex;flex-direction:column;gap:6px;color:#1b3f20!important;text-decoration:none!important;font-weight:700}.rs-cmpm__t thead img{width:90px;height:70px;object-fit:contain}.rs-cmpm__t thead b{display:block;margin-top:4px;color:#1b3f20}.rs-cmpm__t thead small{color:#2f6f1a;font-weight:600}' +
     '.rs-cmpm__t td.best{background:#eef7e3;font-weight:800;color:#1b3f20}.rs-cmpm--diff tr.s{display:none}.rs-cmpm__leg{font-size:13px;color:#6b7468;margin:8px 12px!important}.rs-cmpm__leg .best{background:#eef7e3;padding:1px 6px;border-radius:6px;font-weight:700;color:#1b3f20}.rs-cmpm__f{margin:0!important;padding:12px 20px;border-top:1px solid #e3eddb;font-size:14px;color:#3f5a3c}.rs-cmpm__load{padding:30px;text-align:center;color:#6b7468}' +
     '@media(max-width:767px){.rs-cmpbar{bottom:10px;left:10px;right:10px;transform:none;padding:8px 10px;max-width:none}.rs-cmpbar__in{flex-wrap:nowrap;gap:8px}.rs-cmpbar__l{gap:6px;flex:1;min-width:0;overflow:hidden}.rs-cmpbar__i{width:38px;height:38px;flex:0 0 38px}.rs-cmpbar__i img{max-width:32px;max-height:32px}.rs-cmpbar__go{padding:9px 12px!important;font-size:13.5px!important;white-space:nowrap}.rs-cmpbar__clr{font-size:13px}.rs-cmpbar b{display:none}.rs-cmpm{padding:0}.rs-cmpm__box{border-radius:0;max-height:100vh;height:100%}.rs-cmpm__t tbody th{width:120px;font-size:13px}}' +
@@ -792,7 +797,7 @@
     '.rs-fx-btn{display:none}@media(max-width:991px){html body #filters:not(.rs-fx-all) .rs-fx{display:none!important}' +
     'html body #filters .rs-fx-btn{display:flex;width:100%;justify-content:center;align-items:center;margin:10px 0 6px;padding:11px 14px;border:1.5px solid #1b3f20;border-radius:999px;background:#fff;color:#1b3f20;font:inherit;font-weight:700;font-size:15px;cursor:pointer}}' +
     '.rs-stars{color:#f5b301!important;letter-spacing:1px;font-size:1em;line-height:1;white-space:nowrap}' +
-    '.rs-heu-meta{display:flex!important;align-items:center;flex-wrap:wrap;gap:3px 6px;margin-top:2px;font-size:12.5px;font-weight:600;color:#4f5f51;line-height:1.2}.rs-heu-meta b{color:#1b3f20}' +
+    '.rs-heu-meta{display:flex!important;align-items:center;flex-wrap:wrap;gap:3px 6px;margin-top:2px;font-size:13px;font-weight:600;color:#4f5f51;line-height:1.2}.rs-heu-meta b{color:#1b3f20}' +
     '.rs-heu-ic{background:#fff!important;border:1px solid #f1e3a8!important;overflow:hidden;padding:2px!important}.rs-heu-ic img.rs-heu-seal{width:100%!important;height:100%!important;object-fit:contain;display:block;max-width:none!important}' +
     '.rs-usps a.rs-heu-item small{display:block}@media(max-width:480px){.rs-usps a.rs-heu-item small{display:none}}' +
     '.rs-pg-ic.rs-pg-ic--heu{background:#fff!important;border:1px solid #f1e3a8;display:grid;place-items:center}.rs-pg-ic--heu img{width:40px;height:40px;display:block}' +
@@ -837,7 +842,7 @@
     'html body ul.subcategories.rs-sub-compact .image{width:44px!important;height:26px!important;flex:0 0 44px!important;margin:0!important;padding:0!important}html body ul.subcategories.rs-sub-compact .image img{max-width:44px!important;max-height:26px!important;width:auto!important;height:auto!important;object-fit:contain}html body ul.subcategories.rs-sub-compact .text{font-size:14px!important;font-weight:700!important;margin:0!important;padding:0!important;text-align:left!important}' +
     // Hledání v hlavičce (headSearch) – společné
     'html body #header .rs-hs{position:relative}.rs-hs-rec{position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:1199;background:#fff;border:1px solid #e6f0db;border-radius:18px;box-shadow:0 20px 40px rgba(27,63,32,.16);padding:12px 14px 14px;text-align:left}.rs-hs-rec[hidden]{display:none!important}' +
-    '.rs-hs-rec__h{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#5f6d5c;margin:4px 2px 8px}.rs-hs-rec__h+.rs-hs-rec__g{margin-bottom:10px}' +
+    '.rs-hs-rec__h{font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#5f6d5c;margin:4px 2px 8px}.rs-hs-rec__h+.rs-hs-rec__g{margin-bottom:10px}' +
     '.rs-hs-rec__g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.rs-hs-rec__g a{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:12px;color:#1b3f20!important;text-decoration:none!important;font-weight:700;font-size:14px;line-height:1.25}.rs-hs-rec__g a:hover{background:#f2f7ec}.rs-hs-rec__g img{width:48px;height:48px;object-fit:contain;border-radius:10px;background:#fff;border:1px solid #e6f0db;flex:0 0 48px}' +
     '.rs-hs-rec__t{display:flex;flex-wrap:wrap;gap:6px}.rs-hs-rec__t button{border:1px solid #cfdcc4;background:#fff;border-radius:999px;padding:6px 12px;font-size:13.5px;color:#1b3f20;cursor:pointer;font-family:inherit}.rs-hs-rec__t button:hover{background:#eef6e6}' +
     '@media(max-width:600px){.rs-hs-rec__g{grid-template-columns:1fr}}' +
@@ -850,7 +855,7 @@
     'html body #header .rs-hs .search-whisperer{position:absolute!important;top:calc(100% + 8px)!important;left:0!important;right:0!important;width:auto!important;z-index:1200!important;background:#fff!important;border-radius:16px!important;border:1px solid #e6f0db!important;box-shadow:0 20px 40px rgba(27,63,32,.16)!important;max-height:70vh;overflow:auto;margin:0!important}html body #header .rs-hs .search-whisperer:empty{display:none!important}' +
     'html body #header .rs-hs .search-whisperer a,html body #header .rs-hs .search-whisperer .p-name{color:#1b3f20!important;text-transform:none!important}' +
     'html.rs-hs-on:not(.rs-hs-min) body #header .navigation-buttons>.toggle-window[data-target="search"]{display:none!important}html.rs-hs-min:not(.rs-hs-open) body #header .rs-hs{display:none!important}' +
-    '.rs-hc{align-items:center;gap:10px;text-decoration:none!important;color:#1b3f20!important;white-space:nowrap}.rs-hc img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #86BB41;flex:0 0 44px}.rs-hc span{display:flex;flex-direction:column;line-height:1.2}.rs-hc small{font-size:12.5px;color:#5f6d5c;font-weight:600}.rs-hc b{font-size:16px;font-weight:800;color:#1b3f20}.rs-hc a{text-decoration:none!important;color:#1b3f20!important}.rs-hc__mail{font-size:13px;font-weight:600;color:#3f5a3c!important}.rs-hc__mail:hover,.rs-hc a:hover b{color:#4f8a2a!important}.rs-hc__img{display:block;flex:0 0 44px}.rsn__hrs{font-size:14px;color:#5f6d5c}.rs-topbar__hrs{font-size:11.5px;font-weight:600;opacity:.85;margin-left:6px;padding:1px 7px;border-radius:999px;background:rgba(255,255,255,.14)}.rs-hc:hover b{color:#4f8a2a}' +
+    '.rs-hc{align-items:center;gap:10px;text-decoration:none!important;color:#1b3f20!important;white-space:nowrap}.rs-hc img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #86BB41;flex:0 0 44px}.rs-hc span{display:flex;flex-direction:column;line-height:1.2}.rs-hc small{font-size:13px;color:#5f6d5c;font-weight:600}.rs-hc b{font-size:16px;font-weight:800;color:#1b3f20}.rs-hc a{text-decoration:none!important;color:#1b3f20!important}.rs-hc__mail{font-size:13px;font-weight:600;color:#3f5a3c!important}.rs-hc__mail:hover,.rs-hc a:hover b{color:#4f8a2a!important}.rs-hc__img{display:block;flex:0 0 44px}.rsn__hrs{font-size:14px;color:#5f6d5c}.rs-topbar__hrs{font-size:13px;font-weight:600;opacity:.85;margin-left:6px;padding:1px 7px;border-radius:999px;background:rgba(255,255,255,.14)}.rs-hc:hover b{color:#4f8a2a}' +
     // desktop: rozbalený stav = 2 řádky (logo, hledání, kontakt, ikony / menu); sbalený = původní 1 řádek
     /* 27. 10. večer: grid – logo | hledání | ikony | kontakt (fotka přes oba řádky) / menu | Více | kontakt; na desktopu se hlavička nesbaluje */
     '@media(min-width:992px){html.rs-hs-on body #header .navigation-wrapper{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto auto;grid-template-areas:"logo search btns hc" "nav nav helper hc";column-gap:22px;align-items:center;border-top:0}' +
@@ -861,11 +866,11 @@
     'html.rs-hs-on body #header .rs-hc{grid-area:hc;display:flex!important;align-self:stretch;align-items:center;gap:14px;padding:8px 0 8px 18px;border-left:1px solid #e3eddb;margin:0}' +
     'html.rs-hs-on body #header .rs-hc__img{flex:0 0 104px}html.rs-hs-on body #header .rs-hc img{width:104px;height:104px;flex-basis:104px;border-width:3px}html.rs-hs-on body #header .rs-hc b{font-size:18px}' +
     'html.rs-hs-min.rs-hs-open body #header .rs-hs{display:block!important;position:absolute;top:100%;left:50%;transform:translateX(-50%);width:min(680px,92vw);margin-top:8px;z-index:1100;padding:10px;background:#fff;border-radius:22px;box-shadow:0 24px 48px rgba(27,63,32,.18)}' +
-    'html.rs-hs-on .rs-topbar__links{display:none!important}.rs-topbar__nav{display:flex!important;gap:4px;align-items:center}.rs-topbar__nav a{padding:3px 12px;border-radius:999px;font-weight:600!important}.rs-topbar__nav a:hover{background:rgba(255,255,255,.12)}html.rs-hs-on .rs-topbar__claim{font-size:12.5px;opacity:.75}}' +
+    'html.rs-hs-on .rs-topbar__links{display:none!important}.rs-topbar__nav{display:flex!important;gap:4px;align-items:center}.rs-topbar__nav a{padding:3px 12px;border-radius:999px;font-weight:600!important}.rs-topbar__nav a:hover{background:rgba(255,255,255,.12)}html.rs-hs-on .rs-topbar__claim{font-size:13px;opacity:.75}}' +
     '.rs-topbar__nav{display:none}.rs-topbar__m{display:none}' +
     '@media(max-width:991px){html body .rs-topbar{background:#fff!important;color:#1b3f20!important;border-bottom:1px solid #e3eddb}html body .rs-topbar .rs-topbar__links,html body .rs-topbar .rs-topbar__claim{display:none!important}html body .rs-topbar .rs-topbar__in{justify-content:flex-start!important;padding:8px 14px!important}' +
     'html body .rs-topbar .rs-topbar__m{display:flex;align-items:center;gap:12px}html body .rs-topbar .rs-topbar__mi img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #86BB41;display:block}html body .rs-topbar .rs-topbar__m>span{display:flex;flex-direction:column;line-height:1.25}' +
-    'html body .rs-topbar .rs-topbar__m small{font-size:12px;color:#5f6d5c;font-weight:600}html body .rs-topbar .rs-topbar__m a{color:#1b3f20!important;padding:0!important;border:0!important}html body .rs-topbar .rs-topbar__m b{font-size:16px;font-weight:800}html body .rs-topbar .rs-topbar__mm{font-size:13px!important;font-weight:600!important;text-decoration:underline!important;text-underline-offset:2px}}' +
+    'html body .rs-topbar .rs-topbar__m small{font-size:13px;color:#5f6d5c;font-weight:600}html body .rs-topbar .rs-topbar__m a{color:#1b3f20!important;padding:0!important;border:0!important}html body .rs-topbar .rs-topbar__m b{font-size:16px;font-weight:800}html body .rs-topbar .rs-topbar__mm{font-size:13px!important;font-weight:600!important;text-decoration:underline!important;text-underline-offset:2px}}' +
     '@media(min-width:992px) and (max-width:1199px){html.rs-hs-on:not(.rs-hs-min) body #header .rs-hc span{display:none}html.rs-hs-on:not(.rs-hs-min) body #header .rs-hs{margin:0 16px}}' +
     // mobil a tablet: hledání jako druhý řádek fixní hlavičky; po odscrollování jen lupa
     '@media(max-width:991px){html.rs-hs-on body #header,html.rs-hs-on body #header .navigation-wrapper{overflow:visible!important}html.rs-hs-on body #header .rs-hs{order:1000;flex:0 0 100%;width:100%;padding:0 12px 10px;box-sizing:border-box}html body #header .rs-hs .search-input{height:46px!important;font-size:16px!important}' +
@@ -873,14 +878,14 @@
     // Data u hodnocení (obchod i produkty) skrytá – staré datum snižuje důvěru (EB audit 27. 10.)
     'html body .vote-wrap .vote-time,html body .vote-wrap .vote-delimeter{display:none!important}' +
     // Štítek „Ověřená recenze“ – všechna hodnocení na webu jsou ověřená (Michael 27. 10.)
-    'html body .vote-wrap .vote-rating::after{content:"✓ Ověřená recenze";display:inline-block;margin-left:8px;padding:2px 9px;border-radius:999px;background:#eef6e6;color:#2f6b1f;font-size:12px;font-weight:700;vertical-align:middle;white-space:nowrap}' +
-    '.rs-ver{display:inline-block;margin-left:6px;padding:2px 9px;border-radius:999px;background:#eef6e6;color:#2f6b1f;font-size:12px;font-weight:700;white-space:nowrap}' +
+    'html body .vote-wrap .vote-rating::after{content:"✓ Ověřená recenze";display:inline-block;margin-left:8px;padding:2px 9px;border-radius:999px;background:#eef6e6;color:#2f6b1f;font-size:13px;font-weight:700;vertical-align:middle;white-space:nowrap}' +
+    '.rs-ver{display:inline-block;margin-left:6px;padding:2px 9px;border-radius:999px;background:#eef6e6;color:#2f6b1f;font-size:13px;font-weight:700;white-space:nowrap}' +
     '@media(max-width:767px){html body .product .prices .rs-was{font-size:14.5px!important}html body .product.rs-has-was .flags-extra{right:6px!important}}' +
     // Jemná průhlednost štítků jako u zelených šipek galerie (rgba … .82), Michael 26. 10.
     'html body .flags .flag{-webkit-backdrop-filter:blur(6px) saturate(1.2);backdrop-filter:blur(6px) saturate(1.2)}html body .flags .flag.flag-new{background-color:rgba(58,128,14,.82)!important}html body .flags .flag.flag-gift{background-color:rgba(211,67,67,.82)!important}html body .flags .flag.flag-action{background-color:rgba(226,35,26,.82)!important}html body .flags-extra .flag.flag-discount{background:rgba(217,45,32,.82)!important}' +
     '.flags-extra .flag-discount .price-save{background:none!important;color:#fff!important;font-size:14px!important;font-weight:800!important;line-height:1.1!important;padding:0!important;margin:0!important;border-radius:0!important;box-shadow:none!important;max-width:none!important}' +
     '.type-detail .p-image .flags-extra .flag.flag-discount{padding:8px 16px!important}.type-detail .p-image .flags-extra .flag-discount .price-save{font-size:17px!important}' +
-    '.type-detail .p-image .flags-default .flag{border-radius:999px!important;padding:4px 12px!important;font-weight:700!important;font-size:12px!important;margin:0 0 5px!important;box-shadow:0 4px 10px rgba(0,0,0,.08)!important}' +
+    '.type-detail .p-image .flags-default .flag{border-radius:999px!important;padding:4px 12px!important;font-weight:700!important;font-size:13px!important;margin:0 0 5px!important;box-shadow:0 4px 10px rgba(0,0,0,.08)!important}' +
     '.type-detail .p-image .flags-default .flag::before,.type-detail .p-image .flags-default .flag::after{display:none!important}' +
     '.rs-foot__why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:0 0 30px}' +
     '.rs-foot__w{display:flex;flex-direction:column;gap:6px;padding:18px 18px 16px;border-radius:var(--rs-r);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.85)!important;text-decoration:none!important;transition:background var(--rs-ease),transform var(--rs-ease)}' +
@@ -1965,7 +1970,7 @@
      Nativní formulář Shoptetu (#formSearchForm) se PŘESOUVÁ (ne klonuje) – jen tak zůstane funkční našeptávač.
      Desktop: 2 řádky (logo + hledání + kontakt s fotkou + ikony / menu). Po odscrollování html.rs-hs-min = původní 1 řádek s lupou.
      Klik na lupu ve sbaleném stavu hledání rozbalí (html.rs-hs-open) místo otevření okna Shoptetu. */
-  var HOURS = '10–20 h'; /* kdy volat (Michael 27. 10. 2026) – při změně upravit jen tady */
+  var HOURS = 'Po–Ne 10–20 h'; /* kdy volat (Michael 27. 10. 2026) – při změně upravit jen tady */
   var HS_HINTS = ['robotický vysavač na zvířecí chlupy', 'sekačka do svahu', 'Mammotion LUBA', 'vysavač, který i vytírá', 'bazénový vysavač Aiper', 'filtr do Roborocku', 'sekačka bez obvodového drátu', 'náhradní nože'];
   function headSearch() {
     var h = document.getElementById('header'), f = document.getElementById('formSearchForm'); if (!h || !f || h.querySelector('.rs-hs')) return;
@@ -2326,11 +2331,15 @@
     var av0 = f.querySelector('.availability-label'); if (av0 && /nedostup|vyprod|ukonč/i.test(av0.textContent)) return;
     var bar = document.createElement('div'); bar.className = 'rs-sb'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'Rychlý nákup');
     var svc = isSvc();
-    bar.innerHTML = '<img class="rs-sb__img" alt="" width="44" height="44"><span class="rs-sb__t"><b class="rs-sb__p"></b><span class="rs-sb__a"></span></span><button type="button" class="rs-sb__btn"><svg viewBox="0 0 24 24" aria-hidden="true">' + CART_IC + '</svg>Do košíku</button>'; /* stejný popisek jako tlačítko v nákupním boxu (i u služeb) */
+    bar.innerHTML = '<img class="rs-sb__img" alt="" width="44" height="44"><span class="rs-sb__t"><span class="rs-sb__n"></span><span><b class="rs-sb__p"></b><i class="rs-sb__d"></i></span><span class="rs-sb__a"></span></span><button type="button" class="rs-sb__btn"><svg viewBox="0 0 24 24" aria-hidden="true">' + CART_IC + '</svg>Do košíku</button>'; /* stejný popisek jako tlačítko v nákupním boxu (i u služeb) */
     var img = document.querySelector('.p-image-wrapper img'), im = bar.querySelector('.rs-sb__img'); if (img) im.src = img.currentSrc || img.src; else im.remove();
     var fill = function () {
       var p = f.querySelector('.price-final-holder') || f.querySelector('.price-final'), a = f.querySelector('.availability-label'), pe = bar.querySelector('.rs-sb__p'), ae = bar.querySelector('.rs-sb__a');
       var pt = p ? p.textContent.trim().replace(/\s+/g, ' ') : ''; if (pe.textContent !== pt) pe.textContent = pt;
+      /* sleva v % z přeškrtnuté a aktuální ceny (jen když je sleva aspoň 1 %) */
+      var st = f.querySelector('.price-standard'), kc = function (t) { return +String(t || '').replace(/[^\d]/g, '') || 0; }, a0 = kc(st && st.textContent), b0 = kc(pt), de = bar.querySelector('.rs-sb__d');
+      var pc = (a0 > b0 && b0 > 0 && !svc) ? Math.round((1 - b0 / a0) * 100) : 0, dt = (pc >= 1 && pc <= 90) ? '−' + pc + ' %' : ''; if (de && de.textContent !== dt) de.textContent = dt;
+      var ne = bar.querySelector('.rs-sb__n'), h1 = document.querySelector('.p-detail-inner-header h1'); if (ne && h1 && !ne.textContent) ne.textContent = (h1.firstChild && h1.firstChild.textContent || h1.textContent).trim();
       var at = svc ? 'Termín po domluvě' : (a ? a.textContent.trim().replace(/\s+/g, ' ') : ''); if (ae.textContent !== at) { ae.textContent = at; ae.style.color = svc ? '#1d7a22' : (a ? getComputedStyle(a).color : ''); }
     };
     bar.querySelector('.rs-sb__btn').addEventListener('click', function () {
