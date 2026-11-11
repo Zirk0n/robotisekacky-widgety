@@ -313,3 +313,17 @@ body{margin:0;padding:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,A
 @media(max-width:760px){.ir-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
 @media(max-width:380px){.hexicon{width:66px;height:74px}}
 #description .faq-teaser{position:relative}
+
+/* 11. 11. 2026 (Michael): FAQ přepínač ve vzhledu webu – světlé kolečko se šipkou dolů, otázky bez emoji ikony;
+   poznámka o telefonu nesmí rozbít mřížku ceníku */
+.faq-toggle{width:36px;height:36px;background:#f2f7ec;border:1px solid #dfe9d3;color:#1b3f20;box-shadow:none}
+.faq-toggle:hover{background:#e6f0da}
+.faq-toggle .chev{font-size:0;line-height:0;width:9px;height:9px;border:solid #1b3f20;border-width:0 2px 2px 0;transform:translateY(-2px) rotate(45deg)!important;transition:transform .2s}
+#description .faq.is-open .faq-toggle .chev,.faq.is-open .faq-toggle .chev{transform:translateY(2px) rotate(-135deg)!important}
+.faq-question{padding:13px 46px 12px 16px;position:relative}
+.faq-question::before{content:none}
+.faq-question::after{content:"";position:absolute;right:18px;top:50%;width:8px;height:8px;border:solid #1b3f20;border-width:0 2px 2px 0;transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.faq-item.is-open .faq-question::after{transform:translateY(-30%) rotate(-135deg)}
+.faq-answer{padding-left:16px}
+.pricing-grid>.rs-hours{grid-column:1/-1;margin:0}
+.price-card .rs-hours{margin:10px 0 0;text-align:center}

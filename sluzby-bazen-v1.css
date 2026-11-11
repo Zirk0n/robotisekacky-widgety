@@ -265,3 +265,27 @@ body{margin:0;padding:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,A
 #description .warn h3{color:#78350f}
 
 #description .faq-teaser{position:relative}
+
+/* 11. 11. 2026 (Michael): FAQ přepínač ve vzhledu webu – světlé kolečko se šipkou dolů, otázky bez emoji ikony;
+   poznámka o telefonu nesmí rozbít mřížku ceníku */
+.faq-toggle{width:36px;height:36px;background:#eef8fb;border:1px solid #cfe6ee;color:#0c4a6e;box-shadow:none}
+.faq-toggle:hover{background:#dff1f6}
+.faq-toggle .chev{font-size:0;line-height:0;width:9px;height:9px;border:solid #0c4a6e;border-width:0 2px 2px 0;transform:translateY(-2px) rotate(45deg)!important;transition:transform .2s}
+#description .faq.is-open .faq-toggle .chev,.faq.is-open .faq-toggle .chev{transform:translateY(2px) rotate(-135deg)!important}
+.faq-question{padding:13px 46px 12px 16px;position:relative}
+.faq-question::before{content:none}
+.faq-question::after{content:"";position:absolute;right:18px;top:50%;width:8px;height:8px;border:solid #0c4a6e;border-width:0 2px 2px 0;transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+.faq-item.is-open .faq-question::after{transform:translateY(-30%) rotate(-135deg)}
+.faq-answer{padding-left:16px}
+.pricing-grid>.rs-hours{grid-column:1/-1;margin:0}
+.price-card .rs-hours{margin:10px 0 0;text-align:center}
+
+/* modrá varianta: proměnné přímo na obalu (web má na :root zelené --brand a přebíjel je), zelené zbytky z webu do modra */
+.rs-svc--bazen{--brand:#1098ad;--brand-dark:#0c4a6e;--ink:#082f49;--bg:#f4fafc;--line:#d8ecf2}
+#description .rs-svc--bazen .hi-eyebrow,#description .rs-svc--bazen .tech-eyebrow,#description .rs-svc--bazen .trust-kicker,#description .rs-svc--bazen .rs-svc-k{color:#0b7285!important}
+#description .rs-svc--bazen .rs-ei,#description .rs-svc--bazen .rs-ei svg{color:#0b7285!important}
+#description .rs-svc--bazen .carousel-control,#description .rs-svc--bazen .car-btn{background:rgba(12,74,110,.82)!important}
+#description .rs-svc--bazen h2,#description .rs-svc--bazen h3,#description .rs-svc--bazen summary,#description .rs-svc--bazen b,#description .rs-svc--bazen strong{color:#0c4a6e}
+#description .rs-svc--bazen a:not(.cta):not(.price-cta):not(.btn){color:#0b7285}
+#description .rs-svc--bazen .hero .inner h2,#description .rs-svc--bazen .bottom .inner h2{color:#fff!important}
+#description .rs-svc--bazen .price-cta--email{background:#0c4a6e!important;border-color:#0c4a6e!important;color:#fff!important}
