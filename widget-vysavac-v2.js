@@ -12,7 +12,7 @@ safe(function(){const topCta=document.getElementById('trust-cta-top');if(!topCta
 
 
 /* prodejní vrstva (poradce, hodnocení, instalace, náhrady) – 9. 10. 2026 */
-(function(){if(window.__rsProdej||document.querySelector('script[src*="widget-prodej.js"]'))return;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/widget-prodej.js';s.defer=true;document.head.appendChild(s);})();
+(function(){if(window.__rsProdej||document.querySelector('script[src*="widget-prodej.js"]'))return;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/widget-prodej.js';s.defer=true;s.crossOrigin='anonymous';document.head.appendChild(s);})();
 /* ===== šablona v2 – chování navíc (pilot 2104, 9. 10. 2026) ===== */
 /* duplicitní karusely za sebou (chyba šablony do 9. 10. 2026, uložená v popisu několika produktů) – druhý odstranit */
 safe(function(){var cs=[].slice.call(document.querySelectorAll('#description .carousel[data-carousel]'));for(var i=1;i<cs.length;i++){var a=cs[i-1],b2=cs[i];if(a.parentNode&&a.nextElementSibling===b2&&a.querySelector('.c-track').textContent.trim()===b2.querySelector('.c-track').textContent.trim())b2.remove()}});

@@ -9,4 +9,4 @@ safe(function(){var hasRun=false;function extractCount(){if(hasRun)return;var co
 safe(function(){const topCta=document.getElementById('trust-cta-top');if(!topCta)return;topCta.addEventListener('click',e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});});
 
 /* prodejní vrstva (poradce, hodnocení, služba, náhrady) – 12. 10. 2026 */
-(function(){if(window.__rsProdej||document.querySelector('script[src*="widget-prodej.js"]'))return;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/widget-prodej.js';s.defer=true;document.head.appendChild(s);})();
+(function(){if(window.__rsProdej||document.querySelector('script[src*="widget-prodej.js"]'))return;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Zirk0n/robotisekacky-widgety@main/widget-prodej.js';s.defer=true;s.crossOrigin='anonymous';document.head.appendChild(s);})();
