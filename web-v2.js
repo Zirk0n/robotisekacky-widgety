@@ -921,7 +921,7 @@
     d.innerHTML = '<div class="rs-topbar__in"><nav class="rs-topbar__nav" aria-label="Informace"><a href="/o-nas/">O nás</a><a href="/hodnoceni-obchodu/">Hodnocení obchodu</a><a href="/doprava/">Doprava a platba</a><a href="/instalace-sekacek/">Instalace a servis</a><a href="/kontakty/">Kontakty</a></nav>' +
       '<span class="rs-topbar__claim">Robotické sekačky, vysavače a bazénové vysavače – poradíme, nainstalujeme, zprovozníme</span>' +
       /* mobil (30. 10.): stejný kontakt jako v hlavičce na počítači – bílý pruh, fotka, telefon i e-mail klikací */
-      '<span class="rs-topbar__m"><a href="/o-nas/" class="rs-topbar__mi"><img src="' + FOTO + '" alt="Michael Boháček" width="40" height="40"></a><span><small>Poradí vám Michael · ' + HOURS + '</small><a href="tel:' + TEL + '"><b>' + TELT + '</b></a><a class="rs-topbar__mm" href="mailto:' + MAIL + '">' + MAIL + '</a></span></span>' +
+      '<span class="rs-topbar__m"><a href="/o-nas/" class="rs-topbar__mi"><img src="' + FOTO + '" alt="Michael Boháček" width="40" height="40"></a><span><small>Poradí vám Michael</small><a href="tel:' + TEL + '"><b>' + TELT + '</b></a><small>' + HOURS + '</small><a class="rs-topbar__mm" href="mailto:' + MAIL + '">' + MAIL + '</a></span></span>' +
       '<span class="rs-topbar__links"><span class="rs-topbar__who" title="Poradí vám Michael Boháček"><img src="' + FOTO + '" alt="Michael Boháček" width="26" height="26"><span class="rs-topbar__wt">Poradí vám Michael</span></span><a href="tel:' + TEL + '">' + ICON.tel + '<span>' + TELT + '</span><small class="rs-topbar__hrs">' + HOURS + '</small></a>' +
       '<a class="rs-topbar__mail" href="mailto:' + MAIL + '" aria-label="E-mail ' + MAIL + '">' + ICON.mail + '<span>' + MAIL + '</span></a>' +
       '<a class="rs-topbar__kontakt" href="/kontakty/">Kontakty</a></span></div>';
@@ -1990,8 +1990,8 @@
     })();
     /* kontakt v hlavičce: fotka, telefon, e-mail a doba (Michael 27. 10.: e-mail patří vedle telefonu) */
     var c = document.createElement('div'); c.className = 'rs-hc'; c.title = 'Poradí vám Michael Boháček';
-    c.innerHTML = '<a href="/o-nas/" class="rs-hc__img"><img src="' + FOTO + '" alt="Michael Boháček" width="44" height="44"></a><span><small>Poradí vám Michael · ' + HOURS + '</small>' +
-      '<a href="tel:' + TEL + '"><b>' + TELT + '</b></a><a class="rs-hc__mail" href="mailto:' + MAIL + '">' + MAIL + '</a></span>'; w.appendChild(c);
+    c.innerHTML = '<a href="/o-nas/" class="rs-hc__img"><img src="' + FOTO + '" alt="Michael Boháček" width="44" height="44"></a><span><small>Poradí vám Michael</small>' +
+      '<a href="tel:' + TEL + '"><b>' + TELT + '</b></a><small class="rs-hc__hrs">' + HOURS + '</small><a class="rs-hc__mail" href="mailto:' + MAIL + '">' + MAIL + '</a></span>'; w.appendChild(c);
     var inp = f.querySelector('input.search-input'), root = document.documentElement;
     /* běžící nápověda v poli (jen když je prázdné a bez fokusu; při omezení animací statický text) */
     if (inp) {
