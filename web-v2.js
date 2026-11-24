@@ -1578,7 +1578,10 @@
     var seg = /bazen/i.test(crumbs) ? 'bazen' : /vysava/i.test(crumbs) ? 'vysavac' : /sekac/i.test(crumbs) ? 'sekacka' : '';
     if (!seg) return;
     var hide = { sekacka: /zprovozneni-robotickeho-vysavace/, vysavac: /instalace-sekacek/, bazen: /zprovozneni-robotickeho-vysavace|instalace-sekacek/ }[seg];
-    [].forEach.call(document.querySelectorAll('.benefitBanner__item'), function (it) { var a = it.querySelector('a[href]'); if (a && hide.test(a.getAttribute('href'))) it.style.display = 'none'; });
+    [].forEach.call(document.querySelectorAll('.benefitBanner__item'), function (it) { var a = it.querySelector('a[href]'); if (!a) return; var h = a.getAttribute('href');
+      if (hide.test(h)) { it.style.display = 'none'; return; }
+      /* 24. 11. (Michael): na vysavačích vede „Zprovozníme vysavač“ rovnou do kategorie služby Instalace robotických vysavačů */
+      if (seg === 'vysavac' && /zprovozneni-robotickeho-vysavace/.test(h)) a.setAttribute('href', '/instalace-robotickych-vysavacu/'); });
   }
   function recentViewed() {
     recSave();
