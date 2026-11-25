@@ -2218,11 +2218,11 @@
     /* všechny naše bloky v obsahu (šablony v2, widget-prodej, služby, popisy kategorií) – texty zákazníků se nechávají */
     var root = document.body; if (!root) return;
     var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: function (n) {
-      if (!/[\u{1F300}-\u{1FAFF}\u{2600}-\u{2604}\u{2607}-\u{262F}\u{2631}-\u{2712}\u{2716}-\u{276D}\u{2770}-\u{27BF}\u{2B50}]/u.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
+      if (!/[\u{1F300}-\u{1FAFF}\u{2600}-\u{2604}\u{2607}-\u{262F}\u{2631}-\u{2712}\u{2716}-\u{276D}\u{2770}-\u{27BF}\u{2B50}\u{21A9}\u{21AA}\u{231A}\u{231B}\u{23E9}-\u{23F3}\u{2B05}-\u{2B07}]/u.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
       var p = n.parentElement; if (!p || p.closest('.rsr__q, .vote-content, .rs-review-text, .rs-review-card p, script, style, textarea, .rs-ei')) return NodeFilter.FILTER_REJECT;
       /* 30. 10. (Michael): emoji v běžném textu nechat, nahrazovat jen emoji v roli ikony – samotné emoji, nebo emoji na začátku krátkého štítku */
-      var tv = n.nodeValue.trim(), lead = /^[\u{1F300}-\u{1FAFF}\u{2600}-\u{2604}\u{2607}-\u{262F}\u{2631}-\u{2712}\u{2716}-\u{276D}\u{2770}-\u{27BF}\u{2B50}]/u.test(tv);
-      var only = /^[\s\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B50}\uFE0F\u200D]+$/u.test(tv);
+      var tv = n.nodeValue.trim(), lead = /^[\u{1F300}-\u{1FAFF}\u{2600}-\u{2604}\u{2607}-\u{262F}\u{2631}-\u{2712}\u{2716}-\u{276D}\u{2770}-\u{27BF}\u{2B50}\u{21A9}\u{21AA}\u{231A}\u{231B}\u{23E9}-\u{23F3}\u{2B05}-\u{2B07}]/u.test(tv);
+      var only = /^[\s\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B50}\u{21A9}\u{21AA}\u{231A}\u{231B}\u{23E9}-\u{23F3}\u{2B05}-\u{2B07}\uFE0F\u200D]+$/u.test(tv);
       if (!only && !(lead && tv.length <= 60 && !/^(P|LI|TD)$/.test(p.tagName) || lead && tv.length <= 60 && p.closest('a, button, label, .rs-usps, h3, h4'))) return NodeFilter.FILTER_REJECT;
       return NodeFilter.FILTER_ACCEPT; } }), list = [], t;
     while ((t = w.nextNode())) list.push(t.parentElement);
