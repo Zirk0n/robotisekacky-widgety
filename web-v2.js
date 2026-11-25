@@ -504,7 +504,7 @@
     /* plovoucí bublina Do košíku (stickyBuy): jen mobil, vzdušná pilulka s odsazením od okrajů (Michael: ne celá lišta);
        objeví se, když nákupní tlačítko není na obrazovce; vpravo místo pro chat, telefon a hláška se posunou nad ni */
     /* 25. 11. 2026 (Michael + Blakar): připravované modely 2027 – na webu bez ceny (cena v Shoptetu je jen zástupná). Seznam kódů i v UPC_CODES. */
-    'body:has(#product-detail-form meta[itemprop="productID"][content="2548"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time),body:has(#product-detail-form meta[itemprop="productID"][content="2551"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time),body:has(#product-detail-form meta[itemprop="productID"][content="2554"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time),body:has(#product-detail-form meta[itemprop="productID"][content="2557"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time),body:has(#product-detail-form meta[itemprop="productID"][content="2560"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time),body:has(#product-detail-form meta[itemprop="productID"][content="2563"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time){display:none!important}' +
+    'body:has(#product-detail-form meta[itemprop="productID"][content="2548"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time,tr.sold-out),body:has(#product-detail-form meta[itemprop="productID"][content="2551"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time,tr.sold-out),body:has(#product-detail-form meta[itemprop="productID"][content="2554"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time,tr.sold-out),body:has(#product-detail-form meta[itemprop="productID"][content="2557"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time,tr.sold-out),body:has(#product-detail-form meta[itemprop="productID"][content="2560"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time,tr.sold-out),body:has(#product-detail-form meta[itemprop="productID"][content="2563"]) :is(.p-final-price-wrapper,.price-additional,.price-measure,.watchdog,.rs-spl,.p-to-cart-block .delivery-time,tr.sold-out){display:none!important}' +
     '.p[data-micro-product-id="2548"] .prices,.p[data-micro-product-id="2551"] .prices,.p[data-micro-product-id="2554"] .prices,.p[data-micro-product-id="2557"] .prices,.p[data-micro-product-id="2560"] .prices,.p[data-micro-product-id="2563"] .prices{visibility:hidden!important;height:0!important;overflow:hidden!important}' +
     '.rs-upc{margin:10px 0 6px;padding:12px 14px;border-radius:12px;background:#f1f7ea;color:#1b3f20;font-size:15px;line-height:1.45}.rs-upc a{color:#3d7a1f;font-weight:600}.rs-upc-t{display:block;font-weight:600;color:#1b3f20;font-size:14px;margin:4px 0}' +
     '.rs-sb{display:none}' +
@@ -933,10 +933,11 @@
       '.rs-xmas__in{max-width:1400px;margin:0 auto;padding:7px 16px;display:flex;align-items:center;justify-content:center;gap:9px;text-align:center}' +
       '.rs-xmas svg{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:#b4382a;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
       '.rs-xmas b{color:#8c2a1f}.rs-xmas a{color:#3d2a12!important;font-weight:700;text-decoration:underline!important;text-underline-offset:2px;white-space:nowrap}' +
+      '.rs-xmas__dot{flex:0 0 10px;width:10px;height:10px;border-radius:50%;background:#35c126;box-shadow:0 0 0 0 rgba(53,193,38,.55),0 0 8px rgba(53,193,38,.9);animation:rsXd 1.8s ease-out infinite}@keyframes rsXd{0%{box-shadow:0 0 0 0 rgba(53,193,38,.55),0 0 8px rgba(53,193,38,.9)}70%,100%{box-shadow:0 0 0 9px rgba(53,193,38,0),0 0 8px rgba(53,193,38,.9)}}@media(prefers-reduced-motion:reduce){.rs-xmas__dot{animation:none}}' +
       '@media(max-width:600px){.rs-xmas{font-size:13px}.rs-xmas__in{padding:6px 12px;gap:7px}.rs-xmas .rs-xmas__more,.rs-xmas .rs-xmas__d{display:none}}';
       document.head.appendChild(st); }
     var d = document.createElement('div'); d.className = 'rs-xmas'; d.setAttribute('role', 'note');
-    d.innerHTML = '<div class="rs-xmas__in"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>' +
+    d.innerHTML = '<div class="rs-xmas__in"><i class="rs-xmas__dot" aria-hidden="true"></i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>' +
       '<span><b>Doručení do Vánoc:</b> <span class="rs-xmas__d">zboží skladem </span>objednejte do <b><span class="rs-xmas__d">neděle </span>20.&nbsp;12.</b><span class="rs-xmas__more"> – odešleme v pondělí 21.&nbsp;12. přes PPL nebo DPD</span></span></div>';
     tb.parentNode.insertBefore(d, tb.nextSibling);
   }
@@ -1711,6 +1712,8 @@
   var NI = {
     /* 31. 10.: ikony pro O nás (🧭 poradíme podle situace, 🔁 jsme tu i po nákupu) */
     compass: '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',
+    /* 25. 11.: Reklamace a vrácení – ↩ vrácení, ⏱ lhůta */
+    back: '<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>', clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     cycle: '<path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 20v-4h-4"/>',
     paw:'<circle cx="6.5" cy="9.5" r="1.8"/><circle cx="12" cy="6.5" r="1.8"/><circle cx="17.5" cy="9.5" r="1.8"/><path d="M8 17c0-2.8 1.8-5 4-5s4 2.2 4 5c0 1.6-1.4 2.2-4 2.2S8 18.6 8 17z"/>',
     drop: '<path d="M12 3s5 5.4 5 9a5 5 0 0 1-10 0c0-3.6 5-9 5-9z"/><path d="M4 21h16"/>',
@@ -2033,9 +2036,9 @@
     pr.insertBefore(t, items[kat]); revTileSize();
     if (!window.rsRevRz) { window.rsRevRz = 1; var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(revTileSize, 150); }); }
     revData().then(function (d) {
-      if (!d || !d.recenze) return; var q = t.querySelector('.rs-revtile__q');
+      if (!d || !d.recenze || !d.recenze.length) { t.remove(); return; } /* 25. 11.: bez dat žádný poloprázdný box */ var q = t.querySelector('.rs-revtile__q');
       t.querySelector('[data-rs-review-count]').textContent = d.celkem || 424; if (d.prumer) t.querySelector('[data-rs-review-avg]').textContent = String(d.prumer).replace('.', ',');
-      var L = d.recenze.filter(function (r) { return r.text && r.text.length > 40 && r.text.length < 230; }); if (!L.length) return; var i = 0;
+      var L = d.recenze.filter(function (r) { return r.text && r.text.length > 40 && r.text.length < 230; }); if (!L.length) { t.remove(); return; } var i = 0;
       /* v kategorii vysavačů přednostně recenze o vysavačích, u sekaček o sekačkách (ať nesedí recenze sekačky u vysavačů) */
       var kind = /vysava/.test(location.pathname) && !/bazen/.test(location.pathname) ? /vysava/i : /sekac/.test(location.pathname) ? /sekač|sekac|zahrad/i : /bazén|bazen/.test(location.pathname) ? /bazén|bazen/i : null;
       if (kind) { var other = /vysava/.test(kind.source) ? /sekač|sekačk|zahrad|bazén/i : /vysavač/i; var K = L.filter(function (r) { return kind.test(r.text); }); var N = L.filter(function (r) { return !kind.test(r.text) && !other.test(r.text); }); L = K.concat(N); if (!L.length) return; }
@@ -2198,13 +2201,13 @@
   /* Emoji ve vlastních i nativních prvcích → vlastní ikony (Michael 27. 10.: emoji jsou AI stopa, nesedí ke značce).
      Texty zákazníků v recenzích se nemění. */
   function deEmoji() {
-    var RX = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{2604}\u{2607}-\u{262F}\u{2631}-\u{2712}\u{2716}-\u{276D}\u{2770}-\u{27BF}\u{2B50}️]/gu;
-    var MAP = { '🎁': 'gift', '🏆': 'star', '🥇': 'star', '🏅': 'star', '☎': 'phone', '✉': 'mail2', '⭐': 'star', '💬': 'chat', '🏠': 'house', '🚚': 'truck', '✅': 'check', '🛠': 'wrench', '🔧': 'wrench', '📞': 'phone', '📱': 'phone', '🌿': 'sprout', '🌱': 'sprout', '🏊': 'pool', '🛡': 'shield', '💡': 'bulb', '👀': 'eye', '🗺': 'map', '📐': 'big', '🧭': 'compass', '🔁': 'cycle', '🔄': 'cycle', '♻': 'cycle', '🤝': 'chat', '⚙': 'wrench', '🔋': 'bulb', '📦': 'truck', '🏡': 'house', '❤': 'check', '👍': 'check' };
+    var RX = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{2604}\u{2607}-\u{262F}\u{2631}-\u{2712}\u{2716}-\u{276D}\u{2770}-\u{27BF}\u{2B50}\u{21A9}\u{21AA}\u{231A}\u{231B}\u{23E9}-\u{23F3}\u{2B05}-\u{2B07}️]/gu;
+    var MAP = { '🎁': 'gift', '🏆': 'star', '🥇': 'star', '🏅': 'star', '☎': 'phone', '✉': 'mail2', '⭐': 'star', '💬': 'chat', '🏠': 'house', '🚚': 'truck', '✅': 'check', '🛠': 'wrench', '🔧': 'wrench', '📞': 'phone', '📱': 'phone', '🌿': 'sprout', '🌱': 'sprout', '🏊': 'pool', '🛡': 'shield', '💡': 'bulb', '👀': 'eye', '🗺': 'map', '📐': 'big', '🧭': 'compass', '🔁': 'cycle', '🔄': 'cycle', '♻': 'cycle', '🤝': 'chat', '⚙': 'wrench', '🔋': 'bulb', '📦': 'truck', '🏡': 'house', '❤': 'check', '👍': 'check', '↩': 'back', '↪': 'back', '⏱': 'clock', '⏰': 'clock', '⏳': 'clock', '⌚': 'clock', '⌛': 'clock', '🧽': 'drop', '🤖': 'vysavac' };
     function swap(el) {
       if (!el || el.dataset.rsNoEmoji) return; el.dataset.rsNoEmoji = 1;
       [].slice.call(el.childNodes).forEach(function (n) {
         if (n.nodeType !== 3 || !RX.test(n.nodeValue)) return; RX.lastIndex = 0;
-        var f = document.createDocumentFragment(), parts = n.nodeValue.split(/([\u{1F300}-\u{1FAFF}\u{2600}-\u{2604}\u{2607}-\u{262F}\u{2631}-\u{2712}\u{2716}-\u{276D}\u{2770}-\u{27BF}\u{2B50}])️?/u);
+        var f = document.createDocumentFragment(), parts = n.nodeValue.split(/([\u{1F300}-\u{1FAFF}\u{2600}-\u{2604}\u{2607}-\u{262F}\u{2631}-\u{2712}\u{2716}-\u{276D}\u{2770}-\u{27BF}\u{2B50}\u{21A9}\u{21AA}\u{231A}\u{231B}\u{23E9}-\u{23F3}\u{2B05}-\u{2B07}])️?/u);
         /* v kontejneru ikony (dlaždice O nás apod.) nesmí zůstat prázdno, když emoji není v mapě → zatržítko */
         var icBox = el.matches && el.matches('.rs-pg-ic, [class$="-ic"], [class*="-ic "]');
         parts.forEach(function (s) { if (!s) return; var k = MAP[s] || (icBox && RX.test(s) ? 'check' : null); RX.lastIndex = 0; if (k && NI[k]) { var i = document.createElement('span'); i.className = 'rs-ei'; i.setAttribute('aria-hidden', 'true'); i.innerHTML = '<svg viewBox="0 0 24 24">' + NI[k] + '</svg>'; f.appendChild(i); } else if (!RX.test(s)) f.appendChild(document.createTextNode(s)); RX.lastIndex = 0; });
