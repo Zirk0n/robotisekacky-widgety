@@ -8,7 +8,7 @@
 import fs from 'fs';
 const OUT = process.argv[2] || 'data/recenze.json';
 const BASE = 'https://www.robotisekacky.cz/hodnoceni-obchodu/';
-const MAX_PAGES = 60, PICK = 10;
+const MAX_PAGES = +(process.env.MAX_PAGES || 60), PICK = 10;
 const dec = s => s.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;|&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\s+/g, ' ').trim();
 const all = []; let total = null, avg = null;
 for (let n = 1; n <= MAX_PAGES; n++) {
@@ -43,6 +43,9 @@ const picked = all
   .filter(r => { const k = r.name.toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; })
   .slice(0, PICK)
   .map(r => ({ jmeno: shortName(r.name), datum: r.date, text: r.text }));
+// 25. 11. 2026: běh 23. 11. nic nestáhl (web GitHubu neodpověděl) a přepsal data prázdným výběrem → box recenzí na webu byl prázdný.
+// Pojistka: při neúplném sběru soubor NEPŘEPISOVAT a skončit chybou (zůstane poslední dobrý výběr).
+if (all.length < 20 || picked.length < 5) { console.error(`sběr neúplný (staženo ${all.length}, vybráno ${picked.length}) – ${OUT} ponechán beze změny`); process.exit(process.env.MAX_PAGES ? 0 : 1); }
 const out = { aktualizovano: new Date().toISOString().slice(0, 10), celkem: total || all.length, prumer: avg || '5.0', zdroj: BASE, recenze: picked };
 fs.mkdirSync(OUT.replace(/[^/]+$/, '') || '.', { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(out, null, 1));
